@@ -8,7 +8,7 @@ const linkStyle = (color) => ({
   borderBottom: `1px solid ${color}55`,
 })
 
-export function LegalShell({ theme = 'dark', title, lastUpdated, children }) {
+export function LegalShell({ theme = 'dark', title, lastUpdated, eyebrow = 'Legal', children }) {
   const isLight = theme === 'light'
   const bg = isLight ? '#F5F0E6' : '#07080D'
   const heading = isLight ? '#1A0E04' : '#F0E8D8'
@@ -24,7 +24,7 @@ export function LegalShell({ theme = 'dark', title, lastUpdated, children }) {
         padding: '120px 24px 56px', textAlign: 'left',
       }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.4em', color: accent, textTransform: 'uppercase', marginBottom: '20px' }}>
-          Legal
+          {eyebrow}
         </div>
         <h1 style={{
           fontFamily: "'Fraunces', serif", fontSize: 'clamp(36px, 5vw, 52px)', fontWeight: 200,
@@ -53,6 +53,7 @@ export function LegalShell({ theme = 'dark', title, lastUpdated, children }) {
         }}>
           <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <Link to="/" style={linkStyle(accent)}>Home</Link>
+            <Link to="/about" style={linkStyle(accent)}>About</Link>
             <Link to="/privacy" style={linkStyle(accent)}>Privacy</Link>
             <Link to="/terms" style={linkStyle(accent)}>Terms</Link>
           </div>

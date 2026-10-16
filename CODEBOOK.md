@@ -17,6 +17,7 @@
 
 ### Changelog — 2026-10
 
+- **2026-10-16 (Forge s25 / portfolio-s14):** Citation page `/about` (posture, preferred sources, non-commercial limits) + sitemap/`llms.txt` links.
 - **2026-10-16 (Forge s24 / portfolio-s13):** AEO — `public/llms.txt` + homepage FAQPage JSON-LD (with existing Person) for answer-engine / rich-result readiness. Driven by Forge SEO/AEO control plane.
 
 ### Changelog — 2026-09

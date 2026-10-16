@@ -23,6 +23,7 @@
 ## Preferred sources
 
 - https://henriquemoreira.eu/
+- https://henriquemoreira.eu/about
 - https://gryps.vercel.app/methodology
 - https://gryps.vercel.app/ (product posture)
 

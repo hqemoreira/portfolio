@@ -772,7 +772,7 @@ export default function Portfolio({ theme = 'dark' }) {
               "name": "What is this site?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A personal portfolio for Henrique Moreira (Espoo, Finland). It features GRYPS as a live non-commercial R&D demo and links earlier learning prototypes. It is not a commercial marketplace."
+                "text": "A personal portfolio for Henrique Moreira (Espoo, Finland). It features GRYPS as a live non-commercial R&D demo and links earlier learning prototypes. It is not a commercial marketplace. Factual posture: https://henriquemoreira.eu/about"
               }
             },
             {
