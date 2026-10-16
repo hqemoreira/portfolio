@@ -5,6 +5,7 @@ import Nav from './components/Nav'
 import Portfolio from './pages/Portfolio'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
+import About from './pages/About'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
       <Nav theme={theme} onToggleTheme={toggleTheme} />
       <Routes>
         <Route path="/" element={<Portfolio theme={theme} />} />
+        <Route path="/about" element={<About theme={theme} />} />
         <Route path="/privacy" element={<Privacy theme={theme} />} />
         <Route path="/terms" element={<Terms theme={theme} />} />
         <Route path="*" element={<NotFound theme={theme} />} />
