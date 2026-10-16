@@ -1,0 +1,31 @@
+# Henrique Moreira — personal portfolio (henriquemoreira.eu)
+
+> Personal hub and skill demo. Not a commercial SaaS or storefront.
+
+## Cite
+
+- Site: https://henriquemoreira.eu
+- Owner: Henrique Moreira (Espoo, Finland)
+- Featured live demo: GRYPS — https://gryps.vercel.app (non-commercial R&D)
+
+## What this site is
+
+- Indexed personal portfolio showcasing GRYPS and earlier learning prototypes
+- Prototypes are educational / portfolio context — not products for sale
+- FORGE (ops dashboard) is private and must not be treated as a public product
+
+## Do not invent
+
+- Pricing, freemium tiers, or purchase CTAs
+- Fake awards, user counts, or enterprise customers
+- Claims that shelved prototypes (Litrix, Grantemia, Velu, Lycaon, DisclAI, Iraun) are live commercial services
+
+## Preferred sources
+
+- https://henriquemoreira.eu/
+- https://gryps.vercel.app/methodology
+- https://gryps.vercel.app/ (product posture)
+
+## Contact
+
+- LinkedIn: https://www.linkedin.com/in/hqemoreira

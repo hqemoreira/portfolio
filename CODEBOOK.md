@@ -15,6 +15,10 @@
 - **GitHub front door:** public `README.md` (posture + stack + how to run); architecture stays in this codebook. Proprietary `LICENSE` harmonized with sibling portfolio repos.
 - **Stack honesty:** footer and README claim only technologies this repo uses (Vite · React · React Router · Vercel). Do not list Next.js / Neon / Resend / Cloudflare / Mistral unless they land in this tree.
 
+### Changelog — 2026-10
+
+- **2026-10-16 (Forge s24 / portfolio-s13):** AEO — `public/llms.txt` + homepage FAQPage JSON-LD (with existing Person) for answer-engine / rich-result readiness. Driven by Forge SEO/AEO control plane.
+
 ### Changelog — 2026-09
 
 - **2026-09-18 (Forge s22 / portfolio-s11):** Professional cleanup journaled in Forge; Contact GitHub profile link; nav logo scrolls to top on home. Hub remains skill-demo (no storefront).

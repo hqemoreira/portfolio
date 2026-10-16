@@ -739,26 +739,69 @@ export default function Portfolio({ theme = 'dark' }) {
     `
     document.head.appendChild(style)
 
-    // Schema.org structured data
+    // Schema.org structured data — Person + FAQ (AEO / rich results)
     const schema = document.createElement('script')
     schema.type = 'application/ld+json'
     schema.id = 'portfolio-schema'
     schema.textContent = JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Henrique Moreira",
-      "url": "https://henriquemoreira.eu",
-      "email": "hqe.moreira@gmail.com",
-      "jobTitle": "AI Builder & Systems Thinker",
-      "description": "AI builder and systems thinker based in Espoo, Finland. Building GRYPS — connectivity resilience intelligence for Nordic and Arctic remote operations. Earlier prototypes include Litrix, Grantemia, Velu, Lycaon, DisclAI and Iraun.",
-      "address": { "@type": "PostalAddress", "addressLocality": "Espoo", "addressCountry": "FI" },
-      "sameAs": ["https://www.linkedin.com/in/hqemoreira"],
-      "knowsAbout": ["Artificial Intelligence", "Systems Thinking", "Software Development", "EU AI Act", "Supply Chain", "International Business"],
-      "hasOccupation": {
-        "@type": "Occupation",
-        "name": "AI Product Builder",
-        "occupationLocation": { "@type": "City", "name": "Espoo" }
-      }
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://henriquemoreira.eu/#person",
+          "name": "Henrique Moreira",
+          "url": "https://henriquemoreira.eu",
+          "email": "hqe.moreira@gmail.com",
+          "jobTitle": "AI Builder & Systems Thinker",
+          "description": "AI builder and systems thinker based in Espoo, Finland. Building GRYPS — connectivity resilience intelligence for Nordic and Arctic remote operations. Earlier prototypes include Litrix, Grantemia, Velu, Lycaon, DisclAI and Iraun.",
+          "address": { "@type": "PostalAddress", "addressLocality": "Espoo", "addressCountry": "FI" },
+          "sameAs": ["https://www.linkedin.com/in/hqemoreira"],
+          "knowsAbout": ["Artificial Intelligence", "Systems Thinking", "Software Development", "EU AI Act", "Supply Chain", "International Business"],
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "AI Product Builder",
+            "occupationLocation": { "@type": "City", "name": "Espoo" }
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://henriquemoreira.eu/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is this site?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A personal portfolio for Henrique Moreira (Espoo, Finland). It features GRYPS as a live non-commercial R&D demo and links earlier learning prototypes. It is not a commercial marketplace."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is GRYPS?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "GRYPS is a non-commercial connectivity resilience scoring prototype for remote and autonomous industrial contexts (Nordic, Arctic, Icelandic). Outputs are indicative research — not procurement or certification advice. Live at https://gryps.vercel.app."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are the other prototypes for sale?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Litrix, Grantemia, Velu, Lycaon, DisclAI, and Iraun are shelved learning prototypes shown for portfolio context. They remain noindex on their own hosts."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is FORGE a public product?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. FORGE is a private personal ops dashboard (noindex). It is not offered as a public product or login destination for visitors."
+              }
+            }
+          ]
+        }
+      ]
     })
     document.head.appendChild(schema)
 
