@@ -622,7 +622,19 @@ function Work({ isLight }) {
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.35em', textTransform: 'uppercase', color: isLight ? '#8A6A30' : '#6A5A3A' }}>Internal Tooling · Personal Projects</div>
               <div style={{ flex: 1, height: '1px', background: isLight ? 'rgba(212,137,30,0.15)' : 'rgba(255,255,255,0.05)' }} />
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr', gap: '4px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '4px' }}>
+              <ProductCard
+                n="—"
+                accent="#3DB8A0"
+                category="Study path companion"
+                name="Monopati"
+                description="Personal 12-month tracker for an AI Solutions + satellite connectivity reskilling roadmap (1 Nov 2026 – 31 Oct 2027). Progress stays in your browser; export/restore moves it between devices. Non-commercial learning tool — not a product for sale."
+                tags={['Roadmap', 'ECTS · costs', 'Satellite track', 'Evidence']}
+                status="Active · Personal"
+                href="https://monopati.vercel.app"
+                linkRel="nofollow noreferrer"
+                isLight={isLight}
+              />
               <ProductCard
                 n="—"
                 accent="#6A93B0"
