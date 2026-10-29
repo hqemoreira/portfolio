@@ -628,10 +628,10 @@ function Work({ isLight }) {
                 accent="#3DB8A0"
                 category="Study path companion"
                 name="Monopati"
-                description="Personal 12-month tracker for an AI Solutions + satellite connectivity reskilling roadmap (1 Nov 2026 – 31 Oct 2027). Access-gated learning tool — not a public demo. Progress stays in your browser; export/restore moves it between devices."
-                tags={['Roadmap', 'ECTS · costs', 'Satellite track', 'Evidence']}
-                status="Active · Personal · Access gated"
-                href="https://monopati.vercel.app"
+                description="Personal 12-month AI Solutions + satellite connectivity reskill path by Henrique Moreira. Curated public progress and study journal — private tracker stays access-gated."
+                tags={['Public progress', 'Study journal', 'Satellite track', 'ECTS']}
+                status="Active · Public progress"
+                href="https://monopati.vercel.app/progress"
                 linkRel="nofollow noreferrer"
                 isLight={isLight}
               />
