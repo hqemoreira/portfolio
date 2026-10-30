@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1280, height=720" />
+<title>GRYPS — 60s</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;1,200&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700&family=Lora:ital,wght@0,400;1,400&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; background: #07080D; color: #F0E8D8; }
+  #stage { position: relative; width: 1280px; height: 720px; background: #07080D; }
+  .scene {
+    position: absolute; inset: 0; opacity: 0; pointer-events: none;
+    display: flex; flex-direction: column; justify-content: center; padding: 64px 80px;
+    background-size: cover; background-position: center;
+  }
+  .scene.on { opacity: 1; }
+  .scene.fade { transition: opacity 0.55s ease; }
+  .veil {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(7,8,13,0.92) 0%, rgba(7,8,13,0.72) 48%, rgba(7,8,13,0.45) 100%);
+  }
+  .content { position: relative; z-index: 2; max-width: 720px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.35em;
+    text-transform: uppercase; color: #4FA8FF; margin-bottom: 18px;
+  }
+  .title {
+    font-family: 'Fraunces', serif; font-weight: 200; font-style: italic;
+    font-size: 64px; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 22px;
+  }
+  .title span { color: #4FA8FF; }
+  .body {
+    font-family: 'Lora', serif; font-size: 22px; line-height: 1.55; color: rgba(240,232,216,0.82);
+    max-width: 640px;
+  }
+  .mono {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.7;
+    color: rgba(168,176,184,0.95); letter-spacing: 0.02em;
+  }
+  .mono .ok { color: #1EC8A8; }
+  .mono .warn { color: #F0A828; }
+  .mono .hi { color: #4FA8FF; }
+  .pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+  .pill {
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #4FA8FF; border: 1px solid rgba(79,168,255,0.4);
+    padding: 8px 14px; border-radius: 100px;
+  }
+  .stats { display: flex; gap: 28px; margin-top: 28px; }
+  .stat strong {
+    display: block; font-family: 'Fraunces', serif; font-style: italic; font-weight: 200;
+    font-size: 42px; color: #4FA8FF; line-height: 1;
+  }
+  .stat span {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #8A8070;
+  }
+  .brand {
+    position: absolute; top: 36px; left: 80px; z-index: 5;
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 200;
+    font-size: 28px; color: #4FA8FF; letter-spacing: -0.02em;
+  }
+  .meta {
+    position: absolute; top: 42px; right: 80px; z-index: 5;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: #6A5A3A;
+  }
+  .footer {
+    position: absolute; bottom: 36px; left: 80px; right: 80px; z-index: 5;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #5A5040;
+  }
+  .bar {
+    position: absolute; bottom: 0; left: 0; height: 3px; background: #4FA8FF; width: 0%;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="brand">GRYPS</div>
+  <div class="meta">Non-commercial research · Espoo</div>
+  <div class="footer">
+    <span>Connectivity resilience · Nordics · Arctic · Iceland</span>
+    <span id="clock">00:00</span>
+  </div>
+  <div class="bar" id="bar"></div>
+
+  <!-- 0–8s -->
+  <section class="scene fade" id="s0" style="background-image:url('./arctic.png')">
+    <div class="veil"></div>
+    <div class="content">
+      <div class="eyebrow">Live research prototype</div>
+      <div class="title">Connectivity resilience<br /><span>before deployment depends on it.</span></div>
+      <div class="body">Remote sites and autonomous fleets fail without connectivity. GRYPS scores, documents, and monitors that risk.</div>
+    </div>
+  </section>
+
+  <!-- 8–18s -->
+  <section class="scene fade" id="s1" style="background-image:url('./orbits.png')">
+    <div class="veil"></div>
+    <div class="content">
+      <div class="eyebrow">The problem</div>
+      <div class="title">Single-provider setups<br /><span>are fragile by design.</span></div>
+      <div class="body">Pass geometry, weather windows, and orbital outages stay invisible until they become safety events, halts, or regulatory incidents.</div>
+      <div class="pills">
+        <div class="pill">Autonomous ops</div>
+        <div class="pill">Remote sites</div>
+        <div class="pill">Zero margin</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18–30s -->
+  <section class="scene fade" id="s2" style="background-image:url('./orbits.png')">
+    <div class="veil"></div>
+    <div class="content">
+      <div class="eyebrow">How it works · 60 seconds</div>
+      <div class="title">Resilience Signature<br /><span>in four steps.</span></div>
+      <div class="mono" style="margin-top:8px">
+        01  Enter site profile — coordinates, sector, terrain<br />
+        02  Set autonomy level — manual → autonomous<br />
+        03  Set criticality — standard → safety-critical<br />
+        04  Get score, risks, redundancy gaps, ranked providers
+      </div>
+    </div>
+  </section>
+
+  <!-- 30–42s -->
+  <section class="scene fade" id="s3" style="background-image:url('./dashboard.png')">
+    <div class="veil"></div>
+    <div class="content">
+      <div class="eyebrow">Illustrative engine output</div>
+      <div class="title">Orbital intelligence<br /><span>made legible.</span></div>
+      <div class="mono" style="margin-top:10px">
+        <span class="hi">[LEO-SCAN]</span> Starlink pass density: <span class="ok">94.2% OPTIMAL</span><br />
+        <span class="hi">[GEO-CHECK]</span> Horizon angle: <span class="warn">8.3° HIGH ATTENUATION</span><br />
+        <span class="hi">[REDUND]</span> Dual-orbit path: Starlink + Iridium NEXT<br />
+        <span class="hi">[SCORE]</span> Deployment Confidence: <span class="ok">94 · 81 · 67</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 42–52s -->
+  <section class="scene fade" id="s4" style="background-image:url('./dashboard.png')">
+    <div class="veil"></div>
+    <div class="content">
+      <div class="eyebrow">Benefits & advantages</div>
+      <div class="title">Know the gap<br /><span>before you deploy.</span></div>
+      <div class="body">NIS2/CER-aligned resilience reporting. Multi-orbit awareness across LEO–MEO–GEO. Documented evidence your site’s connectivity was assessed and scored.</div>
+      <div class="stats">
+        <div class="stat"><strong>120+</strong><span>Providers indexed</span></div>
+        <div class="stat"><strong>70°N+</strong><span>Polar coverage</span></div>
+        <div class="stat"><strong>60s</strong><span>To a Signature</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 52–60s -->
+  <section class="scene fade" id="s5" style="background-image:url('./arctic.png')">
+    <div class="veil"></div>
+    <div class="content">
+      <div class="eyebrow">gryps.vercel.app</div>
+      <div class="title">Get your site’s<br /><span>Resilience Signature.</span></div>
+      <div class="body">Free · Takes 60 seconds · No account needed. Personal R&D prototype from Espoo, Finland — non-commercial research project.</div>
+      <div class="pills">
+        <div class="pill">Nordics</div>
+        <div class="pill">Arctic</div>
+        <div class="pill">Iceland</div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  const scenes = [
+    { id: 's0', start: 0, end: 8 },
+    { id: 's1', start: 8, end: 18 },
+    { id: 's2', start: 18, end: 30 },
+    { id: 's3', start: 30, end: 42 },
+    { id: 's4', start: 42, end: 52 },
+    { id: 's5', start: 52, end: 60 },
+  ];
+  const bar = document.getElementById('bar');
+  const clock = document.getElementById('clock');
+  const t0 = performance.now();
+  function tick(now) {
+    const t = Math.min(60, (now - t0) / 1000);
+    bar.style.width = (t / 60 * 100) + '%';
+    const mm = String(Math.floor(t / 60)).padStart(2, '0');
+    const ss = String(Math.floor(t % 60)).padStart(2, '0');
+    clock.textContent = mm + ':' + ss;
+    scenes.forEach(sc => {
+      const el = document.getElementById(sc.id);
+      const on = t >= sc.start && t < sc.end;
+      el.classList.toggle('on', on || (t >= 60 && sc.id === 's5'));
+    });
+    if (t < 60.2) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+</script>
+</body>
+</html>
