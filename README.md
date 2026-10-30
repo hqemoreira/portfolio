@@ -1,6 +1,6 @@
 # Portfolio — Henrique Moreira
 
-Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed surface featuring **GRYPS** as the live skill demo, with earlier research prototypes linked for context.
+Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed surface featuring **GRYPS** as the lead hiring-proof skill demo (live Resilience Signature via `/#advisor`), with earlier research prototypes linked for context. Reskilling / hiring posture until further notice — non-commercial.
 
 **Not a SaaS storefront.** Prototypes are non-commercial / research / skill demonstrations. CTAs use **Open prototype**.
 
