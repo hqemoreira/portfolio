@@ -317,8 +317,8 @@ function Story({ isLight }) {
   const credBorder   = isLight ? 'rgba(212,137,30,0.2)' : 'rgba(212,137,30,0.12)'
   const credentials  = [
     { label: 'Background', value: 'International Business Management · Packaging · Forest Industry' },
-    { label: 'Systems practice', value: 'Account development · Pricing discipline · Cross-functional delivery · Commercial process design — Metsä Board sales & ops' },
-    { label: 'Industry tools', value: 'SAP · Power BI · CRM · BW — used daily in Metsä Board commercial ops' },
+    { label: 'Systems practice', value: 'Account development · Pricing discipline · Cross-functional delivery · Commercial process design' },
+    { label: 'Corporate Tools', value: 'SAP · Power BI · CRM · BW' },
     { label: 'Regions', value: 'Portugal · South East Europe · EMEA' },
     { label: 'Build proof', value: 'GRYPS — live Resilience Signature (assess → score → rank → document)' },
     { label: 'Earlier prototypes', value: 'LitrixEU · Grantemia · Velu · Lycaon · DisclAI · Iraun' },
