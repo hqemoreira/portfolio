@@ -17,9 +17,10 @@ export default function About({ theme = 'dark' }) {
         <LegalH2>What you will find</LegalH2>
         <LegalUl>
           <li>
-            <strong>GRYPS</strong> — lead hiring proof. A live non-commercial skill demo: enter a Nordic /
-            Arctic site profile and generate a <strong>Resilience Signature</strong> (score, grade, risks,
-            ranked options) via Model v0.4. Advisor: https://gryps.vercel.app/#advisor — methodology and
+            <strong>GRYPS</strong> — lead hiring proof. A live non-commercial skill demo: assess a Nordic /
+            Arctic site → score with Model v0.4 → rank connectivity options → document a{' '}
+            <strong>Resilience Signature</strong> (score, grade, risks, ranked options). No account or email
+            required for the initial Signature. Advisor: https://gryps.vercel.app/#advisor — methodology and
             limitations on the project site.
           </li>
           <li>
