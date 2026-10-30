@@ -320,9 +320,9 @@ function Story({ isLight }) {
     { label: 'Practice', value: 'Account development · Pricing discipline · Cross-functional delivery · Commercial process design' },
     { label: 'Corporate Tools', value: 'SAP · Power BI · CRM · BW' },
     { label: 'Regions', value: 'Portugal · South East Europe · EMEA' },
-    { label: 'Building', value: 'GRYPS' },
-                { label: 'Earlier prototypes', value: 'LitrixEU · Grantemia · Velu · Lycaon · DisclAI · Iraun' },
-    { label: 'Focus', value: 'AI research · EU compliance · Systems Intelligence' },
+    { label: 'Building', value: 'GRYPS — live Resilience Signature demo' },
+    { label: 'Earlier prototypes', value: 'LitrixEU · Grantemia · Velu · Lycaon · DisclAI · Iraun' },
+    { label: 'Focus', value: 'OT connectivity · Nordic / Arctic ops · EU AI literacy' },
   ]
   return (
     <Section id="story" isLight={isLight}>
@@ -468,7 +468,7 @@ function Work({ isLight }) {
             textTransform: 'uppercase', color: isLight ? '#8A6A30' : '#6A5A3A',
             textAlign: 'center', marginBottom: '16px',
           }}>
-            R&D Prototype · Non-commercial · Model v0.3
+            R&D Prototype · Non-commercial · Model v0.4
           </div>
           <div style={{
             background: isLight ? 'rgba(240,248,255,0.95)' : '#080C12',
@@ -481,10 +481,10 @@ function Work({ isLight }) {
               GRYPS
             </div>
             <div style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: isLight ? '#2A1A08' : '#A8B0B8', lineHeight: 1.7, maxWidth: '560px', marginBottom: '24px' }}>
-              A research prototype scoring connectivity resilience for remote Nordic, Arctic, and Icelandic operations — forestry, maritime, mining, and autonomous fleets — against NIS2/CER requirements. Full methodology, data sources, and limitations documented on the project site.
+              Live skill demo: enter a Nordic / Arctic site profile and get a <strong style={{ fontWeight: 600, color: isLight ? '#1A0E04' : '#E8EEF4' }}>Resilience Signature</strong> — score, grade, top risk, and ranked connectivity options from a deterministic Model v0.4 engine. Research prototype for OT / satellite connectivity literacy — not procurement advice.
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-              <a href="https://gryps.vercel.app" target="_blank" rel="nofollow noreferrer" style={{ textDecoration: 'none' }}>
+              <a href="https://gryps.vercel.app/#advisor" target="_blank" rel="nofollow noreferrer" style={{ textDecoration: 'none' }}>
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '10px 22px',
                   border: '1px solid #4FA8FF', borderRadius: '1px',
@@ -494,7 +494,7 @@ function Work({ isLight }) {
                   onMouseEnter={e => { e.currentTarget.style.background = '#4FA8FF'; e.currentTarget.style.color = '#07080D' }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#4FA8FF' }}
                 >
-                  Open prototype →
+                  Generate a Resilience Signature →
                 </div>
               </a>
               <a href="https://gryps.vercel.app/methodology" target="_blank" rel="nofollow noreferrer" style={{
@@ -522,9 +522,9 @@ function Work({ isLight }) {
             color: isLight ? '#8A6A30' : '#6A5A3A', marginTop: '10px', textAlign: 'left', lineHeight: 1.7,
           }}>
             <div style={{ fontFamily: "'Lora', serif", fontSize: '13px', fontStyle: 'italic', letterSpacing: '0.01em', marginBottom: '6px', color: isLight ? '#5A3A10' : '#A8B0B8' }}>
-              Example: remote forestry site, northern Finland, no backup link
+              Motion demo above is a frozen Path A sample. Open the live Advisor to generate a real Signature.
             </div>
-            Illustrative engine output · Score 47 / 100 · Grade D · Scale: A (≥80 resilient) → F (&lt;20 critical failure)
+            Illustrative panel · Score 47 / 100 · Grade D · Scale: A (≥80 resilient) → F (&lt;20 critical failure)
           </div>
 
           <div style={{
@@ -544,11 +544,11 @@ function Work({ isLight }) {
             <ProductCard
               n="02"
               accent="#C8A050"
-              category="EU AI Act compliance demo"
+              category="EU AI Act literacy demo"
               name="LitrixEU"
-              description="A compliance-focused prototype for AI literacy training workflows under EU AI Act Article 4. Built to explore regulatory product design and verification systems."
-              tags={['EU AI Act', 'AI Literacy', 'Transparency']}
-              status="Research prototype"
+              description="Educational Article 4 literacy walkthrough — intake, short module, quiz, and an illustrative training-register entry. Secondary to GRYPS; not a compliance service."
+              tags={['EU AI Act', 'AI Literacy', 'Educational']}
+              status="Learning prototype"
               href="https://litrixeu.vercel.app"
               linkRel="nofollow noreferrer"
               isLight={isLight}
@@ -765,7 +765,7 @@ export default function Portfolio({ theme = 'dark' }) {
           "url": "https://henriquemoreira.eu",
           "email": "hqe.moreira@gmail.com",
           "jobTitle": "AI Builder & Systems Thinker",
-          "description": "AI builder and systems thinker based in Espoo, Finland. Building GRYPS — connectivity resilience intelligence for Nordic and Arctic remote operations. Earlier prototypes include Litrix, Grantemia, Velu, Lycaon, DisclAI and Iraun.",
+          "description": "Builder based in Espoo, Finland. Live skill demo: GRYPS — generate a Resilience Signature for Nordic and Arctic remote operations connectivity. Earlier learning prototypes include Litrix, Grantemia, Velu, Lycaon, DisclAI and Iraun.",
           "address": { "@type": "PostalAddress", "addressLocality": "Espoo", "addressCountry": "FI" },
           "sameAs": ["https://www.linkedin.com/in/hqemoreira"],
           "knowsAbout": ["Artificial Intelligence", "Systems Thinking", "Software Development", "EU AI Act", "Supply Chain", "International Business"],
@@ -792,7 +792,7 @@ export default function Portfolio({ theme = 'dark' }) {
               "name": "What is GRYPS?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "GRYPS is a non-commercial connectivity resilience scoring prototype for remote and autonomous industrial contexts (Nordic, Arctic, Icelandic). Outputs are indicative research — not procurement or certification advice. Live at https://gryps.vercel.app."
+                "text": "GRYPS is a non-commercial skill demo: enter a site profile and get a Resilience Signature (score, grade, risks, ranked options) from Model v0.4. Indicative research — not procurement advice. Live Advisor: https://gryps.vercel.app/#advisor"
               }
             },
             {
@@ -800,7 +800,7 @@ export default function Portfolio({ theme = 'dark' }) {
               "name": "Are the other prototypes for sale?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "No. Litrix, Grantemia, Velu, Lycaon, DisclAI, and Iraun are shelved learning prototypes shown for portfolio context. They remain noindex on their own hosts."
+                "text": "No. Litrix, Grantemia, Velu, Lycaon, DisclAI, and Iraun are shelved learning prototypes shown for portfolio context. They remain noindex on their own hosts. Lead hiring proof is GRYPS."
               }
             },
             {

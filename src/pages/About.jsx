@@ -17,14 +17,16 @@ export default function About({ theme = 'dark' }) {
         <LegalH2>What you will find</LegalH2>
         <LegalUl>
           <li>
-            <strong>GRYPS</strong> — a live, non-commercial R&amp;D prototype that scores satellite
-            connectivity resilience for remote Nordic, Arctic, and Icelandic operations. Methodology,
-            assumptions, and limitations are documented on the project site.
+            <strong>GRYPS</strong> — lead hiring proof. A live non-commercial skill demo: enter a Nordic /
+            Arctic site profile and generate a <strong>Resilience Signature</strong> (score, grade, risks,
+            ranked options) via Model v0.4. Advisor: https://gryps.vercel.app/#advisor — methodology and
+            limitations on the project site.
           </li>
           <li>
             <strong>Earlier prototypes</strong> — LitrixEU, Grantemia, Velu, Lycaon, DisclAI, and Iraun
-            appear as portfolio context. They are shelved learning projects (noindex on their own hosts),
-            not live commercial services.
+            appear as secondary portfolio context. They are shelved learning projects (noindex on their own
+            hosts), not live commercial services. Litrix is an educational Article 4 literacy walkthrough,
+            not a compliance service.
           </li>
           <li>
             <strong>FORGE</strong> — a private personal ops dashboard. It is not a public product and
