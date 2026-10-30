@@ -317,10 +317,10 @@ function Story({ isLight }) {
   const credBorder   = isLight ? 'rgba(212,137,30,0.2)' : 'rgba(212,137,30,0.12)'
   const credentials  = [
     { label: 'Background', value: 'International Business Management · Packaging · Forest Industry' },
-    { label: 'Practice', value: 'Account development · Pricing discipline · Cross-functional delivery · Commercial process design' },
-    { label: 'Corporate Tools', value: 'SAP · Power BI · CRM · BW' },
+    { label: 'Systems practice', value: 'Account development · Pricing discipline · Cross-functional delivery · Commercial process design — Metsä Board sales & ops' },
+    { label: 'Industry tools', value: 'SAP · Power BI · CRM · BW — used daily in Metsä Board commercial ops' },
     { label: 'Regions', value: 'Portugal · South East Europe · EMEA' },
-    { label: 'Building', value: 'GRYPS — live Resilience Signature demo' },
+    { label: 'Build proof', value: 'GRYPS — live Resilience Signature (assess → score → rank → document)' },
     { label: 'Earlier prototypes', value: 'LitrixEU · Grantemia · Velu · Lycaon · DisclAI · Iraun' },
     { label: 'Focus', value: 'OT connectivity · Nordic / Arctic ops · EU AI literacy' },
   ]
@@ -357,8 +357,8 @@ function Story({ isLight }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', marginBottom: '28px' }}>
               {[
                 "Modern AI software usually fails because the builder never lived the problem.",
-                "That experience runs from frontline client work to market-facing leadership in forest-industry paperboard — growing account volume 10% a year and international pricing 4% annually, while coordinating closely with production and logistics.",
-                "I am now developing my skills in predictive AI and systems intelligence, building functional prototypes to demonstrate how domain expertise and engineering can close operational gaps I saw from the inside out.",
+                "That experience runs from frontline client work to market-facing leadership in forest-industry paperboard — growing account volume 10% a year and international pricing 4% annually, while coordinating closely with production and logistics. The systems were SAP, Power BI, CRM, and BW — the work was account logic, pricing discipline, and handovers.",
+                "I am now developing skills in predictive AI and systems intelligence. Lead hiring proof: GRYPS — a live research prototype that assesses a Nordic / Arctic site, scores it with Model v0.4, ranks connectivity options, and documents a Resilience Signature. Domain expertise plus a closed scoring loop.",
               ].map((para, i) => (
                 <p key={i} style={{ fontFamily: "'Lora', serif", fontSize: isMobile ? '15px' : '16px', lineHeight: '1.85', color: bodyColor, letterSpacing: '0.01em' }}>{para}</p>
               ))}
@@ -480,8 +480,14 @@ function Work({ isLight }) {
             <div style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 200, fontStyle: 'italic', color: isLight ? '#1A0E04' : '#F0E8D8', letterSpacing: '-0.03em', lineHeight: 0.9, marginBottom: '16px' }}>
               GRYPS
             </div>
-            <div style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: isLight ? '#2A1A08' : '#A8B0B8', lineHeight: 1.7, maxWidth: '560px', marginBottom: '24px' }}>
+            <div style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: isLight ? '#2A1A08' : '#A8B0B8', lineHeight: 1.7, maxWidth: '560px', marginBottom: '12px' }}>
               Live skill demo: enter a Nordic / Arctic site profile and get a <strong style={{ fontWeight: 600, color: isLight ? '#1A0E04' : '#E8EEF4' }}>Resilience Signature</strong> — score, grade, top risk, and ranked connectivity options from a deterministic Model v0.4 engine. Research prototype for OT / satellite connectivity literacy — not procurement advice.
+            </div>
+            <div style={{
+              fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', letterSpacing: '0.08em',
+              color: isLight ? '#5A3A10' : '#8A9AA8', lineHeight: 1.6, maxWidth: '560px', marginBottom: '24px',
+            }}>
+              System loop: assess → score → rank → document · No account · no email required for the initial Signature
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
               <a href="https://gryps.vercel.app/#advisor" target="_blank" rel="nofollow noreferrer" style={{ textDecoration: 'none' }}>

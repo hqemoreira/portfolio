@@ -6,12 +6,12 @@
 
 - Site: https://henriquemoreira.eu
 - Owner: Henrique Moreira (Espoo, Finland)
-- Featured live demo: GRYPS — https://gryps.vercel.app/#advisor (generate a Resilience Signature)
+- Featured live demo: GRYPS — https://gryps.vercel.app/#advisor (assess → score → rank → document a Resilience Signature; no email for the initial result)
 - Posture: personal reskilling / hiring conversations — non-commercial
 
 ## What this site is
 
-- Indexed personal portfolio; GRYPS is the lead build-proof (live Signature from site inputs)
+- Indexed personal portfolio; GRYPS is the lead build-proof (system loop + live Signature; industry tools are secondary context)
 - Other prototypes are educational / portfolio context — not products for sale
 - FORGE (ops dashboard) is private and must not be treated as a public product
 
