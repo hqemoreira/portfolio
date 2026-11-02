@@ -321,7 +321,7 @@ function Story({ isLight }) {
     { label: 'Corporate Tools', value: 'SAP · Power BI · CRM · BW' },
     { label: 'Regions', value: 'Portugal · South East Europe · EMEA' },
     { label: 'Build proof', value: 'GRYPS — live Resilience Signature (assess → score → rank → document)' },
-    { label: 'Earlier prototypes', value: 'LitrixEU · Grantemia · Velu · Lycaon · DisclAI · Iraun' },
+    { label: 'Earlier prototypes', value: 'Morea · Grantemia · Velu · Lycaon · DisclAI · Iraun' },
     { label: 'Focus', value: 'OT connectivity · Nordic / Arctic ops · EU AI literacy' },
   ]
   return (
@@ -550,12 +550,12 @@ function Work({ isLight }) {
             <ProductCard
               n="02"
               accent="#C8A050"
-              category="EU AI Act literacy demo"
-              name="LitrixEU"
-              description="Educational Article 4 literacy walkthrough — intake, short module, quiz, and an illustrative training-register entry. Secondary to GRYPS; not a compliance service."
-              tags={['EU AI Act', 'AI Literacy', 'Educational']}
+              category="EU AI Act Evidence Pack"
+              name="Morea"
+              description="Educational Article 4 literacy trail — AI inventory, role-aware module, quiz, optional policy draft, and an illustrative exportable Evidence Pack. Secondary to GRYPS; not a compliance service."
+              tags={['EU AI Act', 'Evidence Pack', 'Educational']}
               status="Learning prototype"
-              href="https://litrixeu.vercel.app"
+              href="https://morea-pack.vercel.app"
               linkRel="nofollow noreferrer"
               isLight={isLight}
             />
@@ -771,7 +771,7 @@ export default function Portfolio({ theme = 'dark' }) {
           "url": "https://henriquemoreira.eu",
           "email": "hqe.moreira@gmail.com",
           "jobTitle": "AI Builder & Systems Thinker",
-          "description": "Builder based in Espoo, Finland. Live skill demo: GRYPS — generate a Resilience Signature for Nordic and Arctic remote operations connectivity. Earlier learning prototypes include Litrix, Grantemia, Velu, Lycaon, DisclAI and Iraun.",
+          "description": "Builder based in Espoo, Finland. Live skill demo: GRYPS — generate a Resilience Signature for Nordic and Arctic remote operations connectivity. Earlier learning prototypes include Morea (Evidence Pack), Grantemia, Velu, Lycaon, DisclAI and Iraun.",
           "address": { "@type": "PostalAddress", "addressLocality": "Espoo", "addressCountry": "FI" },
           "sameAs": ["https://www.linkedin.com/in/hqemoreira"],
           "knowsAbout": ["Artificial Intelligence", "Systems Thinking", "Software Development", "EU AI Act", "Supply Chain", "International Business"],
@@ -806,7 +806,7 @@ export default function Portfolio({ theme = 'dark' }) {
               "name": "Are the other prototypes for sale?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "No. Litrix, Grantemia, Velu, Lycaon, DisclAI, and Iraun are shelved learning prototypes shown for portfolio context. They remain noindex on their own hosts. Lead hiring proof is GRYPS."
+                "text": "No. Morea, Grantemia, Velu, Lycaon, DisclAI, and Iraun are learning prototypes shown for portfolio context. They remain noindex on their own hosts. Lead hiring proof is GRYPS."
               }
             },
             {
