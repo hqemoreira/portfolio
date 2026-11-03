@@ -17,6 +17,10 @@
 - **GitHub front door:** public `README.md` (posture + stack + how to run); architecture stays in this codebook. Proprietary `LICENSE` harmonized with sibling portfolio repos.
 - **Stack honesty:** footer and README claim only technologies this repo uses (Vite · React · React Router · Vercel). Do not list Next.js / Neon / Resend / Cloudflare / Mistral unless they land in this tree.
 
+### Changelog — 2026-11
+
+- **2026-11-03 (Forge s26 / portfolio-s15):** Public copy Litrix → **Morea**; earlier-prototypes hierarchy aligned with Forge registry. Hub stays skill-demo / no storefront.
+
 ### Changelog — 2026-10
 
 - **2026-10-30:** Systems-over-stamps hiring sprint — Story credentials reframed; GRYPS Work loop + no-email note; About/`llms.txt` aligned.
