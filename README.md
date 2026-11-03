@@ -10,7 +10,7 @@ Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed surface
 
 - Animated particle canvas + dark/light theme
 - GRYPS Live card with Path A golden Advisor motion demo (Score 47 · Grade D)
-- Earlier prototypes grid (LitrixEU, Grantemia, Velu, Lycaon, DisclAI, Iraun) — `rel="nofollow noreferrer"`
+- Earlier prototypes grid (Morea, Grantemia, Velu, Lycaon, DisclAI, Iraun) — `rel="nofollow noreferrer"`
 - FORGE listed as private internal tooling only (no public login link)
 - Privacy / Terms
 

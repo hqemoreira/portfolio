@@ -24,9 +24,9 @@ export default function About({ theme = 'dark' }) {
             limitations on the project site.
           </li>
           <li>
-            <strong>Earlier prototypes</strong> — LitrixEU, Grantemia, Velu, Lycaon, DisclAI, and Iraun
-            appear as secondary portfolio context. They are shelved learning projects (noindex on their own
-            hosts), not live commercial services. Litrix is an educational Article 4 literacy walkthrough,
+            <strong>Earlier prototypes</strong> — Morea (Evidence Pack), Grantemia, Velu, Lycaon, DisclAI, and Iraun
+            appear as secondary portfolio context. They are learning projects (noindex on their own
+            hosts), not live commercial services. Morea is an educational Article 4 literacy Evidence Pack walkthrough,
             not a compliance service.
           </li>
           <li>

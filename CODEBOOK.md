@@ -8,11 +8,11 @@
 ## Public posture
 
 - **Indexed:** this site + GRYPS only. Earlier prototypes are linked with `rel="nofollow noreferrer"` and stay noindex on their own hosts. FORGE is private ops (noindex) — listed without a public login link.
-- **Hierarchy:** GRYPS Live card first; Earlier prototypes grid (LitrixEU, Grantemia, Velu, Lycaon, DisclAI, Iraun). No Grantemia PT.
+- **Hierarchy:** GRYPS Live card first; Earlier prototypes grid (Morea, Grantemia, Velu, Lycaon, DisclAI, Iraun). No Grantemia PT.
 - **CTAs:** prototype cards use **Open prototype** — not Try/Buy/Visit. Job-seeking commercial-role copy may exist elsewhere; prototypes are not a storefront.
 - **GrypsDemo:** Path A whitelist loop only (`src/components/GrypsDemo.jsx`) — Score 47 · Grade D golden Advisor run; no invented RF/countdown metrics; GOLDEN strings stay frozen. Lazy-loaded via `React.lazy` + `Suspense`.
 - **Audience for GRYPS:** OT security / connectivity skill demonstration for hiring conversations, not a SaaS pitch deck.
-- **Hiring spear:** CTA deep-links `https://gryps.vercel.app/#advisor` — name the **Resilience Signature** as the result. Litrix is secondary educational context.
+- **Hiring spear:** CTA deep-links `https://gryps.vercel.app/#advisor` — name the **Resilience Signature** as the result. Morea (Evidence Pack) is secondary educational context.
 - **Systems over stamps:** Story credentials lead with systems practice + GRYPS build proof; SAP/Power BI/CRM/BW remain as Corporate Tools (secondary, no employer named). Loop copy: assess → score → rank → document; no email for initial Signature.
 - **GitHub front door:** public `README.md` (posture + stack + how to run); architecture stays in this codebook. Proprietary `LICENSE` harmonized with sibling portfolio repos.
 - **Stack honesty:** footer and README claim only technologies this repo uses (Vite · React · React Router · Vercel). Do not list Next.js / Neon / Resend / Cloudflare / Mistral unless they land in this tree.
@@ -80,7 +80,7 @@ return (
 
 - **UI language:** English only (spoken-languages section is biography, not UI locale).
 - **Dashes:** em dash (—) for sentence breaks; middle dot (·) for coords/meta lists; hyphen for compounds.
-- **Product names:** GRYPS (live) · LitrixEU · Grantemia · Velu · Lycaon · DisclAI · Iraun · FORGE.
+- **Product names:** GRYPS (live) · Morea (Evidence Pack) · Grantemia · Velu · Lycaon · DisclAI · Iraun · FORGE.
 - **FORGE:** personal/internal projects dashboard only — not a public product. Show `forge.henriquemoreira.eu (private — no public access)`; do not deep-link visitors to login.
 - **Unmounted demos:** do not keep dead demo components in-tree; remove rather than leave for “maybe later.”
 

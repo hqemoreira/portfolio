@@ -1,4 +1,4 @@
-# Henrique Moreira — personal portfolio (henriquemoreira.eu)
+﻿# Henrique Moreira — personal portfolio (henriquemoreira.eu)
 
 > Personal hub and skill demo. Not a commercial SaaS or storefront.
 
@@ -19,8 +19,8 @@
 
 - Pricing, freemium tiers, or purchase CTAs
 - Fake awards, user counts, or enterprise customers
-- Claims that shelved prototypes (Litrix, Grantemia, Velu, Lycaon, DisclAI, Iraun) are live commercial services
-- Claims that Litrix is a compliance SaaS or that GRYPS has customer deployments
+- Claims that shelved prototypes (Morea, Grantemia, Velu, Lycaon, DisclAI, Iraun) are live commercial services
+- Claims that Morea is a compliance SaaS or that GRYPS has customer deployments
 
 ## Preferred sources
 

@@ -33,7 +33,7 @@ export default function Privacy({ theme = 'dark' }) {
           <li><strong>Vercel</strong> — hosts this site. Standard server/request logs may be processed by the hosting provider.</li>
           <li><strong>Vercel Analytics</strong> — cookieless page analytics (no consent banner required for this mechanism alone).</li>
           <li><strong>Google Fonts</strong> — fonts load from Google&apos;s CDN; your IP address may be visible to Google when fonts are fetched.</li>
-          <li>Linked product sites (GRYPS, LitrixEU, Grantemia, Velu, Lycaon, DisclAI, Iraun, and others) have their own privacy notices where applicable.</li>
+          <li>Linked product sites (GRYPS, Morea, Grantemia, Velu, Lycaon, DisclAI, Iraun, and others) have their own privacy notices where applicable.</li>
         </LegalUl>
       </section>
 
