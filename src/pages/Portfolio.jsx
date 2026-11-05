@@ -514,12 +514,16 @@ function Story({ isLight }) {
   const credentials = [
     { label: 'Background', value: 'International Business Management · Packaging · Forest Industry' },
     { label: 'Systems practice', value: 'Account development · Pricing discipline · Cross-functional delivery' },
-    { label: 'Prior ops tools', value: 'SAP · Power BI · CRM · BW — stamps, not the hiring headline' },
+    { label: 'Prior ops tools', value: 'SAP · Power BI · CRM · BW' },
     { label: 'Build proof', value: 'GRYPS — assess → score → rank → document a Resilience Signature' },
     { label: 'Focus', value: 'OT connectivity · Nordic / Arctic ops · EU AI literacy' },
     { label: 'Path', value: 'Monopati — public study progress · satellite + AI Solutions track' },
   ]
-  const coords = ['PT · 39.40°N 8.22°W', 'FI · 61.92°N 25.75°E', 'ES · 40.46°N 3.75°W', 'BE · 50.50°N 4.47°E']
+  const coords = [
+    'PT · 39.40°N 8.22°W', 'AD · 42.51°N 1.52°E',
+    'ES · 40.46°N 3.75°W', 'GR · 39.07°N 21.82°E',
+    'BE · 50.50°N 4.47°E', 'FI · 61.92°N 25.75°E',
+  ]
 
   return (
     <Section id="story" isLight={isLight}>
