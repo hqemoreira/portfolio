@@ -6,7 +6,7 @@ henriquemoreira.eu (portfolio)
 
 ## One-liner
 
-Public hub for non-commercial learning prototypes; **GRYPS** is the lead hiring-proof demo.
+Public hub for non-commercial learning prototypes; **GRYPS** is the lead hiring-proof demo — presented as a living Resilience Instrument.
 
 ## Audience
 
@@ -14,18 +14,19 @@ Hiring evaluators and peers scanning skill demos (~60s path via GRYPS Advisor).
 
 ## Job to be done
 
-Reach GRYPS Advisor quickly; understand non-commercial posture; optionally browse earlier prototypes.
+Reach GRYPS Advisor quickly; understand non-commercial posture; optionally read the GRYPS mission-brief case; browse earlier prototypes as secondary context.
 
 ## Surface types
 
-- Marketing / landing: yes (Persuade — brand + GRYPS first)
+- Marketing / landing: yes (Persuade + Experience on hero)
+- Case / Read: `/work/gryps`, `/work/morea`
 - App screens: none (links out to prototypes)
 
 ## Constraints
 
-- Stack: Vite + React 19 + React Router; inline styles
+- Stack: Vite + React 19 + React Router; inline styles (+ minimal global CSS)
 - FORGE: list as private only — no public login
-- CTAs: **Open prototype** only
+- CTAs: **Open prototype** / **Generate a Resilience Signature** only
 - Commercial status: non-commercial / reskilling
 
 ## Honesty
@@ -34,4 +35,4 @@ No SaaS, pricing, waitlists, or “production customer” claims. Seed/demo numb
 
 ## Success look
 
-Brand-first first viewport; GRYPS card wins; archives secondary; dark/light theme coherent.
+First viewport: brand monument + living Signature instrument + Generate Signature CTA. Archives as quiet telemetry. Dark theater + Arctic-day light. Mission-brief case at `/work/gryps`.

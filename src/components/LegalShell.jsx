@@ -10,12 +10,12 @@ const linkStyle = (color) => ({
 
 export function LegalShell({ theme = 'dark', title, lastUpdated, eyebrow = 'Legal', children }) {
   const isLight = theme === 'light'
-  const bg = isLight ? '#F5F0E6' : '#07080D'
-  const heading = isLight ? '#1A0E04' : '#F0E8D8'
-  const body = isLight ? '#2A1A08' : '#B0A888'
-  const muted = isLight ? '#8A6A30' : '#8A8070'
-  const divider = isLight ? 'rgba(212,137,30,0.2)' : 'rgba(255,255,255,0.06)'
-  const accent = '#D4891E'
+  const bg = isLight ? '#F4F7FA' : '#07080D'
+  const heading = isLight ? '#0B1220' : '#F0E8D8'
+  const body = isLight ? '#2A3544' : '#B0A888'
+  const muted = isLight ? '#5A6A7A' : '#8A8070'
+  const divider = isLight ? 'rgba(11,18,32,0.08)' : 'rgba(255,255,255,0.06)'
+  const accent = isLight ? '#B8741A' : '#D4891E'
 
   return (
     <div style={{ background: bg, minHeight: '100vh', color: body, transition: 'background 0.4s ease' }}>

@@ -1,22 +1,31 @@
 ---
-name: Portfolio Hub
-description: Personal hub — dark/light, particle atmosphere, GRYPS as hero proof
+name: Portfolio Hub — Resilience Instrument
+description: Arctic/ops theater — brand monument + living Signature as the hero object
 colors:
-  primary: "#F7FAFC"
-  secondary: "#64748B"
-  tertiary: "#4FA8FF"
-  neutral: "#070B12"
+  primary: "#F0E8D8"
+  secondary: "#8A9AA8"
+  tertiary: "#D4891E"
+  ice: "#4FA8FF"
+  neutral: "#07080D"
+  arctic-paper: "#F4F7FA"
+  arctic-ink: "#0B1220"
 typography:
   h1:
-    fontFamily: "Match live portfolio display"
-    fontSize: 2.5rem
-    fontWeight: 700
+    fontFamily: "Fraunces"
+    fontSize: "clamp(48px, 10vw, 120px)"
+    fontWeight: 200
+    fontStyle: italic
   body-md:
-    fontFamily: "Match live portfolio body"
+    fontFamily: "Lora"
     fontSize: 1rem
-    lineHeight: 1.5
+    lineHeight: 1.75
+  ui:
+    fontFamily: "Syne"
+  telemetry:
+    fontFamily: "JetBrains Mono"
 rounded:
-  md: 12px
+  sm: 1px
+  md: 2px
 spacing:
   md: 16px
   lg: 32px
@@ -25,25 +34,68 @@ spacing:
 
 ## Overview
 
-Persuade mode: one composition, brand + GRYPS signal. Particle canvas for atmosphere; not purple SaaS kits.
+**Resilience Instrument.** Nordic–Arctic connectivity resilience becomes a living Signature (score · grade · risk · ranked options). Brand name is the monument; particles are a sparse connectivity constellation; ice blue is reserved for the GRYPS instrument. Dark is primary theater; light is Arctic day — cold paper, not cream.
+
+Competitor test: *On this page, Nordic–Arctic connectivity resilience becomes a living Signature instrument.*
 
 ## Colors
 
-Align with live theme tokens (dark/light). Ice/ops blue accents OK when echoing GRYPS; keep accent scarce.
+| Token | Dark | Arctic day (light) | Role |
+|-------|------|--------------------|------|
+| Neutral / stage | `#07080D` | `#F4F7FA` | Page foundation |
+| Primary text | `#F0E8D8` | `#0B1220` | Body / monument ink |
+| Secondary | `#8A9AA8` | `#5A6A7A` | Quiet chrome |
+| Brand amber | `#D4891E` | `#B8741A` | Brand, CTAs secondary |
+| Ice | `#4FA8FF` | `#2B7FD4` | GRYPS instrument only |
+| Teal pulse | `#1EC8A8` | `#1A9A82` | Secondary pulse only — scarce |
+
+Accent scarcity: amber for brand; ice for GRYPS; no third accent competing in the hero.
 
 ## Typography
 
-Use fonts already on henriquemoreira.eu. Document exact families on next `ship-ui document` pass.
+- **Fraunces** — display monument (hero name, case titles). Weight 200 italic.
+- **Lora** — body narrative.
+- **Syne** — UI labels, CTAs (uppercase tracking).
+- **JetBrains Mono** — telemetry rails, coords, Model tags.
 
 ## Layout
 
-Hero budget: brand, one headline idea, GRYPS CTA, dominant visual. Archives below the fold.
+Hero budget: brand + one support line + Signature instrument + one CTA group. No cards, no badge clusters, no geo grid in the first viewport.
+
+Section max measure ~960px; case mission-brief may use wider ~1100px with sticky telemetry rail.
+
+## Elevation & Depth
+
+Flat planes + hairline borders. Instrument panel: ice border on near-black (`#0B0F17`). No multi-layer shadows; soft amber bloom on title entrance only.
+
+## Shapes
+
+Near-sharp: 1–2px radius. Pills avoided in hero; mono telemetry uses rectangles.
+
+## Motion
+
+Home budget: **3 intentional motions**
+
+1. Title entrance (stagger / soft bloom)
+2. Instrument boot (Path A compressed ~14–16s loop)
+3. Scroll reveal / instrument presence into Work stage
+
+`transform` / `opacity` only. Honor `prefers-reduced-motion` — static Signature still + CTAs. No scroll-video, no catalog effect spam.
+
+## Components
+
+- **SignatureInstrument** — hero (compact) and full variants; Path A golden freeze
+- **Nav** — logo, Work / About / Contact, theme toggle
+- **Telemetry rail** — case sticky meta
+- **Archive strip** — accordion / mono list, not card grid
+- CTAs: **Generate a Resilience Signature** / **Open prototype** only
 
 ## Do's and Don'ts
 
-- Do: GRYPS first; Open prototype CTAs
-- Don't: FORGE login links; commercial ban-list words; card spam in the first viewport
+- Do: GRYPS first; ice reserved for instrument; Arctic-day light
+- Don't: cream/terracotta; purple SaaS glow; neon terminal cosplay; FORGE login; commercial ban-list words; card spam in hero
 
 ## Known Gaps
 
-- Exact light-theme tokens `[TBD]` from CSS variables pass
+- Scroll “dock” morph hero→Work is CSS sticky/fade, not GSAP ScrollTrigger (upgrade only if needed)
+- Live Advisor remains on gryps.vercel.app (iframe embed deferred for CSP/performance)

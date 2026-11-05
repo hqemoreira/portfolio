@@ -1,11 +1,12 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import { GRYPS_ADVISOR, GRYPS_METHOD, MOREA_URL, t } from '../theme'
 
-const GrypsDemo = lazy(() => import('../components/GrypsDemo'))
+const SignatureInstrument = lazy(() => import('../components/SignatureInstrument'))
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false)
   useEffect(() => {
     const handler = () => setIsMobile(window.innerWidth < 768)
     window.addEventListener('resize', handler)
@@ -14,63 +15,75 @@ function useIsMobile() {
   return isMobile
 }
 
-
-function useParticles(canvasRef, isLight, reducedMotion) {
+/** Sparse connectivity constellation — ice + amber links */
+function useConstellation(canvasRef, isLight, reducedMotion) {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     let animId
-    const particles = Array.from({ length: 70 }, (_, i) => {
-      const tier = i < 6 ? 'alpha' : i < 24 ? 'beta' : 'omega'
+    const n = 42
+    const particles = Array.from({ length: n }, (_, i) => {
+      const tier = i < 5 ? 'alpha' : i < 16 ? 'beta' : 'omega'
       return {
-        x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * (tier === 'alpha' ? 0.45 : 0.2),
-        vy: (Math.random() - 0.5) * (tier === 'alpha' ? 0.35 : 0.15),
-        size: tier === 'alpha' ? Math.random() * 2 + 3.5 : tier === 'beta' ? Math.random() * 1.2 + 1.8 : Math.random() * 0.7 + 0.6,
-        opacity: tier === 'alpha' ? 0.85 : tier === 'beta' ? 0.55 : 0.22,
-        pulse: Math.random() * Math.PI * 2, tier,
-        color: i % 8 === 0 ? 'teal' : 'amber',
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * (tier === 'alpha' ? 0.28 : 0.12),
+        vy: (Math.random() - 0.5) * (tier === 'alpha' ? 0.22 : 0.1),
+        size: tier === 'alpha' ? Math.random() * 2.2 + 3 : tier === 'beta' ? Math.random() * 1.2 + 1.4 : Math.random() * 0.6 + 0.5,
+        opacity: tier === 'alpha' ? 0.9 : tier === 'beta' ? 0.5 : 0.18,
+        pulse: Math.random() * Math.PI * 2,
+        tier,
+        ice: i % 3 === 0,
       }
     })
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      const alphas = particles.filter(p => p.tier === 'alpha')
-      const betas  = particles.filter(p => p.tier === 'beta')
-      ;[...alphas, ...betas].forEach((a, ai) => {
-        ;[...alphas, ...betas].forEach((b, bi) => {
+      const hubs = particles.filter((p) => p.tier !== 'omega')
+      hubs.forEach((a, ai) => {
+        hubs.forEach((b, bi) => {
           if (ai >= bi) return
-          const dx = a.x - b.x, dy = a.y - b.y
+          const dx = a.x - b.x
+          const dy = a.y - b.y
           const dist = Math.sqrt(dx * dx + dy * dy)
-          const maxD = a.tier === 'alpha' && b.tier === 'alpha' ? 200 : 140
+          const maxD = a.tier === 'alpha' && b.tier === 'alpha' ? 220 : 130
           if (dist < maxD) {
+            const iceLink = a.ice || b.ice
+            const r = iceLink ? 79 : 212
+            const g = iceLink ? 168 : 137
+            const b2 = iceLink ? 255 : 30
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(212,137,30,${(isLight ? 0.25 : 0.18) * (1 - dist / maxD)})`
-            ctx.lineWidth = a.tier === 'alpha' && b.tier === 'alpha' ? 0.8 : 0.4
-            ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke()
+            ctx.strokeStyle = `rgba(${r},${g},${b2},${(isLight ? 0.2 : 0.16) * (1 - dist / maxD)})`
+            ctx.lineWidth = a.tier === 'alpha' && b.tier === 'alpha' ? 0.9 : 0.35
+            ctx.moveTo(a.x, a.y)
+            ctx.lineTo(b.x, b.y)
+            ctx.stroke()
           }
         })
       })
-      particles.forEach(p => {
-        const pm = p.tier === 'alpha' ? Math.sin(p.pulse) * 0.2 + 0.8 : 1
-        const r = p.color === 'teal' ? 30 : 212
-        const g = p.color === 'teal' ? 200 : 137
-        const b2 = p.color === 'teal' ? 165 : 30
-        const opMult = isLight ? 0.5 : 1
+      particles.forEach((p) => {
+        const pm = p.tier === 'alpha' ? Math.sin(p.pulse) * 0.15 + 0.85 : 1
+        const r = p.ice ? 79 : 212
+        const g = p.ice ? 168 : 137
+        const b2 = p.ice ? 255 : 30
+        const opMult = isLight ? 0.45 : 1
         if (p.tier === 'alpha') {
           const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 5)
-          grad.addColorStop(0, `rgba(${r},${g},${b2},${0.25 * opMult})`)
+          grad.addColorStop(0, `rgba(${r},${g},${b2},${0.22 * opMult})`)
           grad.addColorStop(1, `rgba(${r},${g},${b2},0)`)
-          ctx.beginPath(); ctx.fillStyle = grad
-          ctx.arc(p.x, p.y, p.size * 5, 0, Math.PI * 2); ctx.fill()
+          ctx.beginPath()
+          ctx.fillStyle = grad
+          ctx.arc(p.x, p.y, p.size * 5, 0, Math.PI * 2)
+          ctx.fill()
         }
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size * pm, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(${r},${g},${b2},${p.opacity * pm * opMult})`
         ctx.fill()
         if (!reducedMotion) {
-          p.pulse += 0.02
-          p.x += p.vx; p.y += p.vy
+          p.pulse += 0.018
+          p.x += p.vx
+          p.y += p.vy
           if (p.x < -10) p.x = canvas.width + 10
           if (p.x > canvas.width + 10) p.x = -10
           if (p.y < -10) p.y = canvas.height + 10
@@ -79,14 +92,21 @@ function useParticles(canvasRef, isLight, reducedMotion) {
       })
       if (!reducedMotion) animId = requestAnimationFrame(draw)
     }
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; draw() }
+    const resize = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      draw()
+    }
     resize()
     window.addEventListener('resize', resize)
-    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize) }
+    return () => {
+      cancelAnimationFrame(animId)
+      window.removeEventListener('resize', resize)
+    }
   }, [canvasRef, isLight, reducedMotion])
 }
 
-function useScrollReveal(ref, options = {}) {
+function useScrollReveal(ref) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -99,11 +119,11 @@ function useScrollReveal(ref, options = {}) {
           observer.disconnect()
         }
       },
-      { threshold: options.threshold || 0.12 }
+      { threshold: 0.12 }
     )
     observer.observe(el)
     return () => observer.disconnect()
-  }, [ref, options.threshold])
+  }, [ref])
 }
 
 function RevealWrapper({ children, delay = 0 }) {
@@ -114,9 +134,9 @@ function RevealWrapper({ children, delay = 0 }) {
       ref={ref}
       style={{
         opacity: 0,
-        transform: 'translateY(36px)',
-        filter: 'blur(6px)',
-        transition: `opacity 0.9s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.9s cubic-bezier(0.16,1,0.3,1) ${delay}ms, filter 0.9s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+        transform: 'translateY(28px)',
+        filter: 'blur(5px)',
+        transition: `opacity 0.85s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.85s cubic-bezier(0.16,1,0.3,1) ${delay}ms, filter 0.85s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
       }}
     >
       {children}
@@ -127,48 +147,177 @@ function RevealWrapper({ children, delay = 0 }) {
 function BgLayers({ isLight }) {
   return (
     <>
-      <div style={{ position: 'fixed', inset: 0, zIndex: 1, pointerEvents: 'none',
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.009' numOctaves='5' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.5 0 0 0 0.09 0.3 0 0 0 0.05 0 0 0 0 0.01 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='800' height='800' filter='url(%23c)'/%3E%3C/svg%3E")`,
-        backgroundSize: '800px', opacity: isLight ? 0.15 : 0.5, mixBlendMode: 'screen' }} />
-      {!isLight && <>
-        <div style={{ position: 'fixed', inset: 0, zIndex: 2, pointerEvents: 'none',
-          background: 'radial-gradient(ellipse 120% 60% at 50% 110%, rgba(180,90,20,0.1) 0%, transparent 60%)' }} />
-        <div style={{ position: 'fixed', inset: 0, zIndex: 4, pointerEvents: 'none',
-          background: 'radial-gradient(ellipse at 50% 40%, transparent 20%, rgba(7,8,13,0.55) 100%)' }} />
-      </>}
-      <div style={{ position: 'fixed', inset: 0, zIndex: 3, pointerEvents: 'none',
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23g)' opacity='0.038'/%3E%3C/svg%3E")`,
-        backgroundSize: '280px', opacity: 0.6 }} />
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 1,
+          pointerEvents: 'none',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.009' numOctaves='5' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.5 0 0 0 0.09 0.3 0 0 0 0.05 0 0 0 0 0.01 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='800' height='800' filter='url(%23c)'/%3E%3C/svg%3E")`,
+          backgroundSize: '800px',
+          opacity: isLight ? 0.08 : 0.45,
+          mixBlendMode: isLight ? 'multiply' : 'screen',
+        }}
+      />
+      {!isLight && (
+        <>
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 2,
+              pointerEvents: 'none',
+              background: 'radial-gradient(ellipse 100% 50% at 70% 20%, rgba(79,168,255,0.06) 0%, transparent 55%)',
+            }}
+          />
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 2,
+              pointerEvents: 'none',
+              background: 'radial-gradient(ellipse 120% 60% at 30% 110%, rgba(180,90,20,0.08) 0%, transparent 60%)',
+            }}
+          />
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 4,
+              pointerEvents: 'none',
+              background: 'radial-gradient(ellipse at 50% 40%, transparent 20%, rgba(7,8,13,0.5) 100%)',
+            }}
+          />
+        </>
+      )}
     </>
   )
 }
 
 function Section({ id, children, style = {}, isLight }) {
   const isMobile = useIsMobile()
+  const c = t(isLight)
   return (
-    <section id={id} style={{
-      position: 'relative', zIndex: 5,
-      maxWidth: '960px', margin: '0 auto',
-      padding: isMobile ? '60px 20px' : '120px 40px',
-      textAlign: 'center',
-      borderTop: `1px solid ${isLight ? 'rgba(212,137,30,0.15)' : 'rgba(212,137,30,0.06)'}`,
-      ...style,
-    }}>
+    <section
+      id={id}
+      style={{
+        position: 'relative',
+        zIndex: 5,
+        maxWidth: '960px',
+        margin: '0 auto',
+        padding: isMobile ? '56px 20px' : '100px 40px',
+        textAlign: 'center',
+        borderTop: `1px solid ${c.border}`,
+        ...style,
+      }}
+    >
       {children}
     </section>
   )
 }
 
-function SectionEyebrow({ children, color = '#D4891E' }) {
+function SectionEyebrow({ children, color }) {
   return (
-    <div style={{
-      display: 'inline-flex', alignItems: 'center', gap: '12px',
-      marginBottom: '36px', fontFamily: "'JetBrains Mono', monospace",
-      fontSize: '9px', letterSpacing: '0.45em', textTransform: 'uppercase', color,
-    }}>
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '12px',
+        marginBottom: '28px',
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: '9px',
+        letterSpacing: '0.4em',
+        textTransform: 'uppercase',
+        color,
+      }}
+    >
       <span style={{ width: '24px', height: '1px', background: color, opacity: 0.5 }} />
       {children}
     </div>
+  )
+}
+
+function CtaPrimary({ href, children, ice }) {
+  const color = ice ? '#4FA8FF' : '#D4891E'
+  return (
+    <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'nofollow noreferrer' : undefined} style={{ textDecoration: 'none' }}>
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '10px',
+          padding: '12px 22px',
+          border: `1px solid ${color}`,
+          background: color,
+          color: '#07080D',
+          fontFamily: "'Syne', sans-serif",
+          fontSize: '10px',
+          fontWeight: 700,
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+          borderRadius: '1px',
+          cursor: 'pointer',
+          transition: 'transform 0.15s ease, box-shadow 0.2s ease',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.boxShadow = `0 0 28px ${ice ? 'rgba(79,168,255,0.35)' : 'rgba(212,137,30,0.4)'}`
+          e.currentTarget.style.transform = 'scale(0.98)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.boxShadow = 'none'
+          e.currentTarget.style.transform = 'scale(1)'
+        }}
+      >
+        {children}
+      </div>
+    </a>
+  )
+}
+
+function GhostFace({ children, color }) {
+  return (
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: '12px 20px',
+        border: `1px solid ${color}`,
+        color,
+        fontFamily: "'Syne', sans-serif",
+        fontSize: '10px',
+        fontWeight: 700,
+        letterSpacing: '0.18em',
+        textTransform: 'uppercase',
+        borderRadius: '1px',
+        cursor: 'pointer',
+        transition: 'background 0.2s',
+      }}
+      onMouseEnter={(e) => { e.currentTarget.style.background = `${color}14` }}
+      onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
+    >
+      {children}
+    </div>
+  )
+}
+
+function CtaGhost({ href, children, color, internal }) {
+  if (internal) {
+    return (
+      <Link to={href} style={{ textDecoration: 'none' }}>
+        <GhostFace color={color}>{children}</GhostFace>
+      </Link>
+    )
+  }
+  const external = href.startsWith('http')
+  return (
+    <a
+      href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'nofollow noreferrer' : undefined}
+      style={{ textDecoration: 'none' }}
+    >
+      <GhostFace color={color}>{children}</GhostFace>
+    </a>
   )
 }
 
@@ -176,131 +325,161 @@ function Hero({ isLight }) {
   const canvasRef = useRef(null)
   const isMobile = useIsMobile()
   const reducedMotion = usePrefersReducedMotion()
-  useParticles(canvasRef, isLight, reducedMotion)
-  const titleColor   = isLight ? '#1A0E04' : '#F0E8D8'
-  const taglineColor = isLight ? 'rgba(140,80,10,0.7)' : 'rgba(212,137,30,0.45)'
-  const pillColor    = isLight ? '#7A5A20' : '#A09070'
-  const pillBorder   = isLight ? 'rgba(212,137,30,0.3)' : 'rgba(212,137,30,0.18)'
-  const scrollColor  = isLight ? '#8A6A30' : '#8A8070'
-  const coords = [
-    'PT · 39.40°N 8.22°W', 'AD · 42.51°N 1.52°E',
-    'ES · 40.46°N 3.75°W', 'GR · 39.07°N 21.82°E',
-    'BE · 50.50°N 4.47°E', 'FI · 61.92°N 25.75°E',
-  ]
-  // Fixed 100vh + overflow:hidden clipped badges/pills on typical laptop heights.
-  // Grow with content; keep a full-viewport minimum; clip only the canvas layer.
+  const c = t(isLight)
+  useConstellation(canvasRef, isLight, reducedMotion)
+
   return (
-    <section id="hero" style={{
-      position: 'relative',
-      minHeight: '100svh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: isMobile ? '88px 20px 40px' : '100px 40px 48px',
-      boxSizing: 'border-box',
-    }}>
+    <section
+      id="hero"
+      style={{
+        position: 'relative',
+        minHeight: '100svh',
+        display: 'flex',
+        alignItems: 'center',
+        padding: isMobile ? '88px 20px 48px' : '100px 40px 56px',
+        boxSizing: 'border-box',
+      }}
+    >
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }} aria-hidden>
         <canvas ref={canvasRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
       </div>
-      <div style={{ position: 'relative', zIndex: 5, textAlign: 'center', width: '100%', maxWidth: '920px' }}>
-        <div style={{
-          display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap',
-          marginBottom: isMobile ? '28px' : '36px',
-        }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '10px',
-            padding: isMobile ? '8px 14px' : '9px 22px',
-            border: `1px solid ${isLight ? 'rgba(212,137,30,0.3)' : 'rgba(212,137,30,0.16)'}`,
-            borderRadius: '100px',
-            background: isLight ? 'rgba(212,137,30,0.08)' : 'rgba(212,137,30,0.04)',
-          }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#D4891E', display: 'inline-block', animation: 'hmPulse 2.2s ease-in-out infinite', flexShrink: 0 }} />
-            <span style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: isMobile ? '8px' : '9px',
-              letterSpacing: isMobile ? '0.18em' : '0.28em',
-              color: '#D4891E', textTransform: 'uppercase',
-            }}>Vila Nova de Gaia → Espoo</span>
-          </div>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '10px',
-            padding: isMobile ? '8px 14px' : '9px 22px',
-            border: `1px solid ${isLight ? 'rgba(30,200,168,0.3)' : 'rgba(30,200,168,0.18)'}`,
-            borderRadius: '100px',
-            background: isLight ? 'rgba(30,200,168,0.08)' : 'rgba(30,200,168,0.05)',
-          }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#1EC8A8', display: 'inline-block', animation: 'hmPulse 2.2s ease-in-out infinite', flexShrink: 0 }} />
-            <span style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: isMobile ? '7.5px' : '8.5px',
-              letterSpacing: isMobile ? '0.06em' : '0.1em',
-              color: '#1EC8A8', textTransform: 'uppercase',
-              textAlign: 'left',
-              maxWidth: isMobile ? '220px' : 'none',
-              lineHeight: 1.4,
-            }}>Seeking AI product and systems roles in Nordic industrial tech</span>
-          </div>
-        </div>
-        <h1 style={{ margin: 0, animation: 'hmTitleIn 1.4s cubic-bezier(0.16,1,0.3,1) both' }}>
-          <span style={{
-            display: 'block', fontFamily: "'Fraunces', serif",
-            fontSize: 'clamp(48px, 12vw, 136px)', fontWeight: 200, fontStyle: 'italic',
-            letterSpacing: '-0.04em', lineHeight: 0.9, color: titleColor,
-            textShadow: isLight ? 'none' : '0 0 120px rgba(212,137,30,0.12)',
-          }}>HENRIQUE</span>
-          <span style={{
-            display: 'block', fontFamily: "'Fraunces', serif",
-            fontSize: 'clamp(48px, 12vw, 136px)', fontWeight: 200, fontStyle: 'italic',
-            letterSpacing: '-0.04em', lineHeight: 0.9, color: '#D4891E',
-            textShadow: isLight ? 'none' : '0 0 80px rgba(212,137,30,0.3)',
-            marginBottom: isMobile ? '24px' : '32px',
-          }}>MOREIRA</span>
-        </h1>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', maxWidth: '300px', margin: '0 auto 24px' }}>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, rgba(212,137,30,0.35))' }} />
-          <svg width="20" height="16" viewBox="0 0 20 16" fill="none" aria-hidden><path d="M10 1 L19 15 L10 11 L1 15 Z" stroke="#D4891E" strokeWidth="0.8" strokeOpacity="0.65" fill="rgba(212,137,30,0.05)" /></svg>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, rgba(212,137,30,0.35))' }} />
-        </div>
-        <div style={{
-          fontFamily: "'Lora', serif", fontSize: 'clamp(15px, 2vw, 22px)', fontStyle: 'italic',
-          color: isLight ? 'rgba(80,40,5,0.85)' : 'rgba(240,232,216,0.75)',
-          lineHeight: 1.6, maxWidth: '520px', margin: '0 auto 28px', letterSpacing: '0.01em',
-        }}>
-          Eighteen years in Nordic industrial operations — developing skills in predictive AI and systems intelligence through functional prototypes.
-        </div>
-        <div style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: isMobile ? '9px' : '10px',
-          color: taglineColor,
-          lineHeight: 1.7,
-          maxWidth: isMobile ? '320px' : '560px',
-          margin: '0 auto 28px',
-          letterSpacing: '0.02em',
+
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 5,
+          width: '100%',
+          maxWidth: '1120px',
+          margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: isMobile ? '6px 12px' : '8px 24px',
-          justifyItems: isMobile ? 'start' : 'center',
-          textAlign: isMobile ? 'left' : 'center',
-        }}>
-          {coords.map((c) => (
-            <span key={c} style={{ whiteSpace: 'nowrap' }}>{c}</span>
-          ))}
+          gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1.05fr) minmax(0, 0.95fr)',
+          gap: isMobile ? '36px' : '48px',
+          alignItems: 'center',
+        }}
+      >
+        <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
+          <div
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '9px',
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: c.ice,
+              marginBottom: '20px',
+              animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) both',
+            }}
+          >
+            Resilience Instrument · Espoo
+          </div>
+          <h1 style={{ margin: 0 }}>
+            <span
+              style={{
+                display: 'block',
+                fontFamily: "'Fraunces', serif",
+                fontSize: 'clamp(44px, 9vw, 104px)',
+                fontWeight: 200,
+                fontStyle: 'italic',
+                letterSpacing: '-0.04em',
+                lineHeight: 0.92,
+                color: c.ink,
+                textShadow: isLight ? 'none' : '0 0 100px rgba(212,137,30,0.14)',
+                animation: 'hmTitleIn 1.2s cubic-bezier(0.16,1,0.3,1) both',
+              }}
+            >
+              HENRIQUE
+            </span>
+            <span
+              style={{
+                display: 'block',
+                fontFamily: "'Fraunces', serif",
+                fontSize: 'clamp(44px, 9vw, 104px)',
+                fontWeight: 200,
+                fontStyle: 'italic',
+                letterSpacing: '-0.04em',
+                lineHeight: 0.92,
+                color: c.amber,
+                textShadow: isLight ? 'none' : '0 0 80px rgba(212,137,30,0.28)',
+                marginBottom: '22px',
+                animation: 'hmTitleIn 1.2s cubic-bezier(0.16,1,0.3,1) 0.08s both',
+              }}
+            >
+              MOREIRA
+            </span>
+          </h1>
+          <p
+            style={{
+              fontFamily: "'Lora', serif",
+              fontSize: 'clamp(15px, 1.8vw, 19px)',
+              fontStyle: 'italic',
+              color: c.body,
+              lineHeight: 1.55,
+              maxWidth: '420px',
+              margin: isMobile ? '0 auto 28px' : '0 0 28px',
+              animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.2s both',
+            }}
+          >
+            Live skill demo for Nordic / Arctic connectivity — open the Advisor, get a Resilience Signature.
+          </p>
+          <div
+            style={{
+              display: 'flex',
+              gap: '12px',
+              flexWrap: 'wrap',
+              justifyContent: isMobile ? 'center' : 'flex-start',
+              animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.32s both',
+            }}
+          >
+            <CtaPrimary href={GRYPS_ADVISOR} ice>
+              Generate a Resilience Signature →
+            </CtaPrimary>
+            <CtaGhost href="/work/gryps" color={c.amber} internal>
+              How it works
+            </CtaGhost>
+          </div>
+          <div
+            style={{
+              marginTop: '28px',
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '8px',
+              letterSpacing: '0.14em',
+              color: c.quiet,
+              lineHeight: 1.7,
+              animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.4s both',
+            }}
+          >
+            Personal reskilling · Non-commercial · No accounts / no billing
+          </div>
         </div>
-        <div style={{
-          display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap',
-          marginBottom: isMobile ? '40px' : '56px',
-        }}>
-          {['Industrial Commercial Leadership', 'Applied AI', 'Nordic Markets'].map(pill => (
-            <div key={pill} style={{
-              padding: '8px 18px', border: `1px solid ${pillBorder}`, borderRadius: '100px',
-              fontFamily: "'Syne', sans-serif", fontSize: '9px', fontWeight: 700,
-              letterSpacing: '0.16em', textTransform: 'uppercase', color: pillColor,
-            }}>{pill}</div>
-          ))}
-        </div>
-        <div style={{ animation: 'hmBounce 2.4s ease-in-out infinite' }}>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.3em', color: scrollColor, textTransform: 'uppercase', marginBottom: '10px' }}>Scroll</div>
-          <div style={{ width: '1px', height: isMobile ? '32px' : '44px', background: 'linear-gradient(to bottom, #D4891E, transparent)', margin: '0 auto' }} />
+
+        <div style={{ animation: 'hmFadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.25s both' }}>
+          <Suspense
+            fallback={
+              <div
+                aria-hidden
+                style={{
+                  minHeight: 300,
+                  borderRadius: 2,
+                  border: `1px solid ${c.iceBorder}`,
+                  background: '#0B0F17',
+                }}
+              />
+            }
+          >
+            <SignatureInstrument variant="hero" />
+          </Suspense>
+          <div
+            style={{
+              marginTop: '10px',
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '8px',
+              letterSpacing: '0.08em',
+              color: c.quiet,
+              textAlign: isMobile ? 'center' : 'left',
+              lineHeight: 1.6,
+            }}
+          >
+            Illustrative Path A · Score 47 · Grade D — open the live Advisor for a real Signature
+          </div>
         </div>
       </div>
     </section>
@@ -309,29 +488,41 @@ function Hero({ isLight }) {
 
 function Story({ isLight }) {
   const isMobile = useIsMobile()
-  const languages    = ['Portuguese · native', 'Spanish', 'Catalan', 'English', 'Finnish', 'French']
-  const headingColor = isLight ? '#1A0E04' : '#F0E8D8'
-  const bodyColor    = isLight ? '#2A1A08' : '#B8AE9A'
-  const pillColor    = isLight ? '#5A3A10' : '#C8B890'
-  const credBg       = isLight ? 'rgba(212,137,30,0.06)' : 'rgba(212,137,30,0.04)'
-  const credBorder   = isLight ? 'rgba(212,137,30,0.2)' : 'rgba(212,137,30,0.12)'
-  const credentials  = [
+  const c = t(isLight)
+  const languages = ['Portuguese · native', 'Spanish', 'Catalan', 'English', 'Finnish', 'French']
+  const credentials = [
     { label: 'Background', value: 'International Business Management · Packaging · Forest Industry' },
-    { label: 'Systems practice', value: 'Account development · Pricing discipline · Cross-functional delivery · Commercial process design' },
-    { label: 'Corporate Tools', value: 'SAP · Power BI · CRM · BW' },
-    { label: 'Regions', value: 'Portugal · South East Europe · EMEA' },
-    { label: 'Build proof', value: 'GRYPS — live Resilience Signature (assess → score → rank → document)' },
-    { label: 'Earlier prototypes', value: 'Morea · Grantemia · Velu · Lycaon · DisclAI · Iraun' },
+    { label: 'Systems practice', value: 'Account development · Pricing discipline · Cross-functional delivery' },
+    { label: 'Prior ops tools', value: 'SAP · Power BI · CRM · BW — stamps, not the hiring headline' },
+    { label: 'Build proof', value: 'GRYPS — assess → score → rank → document a Resilience Signature' },
     { label: 'Focus', value: 'OT connectivity · Nordic / Arctic ops · EU AI literacy' },
+    { label: 'Path', value: 'Monopati — public study progress · satellite + AI Solutions track' },
   ]
+  const coords = ['PT · 39.40°N 8.22°W', 'FI · 61.92°N 25.75°E', 'ES · 40.46°N 3.75°W', 'BE · 50.50°N 4.47°E']
+
   return (
     <Section id="story" isLight={isLight}>
       <RevealWrapper>
-        <SectionEyebrow>The Story</SectionEyebrow>
-        {/* Photo + text: single column on mobile, two columns on desktop */}
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '32px' : '60px', alignItems: 'center', marginBottom: isMobile ? '32px' : '60px', textAlign: 'left' }}>
-          {/* Photo */}
-          <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '2px', border: `1px solid ${isLight ? 'rgba(212,137,30,0.2)' : 'rgba(212,137,30,0.08)'}`, background: '#1A1612' }}>
+        <SectionEyebrow color={c.amber}>Dossier</SectionEyebrow>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1.15fr',
+            gap: isMobile ? '28px' : '48px',
+            alignItems: 'center',
+            marginBottom: isMobile ? '28px' : '40px',
+            textAlign: 'left',
+          }}
+        >
+          <div
+            style={{
+              position: 'relative',
+              overflow: 'hidden',
+              borderRadius: '2px',
+              border: `1px solid ${c.border}`,
+              background: '#1A1612',
+            }}
+          >
             <picture>
               <source srcSet="/henrique.webp" type="image/webp" />
               <img
@@ -341,42 +532,112 @@ function Story({ isLight }) {
                 height={1100}
                 loading="lazy"
                 decoding="async"
-                style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover', objectPosition: '50% 15%', maxHeight: isMobile ? '360px' : '520px', filter: isLight ? 'brightness(1.05)' : 'brightness(0.92)' }}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  objectFit: 'cover',
+                  objectPosition: '50% 15%',
+                  maxHeight: isMobile ? '320px' : '440px',
+                  filter: isLight ? 'brightness(1.05)' : 'brightness(0.92)',
+                }}
               />
             </picture>
-            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100px', background: `linear-gradient(to top, #1A1612, transparent)`, pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: '20px', left: '20px', fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.25em', color: '#D4891E', textTransform: 'uppercase', opacity: 0.8 }}>
-              Espoo, Finland · 2025
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '16px',
+                left: '16px',
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '8px',
+                letterSpacing: '0.22em',
+                color: c.amber,
+                textTransform: 'uppercase',
+              }}
+            >
+              Espoo · Vila Nova de Gaia
             </div>
           </div>
-          {/* Text */}
           <div>
-            <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: isMobile ? '32px' : 'clamp(32px, 4vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: headingColor, lineHeight: 1.05, letterSpacing: '-0.025em', marginBottom: '28px' }}>
-              18 years in Nordic<br /><span style={{ color: '#D4891E' }}>commercial operations.</span>
+            <h2
+              style={{
+                fontFamily: "'Fraunces', serif",
+                fontSize: isMobile ? '30px' : 'clamp(30px, 3.8vw, 46px)',
+                fontWeight: 200,
+                fontStyle: 'italic',
+                color: c.ink,
+                lineHeight: 1.08,
+                letterSpacing: '-0.025em',
+                marginBottom: '20px',
+              }}
+            >
+              18 years in Nordic <span style={{ color: c.amber }}>commercial operations.</span>
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', marginBottom: '28px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '20px' }}>
               {[
-                "Modern AI software usually fails because the builder never lived the problem.",
-                "That experience runs from frontline client work to market-facing leadership in forest-industry paperboard — growing account volume 10% a year and international pricing 4% annually, while coordinating closely with production and logistics. The systems were SAP, Power BI, CRM, and BW — the work was account logic, pricing discipline, and handovers.",
-                "I am now developing skills in predictive AI and systems intelligence. Lead hiring proof: GRYPS — a live research prototype that assesses a Nordic / Arctic site, scores it with Model v0.4, ranks connectivity options, and documents a Resilience Signature. Domain expertise plus a closed scoring loop.",
-              ].map((para, i) => (
-                <p key={i} style={{ fontFamily: "'Lora', serif", fontSize: isMobile ? '15px' : '16px', lineHeight: '1.85', color: bodyColor, letterSpacing: '0.01em' }}>{para}</p>
+                'Modern AI software usually fails because the builder never lived the problem.',
+                'Frontline client work to market-facing leadership in forest-industry paperboard — account logic, pricing discipline, handovers. Tools were stamps; the loop was the work.',
+                'Lead hiring proof: GRYPS — a live research prototype that returns a Resilience Signature from Model v0.4. Domain expertise plus a closed scoring loop.',
+              ].map((para) => (
+                <p key={para.slice(0, 24)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body }}>
+                  {para}
+                </p>
               ))}
             </div>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.42em', color: isLight ? '#8A6A30' : '#6A5A3A', textTransform: 'uppercase', marginBottom: '12px' }}>Languages</div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-              {languages.map(l => (
-                <div key={l} style={{ padding: '6px 14px', background: isLight ? 'rgba(212,137,30,0.08)' : 'rgba(212,137,30,0.05)', border: `1px solid ${isLight ? 'rgba(212,137,30,0.3)' : 'rgba(212,137,30,0.18)'}`, borderRadius: '100px', fontFamily: "'Syne', sans-serif", fontSize: '9px', fontWeight: 700, letterSpacing: '0.1em', color: pillColor }}>{l}</div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.35em', color: c.quiet, textTransform: 'uppercase', marginBottom: '10px' }}>
+              Languages
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
+              {languages.map((l) => (
+                <div
+                  key={l}
+                  style={{
+                    padding: '5px 12px',
+                    border: `1px solid ${c.border}`,
+                    fontFamily: "'Syne', sans-serif",
+                    fontSize: '9px',
+                    fontWeight: 700,
+                    letterSpacing: '0.08em',
+                    color: c.muted,
+                  }}
+                >
+                  {l}
+                </div>
+              ))}
+            </div>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '6px 16px',
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '9px',
+                color: c.quiet,
+                letterSpacing: '0.04em',
+              }}
+            >
+              {coords.map((coord) => (
+                <span key={coord}>{coord}</span>
               ))}
             </div>
           </div>
         </div>
-        {/* Credibility row */}
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '4px' }}>
-          {credentials.map(c => (
-            <div key={c.label} style={{ background: credBg, border: `1px solid ${credBorder}`, borderRadius: '2px', padding: '16px 20px', textAlign: 'left' }}>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', letterSpacing: '0.3em', color: '#D4891E', textTransform: 'uppercase', marginBottom: '6px', opacity: 0.7 }}>{c.label}</div>
-              <div style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: bodyColor, lineHeight: 1.6 }}>{c.value}</div>
+          {credentials.map((cred) => (
+            <div
+              key={cred.label}
+              style={{
+                background: isLight ? 'rgba(43,127,212,0.04)' : 'rgba(212,137,30,0.04)',
+                border: `1px solid ${c.border}`,
+                borderRadius: '2px',
+                padding: '14px 16px',
+                textAlign: 'left',
+              }}
+            >
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', letterSpacing: '0.28em', color: c.amber, textTransform: 'uppercase', marginBottom: '6px', opacity: 0.75 }}>
+                {cred.label}
+              </div>
+              <div style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.55 }}>{cred.value}</div>
             </div>
           ))}
         </div>
@@ -385,280 +646,224 @@ function Story({ isLight }) {
   )
 }
 
-function ProductCard({ n, accent, category, name, tagline, description, tags, challenge, status, href, linkRel = 'noreferrer', privateNote, isLight, centerCategory = false }) {
-  const cardBg         = isLight ? 'rgba(255,248,235,0.95)' : '#0A0908'
-  const cardBorder     = isLight ? 'rgba(212,137,30,0.12)' : 'rgba(255,255,255,0.03)'
-  const nameColor      = isLight ? '#1A0E04' : '#F0E8D8'
-  const descColor      = isLight ? '#2A1A08' : '#8A8278'
-  const challengeColor = isLight ? '#5A3A10' : '#5A5248'
-  const neutralColor   = isLight ? '#5A5040' : '#8A8070'
-  const statusBadges = (
-    <div style={{
-      display: 'flex', gap: '6px', flexWrap: 'wrap',
-      ...(centerCategory ? { justifyContent: 'center' } : { marginLeft: 'auto' }),
-    }}>
-      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: accent, opacity: 0.7, letterSpacing: '0.1em', padding: '3px 8px', border: `1px solid ${accent}40`, borderRadius: '100px' }}>{status}</div>
-    </div>
-  )
-  return (
-    <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderLeft: `3px solid ${accent}`, borderRadius: '2px', padding: '32px 30px', display: 'flex', flexDirection: 'column', gap: '16px', ...(centerCategory ? { alignItems: 'center', textAlign: 'center' } : {}) }}>
-      {centerCategory ? (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', width: '100%' }}>
-          <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '9px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: accent }}>{category}</div>
-          {statusBadges}
-        </div>
-      ) : (
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', flexWrap: 'wrap', width: '100%' }}>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: accent, opacity: 0.6, letterSpacing: '0.1em', paddingTop: '2px' }}>{n}</div>
-          <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '9px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: accent, flex: '1 1 120px', minWidth: 0 }}>{category}</div>
-          {statusBadges}
-        </div>
-      )}
-      <div style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(28px, 3.5vw, 40px)', fontWeight: 200, fontStyle: 'italic', color: nameColor, letterSpacing: '-0.03em', lineHeight: 0.9 }}>{name}</div>
-      {tagline && (
-        <div style={{ fontFamily: "'Lora', serif", fontSize: '14px', fontStyle: 'italic', color: accent, lineHeight: 1.65 }}>{tagline}</div>
-      )}
-      {description && (
-        <div style={{ fontFamily: "'Lora', serif", fontSize: '13.5px', color: descColor, lineHeight: 1.75, textAlign: centerCategory ? 'center' : 'left' }}>{description}</div>
-      )}
-      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', ...(centerCategory ? { justifyContent: 'center' } : {}) }}>
-        {tags.map(tag => (
-          <div key={tag} style={{ padding: '4px 10px', border: `1px solid ${accent}30`, borderRadius: '100px', fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: accent, letterSpacing: '0.1em' }}>{tag}</div>
-        ))}
-      </div>
-      {challenge && (
-        <div style={{ borderTop: `1px solid ${isLight ? 'rgba(212,137,30,0.12)' : 'rgba(255,255,255,0.04)'}`, paddingTop: '14px' }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: accent, opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase' }}>The challenge — </span>
-          <span style={{ fontFamily: "'Lora', serif", fontSize: '12.5px', fontStyle: 'italic', color: challengeColor, lineHeight: 1.6 }}>{challenge}</span>
-        </div>
-      )}
-      {privateNote && (
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: neutralColor, letterSpacing: '0.06em', lineHeight: 1.6, opacity: 0.85 }}>
-          {privateNote}
-        </div>
-      )}
-      {href && (
-        <a href={href} target="_blank" rel={linkRel} style={{ textDecoration: 'none', marginTop: '4px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 18px', border: `1px solid ${accent}`, borderRadius: '1px', fontFamily: "'Syne', sans-serif", fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: accent, transition: 'all 0.2s', cursor: 'pointer' }}
-            onMouseEnter={e => { e.currentTarget.style.background = accent; e.currentTarget.style.color = '#07080D' }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = accent }}>
-            Open prototype ↗
-          </div>
-        </a>
-      )}
-    </div>
-  )
-}
+const ARCHIVES = [
+  { name: 'Grantemia', blurb: 'Research-funding matching · shelved learning', href: 'https://grantemia.fi' },
+  { name: 'Velu', blurb: 'B2B ops intelligence modules · research prototype', href: 'https://velu.fi' },
+  { name: 'Lycaon', blurb: 'Anticipatory foresight · exploratory, not active', href: 'https://lycaon.vercel.app' },
+  { name: 'DisclAI', blurb: 'EU AI Act drafting demo · exploratory', href: 'https://disclai.vercel.app' },
+  { name: 'Iraun', blurb: 'Personal AI ops assistant · exploratory', href: 'https://iraun.vercel.app' },
+]
 
 function Work({ isLight }) {
   const isMobile = useIsMobile()
-  const headingColor = isLight ? '#1A0E04' : '#F0E8D8'
+  const c = t(isLight)
+  const [archivesOpen, setArchivesOpen] = useState(false)
+
   return (
-    <Section id="work" isLight={isLight}>
+    <Section id="work" isLight={isLight} style={{ maxWidth: '1040px' }}>
       <RevealWrapper>
-        <SectionEyebrow>Projects</SectionEyebrow>
-        <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: headingColor, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '40px' }}>
-          Selected work — functional prototypes built to explore AI systems design across operations, compliance, and research funding.
+        <SectionEyebrow color={c.ice}>Work</SectionEyebrow>
+        <h2
+          style={{
+            fontFamily: "'Fraunces', serif",
+            fontSize: 'clamp(28px, 3.8vw, 48px)',
+            fontWeight: 200,
+            fontStyle: 'italic',
+            color: c.ink,
+            lineHeight: 1.15,
+            letterSpacing: '-0.02em',
+            marginBottom: '36px',
+          }}
+        >
+          Lead proof: a live Resilience Signature — then quieter learning prototypes.
         </h2>
       </RevealWrapper>
-      <RevealWrapper delay={150}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-          <div style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.35em',
-            textTransform: 'uppercase', color: isLight ? '#8A6A30' : '#6A5A3A',
-            textAlign: 'center', marginBottom: '16px',
-          }}>
-            R&D Prototype · Non-commercial · Model v0.4
-          </div>
-          <div style={{
-            background: isLight ? 'rgba(240,248,255,0.95)' : '#080C12',
-            border: `1px solid ${isLight ? 'rgba(79,168,255,0.25)' : 'rgba(79,168,255,0.15)'}`,
-            borderLeft: '4px solid #4FA8FF', borderRadius: '2px',
-            padding: isMobile ? '24px 20px' : '36px 40px',
+
+      <RevealWrapper delay={100}>
+        <div
+          style={{
+            background: isLight ? c.panel : c.panel,
+            border: `1px solid ${c.iceBorder}`,
+            borderLeft: `4px solid ${c.ice}`,
+            borderRadius: '2px',
+            padding: isMobile ? '22px 18px' : '32px 36px',
             textAlign: 'left',
-          }}>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 200, fontStyle: 'italic', color: isLight ? '#1A0E04' : '#F0E8D8', letterSpacing: '-0.03em', lineHeight: 0.9, marginBottom: '16px' }}>
-              GRYPS
-            </div>
-            <div style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: isLight ? '#2A1A08' : '#A8B0B8', lineHeight: 1.7, maxWidth: '560px', marginBottom: '12px' }}>
-              Live skill demo: enter a Nordic / Arctic site profile and get a <strong style={{ fontWeight: 600, color: isLight ? '#1A0E04' : '#E8EEF4' }}>Resilience Signature</strong> — score, grade, top risk, and ranked connectivity options from a deterministic Model v0.4 engine. Research prototype for OT / satellite connectivity literacy — not procurement advice.
-            </div>
-            <div style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', letterSpacing: '0.08em',
-              color: isLight ? '#5A3A10' : '#8A9AA8', lineHeight: 1.6, maxWidth: '560px', marginBottom: '24px',
-            }}>
-              System loop: assess → score → rank → document · No account · no email required for the initial Signature
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-              <a href="https://gryps.vercel.app/#advisor" target="_blank" rel="nofollow noreferrer" style={{ textDecoration: 'none' }}>
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '10px 22px',
-                  border: '1px solid #4FA8FF', borderRadius: '1px',
-                  fontFamily: "'Syne', sans-serif", fontSize: '10px', fontWeight: 700,
-                  letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4FA8FF', cursor: 'pointer',
-                }}
-                  onMouseEnter={e => { e.currentTarget.style.background = '#4FA8FF'; e.currentTarget.style.color = '#07080D' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#4FA8FF' }}
-                >
-                  Generate a Resilience Signature →
-                </div>
-              </a>
-              <a href="https://gryps.vercel.app/methodology" target="_blank" rel="nofollow noreferrer" style={{
-                fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', letterSpacing: '0.12em',
-                textTransform: 'uppercase', color: isLight ? '#5A3A10' : '#A8B0B8', textDecoration: 'underline',
-                textUnderlineOffset: '3px',
-              }}>
-                Methodology →
-              </a>
-            </div>
+            marginBottom: '8px',
+          }}
+        >
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.28em', color: c.ice, textTransform: 'uppercase', marginBottom: '12px' }}>
+            R&D · Non-commercial · Model v0.4
           </div>
-          <Suspense fallback={
-            <div
-              aria-hidden
-              style={{
-                marginTop: 4, minHeight: 280, borderRadius: 2,
-                border: '1px solid rgba(79,168,255,0.12)', background: '#0B0F17',
-              }}
-            />
-          }>
-            <GrypsDemo />
-          </Suspense>
-          <div style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.08em',
-            color: isLight ? '#8A6A30' : '#6A5A3A', marginTop: '10px', textAlign: 'left', lineHeight: 1.7,
-          }}>
-            <div style={{ fontFamily: "'Lora', serif", fontSize: '13px', fontStyle: 'italic', letterSpacing: '0.01em', marginBottom: '6px', color: isLight ? '#5A3A10' : '#A8B0B8' }}>
-              Motion demo above is a frozen Path A sample. Open the live Advisor to generate a real Signature.
-            </div>
-            Illustrative panel · Score 47 / 100 · Grade D · Scale: A (≥80 resilient) → F (&lt;20 critical failure)
+          <div style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(34px, 4.5vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: c.ink, letterSpacing: '-0.03em', marginBottom: '12px' }}>
+            GRYPS
           </div>
-
-          <div style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.35em',
-            textTransform: 'uppercase', color: isLight ? '#8A6A30' : '#6A5A3A',
-            textAlign: 'center', margin: '48px 0 8px',
-          }}>
-            Earlier prototypes
-          </div>
-          <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.06em',
-            color: isLight ? '#8A6A30' : '#5A5040', textAlign: 'center', margin: '0 0 16px', lineHeight: 1.6,
-          }}>
-            Linked from this page only · not submitted to search engines
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '560px', marginBottom: '10px' }}>
+            Enter a Nordic / Arctic site profile and get a <strong style={{ color: c.ink, fontWeight: 600 }}>Resilience Signature</strong> — score, grade, top risk, ranked options. OT / satellite literacy — not procurement advice.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '4px' }}>
-            <ProductCard
-              n="02"
-              accent="#C8A050"
-              category="EU AI Act Evidence Pack"
-              name="Morea"
-              description="Educational Article 4 literacy trail — AI inventory, role-aware module, quiz, optional policy draft, and an illustrative exportable Evidence Pack. Secondary to GRYPS; not a compliance service."
-              tags={['EU AI Act', 'Evidence Pack', 'Educational']}
-              status="Learning prototype"
-              href="https://morea-pack.vercel.app"
-              linkRel="nofollow noreferrer"
-              isLight={isLight}
-            />
-            <ProductCard
-              n="03"
-              accent="#5BA89A"
-              category="Research funding intelligence"
-              name="GRANTEMIA"
-              description="A research-funding prototype for AI matching, deadline intelligence, and pipeline UX design for academic and institutional use cases."
-              tags={['AI Matching', 'Deadline Intelligence', 'Funding Discovery']}
-              status="Research prototype"
-              href="https://grantemia.fi"
-              linkRel="nofollow noreferrer"
-              isLight={isLight}
-            />
-            <ProductCard
-              n="04"
-              accent="#1EC8A8"
-              category="B2B operations intelligence"
-              name="VELU"
-              description="A B2B operations prototype exploring five intelligence modules — pipeline analysis, email triage, market mapping, and task tracking. Explores how AI can interpret unstructured operational data."
-              tags={['Pipeline Intelligence', 'Market Signals', 'Competitive Watch']}
-              status="Research prototype"
-              href="https://velu.fi"
-              linkRel="nofollow noreferrer"
-              isLight={isLight}
-            />
-            <ProductCard
-              n="05"
-              accent="#F0A828"
-              category="Anticipatory intelligence"
-              name="LYCAON"
-              description="An exploratory prototype in strategic foresight and temporal signal analysis. Shelved — retained as a demonstration of conceptual product design."
-              tags={['Temporal Analysis', 'Pattern Recognition', 'Strategic Foresight']}
-              status="Exploratory prototype"
-              href="https://lycaon.vercel.app"
-              linkRel="nofollow noreferrer"
-              privateNote="Exploratory demo — not actively developed."
-              isLight={isLight}
-            />
-            <ProductCard
-              n="06"
-              accent="#B8334C"
-              category="EU AI Act documentation"
-              name="DISCLAI"
-              description="A document-automation prototype exploring EU AI Act transparency templates. Shelved — demonstrates AI-assisted drafting and risk-tier classification logic."
-              tags={['Transparency', 'Impact Assessment', 'Harm Taxonomy']}
-              status="Exploratory prototype"
-              href="https://disclai.vercel.app"
-              linkRel="nofollow noreferrer"
-              isLight={isLight}
-            />
-            <ProductCard
-              n="07"
-              accent="#8A7ADB"
-              category="Personal AI ops assistant"
-              name="IRAUN"
-              description="A personal productivity prototype exploring multi-project AI assistance. Shelved — demonstrates workflow automation and prompt engineering."
-              tags={['Ops Assistant', 'Multi-project']}
-              status="Exploratory prototype"
-              href="https://iraun.vercel.app"
-              linkRel="nofollow noreferrer"
-              isLight={isLight}
-            />
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.muted, marginBottom: '20px', letterSpacing: '0.06em' }}>
+            assess → score → rank → document · no account for the initial Signature
           </div>
-
-          <div style={{ marginTop: '48px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
-              <div style={{ flex: 1, height: '1px', background: isLight ? 'rgba(212,137,30,0.15)' : 'rgba(255,255,255,0.05)' }} />
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.35em', textTransform: 'uppercase', color: isLight ? '#8A6A30' : '#6A5A3A' }}>Internal Tooling · Personal Projects</div>
-              <div style={{ flex: 1, height: '1px', background: isLight ? 'rgba(212,137,30,0.15)' : 'rgba(255,255,255,0.05)' }} />
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '4px' }}>
-              <ProductCard
-                n="—"
-                accent="#3DB8A0"
-                category="Study path companion"
-                name="Monopati"
-                description="Personal 12-month AI Solutions + satellite connectivity reskill path by Henrique Moreira. Curated public progress and study journal — private tracker stays access-gated."
-                tags={['Public progress', 'Study journal', 'Satellite track', 'ECTS']}
-                status="Active · Public progress"
-                href="https://monopati.vercel.app/progress"
-                linkRel="nofollow noreferrer"
-                isLight={isLight}
-              />
-              <ProductCard
-                n="—"
-                accent="#6A93B0"
-                category="Personal Projects Dashboard"
-                name="FORGE"
-                tagline="Personal dashboard for tracking my learning projects and prototype deployments. Used to manage my professional development portfolio."
-                tags={['Deployment Tracking', 'Session History', 'Private / Internal']}
-                status="Active · Private"
-                privateNote="forge.henriquemoreira.eu (private — no public access)"
-                centerCategory
-                isLight={isLight}
-              />
-            </div>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8.5px', letterSpacing: '0.15em', color: isLight ? '#8A6A30' : '#5A5040', textAlign: 'center', marginTop: '20px' }}>
-              Built with Claude Code.
-            </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
+            <CtaPrimary href={GRYPS_ADVISOR} ice>
+              Generate a Resilience Signature →
+            </CtaPrimary>
+            <CtaGhost href="/work/gryps" color={c.ice} internal>
+              Mission brief
+            </CtaGhost>
+            <a
+              href={GRYPS_METHOD}
+              target="_blank"
+              rel="nofollow noreferrer"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '10px',
+                letterSpacing: '0.1em',
+                color: c.muted,
+                textDecoration: 'underline',
+                textUnderlineOffset: '3px',
+              }}
+            >
+              Methodology →
+            </a>
           </div>
+        </div>
 
+        <Suspense
+          fallback={
+            <div aria-hidden style={{ minHeight: 280, borderRadius: 2, border: `1px solid ${c.iceBorder}`, background: '#0B0F17' }} />
+          }
+        >
+          <SignatureInstrument variant="full" />
+        </Suspense>
+      </RevealWrapper>
+
+      {/* Morea secondary */}
+      <RevealWrapper delay={150}>
+        <div
+          style={{
+            marginTop: '48px',
+            border: `1px solid ${c.border}`,
+            borderLeft: `3px solid ${c.amber}`,
+            padding: isMobile ? '20px 16px' : '24px 28px',
+            textAlign: 'left',
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr auto',
+            gap: '16px',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.24em', color: c.amber, textTransform: 'uppercase', marginBottom: '8px' }}>
+              Secondary · Educational literacy
+            </div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: '28px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '8px' }}>
+              Morea
+            </div>
+            <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.65, maxWidth: '520px', margin: 0 }}>
+              Article 4 Evidence Pack walkthrough — literacy trail, not a compliance service.
+            </p>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: isMobile ? 'flex-start' : 'flex-end' }}>
+            <CtaGhost href={MOREA_URL} color={c.amber}>
+              Open prototype ↗
+            </CtaGhost>
+            <CtaGhost href="/work/morea" color={c.muted} internal>
+              Brief
+            </CtaGhost>
+          </div>
+        </div>
+      </RevealWrapper>
+
+      {/* Archives telemetry */}
+      <RevealWrapper delay={180}>
+        <div style={{ marginTop: '40px', textAlign: 'left' }}>
+          <button
+            type="button"
+            onClick={() => setArchivesOpen((o) => !o)}
+            aria-expanded={archivesOpen}
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '12px',
+              background: 'transparent',
+              border: `1px solid ${c.border}`,
+              padding: '14px 16px',
+              cursor: 'pointer',
+              color: c.muted,
+            }}
+          >
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.28em', textTransform: 'uppercase' }}>
+              Earlier learning prototypes · telemetry
+            </span>
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.amber }}>{archivesOpen ? '−' : '+'}</span>
+          </button>
+          {archivesOpen && (
+            <div style={{ border: `1px solid ${c.border}`, borderTop: 'none' }}>
+              {ARCHIVES.map((a) => (
+                <a
+                  key={a.name}
+                  href={a.href}
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: isMobile ? '1fr' : '140px 1fr auto',
+                    gap: '8px 16px',
+                    padding: '12px 16px',
+                    borderBottom: `1px solid ${c.divider}`,
+                    textDecoration: 'none',
+                    color: 'inherit',
+                  }}
+                >
+                  <span style={{ fontFamily: "'Syne', sans-serif", fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em', color: c.ink }}>{a.name}</span>
+                  <span style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body }}>{a.blurb}</span>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.amber, letterSpacing: '0.1em' }}>Open ↗</span>
+                </a>
+              ))}
+              <div style={{ padding: '12px 16px', fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: c.quiet, letterSpacing: '0.08em', lineHeight: 1.6 }}>
+                Linked from this page only · not submitted to search engines · interview walkthrough if useful
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div
+          style={{
+            marginTop: '28px',
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+            gap: '8px',
+            textAlign: 'left',
+          }}
+        >
+          <div style={{ border: `1px solid ${c.border}`, padding: '16px 18px' }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.teal, textTransform: 'uppercase', marginBottom: '8px' }}>
+              Study path
+            </div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: '22px', fontStyle: 'italic', color: c.ink, marginBottom: '6px' }}>Monopati</div>
+            <p style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.55, marginBottom: '12px' }}>
+              Public progress on a 12-month AI Solutions + satellite track — direction, not build proof.
+            </p>
+            <a
+              href="https://monopati.vercel.app/progress"
+              target="_blank"
+              rel="nofollow noreferrer"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.teal, letterSpacing: '0.1em' }}
+            >
+              Progress →
+            </a>
+          </div>
+          <div style={{ border: `1px solid ${c.border}`, padding: '16px 18px' }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.muted, textTransform: 'uppercase', marginBottom: '8px' }}>
+              Internal · Private
+            </div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: '22px', fontStyle: 'italic', color: c.ink, marginBottom: '6px' }}>FORGE</div>
+            <p style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.55, margin: 0 }}>
+              Personal projects dashboard — private; no public login.
+            </p>
+          </div>
         </div>
       </RevealWrapper>
     </Section>
@@ -667,76 +872,91 @@ function Work({ isLight }) {
 
 function Contact({ isLight }) {
   const isMobile = useIsMobile()
-  const headingColor = isLight ? '#1A0E04' : '#F0E8D8'
-  const bodyColor    = isLight ? '#2A1A08' : '#B0A888'
-  const footerColor  = isLight ? '#8A6A30' : '#8A8070'
-  const dividerColor = isLight ? 'rgba(212,137,30,0.2)' : 'rgba(255,255,255,0.04)'
+  const c = t(isLight)
   const year = new Date().getFullYear()
   const legalLink = {
-    color: footerColor,
+    color: c.quiet,
     textDecoration: 'none',
-    borderBottom: `1px solid ${footerColor}55`,
+    borderBottom: `1px solid ${c.quiet}55`,
     fontFamily: "'JetBrains Mono', monospace",
     fontSize: '8px',
     letterSpacing: '0.2em',
     textTransform: 'uppercase',
   }
+
   return (
     <Section id="contact" isLight={isLight} style={{ textAlign: 'center', paddingBottom: isMobile ? '40px' : '56px' }}>
       <RevealWrapper>
-        <SectionEyebrow>Contact</SectionEyebrow>
-        <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 200, fontStyle: 'italic', color: headingColor, lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '24px', maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <SectionEyebrow color={c.amber}>Contact</SectionEyebrow>
+        <h2
+          style={{
+            fontFamily: "'Fraunces', serif",
+            fontSize: 'clamp(26px, 3.6vw, 44px)',
+            fontWeight: 200,
+            fontStyle: 'italic',
+            color: c.ink,
+            lineHeight: 1.2,
+            letterSpacing: '-0.02em',
+            marginBottom: '20px',
+            maxWidth: '680px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}
+        >
           Open to conversations about AI product and systems roles at Nordic industrial and AI-led companies.
         </h2>
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: footerColor, letterSpacing: '0.12em', lineHeight: 1.7, maxWidth: '520px', margin: '0 auto 20px' }}>
-          industrial operator · builder at heart · customer-centric · Nordic-fluent
-        </div>
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: bodyColor, lineHeight: 1.7, maxWidth: '520px', margin: '0 auto 52px' }}>
-          If you are hiring or want to discuss how operations experience translates into systems design, I would welcome a conversation.
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.quiet, letterSpacing: '0.1em', marginBottom: '40px' }}>
+          industrial operator · builder · Nordic-fluent
         </div>
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '40px' }}>
           <a href="mailto:hqe.moreira@gmail.com" style={{ textDecoration: 'none' }}>
-            <div style={{ padding: '14px 32px', background: '#D4891E', color: '#07080D', fontFamily: "'Syne', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', borderRadius: '1px', transition: 'all 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 32px rgba(212,137,30,0.5)'}
-              onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}>
+            <div
+              style={{
+                padding: '14px 28px',
+                background: c.amber,
+                color: '#07080D',
+                fontFamily: "'Syne', sans-serif",
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+              }}
+            >
               Send a message
             </div>
           </a>
           <a href="https://github.com/hqemoreira" target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-            <div style={{ padding: '14px 32px', border: '1px solid rgba(212,137,30,0.4)', color: '#D4891E', fontFamily: "'Syne', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', borderRadius: '1px', transition: 'all 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.background = 'rgba(212,137,30,0.08)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+            <div style={{ padding: '14px 28px', border: `1px solid ${c.amber}`, color: c.amber, fontFamily: "'Syne', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
               GitHub ↗
             </div>
           </a>
           <a href="https://www.linkedin.com/in/hqemoreira" target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-            <div style={{ padding: '14px 32px', border: '1px solid rgba(212,137,30,0.4)', color: '#D4891E', fontFamily: "'Syne', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', borderRadius: '1px', transition: 'all 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.background = 'rgba(212,137,30,0.08)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+            <div style={{ padding: '14px 28px', border: `1px solid ${c.amber}`, color: c.amber, fontFamily: "'Syne', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
               LinkedIn ↗
             </div>
           </a>
         </div>
-        <div style={{
-          borderTop: `1px solid ${dividerColor}`, paddingTop: '24px',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px', textAlign: 'center',
-        }}>
-          <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ borderTop: `1px solid ${c.divider}`, paddingTop: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <Link to="/about" style={legalLink}>About</Link>
+            <span style={{ color: c.quiet, opacity: 0.4 }}>·</span>
             <Link to="/privacy" style={legalLink}>Privacy</Link>
-            <span style={{ color: footerColor, opacity: 0.4 }}>·</span>
+            <span style={{ color: c.quiet, opacity: 0.4 }}>·</span>
             <Link to="/terms" style={legalLink}>Terms</Link>
+            <span style={{ color: c.quiet, opacity: 0.4 }}>·</span>
+            <Link to="/work/gryps" style={legalLink}>GRYPS brief</Link>
           </div>
-          <div style={{ fontFamily: "'Fraunces', serif", fontSize: '18px', fontStyle: 'italic', fontWeight: 300, color: footerColor, letterSpacing: '0.02em' }}>H·M</div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: footerColor, letterSpacing: '0.28em', textTransform: 'uppercase' }}>
+          <div style={{ fontFamily: "'Fraunces', serif", fontSize: '18px', fontStyle: 'italic', color: c.quiet }}>H·M</div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: c.quiet, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
             Vila Nova de Gaia → Espoo
           </div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: footerColor, letterSpacing: '0.16em', lineHeight: 1.7 }}>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: c.quiet, letterSpacing: '0.12em' }}>
             © {year} Henrique Moreira · All rights reserved
           </div>
-          <div style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: footerColor,
-            letterSpacing: '0.14em', lineHeight: 1.7, opacity: 0.75, marginTop: '4px',
-          }}>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: c.quiet, opacity: 0.7, letterSpacing: '0.12em' }}>
+            Personal reskilling · Non-commercial · Not a product for sale · No accounts / no billing
+          </div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: c.quiet, opacity: 0.65 }}>
             Vite · React · React Router · Vercel
           </div>
         </div>
@@ -747,91 +967,86 @@ function Contact({ isLight }) {
 
 export default function Portfolio({ theme = 'dark' }) {
   const isLight = theme === 'light'
+  const c = t(isLight)
+
   useEffect(() => {
     const style = document.createElement('style')
     style.id = 'portfolio-styles'
     style.textContent = `
-      @keyframes hmTitleIn { from { opacity: 0; transform: translateY(28px); filter: blur(10px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
-      @keyframes hmPulse { 0%, 100% { box-shadow: 0 0 6px rgba(212,137,30,0.5); transform: scale(1); } 50% { box-shadow: 0 0 16px rgba(212,137,30,0.9); transform: scale(1.3); } }
-      @keyframes hmBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+      @keyframes hmTitleIn { from { opacity: 0; transform: translateY(24px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+      @keyframes hmFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
     `
     document.head.appendChild(style)
 
-    // Schema.org structured data — Person + FAQ (AEO / rich results)
     const schema = document.createElement('script')
     schema.type = 'application/ld+json'
     schema.id = 'portfolio-schema'
     schema.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
+      '@context': 'https://schema.org',
+      '@graph': [
         {
-          "@type": "Person",
-          "@id": "https://henriquemoreira.eu/#person",
-          "name": "Henrique Moreira",
-          "url": "https://henriquemoreira.eu",
-          "email": "hqe.moreira@gmail.com",
-          "jobTitle": "AI Builder & Systems Thinker",
-          "description": "Builder based in Espoo, Finland. Live skill demo: GRYPS — generate a Resilience Signature for Nordic and Arctic remote operations connectivity. Earlier learning prototypes include Morea (Evidence Pack), Grantemia, Velu, Lycaon, DisclAI and Iraun.",
-          "address": { "@type": "PostalAddress", "addressLocality": "Espoo", "addressCountry": "FI" },
-          "sameAs": ["https://www.linkedin.com/in/hqemoreira"],
-          "knowsAbout": ["Artificial Intelligence", "Systems Thinking", "Software Development", "EU AI Act", "Supply Chain", "International Business"],
-          "hasOccupation": {
-            "@type": "Occupation",
-            "name": "AI Product Builder",
-            "occupationLocation": { "@type": "City", "name": "Espoo" }
-          }
+          '@type': 'Person',
+          '@id': 'https://henriquemoreira.eu/#person',
+          name: 'Henrique Moreira',
+          url: 'https://henriquemoreira.eu',
+          email: 'hqe.moreira@gmail.com',
+          jobTitle: 'AI Builder & Systems Thinker',
+          description:
+            'Builder based in Espoo, Finland. Live skill demo: GRYPS — generate a Resilience Signature for Nordic and Arctic remote operations connectivity. Secondary: Morea Evidence Pack. Earlier learning prototypes include Grantemia, Velu, Lycaon, DisclAI and Iraun. Study path: Monopati.',
+          address: { '@type': 'PostalAddress', addressLocality: 'Espoo', addressCountry: 'FI' },
+          sameAs: ['https://www.linkedin.com/in/hqemoreira'],
+          knowsAbout: ['Artificial Intelligence', 'Systems Thinking', 'Software Development', 'EU AI Act', 'Supply Chain', 'International Business'],
         },
         {
-          "@type": "FAQPage",
-          "@id": "https://henriquemoreira.eu/#faq",
-          "mainEntity": [
+          '@type': 'FAQPage',
+          '@id': 'https://henriquemoreira.eu/#faq',
+          mainEntity: [
             {
-              "@type": "Question",
-              "name": "What is this site?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A personal portfolio for Henrique Moreira (Espoo, Finland). It features GRYPS as a live non-commercial R&D demo and links earlier learning prototypes. It is not a commercial marketplace. Factual posture: https://henriquemoreira.eu/about"
-              }
+              '@type': 'Question',
+              name: 'What is this site?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'A personal portfolio for Henrique Moreira (Espoo, Finland). It features GRYPS as a live non-commercial R&D demo and links earlier learning prototypes. Factual posture: https://henriquemoreira.eu/about',
+              },
             },
             {
-              "@type": "Question",
-              "name": "What is GRYPS?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "GRYPS is a non-commercial skill demo: enter a site profile and get a Resilience Signature (score, grade, risks, ranked options) from Model v0.4. Indicative research — not procurement advice. Live Advisor: https://gryps.vercel.app/#advisor"
-              }
+              '@type': 'Question',
+              name: 'What is GRYPS?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'GRYPS is a non-commercial skill demo: enter a site profile and get a Resilience Signature (score, grade, risks, ranked options) from Model v0.4. Live Advisor: https://gryps.vercel.app/#advisor — case brief: https://henriquemoreira.eu/work/gryps',
+              },
             },
             {
-              "@type": "Question",
-              "name": "Are the other prototypes for sale?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. Morea, Grantemia, Velu, Lycaon, DisclAI, and Iraun are learning prototypes shown for portfolio context. They remain noindex on their own hosts. Lead hiring proof is GRYPS."
-              }
+              '@type': 'Question',
+              name: 'Are the other prototypes for sale?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'No. Morea, Grantemia, Velu, Lycaon, DisclAI, and Iraun are learning prototypes shown for portfolio context. Lead hiring proof is GRYPS.',
+              },
             },
             {
-              "@type": "Question",
-              "name": "Is FORGE a public product?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. FORGE is a private personal ops dashboard (noindex). It is not offered as a public product or login destination for visitors."
-              }
-            }
-          ]
-        }
-      ]
+              '@type': 'Question',
+              name: 'Is FORGE a public product?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'No. FORGE is a private personal ops dashboard. It is not offered as a public product or login destination.',
+              },
+            },
+          ],
+        },
+      ],
     })
     document.head.appendChild(schema)
 
     return () => {
-      const s = document.getElementById('portfolio-styles')
-      if (s) document.head.removeChild(s)
-      const sc = document.getElementById('portfolio-schema')
-      if (sc) document.head.removeChild(sc)
+      document.getElementById('portfolio-styles')?.remove()
+      document.getElementById('portfolio-schema')?.remove()
     }
   }, [])
+
   return (
-    <div style={{ background: isLight ? '#F5F0E6' : '#07080D', minHeight: '100vh', overflowX: 'hidden', transition: 'background 0.4s ease' }}>
+    <div style={{ background: c.bg, minHeight: '100vh', overflowX: 'hidden', transition: 'background 0.4s ease' }}>
       <BgLayers isLight={isLight} />
       <Hero isLight={isLight} />
       <Story isLight={isLight} />

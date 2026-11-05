@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import HMSymbol from './HMSymbol'
+import { t } from '../theme'
 
 function useIsMobileNav() {
   const [isMobile, setIsMobile] = useState(
@@ -14,54 +15,127 @@ function useIsMobileNav() {
   return isMobile
 }
 
+const linkBase = {
+  fontFamily: "'JetBrains Mono', monospace",
+  fontSize: '9px',
+  letterSpacing: '0.18em',
+  textTransform: 'uppercase',
+  textDecoration: 'none',
+  opacity: 0.75,
+  transition: 'opacity 0.2s',
+}
+
+function NavLink({ children, color, ...props }) {
+  return (
+    <a
+      {...props}
+      style={{ ...linkBase, color }}
+      onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
+      onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.75 }}
+    >
+      {children}
+    </a>
+  )
+}
+
 export default function Nav({ theme, onToggleTheme }) {
   const isLight = theme === 'light'
+  const c = t(isLight)
   const isMobile = useIsMobileNav()
   const location = useLocation()
-  const border  = isLight ? 'rgba(212,137,30,0.2)' : 'rgba(212,137,30,0.08)'
-  const bg      = isLight ? 'rgba(245,240,230,0.95)' : 'rgba(7,8,13,0.92)'
+  const onHome = location.pathname === '/'
 
   const handleLogoClick = (e) => {
-    if (location.pathname !== '/') return
+    if (!onHome) return
     e.preventDefault()
     const hero = document.getElementById('hero')
     if (hero) hero.scrollIntoView()
     else window.scrollTo(0, 0)
   }
 
+  const scrollHomeSection = (id) => (e) => {
+    if (!onHome) return
+    e.preventDefault()
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
-    <nav style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: isMobile ? '12px 16px' : '14px 40px',
-      background: bg,
-      backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-      borderBottom: `0.5px solid ${border}`,
-      transition: 'background 0.4s ease',
-    }}>
+    <nav
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 12,
+        padding: isMobile ? '12px 16px' : '14px 40px',
+        background: c.navBg,
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderBottom: `0.5px solid ${c.border}`,
+        transition: 'background 0.4s ease',
+      }}
+    >
       <Link
         to="/"
-        aria-label={location.pathname === '/' ? 'Back to top' : 'Home'}
+        aria-label={onHome ? 'Back to top' : 'Home'}
         onClick={handleLogoClick}
-        style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
+        style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
       >
-        <HMSymbol size={44} theme={isLight ? 'light' : 'dark'} />
+        <HMSymbol size={isMobile ? 36 : 44} theme={isLight ? 'light' : 'dark'} />
       </Link>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 14 : 22 }}>
+        {!isMobile && (
+          <>
+            <NavLink href="/#work" color={c.amber} onClick={scrollHomeSection('work')}>
+              Work
+            </NavLink>
+            <Link
+              to="/about"
+              style={{ ...linkBase, color: c.amber }}
+              onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
+              onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.75 }}
+            >
+              About
+            </Link>
+            <NavLink href="/#contact" color={c.amber} onClick={scrollHomeSection('contact')}>
+              Contact
+            </NavLink>
+          </>
+        )}
+        {isMobile && (
+          <Link
+            to="/about"
+            style={{ ...linkBase, color: c.amber }}
+            onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
+            onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.75 }}
+          >
+            About
+          </Link>
+        )}
         <button
           type="button"
           onClick={onToggleTheme}
           aria-label={isLight ? 'Switch to dark theme' : 'Switch to light theme'}
           style={{
-          background: 'transparent',
-          border: `1px solid ${isLight ? 'rgba(212,137,30,0.35)' : 'rgba(212,137,30,0.25)'}`,
-          borderRadius: '2px', padding: '6px 14px', cursor: 'pointer',
-          fontFamily: "'JetBrains Mono', monospace", fontSize: '10px',
-          letterSpacing: '0.15em', color: '#D4891E', opacity: 0.8,
-          transition: 'opacity 0.2s',
-        }}
-          onMouseEnter={e => e.currentTarget.style.opacity = 1}
-          onMouseLeave={e => e.currentTarget.style.opacity = 0.8}
+            background: 'transparent',
+            border: `1px solid ${isLight ? 'rgba(184,116,26,0.4)' : 'rgba(212,137,30,0.25)'}`,
+            borderRadius: '2px',
+            padding: '6px 12px',
+            cursor: 'pointer',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '10px',
+            letterSpacing: '0.15em',
+            color: c.amber,
+            opacity: 0.85,
+            transition: 'opacity 0.2s',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.85 }}
         >
           {isLight ? '◑ Dark' : '◑ Light'}
         </button>

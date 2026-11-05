@@ -22,7 +22,7 @@ export default function Privacy({ theme = 'dark' }) {
         <LegalH2>What this site collects</LegalH2>
         <LegalUl>
           <li>No account database. You cannot register or log in on this site.</li>
-          <li>No first-party cookies or localStorage for analytics or preferences. Theme preference is held in memory only for the current session.</li>
+          <li>No first-party cookies for analytics. Theme preference may be stored in <code>localStorage</code> key <code>hm-theme</code> (<code>dark</code> / <code>light</code>) so the Arctic-day or dark theater mode persists across visits — no identity data.</li>
           <li>If you email the contact address, ordinary email metadata and message content are processed as correspondence.</li>
         </LegalUl>
       </section>

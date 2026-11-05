@@ -1,26 +1,25 @@
 # Portfolio — Henrique Moreira
 
-Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed surface featuring **GRYPS** as the lead hiring-proof skill demo (live Resilience Signature via `/#advisor`), with earlier research prototypes linked for context. Reskilling / hiring posture until further notice — non-commercial.
+Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed surface featuring **GRYPS** as the lead hiring-proof skill demo — presented as a **Resilience Instrument** (live Signature via `/#advisor`), with a mission brief at `/work/gryps`, Morea as secondary literacy, and quieter earlier prototypes. Reskilling / hiring posture until further notice — non-commercial.
 
-**Not a SaaS storefront.** Prototypes are non-commercial / research / skill demonstrations. CTAs use **Open prototype**.
+**Not a SaaS storefront.** Prototypes are non-commercial / research / skill demonstrations. CTAs use **Open prototype** / **Generate a Resilience Signature**.
 
 **Live:** [henriquemoreira.eu](https://henriquemoreira.eu)
 
 ## What’s on the site
 
-- Animated particle canvas + dark/light theme
-- GRYPS Live card with Path A golden Advisor motion demo (Score 47 · Grade D)
-- Earlier prototypes grid (Morea, Grantemia, Velu, Lycaon, DisclAI, Iraun) — `rel="nofollow noreferrer"`
-- FORGE listed as private internal tooling only (no public login link)
-- Privacy / Terms
+- Resilience Instrument hero — brand monument + living Signature panel + constellation field
+- Dark theater + Arctic-day light theme (persisted preference)
+- GRYPS featured stage + Path A motion instrument (Score 47 · Grade D sample)
+- Mission briefs: `/work/gryps`, `/work/morea`
+- Earlier prototypes as telemetry accordion; Monopati progress; FORGE private note only
+- Privacy / Terms / About
 
 ## Stack
 
-Technologies **this repository** actually uses:
-
 - Vite + React 19 + React Router
-- Pure inline styles (no Tailwind)
-- Canvas RAF particle system
+- Pure inline styles (+ minimal `index.css`)
+- Canvas constellation particle system
 - `@vercel/analytics` (cookieless)
 - Deployed on Vercel
 
@@ -40,7 +39,8 @@ No API keys are required for local development. Never commit secrets; see [`.env
 
 ## Docs
 
-Maintainer notes: [`CODEBOOK.md`](./CODEBOOK.md)
+- [`PRODUCT.md`](./PRODUCT.md) · [`DESIGN.md`](./DESIGN.md)
+- Maintainer notes: [`CODEBOOK.md`](./CODEBOOK.md)
 
 ## License
 

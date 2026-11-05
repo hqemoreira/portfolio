@@ -1,24 +1,26 @@
 # Portfolio — Codebook
 
-> Personal portfolio — animated particle canvas, GRYPS live featured project (skill demo), earlier prototypes, Privacy/Terms, dark/light theme.
-> Stack: Vite + React + React Router · Pure inline styles (no CSS files) · Canvas RAF animation · Vercel Analytics · Vercel
+> Personal portfolio — Resilience Instrument hero, GRYPS live featured project (skill demo), mission briefs, quieter archives, Privacy/Terms, dark/Arctic-day theme.
+> Stack: Vite + React + React Router · Inline styles + minimal `src/index.css` · Canvas constellation · Vercel Analytics · Vercel
 
 ---
 
 ## Public posture
 
-- **Indexed:** this site + GRYPS only. Earlier prototypes are linked with `rel="nofollow noreferrer"` and stay noindex on their own hosts. FORGE is private ops (noindex) — listed without a public login link.
-- **Hierarchy:** GRYPS Live card first; Earlier prototypes grid (Morea, Grantemia, Velu, Lycaon, DisclAI, Iraun). No Grantemia PT.
-- **CTAs:** prototype cards use **Open prototype** — not Try/Buy/Visit. Job-seeking commercial-role copy may exist elsewhere; prototypes are not a storefront.
-- **GrypsDemo:** Path A whitelist loop only (`src/components/GrypsDemo.jsx`) — Score 47 · Grade D golden Advisor run; no invented RF/countdown metrics; GOLDEN strings stay frozen. Lazy-loaded via `React.lazy` + `Suspense`.
+- **Indexed:** this site + GRYPS (+ mission briefs). Earlier prototypes are linked with `rel="nofollow noreferrer"` and stay noindex on their own hosts. FORGE is private ops (noindex) — listed without a public login link.
+- **Hierarchy:** Resilience Instrument hero → GRYPS stage → Morea secondary strip → archives telemetry accordion. No Grantemia PT.
+- **CTAs:** **Generate a Resilience Signature** / **Open prototype** — not Try/Buy/Visit. Prototypes are not a storefront.
+- **SignatureInstrument:** Path A whitelist loop (`src/components/SignatureInstrument.jsx`; `GrypsDemo.jsx` re-exports) — Score 47 · Grade D; hero ~15s / full ~17s; reduced-motion static. Lazy-loaded.
+- **Routes:** `/`, `/about`, `/work/gryps`, `/work/morea`, `/privacy`, `/terms`, 404.
 - **Audience for GRYPS:** OT security / connectivity skill demonstration for hiring conversations, not a SaaS pitch deck.
-- **Hiring spear:** CTA deep-links `https://gryps.vercel.app/#advisor` — name the **Resilience Signature** as the result. Morea (Evidence Pack) is secondary educational context.
+- **Hiring spear:** CTA deep-links `https://gryps.vercel.app/#advisor` — name the **Resilience Signature** as the result. Morea is secondary educational context.
 - **Systems over stamps:** Story credentials lead with systems practice + GRYPS build proof; SAP/Power BI/CRM/BW remain as Corporate Tools (secondary, no employer named). Loop copy: assess → score → rank → document; no email for initial Signature.
 - **GitHub front door:** public `README.md` (posture + stack + how to run); architecture stays in this codebook. Proprietary `LICENSE` harmonized with sibling portfolio repos.
 - **Stack honesty:** footer and README claim only technologies this repo uses (Vite · React · React Router · Vercel). Do not list Next.js / Neon / Resend / Cloudflare / Mistral unless they land in this tree.
 
 ### Changelog — 2026-11
 
+- **2026-11-05:** Resilience Instrument redesign — hero brand + Signature instrument; constellation field; `/work/gryps` + `/work/morea` mission briefs; archives accordion; Arctic-day light tokens; theme persistence (`localStorage`); nav Work/About/Contact.
 - **2026-11-03 (Forge s26 / portfolio-s15):** Public copy Litrix → **Morea**; earlier-prototypes hierarchy aligned with Forge registry. Hub stays skill-demo / no storefront.
 
 ### Changelog — 2026-10
@@ -45,9 +47,9 @@
 | Concern | Choice | Why |
 |---|---|---|
 | Framework | Vite + React | Fast HMR, no build complexity |
-| Routing | React Router | `/`, `/privacy`, `/terms`, catch-all 404 |
-| Styling | Inline styles (no CSS files, no Tailwind) | Full control, no class naming friction, theme via prop drilling |
-| Theme | `useState('dark')` in `App.jsx`, prop-drilled as `theme` | Simple — one boolean driving all color decisions inline |
+| Routing | React Router | `/`, `/about`, `/work/gryps`, `/work/morea`, `/privacy`, `/terms`, 404 |
+| Styling | Inline styles + minimal `index.css` (no Tailwind) | Tokens in `src/theme.js`; theme via prop drilling |
+| Theme | `localStorage` key `hm-theme` + prop-drilled `theme` | Dark theater default; Arctic-day light |
 | Canvas | RAF loop `useParticles` inside `Portfolio.jsx` | Shared visual language with LYCAON/GRYPS |
 | Projects | GRYPS featured Live card; earlier prototypes in grid | Gryps owns Live; others are context |
 | Legal | `/privacy` + `/terms` (EN) | EU AI Act + GDPR disclosures; footer-linked |

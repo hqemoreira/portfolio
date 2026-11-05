@@ -1,8 +1,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: #07080D; overflow-x: hidden; max-width: 100vw; }
+body {
+  background: #07080D;
+  overflow-x: hidden;
+  max-width: 100vw;
+  font-family: 'Lora', Georgia, serif;
+}
 
-/* Hero title/badge rhythm — keep clamp readable when svh is short (laptop + browser chrome) */
 @supports not (height: 100svh) {
   #hero { min-height: 100vh !important; }
 }
