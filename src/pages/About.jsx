@@ -1,17 +1,56 @@
+import { Link } from 'react-router-dom'
 import { LegalShell, LegalH2, LegalP, LegalUl } from '../components/LegalShell'
+import { HIRING_ONE_LINER, HIRING_PATH_STEPS, ROLE_FOCUS } from '../copy'
+import { GRYPS_ADVISOR, t } from '../theme'
 
 /**
  * Citation-worthy factual page for answer engines / journalists / recruiters.
  * Non-commercial posture only — no storefront claims.
  */
 export default function About({ theme = 'dark' }) {
+  const isLight = theme === 'light'
+  const c = t(isLight)
+  const accent = c.amber
+
   return (
     <LegalShell theme={theme} title="About this site" eyebrow="Posture" lastUpdated="Updated 2026-11-05">
       <LegalP>
         This is the personal portfolio of Henrique Moreira (Espoo, Finland). It is an indexed hub for
         skill demonstration and research prototypes — not a commercial marketplace, SaaS homepage, or
-        product storefront. The home page presents GRYPS as a living Resilience Instrument.
+        product storefront. The home page presents GRYPS as a living Resilience Instrument (visual frame
+        for a non-commercial skill demo — not a product for sale).
       </LegalP>
+
+      <LegalP>
+        <em>{HIRING_ONE_LINER}</em>
+      </LegalP>
+
+      <section>
+        <LegalH2>60-second hiring path</LegalH2>
+        <LegalP>
+          Evaluators: use the site in this order — do not start with a stack list.
+        </LegalP>
+        <ol style={{ margin: 0, paddingLeft: 20, fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: 'inherit' }}>
+          {HIRING_PATH_STEPS.map((s) => (
+            <li key={s.n} style={{ marginBottom: 8 }}>
+              <strong>{s.label}</strong> — {s.detail}
+            </li>
+          ))}
+        </ol>
+        <p style={{ marginTop: 16, fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', lineHeight: 1.7 }}>
+          <a href={GRYPS_ADVISOR} style={{ color: accent }} rel="nofollow noreferrer">
+            Generate Signature →
+          </a>
+          {' · '}
+          <Link to="/work/gryps" style={{ color: accent }}>
+            Mission brief
+          </Link>
+          {' · '}
+          <Link to="/" style={{ color: accent }}>
+            Home
+          </Link>
+        </p>
+      </section>
 
       <section>
         <LegalH2>What you will find</LegalH2>
@@ -48,6 +87,7 @@ export default function About({ theme = 'dark' }) {
           <li>Not a storefront — no pricing tiers, freemium plans, or purchase flows.</li>
           <li>Not a claim of enterprise customers, awards, or certified coverage.</li>
           <li>Not procurement, legal, or engineering advice.</li>
+          <li>Not a stack badge wall — stack appears as evidence on the GRYPS brief after you try the Signature.</li>
         </LegalUl>
       </section>
 
@@ -65,9 +105,8 @@ export default function About({ theme = 'dark' }) {
       <section>
         <LegalH2>Contact</LegalH2>
         <LegalP>
-          Professional context: Espoo, Finland · open to AI product and systems roles.
-          LinkedIn:{" "}
-          <a href="https://www.linkedin.com/in/hqemoreira" style={{ color: "#D4891E" }} rel="noopener noreferrer">
+          {ROLE_FOCUS} LinkedIn (same one-liner as above):{' '}
+          <a href="https://www.linkedin.com/in/hqemoreira" style={{ color: accent }} rel="noopener noreferrer">
             linkedin.com/in/hqemoreira
           </a>
           .

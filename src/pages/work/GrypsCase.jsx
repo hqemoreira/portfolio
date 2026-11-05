@@ -22,9 +22,9 @@ export default function GrypsCase({ theme = 'dark' }) {
       rows={[
         { label: 'Model', value: 'v0.4 · deterministic scoring' },
         { label: 'Loop', value: 'assess → score → rank → document' },
-        { label: 'Stack', value: 'Next.js · Neon · MapLibre · optional Mistral' },
+        { label: 'Stack', value: 'Next.js · Neon · MapLibre · optional Mistral — evidence on this case, not a home hero wall' },
         { label: 'Domain', value: 'OT / Nordic–Arctic connectivity literacy' },
-        { label: 'Posture', value: 'Non-commercial research · skill demo' },
+        { label: 'Posture', value: 'Non-commercial research · skill demo · reskilling' },
         { label: 'Access', value: 'No account / no email for initial Signature' },
       ]}
       cta={

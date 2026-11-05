@@ -10,10 +10,13 @@
 - Mission brief: https://henriquemoreira.eu/work/gryps
 - Secondary: Morea Evidence Pack — https://henriquemoreira.eu/work/morea · https://morea-pack.vercel.app
 - Posture: personal reskilling / hiring conversations — non-commercial
+- One-liner: Built GRYPS: open the Advisor, enter a remote site, get a Resilience Signature — live skill demo for Nordic / Arctic connectivity resilience (non-commercial research prototype).
+- 60s path: Home → Generate Signature (gryps.vercel.app/#advisor) → mission brief (/work/gryps)
 
 ## What this site is
 
 - Indexed personal portfolio; GRYPS is the lead build-proof (Resilience Instrument + live Signature)
+- Stack evidence lives on the GRYPS brief — not as a home hero badge wall
 - Morea is secondary educational literacy — not a compliance service
 - Archives (Grantemia, Velu, Lycaon, DisclAI, Iraun) are learning context only
 - Monopati is a public study-progress track (direction, not build proof)

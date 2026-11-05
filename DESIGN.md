@@ -42,12 +42,12 @@ Competitor test: *On this page, Nordic–Arctic connectivity resilience becomes 
 
 | Token | Dark | Arctic day (light) | Role |
 |-------|------|--------------------|------|
-| Neutral / stage | `#07080D` | `#F4F7FA` | Page foundation |
-| Primary text | `#F0E8D8` | `#0B1220` | Body / monument ink |
-| Secondary | `#8A9AA8` | `#5A6A7A` | Quiet chrome |
-| Brand amber | `#D4891E` | `#B8741A` | Brand, CTAs secondary |
-| Ice | `#4FA8FF` | `#2B7FD4` | GRYPS instrument only |
-| Teal pulse | `#1EC8A8` | `#1A9A82` | Secondary pulse only — scarce |
+| Neutral / stage | `#07080D` | `#F2F5F8` | Page foundation |
+| Primary text | `#F0E8D8` | `#0A1018` | Body / monument ink |
+| Secondary | `#8A9AA8` | `#4A5A6A` | Quiet chrome |
+| Brand amber | `#D4891E` | `#A66A14` | Brand, CTAs secondary |
+| Ice | `#4FA8FF` | `#1F73C7` | GRYPS instrument only |
+| Teal pulse | `#1EC8A8` | `#178A74` | Secondary pulse only — scarce |
 
 Accent scarcity: amber for brand; ice for GRYPS; no third accent competing in the hero.
 

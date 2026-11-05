@@ -112,25 +112,27 @@ export default function Nav({ theme, onToggleTheme }) {
           type="button"
           onClick={onToggleTheme}
           aria-label={isLight ? 'Switch to dark theme' : 'Switch to light theme'}
+          title={isLight ? 'Dark theater' : 'Arctic day'}
           style={{
-            background: 'transparent',
-            border: `1px solid ${isLight ? 'rgba(184,116,26,0.4)' : 'rgba(212,137,30,0.25)'}`,
+            background: isLight ? 'rgba(166,106,20,0.08)' : 'transparent',
+            border: `1px solid ${isLight ? 'rgba(166,106,20,0.45)' : 'rgba(212,137,30,0.25)'}`,
             borderRadius: '2px',
-            padding: compact ? '8px 10px' : '8px 12px',
-            minHeight: 40,
+            padding: phone ? '10px 12px' : compact ? '8px 10px' : '8px 12px',
+            minHeight: 44,
+            minWidth: phone ? 52 : undefined,
             cursor: 'pointer',
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: phone ? '9px' : '10px',
-            letterSpacing: '0.12em',
+            fontSize: phone ? '10px' : '10px',
+            letterSpacing: phone ? '0.06em' : '0.12em',
             color: c.amber,
-            opacity: 0.9,
-            transition: 'opacity 0.2s',
+            opacity: 0.95,
+            transition: 'opacity 0.2s, background 0.2s',
             flexShrink: 0,
           }}
           onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.9 }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.95 }}
         >
-          {isLight ? (phone ? '◑' : '◑ Dark') : (phone ? '◑' : '◑ Light')}
+          {isLight ? (phone ? 'Dark' : '◑ Dark') : (phone ? 'Day' : '◑ Light')}
         </button>
       </div>
     </nav>

@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useBreakpoint } from '../hooks/useBreakpoint'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import { HIRING_ONE_LINER, ROLE_FOCUS, TRANSITION_ARC } from '../copy'
 import { GRYPS_ADVISOR, GRYPS_METHOD, MOREA_URL, t } from '../theme'
 
 const SignatureInstrument = lazy(() => import('../components/SignatureInstrument'))
@@ -436,7 +437,7 @@ function Hero({ isLight }) {
               animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.2s both',
             }}
           >
-            Live skill demo for Nordic / Arctic connectivity — open the Advisor, get a Resilience Signature.
+            Nordic industrial ops → AI systems: open the Advisor, get a Resilience Signature.
           </p>
           <div
             style={{
@@ -591,15 +592,11 @@ function Story({ isLight }) {
                 marginBottom: '20px',
               }}
             >
-              18 years in Nordic <span style={{ color: c.amber }}>commercial operations.</span>
+              Nordic industrial ops → <span style={{ color: c.amber }}>AI systems.</span>
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '20px' }}>
-              {[
-                'Modern AI software usually fails because the builder never lived the problem.',
-                'Frontline client work to market-facing leadership in forest-industry paperboard — account logic, pricing discipline, handovers. Tools were stamps; the loop was the work.',
-                'Lead hiring proof: GRYPS — a live research prototype that returns a Resilience Signature from Model v0.4. Domain expertise plus a closed scoring loop.',
-              ].map((para) => (
-                <p key={para.slice(0, 24)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body }}>
+              {TRANSITION_ARC.map((para) => (
+                <p key={para.slice(0, 28)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body }}>
                   {para}
                 </p>
               ))}
@@ -942,16 +939,29 @@ function Contact({ isLight }) {
             color: c.ink,
             lineHeight: 1.25,
             letterSpacing: '-0.02em',
-            marginBottom: '20px',
+            marginBottom: '16px',
             maxWidth: '680px',
             marginLeft: 'auto',
             marginRight: 'auto',
           }}
         >
-          Open to conversations about AI product and systems roles at Nordic industrial and AI-led companies.
+          {ROLE_FOCUS}
         </h2>
+        <p
+          style={{
+            fontFamily: "'Lora', serif",
+            fontSize: phone ? '14px' : '15px',
+            fontStyle: 'italic',
+            color: c.body,
+            lineHeight: 1.65,
+            maxWidth: '560px',
+            margin: '0 auto 28px',
+          }}
+        >
+          {HIRING_ONE_LINER}
+        </p>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.quiet, letterSpacing: '0.08em', marginBottom: '32px' }}>
-          industrial operator · builder · Nordic-fluent
+          60s path · Signature → /work/gryps · industrial ops → AI systems
         </div>
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', flexDirection: phone ? 'column' : 'row', alignItems: phone ? 'stretch' : 'center', marginBottom: '40px', maxWidth: phone ? 360 : undefined, marginLeft: 'auto', marginRight: 'auto' }}>
           <a href="mailto:hqe.moreira@gmail.com" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>

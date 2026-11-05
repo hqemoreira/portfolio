@@ -51,8 +51,8 @@ export default function App() {
     })
 
   useEffect(() => {
-    document.documentElement.style.background = theme === 'light' ? '#F4F7FA' : '#07080D'
-    document.body.style.background = theme === 'light' ? '#F4F7FA' : '#07080D'
+    document.documentElement.style.background = theme === 'light' ? '#F2F5F8' : '#07080D'
+    document.body.style.background = theme === 'light' ? '#F2F5F8' : '#07080D'
   }, [theme])
 
   return (
