@@ -1,22 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { CaseSection, CaseShell, TelemetryRail } from '../../components/CaseShell'
+import { useBreakpoint } from '../../hooks/useBreakpoint'
 import { GRYPS_ADVISOR, GRYPS_METHOD, t } from '../../theme'
-
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 900 : false)
-  useEffect(() => {
-    const handler = () => setIsMobile(window.innerWidth < 900)
-    window.addEventListener('resize', handler)
-    return () => window.removeEventListener('resize', handler)
-  }, [])
-  return isMobile
-}
 
 export default function GrypsCase({ theme = 'dark' }) {
   const isLight = theme === 'light'
   const c = t(isLight)
-  const isMobile = useIsMobile()
+  const { phone, tablet, narrow } = useBreakpoint()
 
   useEffect(() => {
     document.title = 'GRYPS — Resilience Signature mission brief · Henrique Moreira'
@@ -45,13 +36,15 @@ export default function GrypsCase({ theme = 'dark' }) {
             style={{
               display: 'block',
               textAlign: 'center',
-              padding: '12px 14px',
+              padding: '14px 14px',
+              minHeight: 44,
+              boxSizing: 'border-box',
               background: c.ice,
               color: '#07080D',
               fontFamily: "'Syne', sans-serif",
               fontSize: '9px',
               fontWeight: 700,
-              letterSpacing: '0.14em',
+              letterSpacing: '0.12em',
               textTransform: 'uppercase',
               textDecoration: 'none',
             }}
@@ -68,6 +61,7 @@ export default function GrypsCase({ theme = 'dark' }) {
               color: c.ice,
               letterSpacing: '0.1em',
               textAlign: 'center',
+              padding: '8px',
             }}
           >
             Methodology →
@@ -83,7 +77,12 @@ export default function GrypsCase({ theme = 'dark' }) {
         style={{
           maxWidth: '1100px',
           margin: '0 auto',
-          padding: isMobile ? '100px 20px 40px' : '110px 40px 48px',
+          width: '100%',
+          boxSizing: 'border-box',
+          paddingTop: phone ? 'max(88px, calc(64px + env(safe-area-inset-top)))' : 110,
+          paddingBottom: phone ? 'max(32px, env(safe-area-inset-bottom))' : 48,
+          paddingLeft: phone ? 'max(16px, env(safe-area-inset-left))' : tablet ? 28 : 40,
+          paddingRight: phone ? 'max(16px, env(safe-area-inset-right))' : tablet ? 28 : 40,
         }}
       >
         <Link
@@ -94,20 +93,22 @@ export default function GrypsCase({ theme = 'dark' }) {
             letterSpacing: '0.2em',
             color: c.quiet,
             textDecoration: 'none',
-            display: 'inline-block',
-            marginBottom: 28,
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: 44,
+            marginBottom: 20,
           }}
         >
           ← Work
         </Link>
 
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.32em', color: c.ice, textTransform: 'uppercase', marginBottom: 16 }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: phone ? '0.16em' : '0.32em', color: c.ice, textTransform: 'uppercase', marginBottom: 16 }}>
           Mission brief · Lead hiring proof
         </div>
         <h1
           style={{
             fontFamily: "'Fraunces', serif",
-            fontSize: 'clamp(40px, 6vw, 72px)',
+            fontSize: phone ? '42px' : 'clamp(40px, 6vw, 72px)',
             fontWeight: 200,
             fontStyle: 'italic',
             color: c.ink,
@@ -121,12 +122,12 @@ export default function GrypsCase({ theme = 'dark' }) {
         <p
           style={{
             fontFamily: "'Lora', serif",
-            fontSize: 'clamp(16px, 2vw, 20px)',
+            fontSize: phone ? '16px' : 'clamp(16px, 2vw, 20px)',
             fontStyle: 'italic',
             color: c.body,
             maxWidth: '640px',
             lineHeight: 1.55,
-            marginBottom: 40,
+            marginBottom: phone ? 28 : 40,
           }}
         >
           A live research prototype that turns a remote site profile into a Resilience Signature — score, grade, risks, ranked connectivity options.
@@ -135,21 +136,21 @@ export default function GrypsCase({ theme = 'dark' }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1fr) 260px',
-            gap: isMobile ? 36 : 48,
+            gridTemplateColumns: narrow ? '1fr' : 'minmax(0, 1fr) 260px',
+            gap: phone ? 28 : 48,
             alignItems: 'start',
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 40, textAlign: 'left' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: phone ? 28 : 40, textAlign: 'left', minWidth: 0 }}>
             <div
               style={{
                 border: `1px solid ${c.iceBorder}`,
                 borderLeft: `3px solid ${c.ice}`,
-                padding: '18px 20px',
+                padding: phone ? '16px' : '18px 20px',
                 background: isLight ? 'rgba(43,127,212,0.05)' : 'rgba(79,168,255,0.05)',
               }}
             >
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.24em', color: c.ice, textTransform: 'uppercase', marginBottom: 10 }}>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.ice, textTransform: 'uppercase', marginBottom: 10 }}>
                 What this proves
               </div>
               <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.ink, lineHeight: 1.7, margin: 0 }}>
@@ -157,7 +158,7 @@ export default function GrypsCase({ theme = 'dark' }) {
               </p>
             </div>
 
-            {isMobile && rail}
+            {narrow && rail}
 
             <CaseSection id="challenge" label="Challenge" accent={c.amber}>
               <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
@@ -207,12 +208,13 @@ export default function GrypsCase({ theme = 'dark' }) {
               <div
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '11px',
-                  letterSpacing: '0.14em',
+                  fontSize: phone ? '10px' : '11px',
+                  letterSpacing: phone ? '0.08em' : '0.14em',
                   color: c.ice,
                   padding: '16px 18px',
                   border: `1px solid ${c.iceBorder}`,
                   background: '#0B0F17',
+                  overflowWrap: 'anywhere',
                 }}
               >
                 LOOP · assess → score → rank → document
@@ -225,21 +227,28 @@ export default function GrypsCase({ theme = 'dark' }) {
               </p>
             </CaseSection>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, paddingTop: 8 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, paddingTop: 8, flexDirection: phone ? 'column' : 'row' }}>
               <a
                 href={GRYPS_ADVISOR}
                 target="_blank"
                 rel="nofollow noreferrer"
                 style={{
                   padding: '14px 22px',
+                  minHeight: 48,
+                  boxSizing: 'border-box',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: phone ? '100%' : undefined,
                   background: c.ice,
                   color: '#07080D',
                   fontFamily: "'Syne', sans-serif",
                   fontSize: '10px',
                   fontWeight: 700,
-                  letterSpacing: '0.16em',
+                  letterSpacing: '0.12em',
                   textTransform: 'uppercase',
                   textDecoration: 'none',
+                  textAlign: 'center',
                 }}
               >
                 Generate a Resilience Signature →
@@ -248,14 +257,21 @@ export default function GrypsCase({ theme = 'dark' }) {
                 to="/work/morea"
                 style={{
                   padding: '14px 22px',
+                  minHeight: 48,
+                  boxSizing: 'border-box',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: phone ? '100%' : undefined,
                   border: `1px solid ${c.amber}`,
                   color: c.amber,
                   fontFamily: "'Syne', sans-serif",
                   fontSize: '10px',
                   fontWeight: 700,
-                  letterSpacing: '0.16em',
+                  letterSpacing: '0.12em',
                   textTransform: 'uppercase',
                   textDecoration: 'none',
+                  textAlign: 'center',
                 }}
               >
                 Next: Morea brief →
@@ -263,7 +279,7 @@ export default function GrypsCase({ theme = 'dark' }) {
             </div>
           </div>
 
-          {!isMobile && rail}
+          {!narrow && rail}
         </div>
       </article>
     </CaseShell>

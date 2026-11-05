@@ -51,14 +51,17 @@ export function TelemetryRail({ isLight, rows, cta }) {
     <aside
       style={{
         position: 'sticky',
-        top: 88,
+        top: 72,
         alignSelf: 'start',
         border: `1px solid ${c.iceBorder}`,
         background: isLight ? 'rgba(255,255,255,0.7)' : 'rgba(11,15,23,0.85)',
-        padding: '20px 18px',
+        padding: '18px 16px',
         display: 'flex',
         flexDirection: 'column',
         gap: '14px',
+        width: '100%',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
       }}
     >
       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.28em', color: c.ice, textTransform: 'uppercase' }}>

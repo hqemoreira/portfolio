@@ -95,6 +95,16 @@ Home budget: **3 intentional motions**
 - Do: GRYPS first; ice reserved for instrument; Arctic-day light
 - Don't: cream/terracotta; purple SaaS glow; neon terminal cosplay; FORGE login; commercial ban-list words; card spam in hero
 
+## Responsive
+
+| Breakpoint | Width | Layout |
+|------------|-------|--------|
+| phone | &lt; 640 | Single column; full-width CTAs; compact nav; safe-area insets |
+| tablet | 640–1023 | Single column until 900; then two-col where space allows |
+| desktop | ≥ 1024 | Brand + instrument side-by-side |
+
+Hook: `src/hooks/useBreakpoint.js` (`phone` / `tablet` / `desktop` / `narrow`).
+
 ## Known Gaps
 
 - Scroll “dock” morph hero→Work is CSS sticky/fade, not GSAP ScrollTrigger (upgrade only if needed)

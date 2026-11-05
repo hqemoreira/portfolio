@@ -1,28 +1,19 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useBreakpoint } from '../hooks/useBreakpoint'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { GRYPS_ADVISOR, GRYPS_METHOD, MOREA_URL, t } from '../theme'
 
 const SignatureInstrument = lazy(() => import('../components/SignatureInstrument'))
 
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false)
-  useEffect(() => {
-    const handler = () => setIsMobile(window.innerWidth < 768)
-    window.addEventListener('resize', handler)
-    return () => window.removeEventListener('resize', handler)
-  }, [])
-  return isMobile
-}
-
 /** Sparse connectivity constellation — ice + amber links */
-function useConstellation(canvasRef, isLight, reducedMotion) {
+function useConstellation(canvasRef, isLight, reducedMotion, particleCount = 42) {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     let animId
-    const n = 42
+    const n = particleCount
     const particles = Array.from({ length: n }, (_, i) => {
       const tier = i < 5 ? 'alpha' : i < 16 ? 'beta' : 'omega'
       return {
@@ -103,7 +94,7 @@ function useConstellation(canvasRef, isLight, reducedMotion) {
       cancelAnimationFrame(animId)
       window.removeEventListener('resize', resize)
     }
-  }, [canvasRef, isLight, reducedMotion])
+  }, [canvasRef, isLight, reducedMotion, particleCount])
 }
 
 function useScrollReveal(ref) {
@@ -195,7 +186,7 @@ function BgLayers({ isLight }) {
 }
 
 function Section({ id, children, style = {}, isLight }) {
-  const isMobile = useIsMobile()
+  const { phone, tablet } = useBreakpoint()
   const c = t(isLight)
   return (
     <section
@@ -205,7 +196,9 @@ function Section({ id, children, style = {}, isLight }) {
         zIndex: 5,
         maxWidth: '960px',
         margin: '0 auto',
-        padding: isMobile ? '56px 20px' : '100px 40px',
+        width: '100%',
+        boxSizing: 'border-box',
+        padding: phone ? '48px 16px' : tablet ? '72px 28px' : '100px 40px',
         textAlign: 'center',
         borderTop: `1px solid ${c.border}`,
         ...style,
@@ -237,26 +230,36 @@ function SectionEyebrow({ children, color }) {
   )
 }
 
-function CtaPrimary({ href, children, ice }) {
+function CtaPrimary({ href, children, ice, block }) {
   const color = ice ? '#4FA8FF' : '#D4891E'
   return (
-    <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'nofollow noreferrer' : undefined} style={{ textDecoration: 'none' }}>
+    <a
+      href={href}
+      target={href.startsWith('http') ? '_blank' : undefined}
+      rel={href.startsWith('http') ? 'nofollow noreferrer' : undefined}
+      style={{ textDecoration: 'none', display: block ? 'block' : 'inline-block', width: block ? '100%' : undefined, maxWidth: block ? 420 : undefined }}
+    >
       <div
         style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '10px',
-          padding: '12px 22px',
+          justifyContent: 'center',
+          gap: '8px',
+          padding: '14px 18px',
+          minHeight: 44,
+          width: block ? '100%' : undefined,
+          boxSizing: 'border-box',
           border: `1px solid ${color}`,
           background: color,
           color: '#07080D',
           fontFamily: "'Syne', sans-serif",
           fontSize: '10px',
           fontWeight: 700,
-          letterSpacing: '0.18em',
+          letterSpacing: '0.12em',
           textTransform: 'uppercase',
           borderRadius: '1px',
           cursor: 'pointer',
+          textAlign: 'center',
           transition: 'transform 0.15s ease, box-shadow 0.2s ease',
         }}
         onMouseEnter={(e) => {
@@ -274,22 +277,27 @@ function CtaPrimary({ href, children, ice }) {
   )
 }
 
-function GhostFace({ children, color }) {
+function GhostFace({ children, color, block }) {
   return (
     <div
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        padding: '12px 20px',
+        justifyContent: 'center',
+        padding: '14px 18px',
+        minHeight: 44,
+        width: block ? '100%' : undefined,
+        boxSizing: 'border-box',
         border: `1px solid ${color}`,
         color,
         fontFamily: "'Syne', sans-serif",
         fontSize: '10px',
         fontWeight: 700,
-        letterSpacing: '0.18em',
+        letterSpacing: '0.12em',
         textTransform: 'uppercase',
         borderRadius: '1px',
         cursor: 'pointer',
+        textAlign: 'center',
         transition: 'background 0.2s',
       }}
       onMouseEnter={(e) => { e.currentTarget.style.background = `${color}14` }}
@@ -300,11 +308,14 @@ function GhostFace({ children, color }) {
   )
 }
 
-function CtaGhost({ href, children, color, internal }) {
+function CtaGhost({ href, children, color, internal, block }) {
+  const wrap = block
+    ? { textDecoration: 'none', display: 'block', width: '100%', maxWidth: 420 }
+    : { textDecoration: 'none', display: 'inline-block' }
   if (internal) {
     return (
-      <Link to={href} style={{ textDecoration: 'none' }}>
-        <GhostFace color={color}>{children}</GhostFace>
+      <Link to={href} style={wrap}>
+        <GhostFace color={color} block={block}>{children}</GhostFace>
       </Link>
     )
   }
@@ -314,29 +325,34 @@ function CtaGhost({ href, children, color, internal }) {
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'nofollow noreferrer' : undefined}
-      style={{ textDecoration: 'none' }}
+      style={wrap}
     >
-      <GhostFace color={color}>{children}</GhostFace>
+      <GhostFace color={color} block={block}>{children}</GhostFace>
     </a>
   )
 }
 
 function Hero({ isLight }) {
   const canvasRef = useRef(null)
-  const isMobile = useIsMobile()
+  const { phone, tablet, narrow } = useBreakpoint()
   const reducedMotion = usePrefersReducedMotion()
   const c = t(isLight)
-  useConstellation(canvasRef, isLight, reducedMotion)
+  useConstellation(canvasRef, isLight, reducedMotion, phone ? 24 : tablet ? 34 : 42)
+  const stack = narrow
+  const titleSize = phone ? 'clamp(36px, 11.5vw, 56px)' : tablet ? 'clamp(48px, 8vw, 84px)' : 'clamp(52px, 9vw, 104px)'
 
   return (
     <section
       id="hero"
       style={{
         position: 'relative',
-        minHeight: '100svh',
+        minHeight: phone ? 'auto' : '100svh',
         display: 'flex',
-        alignItems: 'center',
-        padding: isMobile ? '88px 20px 48px' : '100px 40px 56px',
+        alignItems: phone ? 'flex-start' : 'center',
+        paddingTop: phone ? 'max(80px, calc(56px + env(safe-area-inset-top)))' : tablet ? 96 : 100,
+        paddingBottom: phone ? 'max(40px, env(safe-area-inset-bottom))' : 56,
+        paddingLeft: phone ? 'max(16px, env(safe-area-inset-left))' : tablet ? 28 : 40,
+        paddingRight: phone ? 'max(16px, env(safe-area-inset-right))' : tablet ? 28 : 40,
         boxSizing: 'border-box',
       }}
     >
@@ -352,20 +368,20 @@ function Hero({ isLight }) {
           maxWidth: '1120px',
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1.05fr) minmax(0, 0.95fr)',
-          gap: isMobile ? '36px' : '48px',
+          gridTemplateColumns: stack ? '1fr' : 'minmax(0, 1.05fr) minmax(0, 0.95fr)',
+          gap: phone ? '28px' : tablet ? '36px' : '48px',
           alignItems: 'center',
         }}
       >
-        <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
+        <div style={{ textAlign: stack ? 'center' : 'left', minWidth: 0 }}>
           <div
             style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '9px',
-              letterSpacing: '0.28em',
+              fontSize: phone ? '8px' : '9px',
+              letterSpacing: phone ? '0.16em' : '0.28em',
               textTransform: 'uppercase',
               color: c.ice,
-              marginBottom: '20px',
+              marginBottom: phone ? '14px' : '20px',
               animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) both',
             }}
           >
@@ -376,12 +392,13 @@ function Hero({ isLight }) {
               style={{
                 display: 'block',
                 fontFamily: "'Fraunces', serif",
-                fontSize: 'clamp(44px, 9vw, 104px)',
+                fontSize: titleSize,
                 fontWeight: 200,
                 fontStyle: 'italic',
-                letterSpacing: '-0.04em',
+                letterSpacing: phone ? '-0.03em' : '-0.04em',
                 lineHeight: 0.92,
                 color: c.ink,
+                whiteSpace: 'nowrap',
                 textShadow: isLight ? 'none' : '0 0 100px rgba(212,137,30,0.14)',
                 animation: 'hmTitleIn 1.2s cubic-bezier(0.16,1,0.3,1) both',
               }}
@@ -392,14 +409,15 @@ function Hero({ isLight }) {
               style={{
                 display: 'block',
                 fontFamily: "'Fraunces', serif",
-                fontSize: 'clamp(44px, 9vw, 104px)',
+                fontSize: titleSize,
                 fontWeight: 200,
                 fontStyle: 'italic',
-                letterSpacing: '-0.04em',
+                letterSpacing: phone ? '-0.03em' : '-0.04em',
                 lineHeight: 0.92,
                 color: c.amber,
+                whiteSpace: 'nowrap',
                 textShadow: isLight ? 'none' : '0 0 80px rgba(212,137,30,0.28)',
-                marginBottom: '22px',
+                marginBottom: phone ? '16px' : '22px',
                 animation: 'hmTitleIn 1.2s cubic-bezier(0.16,1,0.3,1) 0.08s both',
               }}
             >
@@ -409,12 +427,12 @@ function Hero({ isLight }) {
           <p
             style={{
               fontFamily: "'Lora', serif",
-              fontSize: 'clamp(15px, 1.8vw, 19px)',
+              fontSize: phone ? '15px' : 'clamp(15px, 1.8vw, 19px)',
               fontStyle: 'italic',
               color: c.body,
               lineHeight: 1.55,
               maxWidth: '420px',
-              margin: isMobile ? '0 auto 28px' : '0 0 28px',
+              margin: stack ? '0 auto 24px' : '0 0 28px',
               animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.2s both',
             }}
           >
@@ -423,25 +441,27 @@ function Hero({ isLight }) {
           <div
             style={{
               display: 'flex',
-              gap: '12px',
+              gap: '10px',
               flexWrap: 'wrap',
-              justifyContent: isMobile ? 'center' : 'flex-start',
+              flexDirection: phone ? 'column' : 'row',
+              alignItems: phone ? 'stretch' : stack ? 'center' : 'flex-start',
+              justifyContent: stack ? 'center' : 'flex-start',
               animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.32s both',
             }}
           >
-            <CtaPrimary href={GRYPS_ADVISOR} ice>
-              Generate a Resilience Signature →
+            <CtaPrimary href={GRYPS_ADVISOR} ice block={phone}>
+              {phone ? 'Generate Signature →' : 'Generate a Resilience Signature →'}
             </CtaPrimary>
-            <CtaGhost href="/work/gryps" color={c.amber} internal>
+            <CtaGhost href="/work/gryps" color={c.amber} internal block={phone}>
               How it works
             </CtaGhost>
           </div>
           <div
             style={{
-              marginTop: '28px',
+              marginTop: phone ? '20px' : '28px',
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: '8px',
-              letterSpacing: '0.14em',
+              letterSpacing: phone ? '0.08em' : '0.14em',
               color: c.quiet,
               lineHeight: 1.7,
               animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.4s both',
@@ -451,13 +471,13 @@ function Hero({ isLight }) {
           </div>
         </div>
 
-        <div style={{ animation: 'hmFadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.25s both' }}>
+        <div style={{ animation: 'hmFadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.25s both', minWidth: 0, width: '100%' }}>
           <Suspense
             fallback={
               <div
                 aria-hidden
                 style={{
-                  minHeight: 300,
+                  minHeight: phone ? 240 : 300,
                   borderRadius: 2,
                   border: `1px solid ${c.iceBorder}`,
                   background: '#0B0F17',
@@ -472,9 +492,9 @@ function Hero({ isLight }) {
               marginTop: '10px',
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: '8px',
-              letterSpacing: '0.08em',
+              letterSpacing: '0.06em',
               color: c.quiet,
-              textAlign: isMobile ? 'center' : 'left',
+              textAlign: stack ? 'center' : 'left',
               lineHeight: 1.6,
             }}
           >
@@ -487,7 +507,7 @@ function Hero({ isLight }) {
 }
 
 function Story({ isLight }) {
-  const isMobile = useIsMobile()
+  const { phone, tablet, narrow } = useBreakpoint()
   const c = t(isLight)
   const languages = ['Portuguese · native', 'Spanish', 'Catalan', 'English', 'Finnish', 'French']
   const credentials = [
@@ -507,10 +527,10 @@ function Story({ isLight }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : '1fr 1.15fr',
-            gap: isMobile ? '28px' : '48px',
+            gridTemplateColumns: narrow ? '1fr' : '1fr 1.15fr',
+            gap: phone ? '24px' : tablet ? '36px' : '48px',
             alignItems: 'center',
-            marginBottom: isMobile ? '28px' : '40px',
+            marginBottom: phone ? '24px' : '40px',
             textAlign: 'left',
           }}
         >
@@ -538,7 +558,7 @@ function Story({ isLight }) {
                   display: 'block',
                   objectFit: 'cover',
                   objectPosition: '50% 15%',
-                  maxHeight: isMobile ? '320px' : '440px',
+                  maxHeight: phone ? '280px' : tablet ? '360px' : '440px',
                   filter: isLight ? 'brightness(1.05)' : 'brightness(0.92)',
                 }}
               />
@@ -558,11 +578,11 @@ function Story({ isLight }) {
               Espoo · Vila Nova de Gaia
             </div>
           </div>
-          <div>
+          <div style={{ minWidth: 0 }}>
             <h2
               style={{
                 fontFamily: "'Fraunces', serif",
-                fontSize: isMobile ? '30px' : 'clamp(30px, 3.8vw, 46px)',
+                fontSize: phone ? '28px' : 'clamp(30px, 3.8vw, 46px)',
                 fontWeight: 200,
                 fontStyle: 'italic',
                 color: c.ink,
@@ -622,7 +642,7 @@ function Story({ isLight }) {
             </div>
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '4px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: phone ? '1fr' : tablet ? '1fr 1fr' : 'repeat(3, 1fr)', gap: '4px' }}>
           {credentials.map((cred) => (
             <div
               key={cred.label}
@@ -655,12 +675,12 @@ const ARCHIVES = [
 ]
 
 function Work({ isLight }) {
-  const isMobile = useIsMobile()
+  const { phone, tablet } = useBreakpoint()
   const c = t(isLight)
   const [archivesOpen, setArchivesOpen] = useState(false)
 
   return (
-    <Section id="work" isLight={isLight} style={{ maxWidth: '1040px' }}>
+    <Section id="work" isLight={isLight} style={{ maxWidth: '1040px', width: '100%' }}>
       <RevealWrapper>
         <SectionEyebrow color={c.ice}>Work</SectionEyebrow>
         <h2
@@ -686,15 +706,16 @@ function Work({ isLight }) {
             border: `1px solid ${c.iceBorder}`,
             borderLeft: `4px solid ${c.ice}`,
             borderRadius: '2px',
-            padding: isMobile ? '22px 18px' : '32px 36px',
+            padding: phone ? '20px 16px' : tablet ? '26px 24px' : '32px 36px',
             textAlign: 'left',
             marginBottom: '8px',
+            minWidth: 0,
           }}
         >
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.28em', color: c.ice, textTransform: 'uppercase', marginBottom: '12px' }}>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: phone ? '0.16em' : '0.28em', color: c.ice, textTransform: 'uppercase', marginBottom: '12px' }}>
             R&D · Non-commercial · Model v0.4
           </div>
-          <div style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(34px, 4.5vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: c.ink, letterSpacing: '-0.03em', marginBottom: '12px' }}>
+          <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '36px' : 'clamp(34px, 4.5vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: c.ink, letterSpacing: '-0.03em', marginBottom: '12px' }}>
             GRYPS
           </div>
           <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '560px', marginBottom: '10px' }}>
@@ -703,11 +724,11 @@ function Work({ isLight }) {
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.muted, marginBottom: '20px', letterSpacing: '0.06em' }}>
             assess → score → rank → document · no account for the initial Signature
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-            <CtaPrimary href={GRYPS_ADVISOR} ice>
-              Generate a Resilience Signature →
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: phone ? 'stretch' : 'center', flexDirection: phone ? 'column' : 'row' }}>
+            <CtaPrimary href={GRYPS_ADVISOR} ice block={phone}>
+              {phone ? 'Generate Signature →' : 'Generate a Resilience Signature →'}
             </CtaPrimary>
-            <CtaGhost href="/work/gryps" color={c.ice} internal>
+            <CtaGhost href="/work/gryps" color={c.ice} internal block={phone}>
               Mission brief
             </CtaGhost>
             <a
@@ -744,30 +765,31 @@ function Work({ isLight }) {
             marginTop: '48px',
             border: `1px solid ${c.border}`,
             borderLeft: `3px solid ${c.amber}`,
-            padding: isMobile ? '20px 16px' : '24px 28px',
+            padding: phone ? '18px 14px' : '24px 28px',
             textAlign: 'left',
             display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : '1fr auto',
+            gridTemplateColumns: phone || tablet ? '1fr' : '1fr auto',
             gap: '16px',
             alignItems: 'center',
+            minWidth: 0,
           }}
         >
-          <div>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.24em', color: c.amber, textTransform: 'uppercase', marginBottom: '8px' }}>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.amber, textTransform: 'uppercase', marginBottom: '8px' }}>
               Secondary · Educational literacy
             </div>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: '28px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '8px' }}>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '26px' : '28px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '8px' }}>
               Morea
             </div>
             <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.65, maxWidth: '520px', margin: 0 }}>
               Article 4 Evidence Pack walkthrough — literacy trail, not a compliance service.
             </p>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: isMobile ? 'flex-start' : 'flex-end' }}>
-            <CtaGhost href={MOREA_URL} color={c.amber}>
+          <div style={{ display: 'flex', flexDirection: phone ? 'column' : 'row', gap: '10px', alignItems: phone ? 'stretch' : 'flex-start', flexWrap: 'wrap' }}>
+            <CtaGhost href={MOREA_URL} color={c.amber} block={phone}>
               Open prototype ↗
             </CtaGhost>
-            <CtaGhost href="/work/morea" color={c.muted} internal>
+            <CtaGhost href="/work/morea" color={c.muted} internal block={phone}>
               Brief
             </CtaGhost>
           </div>
@@ -809,12 +831,14 @@ function Work({ isLight }) {
                   rel="nofollow noreferrer"
                   style={{
                     display: 'grid',
-                    gridTemplateColumns: isMobile ? '1fr' : '140px 1fr auto',
+                    gridTemplateColumns: phone ? '1fr' : '140px 1fr auto',
                     gap: '8px 16px',
-                    padding: '12px 16px',
+                    padding: '14px 16px',
                     borderBottom: `1px solid ${c.divider}`,
                     textDecoration: 'none',
                     color: 'inherit',
+                    minHeight: 48,
+                    alignItems: 'center',
                   }}
                 >
                   <span style={{ fontFamily: "'Syne', sans-serif", fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em', color: c.ink }}>{a.name}</span>
@@ -833,12 +857,12 @@ function Work({ isLight }) {
           style={{
             marginTop: '28px',
             display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+            gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
             gap: '8px',
             textAlign: 'left',
           }}
         >
-          <div style={{ border: `1px solid ${c.border}`, padding: '16px 18px' }}>
+          <div style={{ border: `1px solid ${c.border}`, padding: '16px 18px', minWidth: 0 }}>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.teal, textTransform: 'uppercase', marginBottom: '8px' }}>
               Study path
             </div>
@@ -871,7 +895,7 @@ function Work({ isLight }) {
 }
 
 function Contact({ isLight }) {
-  const isMobile = useIsMobile()
+  const { phone } = useBreakpoint()
   const c = t(isLight)
   const year = new Date().getFullYear()
   const legalLink = {
@@ -880,22 +904,43 @@ function Contact({ isLight }) {
     borderBottom: `1px solid ${c.quiet}55`,
     fontFamily: "'JetBrains Mono', monospace",
     fontSize: '8px',
-    letterSpacing: '0.2em',
+    letterSpacing: '0.16em',
     textTransform: 'uppercase',
+    padding: '8px 2px',
+    minHeight: 40,
+    display: 'inline-flex',
+    alignItems: 'center',
   }
+  const contactBtn = (filled) => ({
+    padding: '14px 22px',
+    minHeight: 48,
+    boxSizing: 'border-box',
+    width: phone ? '100%' : undefined,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: filled ? c.amber : 'transparent',
+    border: filled ? 'none' : `1px solid ${c.amber}`,
+    color: filled ? '#07080D' : c.amber,
+    fontFamily: "'Syne', sans-serif",
+    fontSize: '11px',
+    fontWeight: 700,
+    letterSpacing: '0.16em',
+    textTransform: 'uppercase',
+  })
 
   return (
-    <Section id="contact" isLight={isLight} style={{ textAlign: 'center', paddingBottom: isMobile ? '40px' : '56px' }}>
+    <Section id="contact" isLight={isLight} style={{ textAlign: 'center', paddingBottom: phone ? 'max(40px, env(safe-area-inset-bottom))' : '56px' }}>
       <RevealWrapper>
         <SectionEyebrow color={c.amber}>Contact</SectionEyebrow>
         <h2
           style={{
             fontFamily: "'Fraunces', serif",
-            fontSize: 'clamp(26px, 3.6vw, 44px)',
+            fontSize: phone ? '26px' : 'clamp(26px, 3.6vw, 44px)',
             fontWeight: 200,
             fontStyle: 'italic',
             color: c.ink,
-            lineHeight: 1.2,
+            lineHeight: 1.25,
             letterSpacing: '-0.02em',
             marginBottom: '20px',
             maxWidth: '680px',
@@ -905,35 +950,18 @@ function Contact({ isLight }) {
         >
           Open to conversations about AI product and systems roles at Nordic industrial and AI-led companies.
         </h2>
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.quiet, letterSpacing: '0.1em', marginBottom: '40px' }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.quiet, letterSpacing: '0.08em', marginBottom: '32px' }}>
           industrial operator · builder · Nordic-fluent
         </div>
-        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '40px' }}>
-          <a href="mailto:hqe.moreira@gmail.com" style={{ textDecoration: 'none' }}>
-            <div
-              style={{
-                padding: '14px 28px',
-                background: c.amber,
-                color: '#07080D',
-                fontFamily: "'Syne', sans-serif",
-                fontSize: '11px',
-                fontWeight: 700,
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-              }}
-            >
-              Send a message
-            </div>
+        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', flexDirection: phone ? 'column' : 'row', alignItems: phone ? 'stretch' : 'center', marginBottom: '40px', maxWidth: phone ? 360 : undefined, marginLeft: 'auto', marginRight: 'auto' }}>
+          <a href="mailto:hqe.moreira@gmail.com" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
+            <div style={contactBtn(true)}>Send a message</div>
           </a>
-          <a href="https://github.com/hqemoreira" target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-            <div style={{ padding: '14px 28px', border: `1px solid ${c.amber}`, color: c.amber, fontFamily: "'Syne', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-              GitHub ↗
-            </div>
+          <a href="https://github.com/hqemoreira" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
+            <div style={contactBtn(false)}>GitHub ↗</div>
           </a>
-          <a href="https://www.linkedin.com/in/hqemoreira" target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-            <div style={{ padding: '14px 28px', border: `1px solid ${c.amber}`, color: c.amber, fontFamily: "'Syne', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-              LinkedIn ↗
-            </div>
+          <a href="https://www.linkedin.com/in/hqemoreira" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
+            <div style={contactBtn(false)}>LinkedIn ↗</div>
           </a>
         </div>
         <div style={{ borderTop: `1px solid ${c.divider}`, paddingTop: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>

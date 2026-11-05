@@ -3,6 +3,7 @@
  * Variants: hero (compact ~15s loop) | full (work stage).
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useBreakpoint } from '../hooks/useBreakpoint'
 
 const GOLDEN = {
   lat: 68.2,
@@ -61,6 +62,7 @@ const TIMING = {
 export default function SignatureInstrument({ variant = 'full' }) {
   const timing = TIMING[variant] || TIMING.full
   const compact = variant === 'hero'
+  const { phone, tablet } = useBreakpoint()
   const [phase, setPhase] = useState(PHASE.INPUT)
   const [visibleOptions, setVisibleOptions] = useState(0)
   const [opacity, setOpacity] = useState(0)
@@ -156,7 +158,8 @@ export default function SignatureInstrument({ variant = 'full' }) {
   const showOpts = phase >= PHASE.OPTIONS && phase < PHASE.ADVISORY
   const showAdv = phase === PHASE.ADVISORY
   const showClose = phase === PHASE.CLOSE
-  const scoreSize = compact ? 52 : 72
+  const scoreSize = phone ? 44 : compact ? 52 : 72
+  const minH = phone ? (compact ? 260 : 300) : compact ? 300 : tablet ? 360 : 400
 
   return (
     <div
@@ -170,12 +173,15 @@ export default function SignatureInstrument({ variant = 'full' }) {
         opacity,
         transition: 'opacity 0.5s ease',
         position: 'relative',
-        minHeight: compact ? 300 : 400,
-        aspectRatio: compact ? '4 / 3' : '16 / 9',
+        minHeight: minH,
+        aspectRatio: phone ? '5 / 4' : compact ? '4 / 3' : '16 / 9',
+        maxHeight: phone ? 420 : undefined,
         width: '100%',
+        maxWidth: '100%',
         fontFamily: mono,
         color: '#94A3B8',
         boxShadow: '0 0 60px rgba(79,168,255,0.08)',
+        boxSizing: 'border-box',
       }}
     >
       <div
@@ -196,18 +202,20 @@ export default function SignatureInstrument({ variant = 'full' }) {
         style={{
           position: 'relative',
           zIndex: 1,
-          padding: compact ? '14px 16px' : '20px 22px',
+          padding: phone ? '12px 12px' : compact ? '14px 16px' : '20px 22px',
           height: '100%',
           boxSizing: 'border-box',
           display: 'flex',
           flexDirection: 'column',
-          gap: compact ? 8 : 12,
+          gap: phone ? 6 : compact ? 8 : 12,
           overflow: 'hidden',
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-          <div style={{ fontSize: 9, letterSpacing: '0.16em', color: '#4FA8FF' }}>GRYPS · RESILIENCE SIGNATURE</div>
-          <div style={{ fontSize: 8, letterSpacing: '0.1em', color: '#64748B' }}>
+          <div style={{ fontSize: phone ? 8 : 9, letterSpacing: phone ? '0.1em' : '0.16em', color: '#4FA8FF' }}>
+            GRYPS · RESILIENCE SIGNATURE
+          </div>
+          <div style={{ fontSize: 8, letterSpacing: '0.08em', color: '#64748B' }}>
             {GOLDEN.lat}°N · {GOLDEN.lng}°E · Model v0.4
           </div>
         </div>

@@ -20,8 +20,13 @@ export function LegalShell({ theme = 'dark', title, lastUpdated, eyebrow = 'Lega
   return (
     <div style={{ background: bg, minHeight: '100vh', color: body, transition: 'background 0.4s ease' }}>
       <article style={{
-        position: 'relative', zIndex: 5, maxWidth: '720px', margin: '0 auto',
-        padding: '120px 24px 56px', textAlign: 'left',
+        position: 'relative', zIndex: 5, maxWidth: '720px', margin: '0 auto', width: '100%',
+        boxSizing: 'border-box',
+        paddingTop: 'max(100px, calc(72px + env(safe-area-inset-top, 0px)))',
+        paddingBottom: 'max(48px, env(safe-area-inset-bottom, 0px))',
+        paddingLeft: 'max(16px, env(safe-area-inset-left, 0px))',
+        paddingRight: 'max(16px, env(safe-area-inset-right, 0px))',
+        textAlign: 'left',
       }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.4em', color: accent, textTransform: 'uppercase', marginBottom: '20px' }}>
           {eyebrow}

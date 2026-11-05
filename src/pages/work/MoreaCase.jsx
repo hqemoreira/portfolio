@@ -1,22 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { CaseSection, CaseShell, TelemetryRail } from '../../components/CaseShell'
+import { useBreakpoint } from '../../hooks/useBreakpoint'
 import { MOREA_URL, t } from '../../theme'
-
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 900 : false)
-  useEffect(() => {
-    const handler = () => setIsMobile(window.innerWidth < 900)
-    window.addEventListener('resize', handler)
-    return () => window.removeEventListener('resize', handler)
-  }, [])
-  return isMobile
-}
 
 export default function MoreaCase({ theme = 'dark' }) {
   const isLight = theme === 'light'
   const c = t(isLight)
-  const isMobile = useIsMobile()
+  const { phone, tablet, narrow } = useBreakpoint()
 
   useEffect(() => {
     document.title = 'Morea — Evidence Pack brief · Henrique Moreira'
@@ -41,16 +32,20 @@ export default function MoreaCase({ theme = 'dark' }) {
           target="_blank"
           rel="nofollow noreferrer"
           style={{
-            display: 'block',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             textAlign: 'center',
-            padding: '12px 14px',
+            padding: '14px 14px',
+            minHeight: 44,
             marginTop: 8,
+            boxSizing: 'border-box',
             border: `1px solid ${c.amber}`,
             color: c.amber,
             fontFamily: "'Syne', sans-serif",
             fontSize: '9px',
             fontWeight: 700,
-            letterSpacing: '0.14em',
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
             textDecoration: 'none',
           }}
@@ -67,7 +62,12 @@ export default function MoreaCase({ theme = 'dark' }) {
         style={{
           maxWidth: '1100px',
           margin: '0 auto',
-          padding: isMobile ? '100px 20px 40px' : '110px 40px 48px',
+          width: '100%',
+          boxSizing: 'border-box',
+          paddingTop: phone ? 'max(88px, calc(64px + env(safe-area-inset-top)))' : 110,
+          paddingBottom: phone ? 'max(32px, env(safe-area-inset-bottom))' : 48,
+          paddingLeft: phone ? 'max(16px, env(safe-area-inset-left))' : tablet ? 28 : 40,
+          paddingRight: phone ? 'max(16px, env(safe-area-inset-right))' : tablet ? 28 : 40,
         }}
       >
         <Link
@@ -78,20 +78,22 @@ export default function MoreaCase({ theme = 'dark' }) {
             letterSpacing: '0.2em',
             color: c.quiet,
             textDecoration: 'none',
-            display: 'inline-block',
-            marginBottom: 28,
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: 44,
+            marginBottom: 20,
           }}
         >
           ← Work
         </Link>
 
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.32em', color: c.amber, textTransform: 'uppercase', marginBottom: 16 }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: phone ? '0.16em' : '0.32em', color: c.amber, textTransform: 'uppercase', marginBottom: 16 }}>
           Brief · Secondary literacy demo
         </div>
         <h1
           style={{
             fontFamily: "'Fraunces', serif",
-            fontSize: 'clamp(40px, 6vw, 72px)',
+            fontSize: phone ? '42px' : 'clamp(40px, 6vw, 72px)',
             fontWeight: 200,
             fontStyle: 'italic',
             color: c.ink,
@@ -105,12 +107,12 @@ export default function MoreaCase({ theme = 'dark' }) {
         <p
           style={{
             fontFamily: "'Lora', serif",
-            fontSize: 'clamp(16px, 2vw, 20px)',
+            fontSize: phone ? '16px' : 'clamp(16px, 2vw, 20px)',
             fontStyle: 'italic',
             color: c.body,
             maxWidth: '640px',
             lineHeight: 1.55,
-            marginBottom: 40,
+            marginBottom: phone ? 28 : 40,
           }}
         >
           An educational Article 4 Evidence Pack walkthrough — literacy trail for AI inventory, roles, and an illustrative exportable pack.
@@ -119,20 +121,20 @@ export default function MoreaCase({ theme = 'dark' }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1fr) 260px',
-            gap: isMobile ? 36 : 48,
+            gridTemplateColumns: narrow ? '1fr' : 'minmax(0, 1fr) 260px',
+            gap: phone ? 28 : 48,
             alignItems: 'start',
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 36, textAlign: 'left' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: phone ? 28 : 36, textAlign: 'left', minWidth: 0 }}>
             <div
               style={{
                 border: `1px solid ${c.border}`,
                 borderLeft: `3px solid ${c.amber}`,
-                padding: '18px 20px',
+                padding: phone ? '16px' : '18px 20px',
               }}
             >
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.24em', color: c.amber, textTransform: 'uppercase', marginBottom: 10 }}>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.amber, textTransform: 'uppercase', marginBottom: 10 }}>
                 What this proves
               </div>
               <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.ink, lineHeight: 1.7, margin: 0 }}>
@@ -140,7 +142,7 @@ export default function MoreaCase({ theme = 'dark' }) {
               </p>
             </div>
 
-            {isMobile && rail}
+            {narrow && rail}
 
             <CaseSection id="challenge" label="Challenge" accent={c.amber}>
               <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
@@ -160,21 +162,28 @@ export default function MoreaCase({ theme = 'dark' }) {
               </p>
             </CaseSection>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, flexDirection: phone ? 'column' : 'row' }}>
               <a
                 href={MOREA_URL}
                 target="_blank"
                 rel="nofollow noreferrer"
                 style={{
                   padding: '14px 22px',
+                  minHeight: 48,
+                  boxSizing: 'border-box',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: phone ? '100%' : undefined,
                   border: `1px solid ${c.amber}`,
                   color: c.amber,
                   fontFamily: "'Syne', sans-serif",
                   fontSize: '10px',
                   fontWeight: 700,
-                  letterSpacing: '0.16em',
+                  letterSpacing: '0.12em',
                   textTransform: 'uppercase',
                   textDecoration: 'none',
+                  textAlign: 'center',
                 }}
               >
                 Open prototype ↗
@@ -183,14 +192,21 @@ export default function MoreaCase({ theme = 'dark' }) {
                 to="/work/gryps"
                 style={{
                   padding: '14px 22px',
+                  minHeight: 48,
+                  boxSizing: 'border-box',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: phone ? '100%' : undefined,
                   border: `1px solid ${c.ice}`,
                   color: c.ice,
                   fontFamily: "'Syne', sans-serif",
                   fontSize: '10px',
                   fontWeight: 700,
-                  letterSpacing: '0.16em',
+                  letterSpacing: '0.12em',
                   textTransform: 'uppercase',
                   textDecoration: 'none',
+                  textAlign: 'center',
                 }}
               >
                 ← GRYPS brief
@@ -198,7 +214,7 @@ export default function MoreaCase({ theme = 'dark' }) {
             </div>
           </div>
 
-          {!isMobile && rail}
+          {!narrow && rail}
         </div>
       </article>
     </CaseShell>

@@ -1,28 +1,21 @@
-import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import HMSymbol from './HMSymbol'
+import { useBreakpoint } from '../hooks/useBreakpoint'
 import { t } from '../theme'
-
-function useIsMobileNav() {
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.innerWidth < 768 : false
-  )
-  useEffect(() => {
-    const handler = () => setIsMobile(window.innerWidth < 768)
-    window.addEventListener('resize', handler)
-    return () => window.removeEventListener('resize', handler)
-  }, [])
-  return isMobile
-}
 
 const linkBase = {
   fontFamily: "'JetBrains Mono', monospace",
   fontSize: '9px',
-  letterSpacing: '0.18em',
+  letterSpacing: '0.14em',
   textTransform: 'uppercase',
   textDecoration: 'none',
-  opacity: 0.75,
+  opacity: 0.8,
   transition: 'opacity 0.2s',
+  padding: '8px 4px',
+  minHeight: 44,
+  display: 'inline-flex',
+  alignItems: 'center',
+  boxSizing: 'border-box',
 }
 
 function NavLink({ children, color, ...props }) {
@@ -31,7 +24,7 @@ function NavLink({ children, color, ...props }) {
       {...props}
       style={{ ...linkBase, color }}
       onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
-      onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.75 }}
+      onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.8 }}
     >
       {children}
     </a>
@@ -41,7 +34,8 @@ function NavLink({ children, color, ...props }) {
 export default function Nav({ theme, onToggleTheme }) {
   const isLight = theme === 'light'
   const c = t(isLight)
-  const isMobile = useIsMobileNav()
+  const { phone, tablet } = useBreakpoint()
+  const compact = phone || tablet
   const location = useLocation()
   const onHome = location.pathname === '/'
 
@@ -70,8 +64,11 @@ export default function Nav({ theme, onToggleTheme }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: 12,
-        padding: isMobile ? '12px 16px' : '14px 40px',
+        gap: phone ? 8 : 12,
+        paddingTop: phone ? 'max(10px, env(safe-area-inset-top))' : 14,
+        paddingBottom: phone ? 10 : 14,
+        paddingLeft: phone ? 'max(12px, env(safe-area-inset-left))' : tablet ? 24 : 40,
+        paddingRight: phone ? 'max(12px, env(safe-area-inset-right))' : tablet ? 24 : 40,
         background: c.navBg,
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
@@ -83,40 +80,34 @@ export default function Nav({ theme, onToggleTheme }) {
         to="/"
         aria-label={onHome ? 'Back to top' : 'Home'}
         onClick={handleLogoClick}
-        style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
+        style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0, minHeight: 44 }}
       >
-        <HMSymbol size={isMobile ? 36 : 44} theme={isLight ? 'light' : 'dark'} />
+        <HMSymbol size={phone ? 32 : 40} theme={isLight ? 'light' : 'dark'} />
       </Link>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 14 : 22 }}>
-        {!isMobile && (
-          <>
-            <NavLink href="/#work" color={c.amber} onClick={scrollHomeSection('work')}>
-              Work
-            </NavLink>
-            <Link
-              to="/about"
-              style={{ ...linkBase, color: c.amber }}
-              onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
-              onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.75 }}
-            >
-              About
-            </Link>
-            <NavLink href="/#contact" color={c.amber} onClick={scrollHomeSection('contact')}>
-              Contact
-            </NavLink>
-          </>
-        )}
-        {isMobile && (
-          <Link
-            to="/about"
-            style={{ ...linkBase, color: c.amber }}
-            onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
-            onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.75 }}
-          >
-            About
-          </Link>
-        )}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: phone ? 6 : tablet ? 12 : 20,
+          flexWrap: 'nowrap',
+          minWidth: 0,
+        }}
+      >
+        <NavLink href="/#work" color={c.amber} onClick={scrollHomeSection('work')}>
+          Work
+        </NavLink>
+        <Link
+          to="/about"
+          style={{ ...linkBase, color: c.amber }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.8 }}
+        >
+          About
+        </Link>
+        <NavLink href="/#contact" color={c.amber} onClick={scrollHomeSection('contact')}>
+          Contact
+        </NavLink>
         <button
           type="button"
           onClick={onToggleTheme}
@@ -125,19 +116,21 @@ export default function Nav({ theme, onToggleTheme }) {
             background: 'transparent',
             border: `1px solid ${isLight ? 'rgba(184,116,26,0.4)' : 'rgba(212,137,30,0.25)'}`,
             borderRadius: '2px',
-            padding: '6px 12px',
+            padding: compact ? '8px 10px' : '8px 12px',
+            minHeight: 40,
             cursor: 'pointer',
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '10px',
-            letterSpacing: '0.15em',
+            fontSize: phone ? '9px' : '10px',
+            letterSpacing: '0.12em',
             color: c.amber,
-            opacity: 0.85,
+            opacity: 0.9,
             transition: 'opacity 0.2s',
+            flexShrink: 0,
           }}
           onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.85 }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.9 }}
         >
-          {isLight ? '◑ Dark' : '◑ Light'}
+          {isLight ? (phone ? '◑' : '◑ Dark') : (phone ? '◑' : '◑ Light')}
         </button>
       </div>
     </nav>
