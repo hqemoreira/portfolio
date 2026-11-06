@@ -112,11 +112,26 @@ export default function MoreaCase({ theme = 'dark' }) {
             color: c.body,
             maxWidth: '640px',
             lineHeight: 1.55,
-            marginBottom: phone ? 28 : 40,
+            marginBottom: phone ? 20 : 28,
           }}
         >
           An educational Article 4 Evidence Pack walkthrough — literacy trail for AI inventory, roles, and an illustrative exportable pack.
         </p>
+
+        <figure style={{ margin: '0 0 28px', maxWidth: 900 }}>
+          <img
+            src="/work/morea-dossier.png"
+            alt="Morea sample Evidence Pack dossier with track, inventory, quiz score, and verification ID"
+            width={1200}
+            height={750}
+            loading="eager"
+            decoding="async"
+            style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${c.border}`, borderRadius: 2 }}
+          />
+          <figcaption style={{ marginTop: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.08em', color: c.quiet, lineHeight: 1.55 }}>
+            Illustrative Evidence Pack · dated, hashable, printable · not auditor attestation
+          </figcaption>
+        </figure>
 
         <div
           style={{
@@ -144,21 +159,27 @@ export default function MoreaCase({ theme = 'dark' }) {
 
             {narrow && rail}
 
-            <CaseSection id="challenge" label="Challenge" accent={c.amber}>
+            <CaseSection id="challenge" label="Problem" accent={c.amber}>
               <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                Article 4 literacy is dense. Teams need a walkthrough that produces an illustrative Evidence Pack without pretending to certify or “get you compliant.”
+                Article 4 literacy is dense. Small EU teams need a walkthrough that produces an illustrative Evidence Pack without pretending to certify or “get you compliant.”
               </p>
             </CaseSection>
 
-            <CaseSection id="solution" label="Solution" accent={c.amber}>
+            <CaseSection id="solution" label="What I built" accent={c.amber}>
               <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                Guided trail: inventory → role-aware modules → quiz → optional policy draft → exportable pack framed as educational / illustrative only.
+                Guided trail: inventory → exposure → role-aware literacy → quiz → optional policy draft → exportable pack framed as educational / illustrative only.
               </p>
             </CaseSection>
 
-            <CaseSection id="outcome" label="Outcome" accent={c.amber}>
+            <CaseSection id="tradeoff" label="My role · one trade-off" accent={c.amber}>
               <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                A clear secondary demo after GRYPS. Not a compliance product, not for sale, not a substitute for legal advice.
+                Solo product and UI. I kept data browser-local until export — privacy by default over accounts and cloud sync — and framed every surface as educational so the pack never reads as auditor attestation.
+              </p>
+            </CaseSection>
+
+            <CaseSection id="outcome" label="Verify in a minute" accent={c.amber}>
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                Open the prototype, skim the sample pack, or run the short trail. Not a compliance product, not for sale, not a substitute for legal advice.
               </p>
             </CaseSection>
 

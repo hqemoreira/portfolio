@@ -8,11 +8,12 @@ Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed **hirin
 
 ## What’s on the site
 
-- Person-first hero — brand + View work / contact (no Signature panel in first viewport)
-- Dark theater + Arctic-day light theme (persisted preference)
-- Work: GRYPS (lead) → Triangora → Morea; Path A instrument under GRYPS only
+- Person-first hero — brand + value subline + See GRYPS / Get in touch
+- Why me — commercial judgment behind the build
+- Work: Monopati trust → GRYPS (featured + screenshots) → Morea → also built (Triangora, archives, FORGE)
 - Mission briefs: `/work/gryps`, `/work/morea`
-- Earlier prototypes as telemetry accordion; Monopati progress; FORGE private note only
+- Contact: Download CV + LinkedIn; email secondary
+- Dark theater + Arctic-day light theme (persisted preference)
 - Privacy / Terms / About
 
 ## Stack

@@ -2,8 +2,59 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useBreakpoint } from '../hooks/useBreakpoint'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
-import { HIRING_ONE_LINER, ROLE_FOCUS, TRANSITION_ARC, TRIANGORA_BLURB } from '../copy'
+import {
+  CV_PATH,
+  EMAIL,
+  GITHUB_URL,
+  HERO_ASK,
+  HERO_SUBLINE,
+  HIRING_ONE_LINER,
+  LINKEDIN_URL,
+  MONOPATI_TRUST,
+  NONCOMMERCIAL_LINE,
+  ROLE_FOCUS,
+  TRIANGORA_BLURB,
+  WHY_ME,
+} from '../copy'
 import { GRYPS_ADVISOR, GRYPS_METHOD, MOREA_URL, TRIANGORA_URL, t } from '../theme'
+
+function CaseShot({ src, alt, caption, border }) {
+  return (
+    <figure style={{ margin: '0 0 20px', textAlign: 'left' }}>
+      <img
+        src={src}
+        alt={alt}
+        width={1200}
+        height={750}
+        loading="lazy"
+        decoding="async"
+        style={{
+          width: '100%',
+          height: 'auto',
+          display: 'block',
+          borderRadius: 2,
+          border: `1px solid ${border}`,
+          background: '#0B0F17',
+        }}
+      />
+      {caption ? (
+        <figcaption
+          style={{
+            marginTop: 8,
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '8px',
+            letterSpacing: '0.08em',
+            color: 'inherit',
+            opacity: 0.75,
+            lineHeight: 1.55,
+          }}
+        >
+          {caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  )
+}
 
 const SignatureInstrument = lazy(() => import('../components/SignatureInstrument'))
 
@@ -409,7 +460,7 @@ function Hero({ isLight }) {
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) both',
           }}
         >
-          Espoo · Personal portfolio
+          Espoo · Finland
         </div>
         <h1 style={{ margin: 0 }}>
           <span
@@ -457,12 +508,12 @@ function Hero({ isLight }) {
             fontStyle: 'italic',
             color: c.body,
             lineHeight: 1.55,
-            maxWidth: '480px',
+            maxWidth: '540px',
             margin: '0 auto 24px',
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.2s both',
           }}
         >
-          Nordic industrial ops → AI systems. Personal reskilling hub — non-commercial skill demos for hiring conversations.
+          {HERO_SUBLINE}
         </p>
         <div
           style={{
@@ -475,16 +526,29 @@ function Hero({ isLight }) {
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.32s both',
           }}
         >
-          <CtaPrimary href="#work" ice={false} block={phone}>
-            View work
+          <CtaPrimary href={GRYPS_ADVISOR} ice={false} block={phone}>
+            See GRYPS in action
           </CtaPrimary>
-          <CtaGhost href="mailto:hqe.moreira@gmail.com" color={c.amber} block={phone}>
-            Send a message
+          <CtaGhost href="#contact" color={c.amber} block={phone}>
+            Get in touch
           </CtaGhost>
         </div>
         <div
           style={{
-            marginTop: phone ? '20px' : '28px',
+            marginTop: phone ? '16px' : '20px',
+            fontFamily: "'Lora', serif",
+            fontSize: phone ? '13px' : '14px',
+            fontStyle: 'italic',
+            color: c.body,
+            lineHeight: 1.5,
+            animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.36s both',
+          }}
+        >
+          {HERO_ASK}
+        </div>
+        <div
+          style={{
+            marginTop: phone ? '16px' : '22px',
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: '8px',
             letterSpacing: phone ? '0.08em' : '0.14em',
@@ -493,7 +557,7 @@ function Hero({ isLight }) {
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.4s both',
           }}
         >
-          Personal reskilling · Non-commercial · Not a product for sale · No accounts / no billing
+          {NONCOMMERCIAL_LINE}
         </div>
         <div
           style={{
@@ -528,35 +592,20 @@ function Hero({ isLight }) {
   )
 }
 
-function Story({ isLight }) {
-  const { phone, tablet, narrow } = useBreakpoint()
+function WhyMe({ isLight }) {
+  const { phone, narrow } = useBreakpoint()
   const c = t(isLight)
-  const languages = ['Portuguese · native', 'Spanish', 'Catalan', 'English', 'Finnish', 'French']
-  const credentials = [
-    { label: 'Background', value: 'International Business Management · Packaging · Forest Industry' },
-    { label: 'Systems practice', value: 'Account development · Pricing discipline · Cross-functional delivery' },
-    { label: 'Prior ops tools', value: 'SAP · Power BI · CRM · BW' },
-    { label: 'Build proof', value: 'GRYPS — assess → score → rank → document a Resilience Signature' },
-    { label: 'Focus', value: 'OT connectivity · Nordic / Arctic ops · EU AI literacy' },
-    { label: 'Path', value: 'Monopati — public study progress · satellite + AI Solutions track' },
-  ]
-  const coords = [
-    'PT · 39.40°N 8.22°W', 'AD · 42.51°N 1.52°E',
-    'ES · 40.46°N 3.75°W', 'GR · 39.07°N 21.82°E',
-    'BE · 50.50°N 4.47°E', 'FI · 61.92°N 25.75°E',
-  ]
 
   return (
-    <Section id="story" isLight={isLight}>
+    <Section id="why-me" isLight={isLight}>
       <RevealWrapper>
-        <SectionEyebrow color={c.amber}>Dossier</SectionEyebrow>
+        <SectionEyebrow color={c.amber}>Why me</SectionEyebrow>
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: narrow ? '1fr' : '1fr 1.15fr',
-            gap: phone ? '24px' : tablet ? '36px' : '48px',
-            alignItems: 'center',
-            marginBottom: phone ? '24px' : '40px',
+            gridTemplateColumns: narrow ? '1fr' : 'minmax(0, 200px) 1fr',
+            gap: phone ? '20px' : '36px',
+            alignItems: 'start',
             textAlign: 'left',
           }}
         >
@@ -567,6 +616,8 @@ function Story({ isLight }) {
               borderRadius: '2px',
               border: `1px solid ${c.border}`,
               background: '#1A1612',
+              maxWidth: narrow ? 220 : undefined,
+              margin: narrow ? '0 auto' : undefined,
             }}
           >
             <picture>
@@ -584,104 +635,38 @@ function Story({ isLight }) {
                   display: 'block',
                   objectFit: 'cover',
                   objectPosition: '50% 15%',
-                  maxHeight: phone ? '280px' : tablet ? '360px' : '440px',
+                  maxHeight: phone ? '220px' : '280px',
                   filter: isLight ? 'brightness(1.05)' : 'brightness(0.92)',
                 }}
               />
             </picture>
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '16px',
-                left: '16px',
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '8px',
-                letterSpacing: '0.22em',
-                color: c.amber,
-                textTransform: 'uppercase',
-              }}
-            >
-              Espoo · Vila Nova de Gaia
-            </div>
           </div>
           <div style={{ minWidth: 0 }}>
             <h2
               style={{
                 fontFamily: "'Fraunces', serif",
-                fontSize: phone ? '28px' : 'clamp(30px, 3.8vw, 46px)',
+                fontSize: phone ? '28px' : 'clamp(30px, 3.8vw, 44px)',
                 fontWeight: 200,
                 fontStyle: 'italic',
                 color: c.ink,
-                lineHeight: 1.08,
+                lineHeight: 1.12,
                 letterSpacing: '-0.025em',
-                marginBottom: '20px',
+                marginBottom: '18px',
               }}
             >
-              Nordic industrial ops → <span style={{ color: c.amber }}>AI systems.</span>
+              Commercial judgment behind the build.
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '20px' }}>
-              {TRANSITION_ARC.map((para) => (
-                <p key={para.slice(0, 28)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              {WHY_ME.map((para) => (
+                <p key={para.slice(0, 32)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body, margin: 0 }}>
                   {para}
                 </p>
               ))}
             </div>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.35em', color: c.quiet, textTransform: 'uppercase', marginBottom: '10px' }}>
-              Languages
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
-              {languages.map((l) => (
-                <div
-                  key={l}
-                  style={{
-                    padding: '5px 12px',
-                    border: `1px solid ${c.border}`,
-                    fontFamily: "'Syne', sans-serif",
-                    fontSize: '9px',
-                    fontWeight: 700,
-                    letterSpacing: '0.08em',
-                    color: c.muted,
-                  }}
-                >
-                  {l}
-                </div>
-              ))}
-            </div>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '6px 16px',
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '9px',
-                color: c.quiet,
-                letterSpacing: '0.04em',
-              }}
-            >
-              {coords.map((coord) => (
-                <span key={coord}>{coord}</span>
-              ))}
+            <div style={{ marginTop: 18, fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.muted, letterSpacing: '0.06em' }}>
+              Prior ops stamps · SAP · Power BI · CRM · BW — evidence, not the headline
             </div>
           </div>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: phone ? '1fr' : tablet ? '1fr 1fr' : 'repeat(3, 1fr)', gap: '4px' }}>
-          {credentials.map((cred) => (
-            <div
-              key={cred.label}
-              style={{
-                background: isLight ? 'rgba(43,127,212,0.04)' : 'rgba(212,137,30,0.04)',
-                border: `1px solid ${c.border}`,
-                borderRadius: '2px',
-                padding: '14px 16px',
-                textAlign: 'left',
-              }}
-            >
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', letterSpacing: '0.28em', color: c.amber, textTransform: 'uppercase', marginBottom: '6px', opacity: 0.75 }}>
-                {cred.label}
-              </div>
-              <div style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.55 }}>{cred.value}</div>
-            </div>
-          ))}
         </div>
       </RevealWrapper>
     </Section>
@@ -700,6 +685,7 @@ function Work({ isLight }) {
   const { phone, tablet } = useBreakpoint()
   const c = t(isLight)
   const [archivesOpen, setArchivesOpen] = useState(false)
+  const figCap = { color: c.quiet }
 
   return (
     <Section id="work" isLight={isLight} style={{ maxWidth: '1040px', width: '100%' }}>
@@ -714,17 +700,48 @@ function Work({ isLight }) {
             color: c.ink,
             lineHeight: 1.15,
             letterSpacing: '-0.02em',
-            marginBottom: '36px',
+            marginBottom: '20px',
           }}
         >
-          Selected prototypes — non-commercial skill demos for hiring conversations.
+          Featured builds — then what else I shipped while learning.
         </h2>
-      </RevealWrapper>
-
-      <RevealWrapper delay={100}>
         <div
           style={{
-            background: isLight ? c.panel : c.panel,
+            marginBottom: '28px',
+            border: `1px solid ${c.border}`,
+            borderLeft: `3px solid ${c.teal}`,
+            padding: phone ? '14px 14px' : '16px 20px',
+            textAlign: 'left',
+            display: 'grid',
+            gridTemplateColumns: phone || tablet ? '1fr' : 'minmax(0, 1fr) auto',
+            gap: '12px',
+            alignItems: 'center',
+          }}
+        >
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.teal, textTransform: 'uppercase', marginBottom: 6 }}>
+              Trust signal · Monopati
+            </div>
+            <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.65, margin: 0 }}>
+              {MONOPATI_TRUST}
+            </p>
+          </div>
+          <a
+            href="https://monopati.vercel.app/progress"
+            target="_blank"
+            rel="nofollow noreferrer"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.teal, letterSpacing: '0.1em', whiteSpace: 'nowrap' }}
+          >
+            Progress →
+          </a>
+        </div>
+      </RevealWrapper>
+
+      {/* GRYPS featured */}
+      <RevealWrapper delay={80}>
+        <div
+          style={{
+            background: c.panel,
             border: `1px solid ${c.iceBorder}`,
             borderLeft: `4px solid ${c.ice}`,
             borderRadius: '2px',
@@ -735,36 +752,48 @@ function Work({ isLight }) {
           }}
         >
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: phone ? '0.16em' : '0.28em', color: c.ice, textTransform: 'uppercase', marginBottom: '12px' }}>
-            01 · Lead hiring proof · R&D · Non-commercial · Model v0.4
+            01 · Lead hiring proof · Model v0.4 · Non-commercial
           </div>
-          <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '36px' : 'clamp(34px, 4.5vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: c.ink, letterSpacing: '-0.03em', marginBottom: '12px' }}>
+          <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '36px' : 'clamp(34px, 4.5vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: c.ink, letterSpacing: '-0.03em', marginBottom: '10px' }}>
             GRYPS
           </div>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '560px', marginBottom: '10px' }}>
-            Enter a Nordic / Arctic site profile and get a <strong style={{ color: c.ink, fontWeight: 600 }}>Resilience Signature</strong> — score, grade, top risk, ranked options. OT / satellite literacy — not procurement advice.
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '16px' }}>
+            Connectivity resilience scoring for Nordic and Arctic remote operations — a live research prototype that turns a site profile into a <strong style={{ color: c.ink, fontWeight: 600 }}>Resilience Signature</strong>.
           </p>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.muted, marginBottom: '20px', letterSpacing: '0.06em' }}>
-            assess → score → rank → document · no account for the initial Signature
+
+          <div style={{ ...figCap }}>
+            <CaseShot
+              src="/work/gryps-signature.png"
+              alt="GRYPS Resilience Signature — score 75, grade B for a mining site at 67°N"
+              caption="Live Signature artifact · score, grade, risks, ranked option · Model v0.4"
+              border={c.iceBorder}
+            />
+          </div>
+
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
+            <strong style={{ color: c.ink }}>Problem:</strong> remote industrial sites often depend on a single connectivity path. Operators need a fast, auditable resilience read — without a consultancy deck or false precision.
+          </p>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
+            <strong style={{ color: c.ink }}>Built:</strong> assess → score → rank → document, ending in the Signature. Deterministic Model v0.4 owns the number; optional AI prose never changes it.
+          </p>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
+            <strong style={{ color: c.ink }}>Trade-off:</strong> I kept the score deterministic and gated email behind the longer report only. Trust over theater — hiring managers skim one object, not a chat transcript.
+          </p>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.muted, marginBottom: '18px', letterSpacing: '0.06em' }}>
+            Stack · Next.js · Neon (EU) · MapLibre · optional Mistral · Vercel
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: phone ? 'stretch' : 'center', flexDirection: phone ? 'column' : 'row' }}>
             <CtaPrimary href={GRYPS_ADVISOR} ice block={phone}>
-              {phone ? 'Generate Signature →' : 'Generate a Resilience Signature →'}
+              Verify in a minute →
             </CtaPrimary>
             <CtaGhost href="/work/gryps" color={c.ice} internal block={phone}>
-              Mission brief
+              Full brief
             </CtaGhost>
             <a
               href={GRYPS_METHOD}
               target="_blank"
               rel="nofollow noreferrer"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '10px',
-                letterSpacing: '0.1em',
-                color: c.muted,
-                textDecoration: 'underline',
-                textUnderlineOffset: '3px',
-              }}
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', letterSpacing: '0.1em', color: c.muted, textDecoration: 'underline', textUnderlineOffset: '3px' }}
             >
               Methodology →
             </a>
@@ -778,97 +807,102 @@ function Work({ isLight }) {
         >
           <SignatureInstrument variant="full" />
         </Suspense>
-        <div
-          style={{
-            marginTop: '10px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '8px',
-            letterSpacing: '0.06em',
-            color: c.quiet,
-            textAlign: 'left',
-            lineHeight: 1.6,
-          }}
-        >
-          Illustrative Path A · Score 47 · Grade D — open the live Advisor for a real Signature
+        <div style={{ marginTop: '10px', fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.06em', color: c.quiet, textAlign: 'left', lineHeight: 1.6 }}>
+          Illustrative Path A freeze · open the live Advisor for a real Signature
         </div>
       </RevealWrapper>
 
-      {/* Triangora secondary */}
-      <RevealWrapper delay={140}>
+      {/* Morea featured */}
+      <RevealWrapper delay={120}>
         <div
           style={{
             marginTop: '40px',
+            background: c.panel,
             border: `1px solid ${c.border}`,
-            borderLeft: `3px solid ${c.teal}`,
-            padding: phone ? '18px 14px' : '24px 28px',
+            borderLeft: `4px solid ${c.amber}`,
+            borderRadius: '2px',
+            padding: phone ? '20px 16px' : '28px 32px',
             textAlign: 'left',
-            display: 'grid',
-            gridTemplateColumns: phone || tablet ? '1fr' : '1fr auto',
-            gap: '16px',
-            alignItems: 'center',
             minWidth: 0,
           }}
         >
-          <div style={{ minWidth: 0 }}>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.teal, textTransform: 'uppercase', marginBottom: '8px' }}>
-              02 · Secondary · Multi-agent verification
-            </div>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '26px' : '28px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '8px' }}>
-              Triangora
-            </div>
-            <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.65, maxWidth: '520px', margin: 0 }}>
-              {TRIANGORA_BLURB}
-            </p>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.amber, textTransform: 'uppercase', marginBottom: '10px' }}>
+            02 · Featured · Educational literacy
           </div>
-          <div style={{ display: 'flex', flexDirection: phone ? 'column' : 'row', gap: '10px', alignItems: phone ? 'stretch' : 'flex-start', flexWrap: 'wrap' }}>
-            <CtaGhost href={TRIANGORA_URL} color={c.teal} block={phone}>
-              Open prototype ↗
-            </CtaGhost>
+          <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '30px' : '36px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '10px' }}>
+            Morea
           </div>
-        </div>
-      </RevealWrapper>
-
-      {/* Morea tertiary */}
-      <RevealWrapper delay={160}>
-        <div
-          style={{
-            marginTop: '16px',
-            border: `1px solid ${c.border}`,
-            borderLeft: `3px solid ${c.amber}`,
-            padding: phone ? '18px 14px' : '24px 28px',
-            textAlign: 'left',
-            display: 'grid',
-            gridTemplateColumns: phone || tablet ? '1fr' : '1fr auto',
-            gap: '16px',
-            alignItems: 'center',
-            minWidth: 0,
-          }}
-        >
-          <div style={{ minWidth: 0 }}>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.amber, textTransform: 'uppercase', marginBottom: '8px' }}>
-              03 · Secondary · Educational literacy
-            </div>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '26px' : '28px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '8px' }}>
-              Morea
-            </div>
-            <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.65, maxWidth: '520px', margin: 0 }}>
-              Article 4 Evidence Pack walkthrough — literacy trail, not a compliance service.
-            </p>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '16px' }}>
+            EU AI Act Article 4 Evidence Pack walkthrough for a small team — literacy you can practice and export, not a compliance service.
+          </p>
+          <div style={{ ...figCap }}>
+            <CaseShot
+              src="/work/morea-dossier.png"
+              alt="Morea sample Evidence Pack dossier with track, inventory, quiz, and verification ID"
+              caption="Illustrative Evidence Pack · dated, hashable, printable · not auditor attestation"
+              border={c.border}
+            />
           </div>
-          <div style={{ display: 'flex', flexDirection: phone ? 'column' : 'row', gap: '10px', alignItems: phone ? 'stretch' : 'flex-start', flexWrap: 'wrap' }}>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
+            <strong style={{ color: c.ink }}>Problem:</strong> Article 4 literacy is dense. Teams need a calm walkthrough that produces an illustrative pack without pretending to certify.
+          </p>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
+            <strong style={{ color: c.ink }}>Built:</strong> inventory → exposure → literacy → quiz → optional policy → export &amp; verify locally.
+          </p>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '18px' }}>
+            <strong style={{ color: c.ink }}>Trade-off:</strong> kept everything browser-local until export — privacy by default over accounts and cloud sync.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: phone ? 'column' : 'row' }}>
             <CtaGhost href={MOREA_URL} color={c.amber} block={phone}>
               Open prototype ↗
             </CtaGhost>
             <CtaGhost href="/work/morea" color={c.muted} internal block={phone}>
-              Brief
+              Full brief
             </CtaGhost>
           </div>
         </div>
       </RevealWrapper>
 
-      {/* Archives telemetry */}
-      <RevealWrapper delay={180}>
-        <div style={{ marginTop: '40px', textAlign: 'left' }}>
+      {/* Also built */}
+      <RevealWrapper delay={160}>
+        <div style={{ marginTop: '48px', textAlign: 'left' }}>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.28em', color: c.muted, textTransform: 'uppercase', marginBottom: '16px' }}>
+            Also built
+          </div>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
+              gap: '12px',
+              marginBottom: '16px',
+            }}
+          >
+            <div style={{ border: `1px solid ${c.border}`, borderLeft: `3px solid ${c.teal}`, padding: '16px', minWidth: 0 }}>
+              <div style={{ fontFamily: "'Fraunces', serif", fontSize: '24px', fontStyle: 'italic', color: c.ink, marginBottom: 8 }}>Triangora</div>
+              <div style={{ ...figCap, marginBottom: 10 }}>
+                <CaseShot
+                  src="/work/triangora-verdict.png"
+                  alt="Triangora verification diagram — claim, independent source families, verdict"
+                  caption="Never generates intelligence · verifies what you already have"
+                  border={c.border}
+                />
+              </div>
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.6, marginBottom: 12 }}>{TRIANGORA_BLURB}</p>
+              <CtaGhost href={TRIANGORA_URL} color={c.teal} block={phone}>
+                Open prototype ↗
+              </CtaGhost>
+            </div>
+            <div style={{ border: `1px solid ${c.border}`, padding: '16px', minWidth: 0 }}>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.muted, textTransform: 'uppercase', marginBottom: 8 }}>
+                Internal · Private
+              </div>
+              <div style={{ fontFamily: "'Fraunces', serif", fontSize: '24px', fontStyle: 'italic', color: c.ink, marginBottom: 8 }}>FORGE</div>
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.6, margin: 0 }}>
+                Personal projects dashboard — private; no public login.
+              </p>
+            </div>
+          </div>
+
           <button
             type="button"
             onClick={() => setArchivesOpen((o) => !o)}
@@ -887,7 +921,7 @@ function Work({ isLight }) {
             }}
           >
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.28em', textTransform: 'uppercase' }}>
-              Earlier learning prototypes · telemetry
+              Earlier learning prototypes
             </span>
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.amber }}>{archivesOpen ? '−' : '+'}</span>
           </button>
@@ -916,48 +950,8 @@ function Work({ isLight }) {
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.amber, letterSpacing: '0.1em' }}>Open ↗</span>
                 </a>
               ))}
-              <div style={{ padding: '12px 16px', fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: c.quiet, letterSpacing: '0.08em', lineHeight: 1.6 }}>
-                Linked from this page only · not submitted to search engines · interview walkthrough if useful
-              </div>
             </div>
           )}
-        </div>
-
-        <div
-          style={{
-            marginTop: '28px',
-            display: 'grid',
-            gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
-            gap: '8px',
-            textAlign: 'left',
-          }}
-        >
-          <div style={{ border: `1px solid ${c.border}`, padding: '16px 18px', minWidth: 0 }}>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.teal, textTransform: 'uppercase', marginBottom: '8px' }}>
-              Study path
-            </div>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: '22px', fontStyle: 'italic', color: c.ink, marginBottom: '6px' }}>Monopati</div>
-            <p style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.55, marginBottom: '12px' }}>
-              Public progress on a 12-month AI Solutions + satellite track — direction, not build proof.
-            </p>
-            <a
-              href="https://monopati.vercel.app/progress"
-              target="_blank"
-              rel="nofollow noreferrer"
-              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.teal, letterSpacing: '0.1em' }}
-            >
-              Progress →
-            </a>
-          </div>
-          <div style={{ border: `1px solid ${c.border}`, padding: '16px 18px' }}>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.muted, textTransform: 'uppercase', marginBottom: '8px' }}>
-              Internal · Private
-            </div>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: '22px', fontStyle: 'italic', color: c.ink, marginBottom: '6px' }}>FORGE</div>
-            <p style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.55, margin: 0 }}>
-              Personal projects dashboard — private; no public login.
-            </p>
-          </div>
         </div>
       </RevealWrapper>
     </Section>
@@ -1034,17 +1028,52 @@ function Contact({ isLight }) {
           {HIRING_ONE_LINER}
         </p>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.quiet, letterSpacing: '0.08em', marginBottom: '32px' }}>
-          60s path · Home → Work → try GRYPS Signature · industrial ops → AI systems
+          60s path · Home → Work → try GRYPS Signature
         </div>
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', flexDirection: phone ? 'column' : 'row', alignItems: phone ? 'stretch' : 'center', marginBottom: '40px', maxWidth: phone ? 360 : undefined, marginLeft: 'auto', marginRight: 'auto' }}>
-          <a href="mailto:hqe.moreira@gmail.com" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
-            <div style={contactBtn(true)}>Send a message</div>
+        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', flexDirection: phone ? 'column' : 'row', alignItems: phone ? 'stretch' : 'center', marginBottom: '16px', maxWidth: phone ? 360 : undefined, marginLeft: 'auto', marginRight: 'auto' }}>
+          <a href={CV_PATH} download="Henrique_Moreira_CV.pdf" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
+            <div style={contactBtn(true)}>Download CV</div>
           </a>
-          <a href="https://github.com/hqemoreira" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
-            <div style={contactBtn(false)}>GitHub ↗</div>
-          </a>
-          <a href="https://www.linkedin.com/in/hqemoreira" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
+          <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
             <div style={contactBtn(false)}>LinkedIn ↗</div>
+          </a>
+        </div>
+        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '40px', alignItems: 'center' }}>
+          <a
+            href={`mailto:${EMAIL}`}
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '10px',
+              letterSpacing: '0.1em',
+              color: c.muted,
+              textDecoration: 'underline',
+              textUnderlineOffset: '3px',
+              padding: '8px 4px',
+              minHeight: 44,
+              display: 'inline-flex',
+              alignItems: 'center',
+            }}
+          >
+            {EMAIL}
+          </a>
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '10px',
+              letterSpacing: '0.1em',
+              color: c.muted,
+              textDecoration: 'underline',
+              textUnderlineOffset: '3px',
+              padding: '8px 4px',
+              minHeight: 44,
+              display: 'inline-flex',
+              alignItems: 'center',
+            }}
+          >
+            GitHub ↗
           </a>
         </div>
         <div style={{ borderTop: `1px solid ${c.divider}`, paddingTop: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
@@ -1064,8 +1093,8 @@ function Contact({ isLight }) {
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: c.quiet, letterSpacing: '0.12em' }}>
             © {year} Henrique Moreira · All rights reserved
           </div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: c.quiet, opacity: 0.7, letterSpacing: '0.12em' }}>
-            Personal reskilling · Non-commercial · Not a product for sale · No accounts / no billing
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: c.quiet, opacity: 0.85, letterSpacing: '0.12em' }}>
+            {NONCOMMERCIAL_LINE}
           </div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: c.quiet, opacity: 0.65 }}>
             Vite · React · React Router · Vercel
@@ -1102,12 +1131,12 @@ export default function Portfolio({ theme = 'dark' }) {
           name: 'Henrique Moreira',
           url: 'https://henriquemoreira.eu',
           email: 'hqe.moreira@gmail.com',
-          jobTitle: 'AI Builder & Systems Thinker',
+          jobTitle: 'AI Product Builder',
           description:
-            'Builder based in Espoo, Finland. Personal portfolio for hiring / reskilling. Lead skill demo: GRYPS — Resilience Signature for Nordic and Arctic connectivity. Secondary: Triangora (fact verification) and Morea (Evidence Pack). Earlier learning prototypes include Grantemia, Velu, Lycaon, DisclAI and Iraun. Study path: Monopati.',
+            'Espoo-based builder: eighteen years in European B2B operations, now shipping non-commercial AI skill demos. Lead proof: GRYPS Resilience Signature. Featured: Morea (EU AI Act literacy). Also: Triangora. CV and LinkedIn on site.',
           address: { '@type': 'PostalAddress', addressLocality: 'Espoo', addressCountry: 'FI' },
-          sameAs: ['https://www.linkedin.com/in/hqemoreira'],
-          knowsAbout: ['Artificial Intelligence', 'Systems Thinking', 'Software Development', 'EU AI Act', 'Supply Chain', 'International Business'],
+          sameAs: ['https://www.linkedin.com/in/hqemoreira', 'https://github.com/hqemoreira'],
+          knowsAbout: ['Artificial Intelligence', 'Systems Thinking', 'Software Development', 'EU AI Act', 'B2B Sales', 'International Business'],
         },
         {
           '@type': 'FAQPage',
@@ -1118,7 +1147,7 @@ export default function Portfolio({ theme = 'dark' }) {
               name: 'What is this site?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'A personal portfolio for Henrique Moreira (Espoo, Finland). It features GRYPS as a live non-commercial R&D demo and links earlier learning prototypes. Factual posture: https://henriquemoreira.eu/about',
+                text: 'A personal hiring portfolio for Henrique Moreira (Espoo, Finland). Lead skill demo is GRYPS; Morea and Triangora are secondary. Factual posture: https://henriquemoreira.eu/about',
               },
             },
             {
@@ -1131,10 +1160,10 @@ export default function Portfolio({ theme = 'dark' }) {
             },
             {
               '@type': 'Question',
-              name: 'Are the other prototypes for sale?',
+              name: 'Are the prototypes for sale?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'No. Triangora, Morea, Grantemia, Velu, Lycaon, DisclAI, and Iraun are learning / research prototypes shown for portfolio context. Lead hiring proof is GRYPS. None are products for sale.',
+                text: 'No. GRYPS, Triangora, Morea, and earlier learning prototypes are non-commercial research / skill demos. None are products for sale.',
               },
             },
             {
@@ -1161,7 +1190,7 @@ export default function Portfolio({ theme = 'dark' }) {
     <div style={{ background: c.bg, minHeight: '100vh', overflowX: 'hidden', transition: 'background 0.4s ease' }}>
       <BgLayers isLight={isLight} />
       <Hero isLight={isLight} />
-      <Story isLight={isLight} />
+      <WhyMe isLight={isLight} />
       <Work isLight={isLight} />
       <Contact isLight={isLight} />
     </div>

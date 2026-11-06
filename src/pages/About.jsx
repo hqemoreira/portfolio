@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { LegalShell, LegalH2, LegalP, LegalUl } from '../components/LegalShell'
-import { HIRING_ONE_LINER, HIRING_PATH_STEPS, ROLE_FOCUS } from '../copy'
+import { CV_PATH, HIRING_ONE_LINER, HIRING_PATH_STEPS, ROLE_FOCUS } from '../copy'
 import { GRYPS_ADVISOR, t } from '../theme'
 
 /**
@@ -62,13 +62,13 @@ export default function About({ theme = 'dark' }) {
             https://henriquemoreira.eu/work/gryps — methodology on the project site.
           </li>
           <li>
-            <strong>Triangora</strong> — secondary multi-agent fact-verification research prototype. Verifies
-            existing claims via evidence triangulation; never generates intelligence. Not a commercial
-            verification SaaS. Live: https://triangora.vercel.app (GitHub remains private while under development).
+            <strong>Morea</strong> — featured educational Article 4 Evidence Pack walkthrough (not a compliance
+            service). Brief: https://henriquemoreira.eu/work/morea
           </li>
           <li>
-            <strong>Morea</strong> — secondary educational Article 4 Evidence Pack walkthrough (not a compliance
-            service). Brief: https://henriquemoreira.eu/work/morea
+            <strong>Triangora</strong> — multi-agent fact-verification research prototype. Verifies
+            existing claims via evidence triangulation; never generates intelligence. Not a commercial
+            verification SaaS. Live: https://triangora.vercel.app (GitHub remains private while under development).
           </li>
           <li>
             <strong>Earlier prototypes</strong> — Grantemia, Velu, Lycaon, DisclAI, and Iraun appear as quieter
@@ -109,7 +109,12 @@ export default function About({ theme = 'dark' }) {
       <section>
         <LegalH2>Contact</LegalH2>
         <LegalP>
-          {ROLE_FOCUS} LinkedIn (same one-liner as above):{' '}
+          {ROLE_FOCUS}{' '}
+          <a href={CV_PATH} style={{ color: accent }}>
+            Download CV
+          </a>
+          {' · '}
+          LinkedIn:{' '}
           <a href="https://www.linkedin.com/in/hqemoreira" style={{ color: accent }} rel="noopener noreferrer">
             linkedin.com/in/hqemoreira
           </a>

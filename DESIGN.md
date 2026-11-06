@@ -34,22 +34,24 @@ spacing:
 
 ## Overview
 
-**Personal portfolio for hiring / reskilling.** Brand name is the hero monument; selected prototypes (GRYPS → Triangora → Morea) live below the fold under Work. The Resilience Signature demo appears only inside the GRYPS Work block — not beside the name. Dark theater + Arctic-day light.
+**Personal portfolio for hiring / reskilling.** Brand name is the hero monument; value subline + dual CTAs; Why me; then Work with live case screenshots. Dark theater + Arctic-day light.
 
-Competitor test: *On this page, Henrique Moreira’s portfolio reads as a person first, then tryable skill demos.*
+Competitor test: *On this page, Henrique Moreira’s portfolio reads as a person first, then tryable skill demos with evidence.*
 
 ## Colors
 
 | Token | Dark | Arctic day (light) | Role |
 |-------|------|--------------------|------|
 | Neutral / stage | `#07080D` | `#F2F5F8` | Page foundation |
-| Primary text | `#F0E8D8` | `#0A1018` | Body / monument ink |
-| Secondary | `#8A9AA8` | `#4A5A6A` | Quiet chrome |
+| Primary text | `#F0E8D8` | `#0A1018` | Monument ink |
+| Body | `#CDC4B4` | `#243040` | Narrative |
+| Secondary | `#9AABBA` | `#4A5A6A` | Quiet chrome |
+| Quiet | `#9A8A6A` | `#5C6B7A` | Footnotes — contrast-safe |
 | Brand amber | `#D4891E` | `#A66A14` | Brand, primary CTAs |
 | Coat tan | `#A67C52` | — | Lycaon mid mottles (hero field) |
 | Coat umber | `#5C3A1E` | — | Lycaon dark mottles (hero field) |
 | Ice | `#4FA8FF` | `#1F73C7` | GRYPS Work card / instrument only — never hero field |
-| Teal | `#1EC8A8` | `#178A74` | Triangora strip accent |
+| Teal | `#1EC8A8` | `#178A74` | Triangora / Monopati accent |
 
 ## Atmosphere
 
@@ -64,9 +66,9 @@ Hero field = **Lycaon Pictus coat mottling** (`useConstellation`): irregular gol
 
 ## Layout
 
-Hero budget: brand (amber bloom on MOREIRA), one support line, View work + contact CTA group, quiet mono Scroll cue. No cards, no Signature panel, no product demo in the first viewport.
+Hero budget: brand (amber bloom on MOREIRA), one value subline, See GRYPS + Get in touch, quiet ask + non-commercial small print. No cards, no Signature panel in the first viewport.
 
-Work: GRYPS featured (optional instrument under card) → Triangora strip → Morea strip → archives accordion.
+Home order: Hero → Why me → Work (Monopati trust → GRYPS featured → Morea featured → also built) → Contact (Download CV + LinkedIn).
 
 ## Motion
 
@@ -84,10 +86,11 @@ Hook: `src/hooks/useBreakpoint.js`.
 
 ## Do's and Don'ts
 
-- Do: person-first hero; Lycaon gold/brown coat field; GRYPS first under Work; Open prototype CTAs; non-commercial footnote
-- Don't: ice/cyan particles in the hero field; Signature as hero object; FORGE login; commercial ban-list words; stack badge wall on home; purple SaaS glow kits
+- Do: person-first hero; Lycaon gold/brown coat field; GRYPS first under Work with live screenshots; Open prototype CTAs; non-commercial footnote; Download CV button
+- Don't: ice/cyan particles in the hero field; Signature as hero object; FORGE login; commercial ban-list words; stack badge wall on home; purple SaaS glow kits; concept-art dashboards as product evidence
 
 ## Known Gaps
 
 - No `/work/triangora` case page yet (live link only)
 - Live Advisor remains on gryps.vercel.app
+- OG image should stay 1200×630 amber monument card

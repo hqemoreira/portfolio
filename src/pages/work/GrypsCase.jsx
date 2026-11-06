@@ -127,11 +127,26 @@ export default function GrypsCase({ theme = 'dark' }) {
             color: c.body,
             maxWidth: '640px',
             lineHeight: 1.55,
-            marginBottom: phone ? 28 : 40,
+            marginBottom: phone ? 20 : 28,
           }}
         >
           A live research prototype that turns a remote site profile into a Resilience Signature — score, grade, risks, ranked connectivity options.
         </p>
+
+        <figure style={{ margin: '0 0 28px', maxWidth: 900 }}>
+          <img
+            src="/work/gryps-signature.png"
+            alt="GRYPS Resilience Signature — score 75, grade B for a mining site at 67°N with Starlink and Iridium Certus"
+            width={1200}
+            height={750}
+            loading="eager"
+            decoding="async"
+            style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${c.iceBorder}`, borderRadius: 2, background: '#0B0F17' }}
+          />
+          <figcaption style={{ marginTop: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.08em', color: c.quiet, lineHeight: 1.55 }}>
+            Live Signature artifact · Model v0.4 · open the Advisor to generate your own
+          </figcaption>
+        </figure>
 
         <div
           style={{
@@ -175,30 +190,24 @@ export default function GrypsCase({ theme = 'dark' }) {
               </ul>
             </CaseSection>
 
-            <CaseSection id="decisions" label="Key decisions" accent={c.amber}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                {[
-                  {
-                    t: 'Signature as the artifact',
-                    d: 'The output is a Resilience Signature (score · grade · risks · ranked options), not a chat transcript. Hiring managers can skim one object.',
-                  },
-                  {
-                    t: 'Score stays deterministic',
-                    d: 'Model v0.4 owns the number. Optional prose never mutates grade — trust over theater.',
-                  },
-                  {
-                    t: 'Advisor without gatekeeping',
-                    d: 'Initial Signature needs no email. Friction belongs after curiosity, not before proof.',
-                  },
-                ].map((item) => (
-                  <div key={item.t} style={{ borderLeft: `2px solid ${c.ice}`, paddingLeft: 14 }}>
-                    <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em', color: c.ink, marginBottom: 6 }}>
-                      {item.t}
-                    </div>
-                    <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.7, margin: 0 }}>{item.d}</p>
-                  </div>
-                ))}
-              </div>
+            <CaseSection id="decisions" label="My role · one trade-off" accent={c.amber}>
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: '0 0 16px' }}>
+                Solo builder of the closed loop — product framing, scoring model, Advisor UX, and ship. The hard call was what the score is allowed to weigh: I kept Model v0.4 deterministic and refused to let optional LLM prose move the grade. Mission priorities re-rank options only; they never rewrite the Signature number. Email stays optional and unlocks the longer report after the initial result — proof before gatekeeping.
+              </p>
+              <figure style={{ margin: 0 }}>
+                <img
+                  src="/work/gryps-advisor.png"
+                  alt="GRYPS Resilience Advisor form with mining profile and dual LEO providers selected"
+                  width={1200}
+                  height={750}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${c.iceBorder}`, borderRadius: 2 }}
+                />
+                <figcaption style={{ marginTop: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.08em', color: c.quiet }}>
+                  Advisor inputs · Mining · Autonomous · Safety-critical · Starlink + Iridium Certus
+                </figcaption>
+              </figure>
             </CaseSection>
 
             <CaseSection id="solution" label="Solution" accent={c.amber}>

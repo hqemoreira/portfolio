@@ -3,9 +3,9 @@ export const TOKENS = {
   dark: {
     bg: '#07080D',
     ink: '#F0E8D8',
-    body: '#B8AE9A',
-    muted: '#8A9AA8',
-    quiet: '#6A5A3A',
+    body: '#CDC4B4',
+    muted: '#9AABBA',
+    quiet: '#9A8A6A',
     amber: '#D4891E',
     ice: '#4FA8FF',
     teal: '#1EC8A8',
