@@ -7,7 +7,22 @@ import { GRYPS_ADVISOR, GRYPS_METHOD, MOREA_URL, TRIANGORA_URL, t } from '../the
 
 const SignatureInstrument = lazy(() => import('../components/SignatureInstrument'))
 
-/** Sparse connectivity constellation — ice + amber links */
+/** Lycaon Pictus coat field — gold / tan / umber mottling only (no ice blue) */
+const COAT = {
+  gold: { r: 212, g: 137, b: 30 },
+  tan: { r: 166, g: 124, b: 82 },
+  umber: { r: 92, g: 58, b: 30 },
+  cream: { r: 240, g: 232, b: 216 },
+}
+
+function pickCoat(i) {
+  const roll = (i * 17 + 11) % 100
+  if (roll < 42) return 'gold'
+  if (roll < 72) return 'tan'
+  if (roll < 92) return 'umber'
+  return 'cream'
+}
+
 function useConstellation(canvasRef, isLight, reducedMotion, particleCount = 42) {
   useEffect(() => {
     const canvas = canvasRef.current
@@ -16,17 +31,23 @@ function useConstellation(canvasRef, isLight, reducedMotion, particleCount = 42)
     let animId
     const n = particleCount
     const particles = Array.from({ length: n }, (_, i) => {
-      const tier = i < 5 ? 'alpha' : i < 16 ? 'beta' : 'omega'
+      const tier = i < 6 ? 'alpha' : i < 18 ? 'beta' : 'omega'
+      const coat = tier === 'omega' && i % 7 === 0 ? 'cream' : pickCoat(i)
       return {
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * (tier === 'alpha' ? 0.28 : 0.12),
-        vy: (Math.random() - 0.5) * (tier === 'alpha' ? 0.22 : 0.1),
-        size: tier === 'alpha' ? Math.random() * 2.2 + 3 : tier === 'beta' ? Math.random() * 1.2 + 1.4 : Math.random() * 0.6 + 0.5,
-        opacity: tier === 'alpha' ? 0.9 : tier === 'beta' ? 0.5 : 0.18,
+        vx: (Math.random() - 0.5) * (tier === 'alpha' ? 0.26 : 0.11),
+        vy: (Math.random() - 0.5) * (tier === 'alpha' ? 0.2 : 0.09),
+        size:
+          tier === 'alpha'
+            ? Math.random() * 3.2 + 3.2
+            : tier === 'beta'
+              ? Math.random() * 1.6 + 1.5
+              : Math.random() * 0.7 + 0.4,
+        opacity: tier === 'alpha' ? 0.92 : tier === 'beta' ? 0.55 : coat === 'cream' ? 0.28 : 0.2,
         pulse: Math.random() * Math.PI * 2,
         tier,
-        ice: i % 3 === 0,
+        coat,
       }
     })
     const draw = () => {
@@ -40,13 +61,10 @@ function useConstellation(canvasRef, isLight, reducedMotion, particleCount = 42)
           const dist = Math.sqrt(dx * dx + dy * dy)
           const maxD = a.tier === 'alpha' && b.tier === 'alpha' ? 220 : 130
           if (dist < maxD) {
-            const iceLink = a.ice || b.ice
-            const r = iceLink ? 79 : 212
-            const g = iceLink ? 168 : 137
-            const b2 = iceLink ? 255 : 30
+            const link = a.coat === 'umber' || b.coat === 'umber' ? COAT.tan : COAT.gold
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(${r},${g},${b2},${(isLight ? 0.2 : 0.16) * (1 - dist / maxD)})`
-            ctx.lineWidth = a.tier === 'alpha' && b.tier === 'alpha' ? 0.9 : 0.35
+            ctx.strokeStyle = `rgba(${link.r},${link.g},${link.b},${(isLight ? 0.18 : 0.17) * (1 - dist / maxD)})`
+            ctx.lineWidth = a.tier === 'alpha' && b.tier === 'alpha' ? 0.85 : 0.35
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
             ctx.stroke()
@@ -54,26 +72,25 @@ function useConstellation(canvasRef, isLight, reducedMotion, particleCount = 42)
         })
       })
       particles.forEach((p) => {
-        const pm = p.tier === 'alpha' ? Math.sin(p.pulse) * 0.15 + 0.85 : 1
-        const r = p.ice ? 79 : 212
-        const g = p.ice ? 168 : 137
-        const b2 = p.ice ? 255 : 30
-        const opMult = isLight ? 0.45 : 1
+        const pm = p.tier === 'alpha' ? Math.sin(p.pulse) * 0.12 + 0.88 : 1
+        const { r, g, b } = COAT[p.coat] || COAT.gold
+        const opMult = isLight ? 0.42 : 1
         if (p.tier === 'alpha') {
-          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 5)
-          grad.addColorStop(0, `rgba(${r},${g},${b2},${0.22 * opMult})`)
-          grad.addColorStop(1, `rgba(${r},${g},${b2},0)`)
+          const glow = p.size * 5.5
+          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glow)
+          grad.addColorStop(0, `rgba(${r},${g},${b},${0.28 * opMult})`)
+          grad.addColorStop(1, `rgba(${r},${g},${b},0)`)
           ctx.beginPath()
           ctx.fillStyle = grad
-          ctx.arc(p.x, p.y, p.size * 5, 0, Math.PI * 2)
+          ctx.arc(p.x, p.y, glow, 0, Math.PI * 2)
           ctx.fill()
         }
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size * pm, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${r},${g},${b2},${p.opacity * pm * opMult})`
+        ctx.fillStyle = `rgba(${r},${g},${b},${p.opacity * pm * opMult})`
         ctx.fill()
         if (!reducedMotion) {
-          p.pulse += 0.018
+          p.pulse += 0.016
           p.x += p.vx
           p.y += p.vy
           if (p.x < -10) p.x = canvas.width + 10
@@ -159,7 +176,7 @@ function BgLayers({ isLight }) {
               inset: 0,
               zIndex: 2,
               pointerEvents: 'none',
-              background: 'radial-gradient(ellipse 100% 50% at 70% 20%, rgba(79,168,255,0.06) 0%, transparent 55%)',
+              background: 'radial-gradient(ellipse 90% 55% at 50% 28%, rgba(212,137,30,0.1) 0%, transparent 58%)',
             }}
           />
           <div
@@ -168,7 +185,16 @@ function BgLayers({ isLight }) {
               inset: 0,
               zIndex: 2,
               pointerEvents: 'none',
-              background: 'radial-gradient(ellipse 120% 60% at 30% 110%, rgba(180,90,20,0.08) 0%, transparent 60%)',
+              background: 'radial-gradient(ellipse 110% 55% at 20% 100%, rgba(92,58,30,0.14) 0%, transparent 55%)',
+            }}
+          />
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 2,
+              pointerEvents: 'none',
+              background: 'radial-gradient(ellipse 120% 60% at 80% 105%, rgba(180,90,20,0.1) 0%, transparent 55%)',
             }}
           />
           <div
@@ -177,7 +203,7 @@ function BgLayers({ isLight }) {
               inset: 0,
               zIndex: 4,
               pointerEvents: 'none',
-              background: 'radial-gradient(ellipse at 50% 40%, transparent 20%, rgba(7,8,13,0.5) 100%)',
+              background: 'radial-gradient(ellipse at 50% 42%, transparent 18%, rgba(7,8,13,0.52) 100%)',
             }}
           />
         </>
@@ -397,7 +423,7 @@ function Hero({ isLight }) {
               lineHeight: 0.92,
               color: c.ink,
               whiteSpace: 'nowrap',
-              textShadow: isLight ? 'none' : '0 0 100px rgba(212,137,30,0.14)',
+              textShadow: isLight ? 'none' : '0 0 90px rgba(212,137,30,0.2), 0 0 40px rgba(212,137,30,0.12)',
               animation: 'hmTitleIn 1.2s cubic-bezier(0.16,1,0.3,1) both',
             }}
           >
@@ -414,7 +440,9 @@ function Hero({ isLight }) {
               lineHeight: 0.92,
               color: c.amber,
               whiteSpace: 'nowrap',
-              textShadow: isLight ? 'none' : '0 0 80px rgba(212,137,30,0.28)',
+              textShadow: isLight
+                ? 'none'
+                : '0 0 100px rgba(212,137,30,0.45), 0 0 48px rgba(212,137,30,0.28), 0 0 16px rgba(166,124,82,0.2)',
               marginBottom: phone ? '16px' : '22px',
               animation: 'hmTitleIn 1.2s cubic-bezier(0.16,1,0.3,1) 0.08s both',
             }}
@@ -466,6 +494,34 @@ function Hero({ isLight }) {
           }}
         >
           Personal reskilling · Non-commercial · Not a product for sale · No accounts / no billing
+        </div>
+        <div
+          style={{
+            marginTop: phone ? '28px' : '40px',
+            animation: reducedMotion ? 'none' : 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.5s both',
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '8px',
+              letterSpacing: '0.28em',
+              color: c.quiet,
+              textTransform: 'uppercase',
+              marginBottom: '10px',
+            }}
+          >
+            Scroll
+          </div>
+          <div
+            style={{
+              width: '1px',
+              height: phone ? '28px' : '40px',
+              background: 'linear-gradient(to bottom, rgba(212,137,30,0.55), transparent)',
+              margin: '0 auto',
+              animation: reducedMotion ? 'none' : 'hmBounce 2.4s ease-in-out infinite',
+            }}
+          />
         </div>
       </div>
     </section>
@@ -1030,6 +1086,7 @@ export default function Portfolio({ theme = 'dark' }) {
     style.textContent = `
       @keyframes hmTitleIn { from { opacity: 0; transform: translateY(24px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
       @keyframes hmFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes hmBounce { 0%,100%{ transform: translateY(0); opacity: 0.55; } 50%{ transform: translateY(6px); opacity: 1; } }
     `
     document.head.appendChild(style)
 

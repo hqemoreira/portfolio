@@ -46,8 +46,14 @@ Competitor test: *On this page, Henrique Moreira’s portfolio reads as a person
 | Primary text | `#F0E8D8` | `#0A1018` | Body / monument ink |
 | Secondary | `#8A9AA8` | `#4A5A6A` | Quiet chrome |
 | Brand amber | `#D4891E` | `#A66A14` | Brand, primary CTAs |
-| Ice | `#4FA8FF` | `#1F73C7` | GRYPS accents only |
+| Coat tan | `#A67C52` | — | Lycaon mid mottles (hero field) |
+| Coat umber | `#5C3A1E` | — | Lycaon dark mottles (hero field) |
+| Ice | `#4FA8FF` | `#1F73C7` | GRYPS Work card / instrument only — never hero field |
 | Teal | `#1EC8A8` | `#178A74` | Triangora strip accent |
+
+## Atmosphere
+
+Hero field = **Lycaon Pictus coat mottling** (`useConstellation`): irregular gold / tan / umber blotches + rare cream flecks; warm gold/tan links only. No cyan/ice dots in the floating field. Dark stage uses soft amber/umber radials (name sits in a warm pocket); ice blue reserved for the GRYPS Work block.
 
 ## Typography
 
@@ -58,13 +64,13 @@ Competitor test: *On this page, Henrique Moreira’s portfolio reads as a person
 
 ## Layout
 
-Hero budget: brand, one support line, View work + contact CTA group. No cards, no Signature panel, no product demo in the first viewport.
+Hero budget: brand (amber bloom on MOREIRA), one support line, View work + contact CTA group, quiet mono Scroll cue. No cards, no Signature panel, no product demo in the first viewport.
 
 Work: GRYPS featured (optional instrument under card) → Triangora strip → Morea strip → archives accordion.
 
 ## Motion
 
-Home budget: title entrance + scroll reveal. Instrument boot only when GRYPS Work is in view. Honor `prefers-reduced-motion`.
+Home budget: title entrance + fade-up + quiet Scroll hairline. Instrument boot only when GRYPS Work is in view. Honor `prefers-reduced-motion` (static scroll cue).
 
 ## Responsive
 
@@ -78,8 +84,8 @@ Hook: `src/hooks/useBreakpoint.js`.
 
 ## Do's and Don'ts
 
-- Do: person-first hero; GRYPS first under Work; Open prototype CTAs; non-commercial footnote
-- Don't: Signature as hero object; FORGE login; commercial ban-list words; stack badge wall on home
+- Do: person-first hero; Lycaon gold/brown coat field; GRYPS first under Work; Open prototype CTAs; non-commercial footnote
+- Don't: ice/cyan particles in the hero field; Signature as hero object; FORGE login; commercial ban-list words; stack badge wall on home; purple SaaS glow kits
 
 ## Known Gaps
 
