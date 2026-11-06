@@ -41,3 +41,4 @@ export function t(isLight) {
 export const GRYPS_ADVISOR = 'https://gryps.vercel.app/#advisor'
 export const GRYPS_METHOD = 'https://gryps.vercel.app/methodology'
 export const MOREA_URL = 'https://morea-pack.vercel.app'
+export const TRIANGORA_URL = 'https://triangora.vercel.app'

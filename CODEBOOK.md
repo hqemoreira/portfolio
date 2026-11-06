@@ -1,6 +1,6 @@
 # Portfolio — Codebook
 
-> Personal portfolio — Resilience Instrument hero, GRYPS live featured project (skill demo), mission briefs, quieter archives, Privacy/Terms, dark/Arctic-day theme.
+> Personal portfolio — person-first hero; Work: GRYPS → Triangora → Morea; mission briefs; quieter archives; Privacy/Terms; dark/Arctic-day theme.
 > Stack: Vite + React + React Router · Inline styles + minimal `src/index.css` · Canvas constellation · Vercel Analytics · Vercel
 
 ---
@@ -8,7 +8,7 @@
 ## Public posture
 
 - **Indexed:** this site + GRYPS (+ mission briefs). Earlier prototypes are linked with `rel="nofollow noreferrer"` and stay noindex on their own hosts. FORGE is private ops (noindex) — listed without a public login link.
-- **Hierarchy:** Resilience Instrument hero → GRYPS stage → Morea secondary strip → archives telemetry accordion. No Grantemia PT.
+- **Hierarchy:** Person-first hero → Work: GRYPS → Triangora → Morea → archives telemetry. No Grantemia PT. Signature instrument only under GRYPS Work block.
 - **CTAs:** **Generate a Resilience Signature** / **Open prototype** — not Try/Buy/Visit. Prototypes are not a storefront.
 - **SignatureInstrument:** Path A whitelist loop (`src/components/SignatureInstrument.jsx`; `GrypsDemo.jsx` re-exports) — Score 47 · Grade D; hero ~15s / full ~17s; reduced-motion static. Lazy-loaded.
 - **Routes:** `/`, `/about`, `/work/gryps`, `/work/morea`, `/privacy`, `/terms`, 404.
@@ -20,6 +20,7 @@
 
 ### Changelog — 2026-11
 
+- **2026-11-06:** Portfolio-first hero (no Signature in first viewport); Work order GRYPS → Triangora → Morea; Triangora live link only (GitHub private); HIRING_PROOF secondary updated.
 - **2026-11-05 (maintain polish):** Locked hiring one-liner + 60s path in `src/copy.js`; Story/About/Contact synced; PRODUCT maintain rules (no stack wall; stack on case only); light-theme + phone theme-toggle polish.
 - **2026-11-05:** Resilience Instrument redesign — hero brand + Signature instrument; constellation field; `/work/gryps` + `/work/morea` mission briefs; archives accordion; Arctic-day light tokens; theme persistence (`localStorage`); nav Work/About/Contact; then phone/tablet responsive pass.
 - **2026-11-03 (Forge s26 / portfolio-s15):** Public copy Litrix → **Morea**; earlier-prototypes hierarchy aligned with Forge registry. Hub stays skill-demo / no storefront.

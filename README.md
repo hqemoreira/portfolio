@@ -1,6 +1,6 @@
 # Portfolio — Henrique Moreira
 
-Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed surface featuring **GRYPS** as the lead hiring-proof skill demo — presented as a **Resilience Instrument** (live Signature via `/#advisor`), with a mission brief at `/work/gryps`, Morea as secondary literacy, and quieter earlier prototypes. Reskilling / hiring posture until further notice — non-commercial.
+Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed **hiring / reskilling portfolio**: person-first hero; Work lists **GRYPS** (lead Signature demo) → **Triangora** → **Morea**, then quieter archives. Reskilling posture under Finnish unemployment fund until further notice — non-commercial.
 
 **Not a SaaS storefront.** Prototypes are non-commercial / research / skill demonstrations. CTAs use **Open prototype** / **Generate a Resilience Signature**.
 
@@ -8,9 +8,9 @@ Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed surface
 
 ## What’s on the site
 
-- Resilience Instrument hero — brand monument + living Signature panel + constellation field
+- Person-first hero — brand + View work / contact (no Signature panel in first viewport)
 - Dark theater + Arctic-day light theme (persisted preference)
-- GRYPS featured stage + Path A motion instrument (Score 47 · Grade D sample)
+- Work: GRYPS (lead) → Triangora → Morea; Path A instrument under GRYPS only
 - Mission briefs: `/work/gryps`, `/work/morea`
 - Earlier prototypes as telemetry accordion; Monopati progress; FORGE private note only
 - Privacy / Terms / About

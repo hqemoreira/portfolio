@@ -13,12 +13,11 @@ export default function About({ theme = 'dark' }) {
   const accent = c.amber
 
   return (
-    <LegalShell theme={theme} title="About this site" eyebrow="Posture" lastUpdated="Updated 2026-11-05">
+    <LegalShell theme={theme} title="About this site" eyebrow="Posture" lastUpdated="Updated 2026-11-06">
       <LegalP>
         This is the personal portfolio of Henrique Moreira (Espoo, Finland). It is an indexed hub for
         skill demonstration and research prototypes — not a commercial marketplace, SaaS homepage, or
-        product storefront. The home page presents GRYPS as a living Resilience Instrument (visual frame
-        for a non-commercial skill demo — not a product for sale).
+        product storefront. The first viewport is the person; selected prototypes live under Work.
       </LegalP>
 
       <LegalP>
@@ -38,16 +37,16 @@ export default function About({ theme = 'dark' }) {
           ))}
         </ol>
         <p style={{ marginTop: 16, fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', lineHeight: 1.7 }}>
+          <Link to="/#work" style={{ color: accent }}>
+            Work
+          </Link>
+          {' · '}
           <a href={GRYPS_ADVISOR} style={{ color: accent }} rel="nofollow noreferrer">
             Generate Signature →
           </a>
           {' · '}
           <Link to="/work/gryps" style={{ color: accent }}>
-            Mission brief
-          </Link>
-          {' · '}
-          <Link to="/" style={{ color: accent }}>
-            Home
+            GRYPS brief
           </Link>
         </p>
       </section>
@@ -61,6 +60,11 @@ export default function About({ theme = 'dark' }) {
             <strong>Resilience Signature</strong> (score, grade, risks, ranked options). No account or email
             required for the initial Signature. Advisor: https://gryps.vercel.app/#advisor — mission brief:
             https://henriquemoreira.eu/work/gryps — methodology on the project site.
+          </li>
+          <li>
+            <strong>Triangora</strong> — secondary multi-agent fact-verification research prototype. Verifies
+            existing claims via evidence triangulation; never generates intelligence. Not a commercial
+            verification SaaS. Live: https://triangora.vercel.app (GitHub remains private while under development).
           </li>
           <li>
             <strong>Morea</strong> — secondary educational Article 4 Evidence Pack walkthrough (not a compliance
@@ -95,7 +99,7 @@ export default function About({ theme = 'dark' }) {
         <LegalH2>Preferred sources to cite</LegalH2>
         <LegalUl>
           <li>This page — posture and limits: https://henriquemoreira.eu/about</li>
-          <li>Home — Resilience Instrument hub: https://henriquemoreira.eu/</li>
+          <li>Home — personal portfolio hub: https://henriquemoreira.eu/</li>
           <li>GRYPS mission brief — https://henriquemoreira.eu/work/gryps</li>
           <li>GRYPS methodology — https://gryps.vercel.app/methodology</li>
           <li>Machine-readable guidance — https://henriquemoreira.eu/llms.txt</li>

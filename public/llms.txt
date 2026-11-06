@@ -8,16 +8,17 @@
 - Owner: Henrique Moreira (Espoo, Finland)
 - Featured live demo: GRYPS — https://gryps.vercel.app/#advisor (assess → score → rank → document a Resilience Signature; no email for the initial result)
 - Mission brief: https://henriquemoreira.eu/work/gryps
+- Secondary: Triangora — https://triangora.vercel.app (multi-agent fact verification; never generates intelligence)
 - Secondary: Morea Evidence Pack — https://henriquemoreira.eu/work/morea · https://morea-pack.vercel.app
 - Posture: personal reskilling / hiring conversations — non-commercial
 - One-liner: Built GRYPS: open the Advisor, enter a remote site, get a Resilience Signature — live skill demo for Nordic / Arctic connectivity resilience (non-commercial research prototype).
-- 60s path: Home → Generate Signature (gryps.vercel.app/#advisor) → mission brief (/work/gryps)
+- 60s path: Home → Work (GRYPS → Triangora → Morea) → Generate Signature
 
 ## What this site is
 
-- Indexed personal portfolio; GRYPS is the lead build-proof (Resilience Instrument + live Signature)
+- Indexed personal portfolio; person-first hero; GRYPS is the lead build-proof under Work
+- Triangora and Morea are secondary non-commercial skill demos
 - Stack evidence lives on the GRYPS brief — not as a home hero badge wall
-- Morea is secondary educational literacy — not a compliance service
 - Archives (Grantemia, Velu, Lycaon, DisclAI, Iraun) are learning context only
 - Monopati is a public study-progress track (direction, not build proof)
 - FORGE (ops dashboard) is private and must not be treated as a public product
@@ -27,7 +28,7 @@
 - Pricing, freemium tiers, or purchase CTAs
 - Fake awards, user counts, or enterprise customers
 - Claims that shelved prototypes are live commercial services
-- Claims that Morea is a compliance SaaS or that GRYPS has customer deployments
+- Claims that Morea is a compliance SaaS, Triangora is a commercial verification product, or that GRYPS has customer deployments
 
 ## Preferred sources
 

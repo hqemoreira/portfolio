@@ -6,19 +6,19 @@ henriquemoreira.eu (portfolio)
 
 ## One-liner
 
-Public hub for non-commercial learning prototypes; **GRYPS** is the lead hiring-proof demo — presented as a living Resilience Instrument.
+Personal hiring / reskilling portfolio; **GRYPS** is the lead skill demo; **Triangora** then **Morea** are secondary non-commercial prototypes.
 
 ## Audience
 
-Hiring evaluators and peers scanning skill demos (~60s path via GRYPS Advisor).
+Hiring evaluators and peers scanning skill demos (~60s path: Home → Work → GRYPS Advisor).
 
 ## Job to be done
 
-Reach GRYPS Advisor quickly; understand non-commercial posture; optionally read the GRYPS mission-brief case; browse earlier prototypes as secondary context.
+Understand who Henrique is; reach Work; try GRYPS Signature; optionally browse Triangora / Morea; understand non-commercial posture.
 
 ## Surface types
 
-- Marketing / landing: yes (Persuade + Experience on hero)
+- Marketing / landing: yes (Persuade — person-first hero)
 - Case / Read: `/work/gryps`, `/work/morea`
 - App screens: none (links out to prototypes)
 
@@ -26,8 +26,9 @@ Reach GRYPS Advisor quickly; understand non-commercial posture; optionally read 
 
 - Stack: Vite + React 19 + React Router; inline styles (+ minimal global CSS)
 - FORGE: list as private only — no public login
-- CTAs: **Open prototype** / **Generate a Resilience Signature** only
-- Commercial status: non-commercial / reskilling
+- Triangora: live Vercel link only; GitHub stays private while under development
+- CTAs: **Open prototype** / **Generate a Resilience Signature** (GRYPS Work card only — not hero primary)
+- Commercial status: non-commercial / reskilling (Finnish unemployment fund until further notice)
 
 ## Honesty
 
@@ -35,12 +36,13 @@ No SaaS, pricing, waitlists, or “production customer” claims. Seed/demo numb
 
 ## Success look
 
-First viewport: brand monument + living Signature instrument + Generate Signature CTA. Archives as quiet telemetry. Dark theater + Arctic-day light. Mission-brief case at `/work/gryps`.
+First viewport: **brand + transition + View work / contact** — no Signature instrument in the hero. Work order: GRYPS → Triangora → Morea → archives. Dark theater + Arctic-day light.
 
 ## Maintain (do not regress)
 
-- **Lead with the system** — GRYPS Signature first; never a stack badge wall on the home hero.
-- **Stack as case evidence** — Next / Neon / MapLibre / Mistral belong on `/work/gryps` (and in GRYPS itself). Grow stack only by shipping into GRYPS / Morea / this hub, then add one honest line on the brief.
+- **Person-first hero** — portfolio identity; proof lives under Work.
+- **Lead with the system under Work** — GRYPS first; never a stack badge wall on the home hero.
+- **Stack as case evidence** — on `/work/gryps` (and in GRYPS itself). Grow stack only by shipping into prototypes, then one honest line on the brief.
 - **Stamps secondary** — SAP / Power BI / CRM / BW stay in the dossier, not the headline.
-- **60s path** — Home → Generate Signature → `/work/gryps`. Shared copy in `src/copy.js` (Story / About / Contact).
+- **60s path** — Home → Work → try GRYPS Signature. Shared copy in `src/copy.js`.
 - **Hub footer stack** — only technologies this repo uses (Vite · React · Router · Vercel).
