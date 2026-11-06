@@ -27,7 +27,7 @@ export const TRANSITION_ARC = [
 /** 60-second evaluator path — portfolio first, then try GRYPS under Work */
 export const HIRING_PATH_STEPS = [
   { n: '1', label: 'Home', detail: 'Brand + who I am — personal portfolio for hiring / reskilling' },
-  { n: '2', label: 'Work', detail: 'Selected prototypes: GRYPS → Morea → also built' },
+  { n: '2', label: 'Work', detail: 'Selected prototypes: GRYPS → Triangora → Morea' },
   { n: '3', label: 'Try GRYPS Signature', detail: 'gryps.vercel.app/#advisor — no account for the initial result · brief at /work/gryps' },
 ]
 

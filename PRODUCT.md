@@ -6,7 +6,7 @@ henriquemoreira.eu (portfolio)
 
 ## One-liner
 
-Personal hiring / reskilling portfolio; **GRYPS** is the lead skill demo; **Morea** is the second featured case; **Triangora** and archives sit in “also built.”
+Personal hiring / reskilling portfolio; **GRYPS** is the lead skill demo; then **Triangora**, then **Morea**; archives and FORGE sit in “also built.”
 
 ## Audience
 
@@ -14,7 +14,7 @@ Hiring evaluators and peers scanning skill demos (~60s path: Home → Why me →
 
 ## Job to be done
 
-Understand who Henrique is and the commercial → AI arc; try GRYPS Signature; skim Morea; download CV / LinkedIn; understand non-commercial posture.
+Understand who Henrique is and the commercial → AI arc; try GRYPS Signature; skim Triangora / Morea; download CV / LinkedIn; understand non-commercial posture.
 
 ## Surface types
 
@@ -36,7 +36,7 @@ No SaaS, pricing, waitlists, or “production customer” claims. Seed/demo numb
 
 ## Success look
 
-First viewport: **brand monument + value subline + See GRYPS / Get in touch** — quiet non-commercial note. Then Why me → Work (Monopati trust → GRYPS → Morea → also built) → Contact (CV + LinkedIn).
+First viewport: **brand monument + value subline + See GRYPS / Get in touch** — quiet non-commercial note. Then Why me → Work (Monopati trust → GRYPS → Triangora → Morea → also built) → Contact (CV + LinkedIn).
 
 ## Maintain (do not regress)
 

@@ -703,7 +703,7 @@ function Work({ isLight }) {
             marginBottom: '20px',
           }}
         >
-          Featured builds — then what else I shipped while learning.
+          Non-commercial prototypes — then quieter archives.
         </h2>
         <div
           style={{
@@ -752,7 +752,7 @@ function Work({ isLight }) {
           }}
         >
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: phone ? '0.16em' : '0.28em', color: c.ice, textTransform: 'uppercase', marginBottom: '12px' }}>
-            01 · Lead hiring proof · Model v0.4 · Non-commercial
+            01 · Lead hiring proof · Non-commercial · Model v0.4
           </div>
           <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '36px' : 'clamp(34px, 4.5vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: c.ink, letterSpacing: '-0.03em', marginBottom: '10px' }}>
             GRYPS
@@ -812,11 +812,59 @@ function Work({ isLight }) {
         </div>
       </RevealWrapper>
 
-      {/* Morea featured */}
+      {/* Triangora featured */}
       <RevealWrapper delay={120}>
         <div
           style={{
             marginTop: '40px',
+            background: c.panel,
+            border: `1px solid ${c.border}`,
+            borderLeft: `4px solid ${c.teal}`,
+            borderRadius: '2px',
+            padding: phone ? '20px 16px' : '28px 32px',
+            textAlign: 'left',
+            minWidth: 0,
+          }}
+        >
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.teal, textTransform: 'uppercase', marginBottom: '10px' }}>
+            02 · Non-commercial · Multi-agent verification
+          </div>
+          <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '30px' : '36px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '10px' }}>
+            Triangora
+          </div>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '16px' }}>
+            {TRIANGORA_BLURB}
+          </p>
+          <div style={{ ...figCap }}>
+            <CaseShot
+              src="/work/triangora-verdict.png"
+              alt="Triangora verification diagram — claim, independent source families, verdict"
+              caption="Never generates intelligence · verifies what you already have"
+              border={c.border}
+            />
+          </div>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
+            <strong style={{ color: c.ink }}>Problem:</strong> an informed-looking report can still rest on repetition, omission, or contradiction — URL count is not evidence count.
+          </p>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
+            <strong style={{ color: c.ink }}>Built:</strong> submit existing claims → extract → check source families → adversarial review → verdict or honest abstention.
+          </p>
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '18px' }}>
+            <strong style={{ color: c.ink }}>Trade-off:</strong> agent agreement is never treated as proof — only independent source families count; abstention is a correct outcome when evidence is thin.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: phone ? 'column' : 'row' }}>
+            <CtaGhost href={TRIANGORA_URL} color={c.teal} block={phone}>
+              Open prototype ↗
+            </CtaGhost>
+          </div>
+        </div>
+      </RevealWrapper>
+
+      {/* Morea featured */}
+      <RevealWrapper delay={140}>
+        <div
+          style={{
+            marginTop: '24px',
             background: c.panel,
             border: `1px solid ${c.border}`,
             borderLeft: `4px solid ${c.amber}`,
@@ -827,7 +875,7 @@ function Work({ isLight }) {
           }}
         >
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.amber, textTransform: 'uppercase', marginBottom: '10px' }}>
-            02 · Featured · Educational literacy
+            03 · Non-commercial · Educational literacy
           </div>
           <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '30px' : '36px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '10px' }}>
             Morea
@@ -869,38 +917,14 @@ function Work({ isLight }) {
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.28em', color: c.muted, textTransform: 'uppercase', marginBottom: '16px' }}>
             Also built
           </div>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
-              gap: '12px',
-              marginBottom: '16px',
-            }}
-          >
-            <div style={{ border: `1px solid ${c.border}`, borderLeft: `3px solid ${c.teal}`, padding: '16px', minWidth: 0 }}>
-              <div style={{ fontFamily: "'Fraunces', serif", fontSize: '24px', fontStyle: 'italic', color: c.ink, marginBottom: 8 }}>Triangora</div>
-              <div style={{ ...figCap, marginBottom: 10 }}>
-                <CaseShot
-                  src="/work/triangora-verdict.png"
-                  alt="Triangora verification diagram — claim, independent source families, verdict"
-                  caption="Never generates intelligence · verifies what you already have"
-                  border={c.border}
-                />
-              </div>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.6, marginBottom: 12 }}>{TRIANGORA_BLURB}</p>
-              <CtaGhost href={TRIANGORA_URL} color={c.teal} block={phone}>
-                Open prototype ↗
-              </CtaGhost>
+          <div style={{ border: `1px solid ${c.border}`, padding: '16px', minWidth: 0, marginBottom: '16px' }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.muted, textTransform: 'uppercase', marginBottom: 8 }}>
+              Internal · Private
             </div>
-            <div style={{ border: `1px solid ${c.border}`, padding: '16px', minWidth: 0 }}>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.muted, textTransform: 'uppercase', marginBottom: 8 }}>
-                Internal · Private
-              </div>
-              <div style={{ fontFamily: "'Fraunces', serif", fontSize: '24px', fontStyle: 'italic', color: c.ink, marginBottom: 8 }}>FORGE</div>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.6, margin: 0 }}>
-                Personal projects dashboard — private; no public login.
-              </p>
-            </div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontSize: '24px', fontStyle: 'italic', color: c.ink, marginBottom: 8 }}>FORGE</div>
+            <p style={{ fontFamily: "'Lora', serif", fontSize: '13px', color: c.body, lineHeight: 1.6, margin: 0 }}>
+              Personal projects dashboard — private; no public login.
+            </p>
           </div>
 
           <button
@@ -1133,7 +1157,7 @@ export default function Portfolio({ theme = 'dark' }) {
           email: 'hqe.moreira@gmail.com',
           jobTitle: 'AI Product Builder',
           description:
-            'Espoo-based builder: eighteen years in European B2B operations, now shipping non-commercial AI skill demos. Lead proof: GRYPS Resilience Signature. Featured: Morea (EU AI Act literacy). Also: Triangora. CV and LinkedIn on site.',
+            'Espoo-based builder: eighteen years in European B2B operations, now shipping non-commercial AI skill demos. Lead proof: GRYPS Resilience Signature. Secondary: Triangora (fact verification), then Morea (EU AI Act literacy). CV and LinkedIn on site.',
           address: { '@type': 'PostalAddress', addressLocality: 'Espoo', addressCountry: 'FI' },
           sameAs: ['https://www.linkedin.com/in/hqemoreira', 'https://github.com/hqemoreira'],
           knowsAbout: ['Artificial Intelligence', 'Systems Thinking', 'Software Development', 'EU AI Act', 'B2B Sales', 'International Business'],
@@ -1147,7 +1171,7 @@ export default function Portfolio({ theme = 'dark' }) {
               name: 'What is this site?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'A personal hiring portfolio for Henrique Moreira (Espoo, Finland). Lead skill demo is GRYPS; Morea and Triangora are secondary. Factual posture: https://henriquemoreira.eu/about',
+                text: 'A personal hiring portfolio for Henrique Moreira (Espoo, Finland). Lead skill demo is GRYPS; then Triangora and Morea as secondary non-commercial prototypes. Factual posture: https://henriquemoreira.eu/about',
               },
             },
             {

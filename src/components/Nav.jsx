@@ -132,7 +132,7 @@ export default function Nav({ theme, onToggleTheme }) {
           onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
           onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.95 }}
         >
-          {isLight ? (phone ? 'Dark' : '◑ Dark') : (phone ? 'Day' : '◑ Light')}
+          {isLight ? '◑ Dark' : '◑ Light'}
         </button>
       </div>
     </nav>

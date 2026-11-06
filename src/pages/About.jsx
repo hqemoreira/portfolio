@@ -62,13 +62,13 @@ export default function About({ theme = 'dark' }) {
             https://henriquemoreira.eu/work/gryps — methodology on the project site.
           </li>
           <li>
-            <strong>Morea</strong> — featured educational Article 4 Evidence Pack walkthrough (not a compliance
-            service). Brief: https://henriquemoreira.eu/work/morea
-          </li>
-          <li>
-            <strong>Triangora</strong> — multi-agent fact-verification research prototype. Verifies
+            <strong>Triangora</strong> — secondary multi-agent fact-verification research prototype. Verifies
             existing claims via evidence triangulation; never generates intelligence. Not a commercial
             verification SaaS. Live: https://triangora.vercel.app (GitHub remains private while under development).
+          </li>
+          <li>
+            <strong>Morea</strong> — educational Article 4 Evidence Pack walkthrough (not a compliance
+            service). Brief: https://henriquemoreira.eu/work/morea
           </li>
           <li>
             <strong>Earlier prototypes</strong> — Grantemia, Velu, Lycaon, DisclAI, and Iraun appear as quieter

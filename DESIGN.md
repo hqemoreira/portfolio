@@ -68,7 +68,7 @@ Hero field = **Lycaon Pictus coat mottling** (`useConstellation`): irregular gol
 
 Hero budget: brand (amber bloom on MOREIRA), one value subline, See GRYPS + Get in touch, quiet ask + non-commercial small print. No cards, no Signature panel in the first viewport.
 
-Home order: Hero → Why me → Work (Monopati trust → GRYPS featured → Morea featured → also built) → Contact (Download CV + LinkedIn).
+Home order: Hero → Why me → Work (Monopati trust → GRYPS → Triangora → Morea → also built) → Contact (Download CV + LinkedIn).
 
 ## Motion
 

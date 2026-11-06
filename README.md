@@ -10,7 +10,7 @@ Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed **hirin
 
 - Person-first hero — brand + value subline + See GRYPS / Get in touch
 - Why me — commercial judgment behind the build
-- Work: Monopati trust → GRYPS (featured + screenshots) → Morea → also built (Triangora, archives, FORGE)
+- Work: Monopati trust → GRYPS → Triangora → Morea → also built (archives, FORGE)
 - Mission briefs: `/work/gryps`, `/work/morea`
 - Contact: Download CV + LinkedIn; email secondary
 - Dark theater + Arctic-day light theme (persisted preference)
