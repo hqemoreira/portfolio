@@ -23,7 +23,7 @@
 - **2026-11-06:** Portfolio-first hero (no Signature in first viewport); Work order GRYPS → Triangora → Morea; Triangora live link only (GitHub private); HIRING_PROOF secondary updated.
 - **2026-11-05 (maintain polish):** Locked hiring one-liner + 60s path in `src/copy.js`; Story/About/Contact synced; PRODUCT maintain rules (no stack wall; stack on case only); light-theme + phone theme-toggle polish.
 - **2026-11-05:** Resilience Instrument redesign — hero brand + Signature instrument; constellation field; `/work/gryps` + `/work/morea` mission briefs; archives accordion; Arctic-day light tokens; theme persistence (`localStorage`); nav Work/About/Contact; then phone/tablet responsive pass.
-- **2026-11-03 (Forge s26 / portfolio-s15):** Public copy Litrix → **Morea**; earlier-prototypes hierarchy aligned with Forge registry. Hub stays skill-demo / no storefront.
+- **2026-11-03 (Forge s26 / portfolio-s15):** Public copy uses **Morea**; earlier-prototypes hierarchy aligned with Forge registry. Hub stays skill-demo / no storefront.
 
 ### Changelog — 2026-10
 
