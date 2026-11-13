@@ -3,18 +3,35 @@ import { Link } from 'react-router-dom'
 import { useBreakpoint } from '../hooks/useBreakpoint'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import {
+  ABOUT_APPROACH,
+  ABOUT_CONTRIBUTE,
+  ABOUT_FOCUS,
+  ABOUT_HEADLINE,
+  ABOUT_PARAS,
+  CAPABILITIES_DETAIL,
+  CAPABILITIES_ESTABLISHED,
+  CAPABILITIES_EVOLVING,
+  CAPABILITIES_HEADLINE,
+  CAPABILITIES_INTRO,
+  CONTACT_BODY,
+  CONTACT_HEADLINE,
   CV_PATH,
   EMAIL,
   GITHUB_URL,
+  GRYPS_DEMONSTRATES,
+  GRYPS_PRIMARY_CTA,
   HERO_ASK,
+  HERO_IDENTITY_PRIMARY,
+  HERO_IDENTITY_SECONDARY,
+  HERO_LOCATION,
   HERO_SUBLINE,
+  HERO_SUPPORT,
   HIRING_ONE_LINER,
   LINKEDIN_URL,
   MONOPATI_TRUST,
   NONCOMMERCIAL_LINE,
-  ROLE_FOCUS,
+  PROJECT_CONTRIBUTIONS,
   TRIANGORA_BLURB,
-  WHY_ME,
 } from '../copy'
 import { GRYPS_ADVISOR, GRYPS_METHOD, MOREA_URL, TRIANGORA_URL, t } from '../theme'
 
@@ -453,14 +470,29 @@ function Hero({ isLight }) {
           style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: phone ? '8px' : '9px',
-            letterSpacing: phone ? '0.16em' : '0.28em',
+            letterSpacing: phone ? '0.12em' : '0.2em',
             textTransform: 'uppercase',
             color: c.amber,
-            marginBottom: phone ? '14px' : '20px',
+            marginBottom: phone ? '10px' : '14px',
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) both',
+            lineHeight: 1.6,
           }}
         >
-          Espoo · Finland
+          {HERO_IDENTITY_PRIMARY}
+        </div>
+        <div
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: phone ? '8px' : '9px',
+            letterSpacing: phone ? '0.1em' : '0.16em',
+            textTransform: 'uppercase',
+            color: c.muted,
+            marginBottom: phone ? '14px' : '20px',
+            animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.04s both',
+            lineHeight: 1.6,
+          }}
+        >
+          {HERO_IDENTITY_SECONDARY}
         </div>
         <h1 style={{ margin: 0 }}>
           <span
@@ -509,11 +541,25 @@ function Hero({ isLight }) {
             color: c.body,
             lineHeight: 1.55,
             maxWidth: '540px',
-            margin: '0 auto 24px',
+            margin: '0 auto 12px',
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.2s both',
           }}
         >
           {HERO_SUBLINE}
+        </p>
+        <p
+          style={{
+            fontFamily: "'Lora', serif",
+            fontSize: phone ? '14px' : '15px',
+            color: c.body,
+            lineHeight: 1.65,
+            maxWidth: '520px',
+            margin: '0 auto 22px',
+            opacity: 0.92,
+            animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.24s both',
+          }}
+        >
+          {HERO_SUPPORT}
         </p>
         <div
           style={{
@@ -527,7 +573,7 @@ function Hero({ isLight }) {
           }}
         >
           <CtaPrimary href={GRYPS_ADVISOR} ice={false} block={phone}>
-            See GRYPS in action
+            {GRYPS_PRIMARY_CTA}
           </CtaPrimary>
           <CtaGhost href="#contact" color={c.amber} block={phone}>
             Get in touch
@@ -535,12 +581,28 @@ function Hero({ isLight }) {
         </div>
         <div
           style={{
-            marginTop: phone ? '16px' : '20px',
+            marginTop: phone ? '14px' : '18px',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: phone ? '9px' : '10px',
+            letterSpacing: '0.06em',
+            color: c.muted,
+            lineHeight: 1.5,
+            animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.34s both',
+          }}
+        >
+          {HERO_LOCATION}
+        </div>
+        <div
+          style={{
+            marginTop: phone ? '12px' : '14px',
             fontFamily: "'Lora', serif",
             fontSize: phone ? '13px' : '14px',
             fontStyle: 'italic',
             color: c.body,
             lineHeight: 1.5,
+            maxWidth: '520px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.36s both',
           }}
         >
@@ -592,14 +654,47 @@ function Hero({ isLight }) {
   )
 }
 
-function WhyMe({ isLight }) {
+function ContributionBlock({ contribution, ink, body }) {
+  const rows = [
+    ['Conceptualised', contribution.conceptualised],
+    ['Researched', contribution.researched],
+    ['Designed', contribution.designed],
+    ['Implemented', contribution.implemented],
+    ['Status', contribution.experimental],
+  ]
+  return (
+    <div style={{ marginBottom: '14px', maxWidth: '640px' }}>
+      <div
+        style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '9px',
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          color: ink,
+          marginBottom: '8px',
+        }}
+      >
+        My contribution
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        {rows.map(([label, text]) => (
+          <p key={label} style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: body, lineHeight: 1.7, margin: 0 }}>
+            <strong style={{ color: ink }}>{label}:</strong> {text}
+          </p>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function AboutSection({ isLight }) {
   const { phone, narrow } = useBreakpoint()
   const c = t(isLight)
 
   return (
-    <Section id="why-me" isLight={isLight}>
+    <Section id="about" isLight={isLight}>
       <RevealWrapper>
-        <SectionEyebrow color={c.amber}>Why me</SectionEyebrow>
+        <SectionEyebrow color={c.amber}>About</SectionEyebrow>
         <div
           style={{
             display: 'grid',
@@ -654,19 +749,185 @@ function WhyMe({ isLight }) {
                 marginBottom: '18px',
               }}
             >
-              Commercial judgment behind the build.
+              {ABOUT_HEADLINE}
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {WHY_ME.map((para) => (
-                <p key={para.slice(0, 32)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body, margin: 0 }}>
+              {ABOUT_PARAS.map((para) => (
+                <p key={para.slice(0, 40)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body, margin: 0 }}>
                   {para}
                 </p>
               ))}
             </div>
+
+            <div style={{ marginTop: phone ? 28 : 36 }}>
+              <div
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '9px',
+                  letterSpacing: '0.16em',
+                  textTransform: 'uppercase',
+                  color: c.amber,
+                  marginBottom: '14px',
+                }}
+              >
+                How I approach problems
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {ABOUT_APPROACH.map((item) => (
+                  <div key={item.title}>
+                    <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '13px', fontWeight: 700, letterSpacing: '0.04em', color: c.ink, marginBottom: 4 }}>
+                      {item.title}
+                    </div>
+                    <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body, margin: 0 }}>
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ marginTop: phone ? 28 : 36 }}>
+              <div
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '9px',
+                  letterSpacing: '0.16em',
+                  textTransform: 'uppercase',
+                  color: c.amber,
+                  marginBottom: '10px',
+                }}
+              >
+                Where I want to contribute
+              </div>
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body, margin: '0 0 14px' }}>
+                {ABOUT_CONTRIBUTE}
+              </p>
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.75, color: c.body, margin: 0, fontStyle: 'italic' }}>
+                {ABOUT_FOCUS}
+              </p>
+            </div>
+
             <div style={{ marginTop: 18, fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.muted, letterSpacing: '0.06em' }}>
               Prior ops stamps · SAP · Power BI · CRM · BW — evidence, not the headline
             </div>
           </div>
+        </div>
+      </RevealWrapper>
+    </Section>
+  )
+}
+
+function Capabilities({ isLight }) {
+  const { phone, tablet } = useBreakpoint()
+  const c = t(isLight)
+  const cols = phone ? '1fr' : tablet ? '1fr 1fr' : '1fr 1fr 1fr 1fr'
+
+  return (
+    <Section id="capabilities" isLight={isLight}>
+      <RevealWrapper>
+        <SectionEyebrow color={c.amber}>Capabilities</SectionEyebrow>
+        <h2
+          style={{
+            fontFamily: "'Fraunces', serif",
+            fontSize: phone ? '28px' : 'clamp(30px, 3.8vw, 44px)',
+            fontWeight: 200,
+            fontStyle: 'italic',
+            color: c.ink,
+            lineHeight: 1.12,
+            letterSpacing: '-0.025em',
+            marginBottom: '12px',
+            textAlign: 'left',
+          }}
+        >
+          {CAPABILITIES_HEADLINE}
+        </h2>
+        <p
+          style={{
+            fontFamily: "'Lora', serif",
+            fontSize: '15px',
+            lineHeight: 1.75,
+            color: c.body,
+            margin: '0 0 28px',
+            maxWidth: '640px',
+            textAlign: 'left',
+          }}
+        >
+          {CAPABILITIES_INTRO}
+        </p>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
+            gap: phone ? '20px' : '28px',
+            marginBottom: phone ? '28px' : '36px',
+            textAlign: 'left',
+          }}
+        >
+          {[CAPABILITIES_ESTABLISHED, CAPABILITIES_EVOLVING].map((band) => (
+            <div key={band.label}>
+              <div
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '9px',
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: c.amber,
+                  marginBottom: '12px',
+                }}
+              >
+                {band.label}
+              </div>
+              <ul style={{ margin: 0, paddingLeft: 18, fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.75, color: c.body }}>
+                {band.items.map((item) => (
+                  <li key={item} style={{ marginBottom: 4 }}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: cols,
+            gap: phone ? '22px' : '24px',
+            textAlign: 'left',
+          }}
+        >
+          {CAPABILITIES_DETAIL.map((group) => (
+            <div key={group.title}>
+              <div
+                style={{
+                  fontFamily: "'Syne', sans-serif",
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  letterSpacing: '0.06em',
+                  color: c.ink,
+                  marginBottom: 6,
+                }}
+              >
+                {group.title}
+              </div>
+              <div
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '8px',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: c.muted,
+                  marginBottom: 10,
+                }}
+              >
+                {group.band === 'established' ? 'Established' : group.band === 'evolving' ? 'Evolving' : 'Approach'}
+              </div>
+              <ul style={{ margin: 0, paddingLeft: 16, fontFamily: "'Lora', serif", fontSize: '13px', lineHeight: 1.7, color: c.body }}>
+                {group.items.map((item) => (
+                  <li key={item} style={{ marginBottom: 3 }}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </RevealWrapper>
     </Section>
@@ -703,7 +964,7 @@ function Work({ isLight }) {
             marginBottom: '20px',
           }}
         >
-          Non-commercial prototypes — then quieter archives.
+          What I demonstrate — non-commercial prototypes, then quieter archives.
         </h2>
         <div
           style={{
@@ -776,9 +1037,29 @@ function Work({ isLight }) {
           <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
             <strong style={{ color: c.ink }}>Built:</strong> assess → score → rank → document, ending in the Signature. Deterministic Model v0.4 owns the number; optional AI prose never changes it.
           </p>
+          <ContributionBlock contribution={PROJECT_CONTRIBUTIONS.gryps} ink={c.ink} body={c.body} />
           <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
-            <strong style={{ color: c.ink }}>Trade-off:</strong> I kept the score deterministic and gated email behind the longer report only. Trust over theater — hiring managers skim one object, not a chat transcript.
+            <strong style={{ color: c.ink }}>Key design decision:</strong> I kept the score deterministic and gated email behind the longer report only. Trust over theater — hiring managers skim one object, not a chat transcript.
           </p>
+          <div style={{ marginBottom: '14px', maxWidth: '640px' }}>
+            <div
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '9px',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: c.ice,
+                marginBottom: '8px',
+              }}
+            >
+              What this demonstrates
+            </div>
+            <ul style={{ margin: 0, paddingLeft: 18, fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body }}>
+              {GRYPS_DEMONSTRATES.map((item) => (
+                <li key={item} style={{ marginBottom: 3 }}>{item}</li>
+              ))}
+            </ul>
+          </div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.muted, marginBottom: '18px', letterSpacing: '0.06em' }}>
             Stack · Next.js · Neon (EU) · MapLibre · optional Mistral · Vercel
           </div>
@@ -849,8 +1130,9 @@ function Work({ isLight }) {
           <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
             <strong style={{ color: c.ink }}>Built:</strong> submit existing claims → extract → check source families → adversarial review → verdict or honest abstention.
           </p>
+          <ContributionBlock contribution={PROJECT_CONTRIBUTIONS.triangora} ink={c.ink} body={c.body} />
           <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '18px' }}>
-            <strong style={{ color: c.ink }}>Trade-off:</strong> agent agreement is never treated as proof — only independent source families count; abstention is a correct outcome when evidence is thin.
+            <strong style={{ color: c.ink }}>Key design decision:</strong> agent agreement is never treated as proof — only independent source families count; abstention is a correct outcome when evidence is thin.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: phone ? 'column' : 'row' }}>
             <CtaGhost href={TRIANGORA_URL} color={c.teal} block={phone}>
@@ -897,8 +1179,9 @@ function Work({ isLight }) {
           <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
             <strong style={{ color: c.ink }}>Built:</strong> inventory → exposure → literacy → quiz → optional policy → export &amp; verify locally.
           </p>
+          <ContributionBlock contribution={PROJECT_CONTRIBUTIONS.morea} ink={c.ink} body={c.body} />
           <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '18px' }}>
-            <strong style={{ color: c.ink }}>Trade-off:</strong> kept everything browser-local until export — privacy by default over accounts and cloud sync.
+            <strong style={{ color: c.ink }}>Key design decision:</strong> kept everything browser-local until export — privacy by default over accounts and cloud sync.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: phone ? 'column' : 'row' }}>
             <CtaGhost href={MOREA_URL} color={c.amber} block={phone}>
@@ -1036,23 +1319,35 @@ function Contact({ isLight }) {
             marginRight: 'auto',
           }}
         >
-          {ROLE_FOCUS}
+          {CONTACT_HEADLINE}
         </h2>
         <p
           style={{
             fontFamily: "'Lora', serif",
             fontSize: phone ? '14px' : '15px',
+            color: c.body,
+            lineHeight: 1.7,
+            maxWidth: '580px',
+            margin: '0 auto 16px',
+          }}
+        >
+          {CONTACT_BODY}
+        </p>
+        <p
+          style={{
+            fontFamily: "'Lora', serif",
+            fontSize: phone ? '13px' : '14px',
             fontStyle: 'italic',
             color: c.body,
             lineHeight: 1.65,
             maxWidth: '560px',
-            margin: '0 auto 28px',
+            margin: '0 auto 12px',
           }}
         >
           {HIRING_ONE_LINER}
         </p>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.quiet, letterSpacing: '0.08em', marginBottom: '32px' }}>
-          60s path · Home → Work → try GRYPS Signature
+          Based in Espoo, Finland · Home → About → Work → explore the GRYPS prototype
         </div>
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', flexDirection: phone ? 'column' : 'row', alignItems: phone ? 'stretch' : 'center', marginBottom: '16px', maxWidth: phone ? 360 : undefined, marginLeft: 'auto', marginRight: 'auto' }}>
           <a href={CV_PATH} download="Henrique_Moreira_CV.pdf" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
@@ -1155,12 +1450,12 @@ export default function Portfolio({ theme = 'dark' }) {
           name: 'Henrique Moreira',
           url: 'https://henriquemoreira.eu',
           email: 'hqe.moreira@gmail.com',
-          jobTitle: 'AI Product Builder',
+          jobTitle: 'International B2B & Industrial Business Professional',
           description:
-            'Espoo-based builder: eighteen years in European B2B operations, now shipping non-commercial AI skill demos. Lead proof: GRYPS Resilience Signature. Secondary: Triangora (fact verification), then Morea (EU AI Act literacy). CV and LinkedIn on site.',
+            'Espoo-based international B2B and industrial business professional with 18 years of experience, evolving that expertise through applied AI, digital transformation and systems thinking. Lead non-commercial skill demo: GRYPS Resilience Signature. Secondary: Triangora (fact verification), then Morea (EU AI Act literacy).',
           address: { '@type': 'PostalAddress', addressLocality: 'Espoo', addressCountry: 'FI' },
           sameAs: ['https://www.linkedin.com/in/hqemoreira', 'https://github.com/hqemoreira'],
-          knowsAbout: ['Artificial Intelligence', 'Systems Thinking', 'Software Development', 'EU AI Act', 'B2B Sales', 'International Business'],
+          knowsAbout: ['International B2B', 'Industrial Business', 'Applied AI', 'Digital Transformation', 'Systems Thinking', 'EU AI Act', 'Commercial Operations'],
         },
         {
           '@type': 'FAQPage',
@@ -1171,7 +1466,7 @@ export default function Portfolio({ theme = 'dark' }) {
               name: 'What is this site?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'A personal hiring portfolio for Henrique Moreira (Espoo, Finland). Lead skill demo is GRYPS; then Triangora and Morea as secondary non-commercial prototypes. Factual posture: https://henriquemoreira.eu/about',
+                text: 'A personal hiring portfolio for Henrique Moreira (Espoo, Finland): international industrial B2B experience evolving through applied AI. Lead skill demo is GRYPS; then Triangora and Morea as secondary non-commercial prototypes. Factual posture: https://henriquemoreira.eu/about',
               },
             },
             {
@@ -1214,7 +1509,8 @@ export default function Portfolio({ theme = 'dark' }) {
     <div style={{ background: c.bg, minHeight: '100vh', overflowX: 'hidden', transition: 'background 0.4s ease' }}>
       <BgLayers isLight={isLight} />
       <Hero isLight={isLight} />
-      <WhyMe isLight={isLight} />
+      <AboutSection isLight={isLight} />
+      <Capabilities isLight={isLight} />
       <Work isLight={isLight} />
       <Contact isLight={isLight} />
     </div>

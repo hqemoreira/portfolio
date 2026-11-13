@@ -34,7 +34,7 @@ spacing:
 
 ## Overview
 
-**Personal portfolio for hiring / reskilling.** Brand name is the hero monument; value subline + dual CTAs; Why me; then Work with live case screenshots. Dark theater + Arctic-day light.
+**Personal portfolio for hiring / reskilling.** Brand name is the hero monument; B2B identity + punchline + dual CTAs; About → Capabilities; then Work with live case screenshots. Dark theater + Arctic-day light.
 
 Competitor test: *On this page, Henrique Moreira’s portfolio reads as a person first, then tryable skill demos with evidence.*
 
@@ -66,9 +66,9 @@ Hero field = **Lycaon Pictus coat mottling** (`useConstellation`): irregular gol
 
 ## Layout
 
-Hero budget: brand (amber bloom on MOREIRA), one value subline, See GRYPS + Get in touch, quiet ask + non-commercial small print. No cards, no Signature panel in the first viewport.
+Hero budget: brand (amber bloom on MOREIRA), B2B identity lines, punchline + one support sentence, Explore the GRYPS prototype + Get in touch, quiet ask + non-commercial small print. No cards, no Signature panel in the first viewport.
 
-Home order: Hero → Why me → Work (Monopati trust → GRYPS → Triangora → Morea → also built) → Contact (Download CV + LinkedIn).
+Home order: Hero → About → Capabilities → Work (Monopati trust → GRYPS → Triangora → Morea → also built) → Contact (Download CV + LinkedIn).
 
 ## Motion
 

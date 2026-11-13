@@ -5,19 +5,21 @@
 ## Cite
 
 - Site: https://henriquemoreira.eu
-- Owner: Henrique Moreira (Espoo, Finland)
+- Owner: Henrique Moreira (Espoo, Finland) — International B2B & Industrial Business Professional; Applied AI · Digital Transformation · Systems Thinking
+- Positioning: 18 years of international B2B experience, evolving that expertise through AI and intelligent systems (evolution, not reinvention)
 - Featured live demo: GRYPS — https://gryps.vercel.app/#advisor (assess → score → rank → document a Resilience Signature; no email for the initial result)
 - Mission brief: https://henriquemoreira.eu/work/gryps
 - Secondary: Triangora — https://triangora.vercel.app (multi-agent fact verification; never generates intelligence)
 - Secondary: Morea Evidence Pack — https://henriquemoreira.eu/work/morea · https://morea-pack.vercel.app
 - Posture: personal reskilling / hiring conversations — non-commercial
 - One-liner: Built GRYPS: open the Advisor, enter a remote site, get a Resilience Signature — live skill demo for Nordic / Arctic connectivity resilience (non-commercial research prototype).
-- 60s path: Home → Why me → Work (GRYPS → Triangora → Morea) → Generate Signature
+- 60s path: Home → About → Capabilities → Work (GRYPS → Triangora → Morea) → Explore the GRYPS prototype
 - CV: https://henriquemoreira.eu/Henrique_Moreira_CV.pdf
 
 ## What this site is
 
-- Indexed personal portfolio; person-first hero; GRYPS is the lead build-proof under Work
+- Indexed personal portfolio; person-first hero; international industrial B2B foundation with evolving applied AI capabilities
+- GRYPS is the lead build-proof under Work
 - Triangora then Morea are secondary non-commercial skill demos
 - Stack evidence lives on the GRYPS brief — not as a home hero badge wall
 - Archives (Grantemia, Velu, Lycaon, DisclAI, Iraun) are learning context only

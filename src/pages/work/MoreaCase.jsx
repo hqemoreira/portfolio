@@ -12,7 +12,7 @@ export default function MoreaCase({ theme = 'dark' }) {
   useEffect(() => {
     document.title = 'Morea — Evidence Pack brief · Henrique Moreira'
     return () => {
-      document.title = 'Henrique Moreira — AI Product Builder · Espoo, Finland'
+      document.title = 'Henrique Moreira — Morea · Espoo, Finland'
     }
   }, [])
 

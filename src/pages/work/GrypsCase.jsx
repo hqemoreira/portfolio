@@ -12,7 +12,7 @@ export default function GrypsCase({ theme = 'dark' }) {
   useEffect(() => {
     document.title = 'GRYPS — Resilience Signature mission brief · Henrique Moreira'
     return () => {
-      document.title = 'Henrique Moreira — AI Product Builder · Espoo, Finland'
+      document.title = 'Henrique Moreira — GRYPS · Espoo, Finland'
     }
   }, [])
 
@@ -168,8 +168,11 @@ export default function GrypsCase({ theme = 'dark' }) {
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.ice, textTransform: 'uppercase', marginBottom: 10 }}>
                 What this proves
               </div>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.ink, lineHeight: 1.7, margin: 0 }}>
-                A closed loop under Nordic / Arctic constraints: <strong>assess → score → rank → document</strong>. End-to-end ship of a domain scoring engine — not a slide deck. Seed / synthetic research data where noted; not live RF monitoring or procurement advice.
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.ink, lineHeight: 1.7, margin: '0 0 12px' }}>
+                A closed loop under Nordic / Arctic constraints: <strong>assess → score → rank → document</strong>. End-to-end research prototype of a domain scoring engine — not a slide deck. Seed / synthetic research data where noted; not live RF monitoring or procurement advice.
+              </p>
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.65, margin: 0 }}>
+                Demonstrates: complex problem definition · research and data-source evaluation · decision-support methodology · scoring and prioritisation logic · system and UX design · documented assumptions and limitations.
               </p>
             </div>
 

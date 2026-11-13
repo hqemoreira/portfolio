@@ -97,14 +97,9 @@ export default function Nav({ theme, onToggleTheme }) {
         <NavLink href="/#work" color={c.amber} onClick={scrollHomeSection('work')}>
           Work
         </NavLink>
-        <Link
-          to="/about"
-          style={{ ...linkBase, color: c.amber }}
-          onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.8 }}
-        >
+        <NavLink href="/#about" color={c.amber} onClick={scrollHomeSection('about')}>
           About
-        </Link>
+        </NavLink>
         <NavLink href="/#contact" color={c.amber} onClick={scrollHomeSection('contact')}>
           Contact
         </NavLink>

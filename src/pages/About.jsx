@@ -1,6 +1,15 @@
 import { Link } from 'react-router-dom'
 import { LegalShell, LegalH2, LegalP, LegalUl } from '../components/LegalShell'
-import { CV_PATH, HIRING_ONE_LINER, HIRING_PATH_STEPS, ROLE_FOCUS } from '../copy'
+import {
+  CV_PATH,
+  GRYPS_PRIMARY_CTA,
+  HERO_IDENTITY_PRIMARY,
+  HERO_IDENTITY_SECONDARY,
+  HERO_SUBLINE,
+  HIRING_ONE_LINER,
+  HIRING_PATH_STEPS,
+  ROLE_FOCUS,
+} from '../copy'
 import { GRYPS_ADVISOR, t } from '../theme'
 
 /**
@@ -13,7 +22,27 @@ export default function About({ theme = 'dark' }) {
   const accent = c.amber
 
   return (
-    <LegalShell theme={theme} title="About this site" eyebrow="Posture" lastUpdated="Updated 2026-11-06">
+    <LegalShell theme={theme} title="About this site" eyebrow="Posture" lastUpdated="Updated 2026-11-13">
+      <section>
+        <LegalH2>Professional identity</LegalH2>
+        <LegalP>
+          <strong>{HERO_IDENTITY_PRIMARY}</strong>
+          <br />
+          {HERO_IDENTITY_SECONDARY}
+        </LegalP>
+        <LegalP>
+          <em>{HERO_SUBLINE}</em>
+        </LegalP>
+        <LegalP>
+          International industrial B2B experience is the foundation. Applied AI, digital transformation and
+          systems thinking are evolving capabilities — evolution, not reinvention. Full narrative:{' '}
+          <Link to="/#about" style={{ color: accent }}>
+            About on the home page
+          </Link>
+          .
+        </LegalP>
+      </section>
+
       <LegalP>
         This is the personal portfolio of Henrique Moreira (Espoo, Finland). It is an indexed hub for
         skill demonstration and research prototypes — not a commercial marketplace, SaaS homepage, or
@@ -37,12 +66,20 @@ export default function About({ theme = 'dark' }) {
           ))}
         </ol>
         <p style={{ marginTop: 16, fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', lineHeight: 1.7 }}>
+          <Link to="/#about" style={{ color: accent }}>
+            About
+          </Link>
+          {' · '}
+          <Link to="/#capabilities" style={{ color: accent }}>
+            Capabilities
+          </Link>
+          {' · '}
           <Link to="/#work" style={{ color: accent }}>
             Work
           </Link>
           {' · '}
           <a href={GRYPS_ADVISOR} style={{ color: accent }} rel="nofollow noreferrer">
-            Generate Signature →
+            {GRYPS_PRIMARY_CTA} →
           </a>
           {' · '}
           <Link to="/work/gryps" style={{ color: accent }}>

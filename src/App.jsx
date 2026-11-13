@@ -16,7 +16,8 @@ function HashScroll() {
   const location = useLocation()
   useEffect(() => {
     if (location.hash) {
-      const id = location.hash.slice(1)
+      let id = location.hash.slice(1)
+      if (id === 'why-me') id = 'about'
       requestAnimationFrame(() => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
       })
