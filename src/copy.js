@@ -132,7 +132,9 @@ export const NONCOMMERCIAL_LINE =
 export const CONTACT_HEADLINE = "Let's talk about problems worth solving."
 
 export const CONTACT_BODY =
-  "Interested in opportunities and collaborations connecting international business, industrial operations, applied AI and digital transformation. I bring established business experience and an evolving practical understanding of AI and intelligent systems."
+  'Interested in opportunities and collaborations where business understanding, international experience and applied AI can make a meaningful difference.'
+
+export const MONOPATI_LINK_LABEL = 'View learning progress →'
 
 export const CV_PATH = '/Henrique_Moreira_CV.pdf'
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/hqemoreira'

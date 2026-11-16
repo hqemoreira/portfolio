@@ -24,6 +24,7 @@ import {
   HERO_PORTFOLIO_LINE,
   FOOTER_PORTFOLIO_LINE,
   LINKEDIN_URL,
+  MONOPATI_LINK_LABEL,
   MONOPATI_ONGOING,
   PROJECT_CONTRIBUTIONS,
 } from '../copy'
@@ -666,7 +667,8 @@ function ThemeLine({ themes, color }) {
   )
 }
 
-function ContributionDetails({ contribution, ink, body, quiet }) {
+function ContributionDetails({ contribution, ink, body, quiet, accent }) {
+  const [open, setOpen] = useState(false)
   const rows = [
     ['Conceptualised', contribution.conceptualised],
     ['Researched', contribution.researched],
@@ -678,42 +680,73 @@ function ContributionDetails({ contribution, ink, body, quiet }) {
 
   if (rows.length === 0) return null
 
+  const panelId = 'triangora-contribution-panel'
+
   return (
-    <details style={{ marginTop: 8, marginBottom: 14, maxWidth: 640 }}>
-      <summary
-        style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: '10px',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          color: ink,
-          cursor: 'pointer',
-          padding: '10px 0',
-          minHeight: 44,
-          display: 'list-item',
-          listStylePosition: 'inside',
-        }}
-      >
-        My contribution &amp; design decisions
-      </summary>
-      <div
+    <div style={{ marginTop: 8, marginBottom: 14, maxWidth: 640 }}>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => setOpen((v) => !v)}
         style={{
           display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-          paddingBottom: 12,
-          borderTop: `1px solid ${quiet}44`,
-          paddingTop: 14,
-          marginTop: 4,
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 12,
+          width: '100%',
+          minHeight: 44,
+          padding: '10px 0',
+          background: 'transparent',
+          border: 'none',
+          borderBottom: `1px solid ${quiet}44`,
+          color: ink,
+          cursor: 'pointer',
+          textAlign: 'left',
         }}
       >
-        {rows.map(([label, text]) => (
-          <p key={label} style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: body, lineHeight: 1.7, margin: 0 }}>
-            <strong style={{ color: ink }}>{label}:</strong> {text}
-          </p>
-        ))}
-      </div>
-    </details>
+        <span
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '10px',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+          }}
+        >
+          My contribution &amp; design decisions
+        </span>
+        <span
+          aria-hidden
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '14px',
+            color: accent || ink,
+            flexShrink: 0,
+            lineHeight: 1,
+          }}
+        >
+          {open ? '−' : '+'}
+        </span>
+      </button>
+      {open && (
+        <div
+          id={panelId}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
+            paddingTop: 14,
+            paddingBottom: 4,
+          }}
+        >
+          {rows.map(([label, text]) => (
+            <p key={label} style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: body, lineHeight: 1.7, margin: 0 }}>
+              <strong style={{ color: ink }}>{label}:</strong> {text}
+            </p>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -1032,6 +1065,7 @@ function Work({ isLight }) {
             ink={c.ink}
             body={c.body}
             quiet={c.quiet}
+            accent={c.teal}
           />
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: phone ? 'column' : 'row' }}>
             <CtaGhost href={TRIANGORA_URL} color={c.teal} block={phone}>
@@ -1094,22 +1128,36 @@ function Work({ isLight }) {
             marginTop: '28px',
             textAlign: 'left',
             display: 'flex',
+            flexDirection: phone ? 'column' : 'row',
             flexWrap: 'wrap',
-            gap: '12px',
-            alignItems: 'center',
+            gap: phone ? '8px' : '16px',
+            alignItems: phone ? 'flex-start' : 'center',
             justifyContent: 'space-between',
+            paddingTop: 16,
+            borderTop: `1px solid ${c.divider}`,
           }}
         >
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.muted, letterSpacing: '0.08em' }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.muted, letterSpacing: '0.08em', lineHeight: 1.5 }}>
             {MONOPATI_ONGOING}
           </span>
           <a
             href="https://monopati.vercel.app/progress"
             target="_blank"
             rel="nofollow noreferrer"
-            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.teal, letterSpacing: '0.1em', minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '10px',
+              color: c.teal,
+              letterSpacing: '0.1em',
+              minHeight: 44,
+              display: 'inline-flex',
+              alignItems: 'center',
+              textDecoration: 'underline',
+              textUnderlineOffset: '3px',
+              flexShrink: 0,
+            }}
           >
-            Progress →
+            {MONOPATI_LINK_LABEL}
           </a>
         </div>
       </RevealWrapper>
