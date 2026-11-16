@@ -133,7 +133,8 @@ export const HIRING_PATH_STEPS = [
 
 export const TRIANGORA_BLURB = FEATURED_PROJECTS.triangora.blurb
 
-export const MONOPATI_ONGOING = 'Ongoing development · Monopati study progress'
+export const MONOPATI_ONGOING =
+  'Monopati · 3 OpenAI Academy courses done · Power Platform next'
 
 /** Hero — short portfolio framing (identity over storefront disclaimers). */
 export const HERO_PORTFOLIO_LINE =
@@ -152,7 +153,7 @@ export const CONTACT_HEADLINE = "Let's talk about problems worth solving."
 export const CONTACT_BODY =
   'Interested in opportunities and collaborations where business understanding, international experience and applied AI can make a meaningful difference.'
 
-export const MONOPATI_LINK_LABEL = 'View learning progress →'
+export const MONOPATI_LINK_LABEL = 'View study progress →'
 
 /** GRYPS hiring case — /work/gryps. Homepage stays frozen; depth lives here. */
 export const GRYPS_CASE = {

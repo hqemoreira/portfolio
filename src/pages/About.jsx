@@ -122,7 +122,7 @@ export default function About({ theme = 'dark' }) {
           </li>
           <li>
             <strong>Monopati</strong> — public study progress for a personal AI Solutions + satellite track
-            (direction, not build proof).
+            (OpenAI Academy spine started; direction, not build proof).
           </li>
           <li>
             <strong>FORGE</strong> — a private personal ops dashboard. It is not a public product and
