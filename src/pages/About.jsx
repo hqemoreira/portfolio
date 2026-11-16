@@ -121,8 +121,8 @@ export default function About({ theme = 'dark' }) {
             learning context (noindex on their own hosts), not live commercial services.
           </li>
           <li>
-            <strong>Monopati</strong> — public study progress for a personal AI Solutions + satellite track
-            (OpenAI Academy spine started; direction, not build proof).
+            <strong>Monopati</strong> — my public study progress for AI Solutions + satellite
+            (direction only; GRYPS is the build proof).
           </li>
           <li>
             <strong>FORGE</strong> — a private personal ops dashboard. It is not a public product and

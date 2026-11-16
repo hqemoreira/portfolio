@@ -134,7 +134,7 @@ export const HIRING_PATH_STEPS = [
 export const TRIANGORA_BLURB = FEATURED_PROJECTS.triangora.blurb
 
 export const MONOPATI_ONGOING =
-  'Monopati · 3 OpenAI Academy courses done · Power Platform next'
+  'Monopati · three OpenAI Academy courses done · Power Platform next'
 
 /** Hero — short portfolio framing (identity over storefront disclaimers). */
 export const HERO_PORTFOLIO_LINE =
