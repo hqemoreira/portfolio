@@ -263,7 +263,7 @@ export default function SignatureInstrument({ variant = 'full' }) {
                   letterSpacing: '0.2em',
                 }}
               >
-                BOOT INSTRUMENT
+                ASSESSMENT SNAPSHOT
               </div>
             )}
           </div>

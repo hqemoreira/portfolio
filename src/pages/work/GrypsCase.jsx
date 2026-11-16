@@ -104,7 +104,7 @@ export default function GrypsCase({ theme = 'dark' }) {
         </Link>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: phone ? '0.16em' : '0.32em', color: c.ice, textTransform: 'uppercase', marginBottom: 16 }}>
-          Mission brief · Lead hiring proof
+          Mission brief · Featured case study
         </div>
         <h1
           style={{

@@ -27,6 +27,7 @@ import {
   MONOPATI_LINK_LABEL,
   MONOPATI_ONGOING,
   PROJECT_CONTRIBUTIONS,
+  TRIANGORA_CAPTION,
 } from '../copy'
 import { GRYPS_ADVISOR, GRYPS_METHOD, MOREA_URL, TRIANGORA_URL, t } from '../theme'
 
@@ -667,27 +668,27 @@ function ThemeLine({ themes, color }) {
   )
 }
 
-function ContributionDetails({ contribution, ink, body, quiet, accent }) {
+function ContributionDetails({ contribution, ink, body, quiet, accent, panelId }) {
   const [open, setOpen] = useState(false)
   const rows = [
-    ['Conceptualised', contribution.conceptualised],
-    ['Researched', contribution.researched],
+    ['Problem identified', contribution.problem],
+    ['Why this approach', contribution.approach],
     ['Designed', contribution.designed],
-    ['Implemented', contribution.implemented],
-    ['Status', contribution.experimental],
-    ['Key design decision', contribution.keyDecision],
+    ['Developed', contribution.implemented],
+    ['Decisions that were mine', contribution.decisions || contribution.keyDecision],
+    ['Learned / would improve', contribution.learned],
   ].filter(([, text]) => Boolean(text))
 
   if (rows.length === 0) return null
 
-  const panelId = 'triangora-contribution-panel'
+  const id = panelId || 'contribution-panel'
 
   return (
     <div style={{ marginTop: 8, marginBottom: 14, maxWidth: 640 }}>
       <button
         type="button"
         aria-expanded={open}
-        aria-controls={panelId}
+        aria-controls={id}
         onClick={() => setOpen((v) => !v)}
         style={{
           display: 'flex',
@@ -713,7 +714,7 @@ function ContributionDetails({ contribution, ink, body, quiet, accent }) {
             textTransform: 'uppercase',
           }}
         >
-          My contribution &amp; design decisions
+          What I contributed &amp; design decisions
         </span>
         <span
           aria-hidden
@@ -730,7 +731,7 @@ function ContributionDetails({ contribution, ink, body, quiet, accent }) {
       </button>
       {open && (
         <div
-          id={panelId}
+          id={id}
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -834,7 +835,7 @@ function AboutSection({ isLight }) {
               <strong>{ABOUT_TAG}</strong>
             </p>
             <div style={{ marginTop: 18, fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.muted, letterSpacing: '0.06em' }}>
-              Prior ops stamps · SAP · Power BI · CRM · BW — evidence, not the headline
+              Enterprise systems experience · SAP · Power BI · CRM · BW — evidence, not the headline
             </div>
           </div>
         </div>
@@ -973,7 +974,7 @@ function Work({ isLight }) {
           }}
         >
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: phone ? '0.16em' : '0.28em', color: c.ice, textTransform: 'uppercase', marginBottom: '12px' }}>
-            01 · Lead hiring proof · Model v0.4
+            01 · Featured case study · Model v0.4
           </div>
           <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '36px' : 'clamp(34px, 4.5vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: c.ink, letterSpacing: '-0.03em', marginBottom: '10px' }}>
             GRYPS
@@ -1011,6 +1012,14 @@ function Work({ isLight }) {
               Methodology →
             </a>
           </div>
+          <ContributionDetails
+            contribution={PROJECT_CONTRIBUTIONS.gryps}
+            ink={c.ink}
+            body={c.body}
+            quiet={c.quiet}
+            accent={c.ice}
+            panelId="gryps-contribution-panel"
+          />
         </div>
 
         <Suspense
@@ -1056,7 +1065,7 @@ function Work({ isLight }) {
             <CaseShot
               src="/work/triangora-verdict.png"
               alt="Triangora verification diagram — claim, independent source families, verdict"
-              caption="Never generates intelligence · verifies what you already have"
+              caption={TRIANGORA_CAPTION}
               border={c.border}
             />
           </div>
@@ -1066,6 +1075,7 @@ function Work({ isLight }) {
             body={c.body}
             quiet={c.quiet}
             accent={c.teal}
+            panelId="triangora-contribution-panel"
           />
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: phone ? 'column' : 'row' }}>
             <CtaGhost href={TRIANGORA_URL} color={c.teal} block={phone}>
@@ -1110,6 +1120,14 @@ function Work({ isLight }) {
               border={c.border}
             />
           </div>
+          <ContributionDetails
+            contribution={PROJECT_CONTRIBUTIONS.morea}
+            ink={c.ink}
+            body={c.body}
+            quiet={c.quiet}
+            accent={c.amber}
+            panelId="morea-contribution-panel"
+          />
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: phone ? 'column' : 'row' }}>
             <CtaGhost href={MOREA_URL} color={c.amber} block={phone}>
               Open prototype ↗
@@ -1196,7 +1214,7 @@ function Work({ isLight }) {
             }}
           >
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.28em', textTransform: 'uppercase' }}>
-              Earlier learning prototypes
+              Earlier experiments &amp; prototypes
             </span>
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.amber }}>{archivesOpen ? '−' : '+'}</span>
           </button>
