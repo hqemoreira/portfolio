@@ -38,7 +38,7 @@ No SaaS, pricing, waitlists, or “production customer” claims. Seed/demo numb
 
 First viewport: **brand monument + B2B identity + punchline + Explore the GRYPS prototype / Get in touch** — quiet non-commercial note. Then skim About (2 paras) → Capabilities (4 compact groups) → Selected work (GRYPS → Triangora → Morea) → Ongoing Monopati → also built → Contact.
 
-**Content hierarchy (frozen):** identity and 18-year foundation on Hero/About; developing AI on Capabilities; project purpose on homepage; contribution, methodology, trade-offs on case pages (Triangora via collapsed details). Do not grow the homepage with detail that belongs in briefs.
+**Content hierarchy (frozen homepage):** identity and 18-year foundation on Hero/About; developing AI on Capabilities; project purpose on homepage. **Do not expand homepage projects or structure.** Depth lives on case studies — priority: GRYPS hiring case → Triangora → Morea.
 
 ## Maintain (do not regress)
 

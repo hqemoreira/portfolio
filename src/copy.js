@@ -154,6 +154,80 @@ export const CONTACT_BODY =
 
 export const MONOPATI_LINK_LABEL = 'View learning progress →'
 
+/** GRYPS hiring case — /work/gryps. Homepage stays frozen; depth lives here. */
+export const GRYPS_CASE = {
+  eyebrow: 'Featured case study · Model v0.4',
+  title: 'GRYPS',
+  subline:
+    'Complex business problem → research → methodology → decision-support prototype. A live Resilience Signature for Nordic / Arctic remote connectivity resilience.',
+  proves:
+    'End-to-end judgment under hard constraints: define the problem, evaluate what data can honestly support, design a scoring methodology, ship a closed loop (assess → score → rank → document), and document limitations. Not a slide deck. Not commercial procurement advice.',
+  problem: {
+    label: 'Business problem and context',
+    paras: [
+      'Remote industrial and safety-critical operations in Nordic and Arctic environments often depend on a single connectivity path — typically one LEO or terrestrial link with little structured visibility into what fails when that path degrades.',
+      'Operators and planners still need a fast, auditable resilience read: what is the site’s exposure, what are the ranked backups, and what assumptions sit under the number. Today that answer often arrives as a consultancy narrative, a vendor deck, or informal tribal knowledge — late, opaque, and hard to compare across sites.',
+    ],
+  },
+  why: {
+    label: 'Why the problem matters',
+    paras: [
+      'Connectivity failure at a remote site is not only a technical inconvenience. It affects autonomy, safety posture, operational continuity and the commercial cost of downtime.',
+      'False precision is as dangerous as no analysis. A score that looks authoritative but rests on live RF pretence, hidden assumptions or LLM-generated grades misleads decision-makers. The business need is literacy and structured comparison — not a fake NOC.',
+    ],
+  },
+  research: {
+    label: 'Research and approach',
+    paras: [
+      'I started from the operational question, not from a model catalogue: what would a decision-maker need in one minute to reason about resilience without waiting for a full study?',
+      'That led to a closed loop — assess site profile → score with a deterministic Model v0.4 → rank connectivity options → document a Resilience Signature — before stack choices. Optional AI prose may explain; it must never move the grade.',
+      'Research constraints I accepted up front: no live RF feeds; honest labelling of seed / illustrative data on the demo path; methodology and limitations published alongside the prototype.',
+    ],
+  },
+  role: {
+    label: 'My role and decisions',
+    paras: [
+      'Solo product framing, methodology, scoring logic, Advisor UX and end-to-end ship of the research prototype.',
+      'Decisions that were mine: keep Model v0.4 deterministic; refuse to let optional LLM output rewrite the Signature number; gate email behind the longer report after the initial result; treat mission priorities as re-ranking options, not rewriting the score; document assumptions instead of implying validated procurement advice.',
+    ],
+  },
+  architecture: {
+    label: 'Architecture and technology',
+    paras: [
+      'The system is the loop. Stack is evidence, not the headline: Next.js application, Neon (EU) for persistence where needed, MapLibre for geographic context, optional Mistral for prose that cannot alter the score, deployed on Vercel.',
+      'Logic stays interchangeable — another model or map library should not redefine what a Signature means. The hiring proof is the closed decision-support object, not a wall of vendor logos.',
+    ],
+    stack: 'Next.js · Neon (EU) · MapLibre · optional Mistral · Vercel',
+  },
+  demonstration: {
+    label: 'Demonstration and outputs',
+    paras: [
+      'Open the Advisor, set latitude / longitude and an operational profile (providers, autonomy, criticality), generate a Signature in about a minute — no account or email for the initial result.',
+      'Output: Resilience Signature with score, grade, risks and ranked options. Methodology lives on the project site. The portfolio’s Path A freeze (e.g. Score 47 · Grade D) is an illustrative snapshot; the Advisor produces a live assessment.',
+    ],
+  },
+  limitations: {
+    label: 'Limitations and what I would improve',
+    items: [
+      'Not live RF monitoring, NOC telemetry, SLAs or commercial connectivity advice',
+      'Seed / synthetic research data where noted — illustrative, not production site inventory',
+      'Non-commercial research / skill demo — no SaaS, accounts or billing',
+      'Would next: tighten seed-data labelling in the UI, expand scenario coverage, and keep the score non-negotiable under any AI prose path',
+    ],
+  },
+  skills: {
+    label: 'Skills demonstrated',
+    items: [
+      'Complex business problem definition in industrial / OT context',
+      'Research and honest data-source evaluation',
+      'Decision-support methodology and scoring / prioritisation logic',
+      'Systems thinking and product framing (closed loop before stack)',
+      'Applied AI used under constraints (explanation only; never owns the grade)',
+      'End-to-end prototype development and transparent limitation documentation',
+    ],
+  },
+}
+
 export const CV_PATH = '/Henrique_Moreira_CV.pdf'
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/hqemoreira'
 export const GITHUB_URL = 'https://github.com/hqemoreira'

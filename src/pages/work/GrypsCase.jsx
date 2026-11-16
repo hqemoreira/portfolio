@@ -2,18 +2,41 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { CaseSection, CaseShell, TelemetryRail } from '../../components/CaseShell'
 import { useBreakpoint } from '../../hooks/useBreakpoint'
-import { PROJECT_CONTRIBUTIONS } from '../../copy'
-import { GRYPS_ADVISOR, GRYPS_METHOD, t } from '../../theme'
+import { GRYPS_CASE } from '../../copy'
+import { GRYPS_ADVISOR, GRYPS_METHOD, TRIANGORA_URL, t } from '../../theme'
+
+function Paras({ paras, c }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      {paras.map((para) => (
+        <p key={para.slice(0, 48)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+          {para}
+        </p>
+      ))}
+    </div>
+  )
+}
+
+function BulletList({ items, c }) {
+  return (
+    <ul style={{ margin: 0, paddingLeft: 18, fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8 }}>
+      {items.map((item) => (
+        <li key={item.slice(0, 40)} style={{ marginBottom: 6 }}>{item}</li>
+      ))}
+    </ul>
+  )
+}
 
 export default function GrypsCase({ theme = 'dark' }) {
   const isLight = theme === 'light'
   const c = t(isLight)
   const { phone, tablet, narrow } = useBreakpoint()
+  const caseCopy = GRYPS_CASE
 
   useEffect(() => {
-    document.title = 'GRYPS — Resilience Signature mission brief · Henrique Moreira'
+    document.title = 'GRYPS — Featured case study · Henrique Moreira'
     return () => {
-      document.title = 'Henrique Moreira — GRYPS · Espoo, Finland'
+      document.title = 'Henrique Moreira — International B2B · Applied AI · Espoo, Finland'
     }
   }, [])
 
@@ -23,9 +46,9 @@ export default function GrypsCase({ theme = 'dark' }) {
       rows={[
         { label: 'Model', value: 'v0.4 · deterministic scoring' },
         { label: 'Loop', value: 'assess → score → rank → document' },
-        { label: 'Stack', value: 'Next.js · Neon · MapLibre · optional Mistral — evidence on this case, not a home hero wall' },
+        { label: 'Stack', value: caseCopy.architecture.stack },
         { label: 'Domain', value: 'OT / Nordic–Arctic connectivity literacy' },
-        { label: 'Posture', value: 'Non-commercial research · skill demo · reskilling' },
+        { label: 'Posture', value: 'Non-commercial research · skill demo' },
         { label: 'Access', value: 'No account / no email for initial Signature' },
       ]}
       cta={
@@ -72,6 +95,26 @@ export default function GrypsCase({ theme = 'dark' }) {
     />
   )
 
+  const ctaFace = (filled) => ({
+    padding: '14px 22px',
+    minHeight: 48,
+    boxSizing: 'border-box',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: phone ? '100%' : undefined,
+    background: filled ? c.ice : 'transparent',
+    border: filled ? 'none' : `1px solid ${c.amber}`,
+    color: filled ? '#07080D' : c.amber,
+    fontFamily: "'Syne', sans-serif",
+    fontSize: '10px',
+    fontWeight: 700,
+    letterSpacing: '0.12em',
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    textAlign: 'center',
+  })
+
   return (
     <CaseShell theme={theme}>
       <article
@@ -104,7 +147,7 @@ export default function GrypsCase({ theme = 'dark' }) {
         </Link>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: phone ? '0.16em' : '0.32em', color: c.ice, textTransform: 'uppercase', marginBottom: 16 }}>
-          Mission brief · Featured case study
+          {caseCopy.eyebrow}
         </div>
         <h1
           style={{
@@ -118,7 +161,7 @@ export default function GrypsCase({ theme = 'dark' }) {
             marginBottom: 16,
           }}
         >
-          GRYPS
+          {caseCopy.title}
         </h1>
         <p
           style={{
@@ -126,12 +169,12 @@ export default function GrypsCase({ theme = 'dark' }) {
             fontSize: phone ? '16px' : 'clamp(16px, 2vw, 20px)',
             fontStyle: 'italic',
             color: c.body,
-            maxWidth: '640px',
+            maxWidth: '680px',
             lineHeight: 1.55,
             marginBottom: phone ? 20 : 28,
           }}
         >
-          A live research prototype that turns a remote site profile into a Resilience Signature — score, grade, risks, ranked connectivity options.
+          {caseCopy.subline}
         </p>
 
         <figure style={{ margin: '0 0 28px', maxWidth: 900 }}>
@@ -145,7 +188,7 @@ export default function GrypsCase({ theme = 'dark' }) {
             style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${c.iceBorder}`, borderRadius: 2, background: '#0B0F17' }}
           />
           <figcaption style={{ marginTop: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.08em', color: c.quiet, lineHeight: 1.55 }}>
-            Live Signature artifact · Model v0.4 · open the Advisor to generate your own
+            Signature artifact · Model v0.4 · open the Advisor to generate a live assessment
           </figcaption>
         </figure>
 
@@ -167,55 +210,30 @@ export default function GrypsCase({ theme = 'dark' }) {
               }}
             >
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.ice, textTransform: 'uppercase', marginBottom: 10 }}>
-                What this proves
+                What this hiring case proves
               </div>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.ink, lineHeight: 1.7, margin: '0 0 12px' }}>
-                A closed loop under Nordic / Arctic constraints: <strong>assess → score → rank → document</strong>. End-to-end research prototype of a domain scoring engine — not a slide deck. Seed / synthetic research data where noted; not live RF monitoring or procurement advice.
-              </p>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.65, margin: 0 }}>
-                Demonstrates: complex problem definition · research and data-source evaluation · decision-support methodology · scoring and prioritisation logic · system and UX design · documented assumptions and limitations.
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.ink, lineHeight: 1.7, margin: 0 }}>
+                {caseCopy.proves}
               </p>
             </div>
 
             {narrow && rail}
 
-            <CaseSection id="challenge" label="Challenge" accent={c.amber}>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                Remote industrial and safety-critical sites often depend on a single connectivity path. Operators need a fast, auditable way to see resilience risk — without waiting for a consultancy deck or inventing false precision.
-              </p>
+            <CaseSection id="problem" label={caseCopy.problem.label} accent={c.amber}>
+              <Paras paras={caseCopy.problem.paras} c={c} />
             </CaseSection>
 
-            <CaseSection id="constraints" label="Constraints" accent={c.amber}>
-              <ul style={{ margin: 0, paddingLeft: 18, fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8 }}>
-                <li>No live RF feeds — literacy and structured scoring, not NOC telemetry</li>
-                <li>Honest about seed / illustrative numbers on the demo path</li>
-                <li>Deterministic Model v0.4 core; optional AI prose must not change the score</li>
-                <li>Non-commercial reskilling posture — no SaaS, accounts, or billing</li>
-              </ul>
+            <CaseSection id="why" label={caseCopy.why.label} accent={c.amber}>
+              <Paras paras={caseCopy.why.paras} c={c} />
             </CaseSection>
 
-            <CaseSection id="decisions" label="My contribution · research to trade-off" accent={c.amber}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
-                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                  <strong style={{ color: c.ink }}>Problem identified:</strong> remote industrial sites often depend on a single connectivity path and need a fast, auditable resilience read — without a consultancy deck or false precision.
-                </p>
-                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                  <strong style={{ color: c.ink }}>Researched:</strong> {PROJECT_CONTRIBUTIONS.gryps.researched}
-                </p>
-                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                  <strong style={{ color: c.ink }}>Designed:</strong> {PROJECT_CONTRIBUTIONS.gryps.designed}
-                </p>
-                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                  <strong style={{ color: c.ink }}>Implemented:</strong> {PROJECT_CONTRIBUTIONS.gryps.implemented}
-                </p>
-                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                  <strong style={{ color: c.ink }}>Key trade-off:</strong> {PROJECT_CONTRIBUTIONS.gryps.keyDecision}
-                </p>
-                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                  <strong style={{ color: c.ink }}>Still experimental:</strong> {PROJECT_CONTRIBUTIONS.gryps.experimental}
-                </p>
-              </div>
-              <figure style={{ margin: 0 }}>
+            <CaseSection id="research" label={caseCopy.research.label} accent={c.amber}>
+              <Paras paras={caseCopy.research.paras} c={c} />
+            </CaseSection>
+
+            <CaseSection id="role" label={caseCopy.role.label} accent={c.amber}>
+              <Paras paras={caseCopy.role.paras} c={c} />
+              <figure style={{ margin: '20px 0 0' }}>
                 <img
                   src="/work/gryps-advisor.png"
                   alt="GRYPS Resilience Advisor form with mining profile and dual LEO providers selected"
@@ -231,80 +249,48 @@ export default function GrypsCase({ theme = 'dark' }) {
               </figure>
             </CaseSection>
 
-            <CaseSection id="solution" label="Solution" accent={c.amber}>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: '0 0 16px' }}>
-                Open the Advisor, set a site profile (location, providers, autonomy, criticality), generate a Signature in about a minute. Methodology and limitations live on the project site.
-              </p>
+            <CaseSection id="architecture" label={caseCopy.architecture.label} accent={c.amber}>
+              <Paras paras={caseCopy.architecture.paras} c={c} />
               <div
                 style={{
+                  marginTop: 16,
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: phone ? '10px' : '11px',
-                  letterSpacing: phone ? '0.08em' : '0.14em',
+                  letterSpacing: phone ? '0.08em' : '0.12em',
                   color: c.ice,
                   padding: '16px 18px',
                   border: `1px solid ${c.iceBorder}`,
-                  background: '#0B0F17',
+                  background: isLight ? 'rgba(43,127,212,0.06)' : '#0B0F17',
                   overflowWrap: 'anywhere',
                 }}
               >
                 LOOP · assess → score → rank → document
+                <br />
+                STACK · {caseCopy.architecture.stack}
               </div>
             </CaseSection>
 
-            <CaseSection id="outcome" label="Outcome" accent={c.amber}>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                What it proves for hiring: end-to-end product judgment in a hard domain — not a tool-wall of logos. What it is not: customer deployments, SLAs, or commercial connectivity advice. Try the live path; the frozen Path A sample on the hub (Score 47 · Grade D) is illustrative only.
-              </p>
+            <CaseSection id="demonstration" label={caseCopy.demonstration.label} accent={c.amber}>
+              <Paras paras={caseCopy.demonstration.paras} c={c} />
+            </CaseSection>
+
+            <CaseSection id="limitations" label={caseCopy.limitations.label} accent={c.amber}>
+              <BulletList items={caseCopy.limitations.items} c={c} />
+            </CaseSection>
+
+            <CaseSection id="skills" label={caseCopy.skills.label} accent={c.amber}>
+              <BulletList items={caseCopy.skills.items} c={c} />
             </CaseSection>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, paddingTop: 8, flexDirection: phone ? 'column' : 'row' }}>
-              <a
-                href={GRYPS_ADVISOR}
-                target="_blank"
-                rel="nofollow noreferrer"
-                style={{
-                  padding: '14px 22px',
-                  minHeight: 48,
-                  boxSizing: 'border-box',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: phone ? '100%' : undefined,
-                  background: c.ice,
-                  color: '#07080D',
-                  fontFamily: "'Syne', sans-serif",
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  textDecoration: 'none',
-                  textAlign: 'center',
-                }}
-              >
+              <a href={GRYPS_ADVISOR} target="_blank" rel="nofollow noreferrer" style={ctaFace(true)}>
                 Generate a Resilience Signature →
               </a>
-              <Link
-                to="/work/morea"
-                style={{
-                  padding: '14px 22px',
-                  minHeight: 48,
-                  boxSizing: 'border-box',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: phone ? '100%' : undefined,
-                  border: `1px solid ${c.amber}`,
-                  color: c.amber,
-                  fontFamily: "'Syne', sans-serif",
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  textDecoration: 'none',
-                  textAlign: 'center',
-                }}
-              >
-                Next: Morea brief →
+              <a href={TRIANGORA_URL} target="_blank" rel="nofollow noreferrer" style={ctaFace(false)}>
+                Next evidence: Triangora ↗
+              </a>
+              <Link to="/work/morea" style={{ ...ctaFace(false), borderColor: c.muted, color: c.muted }}>
+                Morea brief →
               </Link>
             </div>
           </div>
