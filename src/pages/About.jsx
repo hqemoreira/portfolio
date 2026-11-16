@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { LegalShell, LegalH2, LegalP, LegalUl } from '../components/LegalShell'
 import {
+  ABOUT_PARAS,
+  ABOUT_TAG,
   CV_PATH,
   GRYPS_PRIMARY_CTA,
   HERO_IDENTITY_PRIMARY,
@@ -22,7 +24,7 @@ export default function About({ theme = 'dark' }) {
   const accent = c.amber
 
   return (
-    <LegalShell theme={theme} title="About this site" eyebrow="Posture" lastUpdated="Updated 2026-11-13">
+    <LegalShell theme={theme} title="About this site" eyebrow="Posture" lastUpdated="Updated 2026-11-16">
       <section>
         <LegalH2>Professional identity</LegalH2>
         <LegalP>
@@ -33,11 +35,18 @@ export default function About({ theme = 'dark' }) {
         <LegalP>
           <em>{HERO_SUBLINE}</em>
         </LegalP>
+        {ABOUT_PARAS.map((para) => (
+          <LegalP key={para.slice(0, 40)}>{para}</LegalP>
+        ))}
         <LegalP>
-          International industrial B2B experience is the foundation. Applied AI, digital transformation and
-          systems thinking are evolving capabilities — evolution, not reinvention. Full narrative:{' '}
+          <em>{ABOUT_TAG}</em>{' '}
+          Homepage skim:{' '}
           <Link to="/#about" style={{ color: accent }}>
-            About on the home page
+            About
+          </Link>
+          {' · '}
+          <Link to="/#capabilities" style={{ color: accent }}>
+            Capabilities
           </Link>
           .
         </LegalP>

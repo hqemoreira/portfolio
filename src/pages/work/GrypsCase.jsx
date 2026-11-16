@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { CaseSection, CaseShell, TelemetryRail } from '../../components/CaseShell'
 import { useBreakpoint } from '../../hooks/useBreakpoint'
+import { PROJECT_CONTRIBUTIONS } from '../../copy'
 import { GRYPS_ADVISOR, GRYPS_METHOD, t } from '../../theme'
 
 export default function GrypsCase({ theme = 'dark' }) {
@@ -193,10 +194,27 @@ export default function GrypsCase({ theme = 'dark' }) {
               </ul>
             </CaseSection>
 
-            <CaseSection id="decisions" label="My role · one trade-off" accent={c.amber}>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: '0 0 16px' }}>
-                Solo builder of the closed loop — product framing, scoring model, Advisor UX, and ship. The hard call was what the score is allowed to weigh: I kept Model v0.4 deterministic and refused to let optional LLM prose move the grade. Mission priorities re-rank options only; they never rewrite the Signature number. Email stays optional and unlocks the longer report after the initial result — proof before gatekeeping.
-              </p>
+            <CaseSection id="decisions" label="My contribution · research to trade-off" accent={c.amber}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Problem identified:</strong> remote industrial sites often depend on a single connectivity path and need a fast, auditable resilience read — without a consultancy deck or false precision.
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Researched:</strong> {PROJECT_CONTRIBUTIONS.gryps.researched}
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Designed:</strong> {PROJECT_CONTRIBUTIONS.gryps.designed}
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Implemented:</strong> {PROJECT_CONTRIBUTIONS.gryps.implemented}
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Key trade-off:</strong> {PROJECT_CONTRIBUTIONS.gryps.keyDecision}
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Still experimental:</strong> {PROJECT_CONTRIBUTIONS.gryps.experimental}
+                </p>
+              </div>
               <figure style={{ margin: 0 }}>
                 <img
                   src="/work/gryps-advisor.png"

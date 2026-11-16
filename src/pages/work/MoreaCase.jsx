@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { CaseSection, CaseShell, TelemetryRail } from '../../components/CaseShell'
 import { useBreakpoint } from '../../hooks/useBreakpoint'
+import { PROJECT_CONTRIBUTIONS } from '../../copy'
 import { MOREA_URL, t } from '../../theme'
 
 export default function MoreaCase({ theme = 'dark' }) {
@@ -171,10 +172,27 @@ export default function MoreaCase({ theme = 'dark' }) {
               </p>
             </CaseSection>
 
-            <CaseSection id="tradeoff" label="My role · one trade-off" accent={c.amber}>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
-                Solo product and UI. I kept data browser-local until export — privacy by default over accounts and cloud sync — and framed every surface as educational so the pack never reads as auditor attestation.
-              </p>
+            <CaseSection id="tradeoff" label="My contribution · research to trade-off" accent={c.amber}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Conceptualised:</strong> {PROJECT_CONTRIBUTIONS.morea.conceptualised}
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Researched:</strong> {PROJECT_CONTRIBUTIONS.morea.researched}
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Designed:</strong> {PROJECT_CONTRIBUTIONS.morea.designed}
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Implemented:</strong> {PROJECT_CONTRIBUTIONS.morea.implemented}
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Key trade-off:</strong> {PROJECT_CONTRIBUTIONS.morea.keyDecision}
+                </p>
+                <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: 0 }}>
+                  <strong style={{ color: c.ink }}>Still experimental:</strong> {PROJECT_CONTRIBUTIONS.morea.experimental}
+                </p>
+              </div>
             </CaseSection>
 
             <CaseSection id="outcome" label="Verify in a minute" accent={c.amber}>

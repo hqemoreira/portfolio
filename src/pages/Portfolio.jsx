@@ -3,22 +3,17 @@ import { Link } from 'react-router-dom'
 import { useBreakpoint } from '../hooks/useBreakpoint'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import {
-  ABOUT_APPROACH,
-  ABOUT_CONTRIBUTE,
-  ABOUT_FOCUS,
   ABOUT_HEADLINE,
   ABOUT_PARAS,
-  CAPABILITIES_DETAIL,
-  CAPABILITIES_ESTABLISHED,
-  CAPABILITIES_EVOLVING,
+  ABOUT_TAG,
+  CAPABILITIES_GROUPS,
   CAPABILITIES_HEADLINE,
-  CAPABILITIES_INTRO,
   CONTACT_BODY,
   CONTACT_HEADLINE,
   CV_PATH,
   EMAIL,
+  FEATURED_PROJECTS,
   GITHUB_URL,
-  GRYPS_DEMONSTRATES,
   GRYPS_PRIMARY_CTA,
   HERO_ASK,
   HERO_IDENTITY_PRIMARY,
@@ -26,12 +21,10 @@ import {
   HERO_LOCATION,
   HERO_SUBLINE,
   HERO_SUPPORT,
-  HIRING_ONE_LINER,
   LINKEDIN_URL,
-  MONOPATI_TRUST,
+  MONOPATI_ONGOING,
   NONCOMMERCIAL_LINE,
   PROJECT_CONTRIBUTIONS,
-  TRIANGORA_BLURB,
 } from '../copy'
 import { GRYPS_ADVISOR, GRYPS_METHOD, MOREA_URL, TRIANGORA_URL, t } from '../theme'
 
@@ -654,36 +647,58 @@ function Hero({ isLight }) {
   )
 }
 
-function ContributionBlock({ contribution, ink, body }) {
+function ThemeLine({ themes, color }) {
+  return (
+    <p
+      style={{
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: '10px',
+        letterSpacing: '0.04em',
+        color,
+        lineHeight: 1.6,
+        margin: '0 0 10px',
+        maxWidth: '640px',
+      }}
+    >
+      {themes.join(' · ')}
+    </p>
+  )
+}
+
+function ContributionDetails({ contribution, ink, body, quiet }) {
   const rows = [
     ['Conceptualised', contribution.conceptualised],
     ['Researched', contribution.researched],
     ['Designed', contribution.designed],
     ['Implemented', contribution.implemented],
     ['Status', contribution.experimental],
+    ['Key design decision', contribution.keyDecision],
   ]
   return (
-    <div style={{ marginBottom: '14px', maxWidth: '640px' }}>
-      <div
+    <details style={{ marginTop: 8, marginBottom: 14, maxWidth: 640 }}>
+      <summary
         style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: '9px',
-          letterSpacing: '0.14em',
+          fontSize: '10px',
+          letterSpacing: '0.1em',
           textTransform: 'uppercase',
           color: ink,
-          marginBottom: '8px',
+          cursor: 'pointer',
+          padding: '10px 0',
+          listStylePosition: 'outside',
+          minHeight: 44,
         }}
       >
-        My contribution
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        My contribution &amp; design decisions
+      </summary>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingBottom: 8, borderTop: `1px solid ${quiet}33`, paddingTop: 12 }}>
         {rows.map(([label, text]) => (
           <p key={label} style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: body, lineHeight: 1.7, margin: 0 }}>
             <strong style={{ color: ink }}>{label}:</strong> {text}
           </p>
         ))}
       </div>
-    </div>
+    </details>
   )
 }
 
@@ -758,55 +773,18 @@ function AboutSection({ isLight }) {
                 </p>
               ))}
             </div>
-
-            <div style={{ marginTop: phone ? 28 : 36 }}>
-              <div
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '9px',
-                  letterSpacing: '0.16em',
-                  textTransform: 'uppercase',
-                  color: c.amber,
-                  marginBottom: '14px',
-                }}
-              >
-                How I approach problems
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {ABOUT_APPROACH.map((item) => (
-                  <div key={item.title}>
-                    <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '13px', fontWeight: 700, letterSpacing: '0.04em', color: c.ink, marginBottom: 4 }}>
-                      {item.title}
-                    </div>
-                    <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body, margin: 0 }}>
-                      {item.detail}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginTop: phone ? 28 : 36 }}>
-              <div
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '9px',
-                  letterSpacing: '0.16em',
-                  textTransform: 'uppercase',
-                  color: c.amber,
-                  marginBottom: '10px',
-                }}
-              >
-                Where I want to contribute
-              </div>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body, margin: '0 0 14px' }}>
-                {ABOUT_CONTRIBUTE}
-              </p>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.75, color: c.body, margin: 0, fontStyle: 'italic' }}>
-                {ABOUT_FOCUS}
-              </p>
-            </div>
-
+            <p
+              style={{
+                fontFamily: "'Lora', serif",
+                fontSize: '14px',
+                fontStyle: 'italic',
+                lineHeight: 1.7,
+                color: c.ink,
+                margin: '16px 0 0',
+              }}
+            >
+              <strong>{ABOUT_TAG}</strong>
+            </p>
             <div style={{ marginTop: 18, fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.muted, letterSpacing: '0.06em' }}>
               Prior ops stamps · SAP · Power BI · CRM · BW — evidence, not the headline
             </div>
@@ -818,9 +796,8 @@ function AboutSection({ isLight }) {
 }
 
 function Capabilities({ isLight }) {
-  const { phone, tablet } = useBreakpoint()
+  const { phone } = useBreakpoint()
   const c = t(isLight)
-  const cols = phone ? '1fr' : tablet ? '1fr 1fr' : '1fr 1fr 1fr 1fr'
 
   return (
     <Section id="capabilities" isLight={isLight}>
@@ -835,76 +812,30 @@ function Capabilities({ isLight }) {
             color: c.ink,
             lineHeight: 1.12,
             letterSpacing: '-0.025em',
-            marginBottom: '12px',
+            marginBottom: '22px',
             textAlign: 'left',
           }}
         >
           {CAPABILITIES_HEADLINE}
         </h2>
-        <p
-          style={{
-            fontFamily: "'Lora', serif",
-            fontSize: '15px',
-            lineHeight: 1.75,
-            color: c.body,
-            margin: '0 0 28px',
-            maxWidth: '640px',
-            textAlign: 'left',
-          }}
-        >
-          {CAPABILITIES_INTRO}
-        </p>
-
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
-            gap: phone ? '20px' : '28px',
-            marginBottom: phone ? '28px' : '36px',
+            gap: phone ? '22px' : '28px 36px',
             textAlign: 'left',
           }}
         >
-          {[CAPABILITIES_ESTABLISHED, CAPABILITIES_EVOLVING].map((band) => (
-            <div key={band.label}>
-              <div
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '9px',
-                  letterSpacing: '0.14em',
-                  textTransform: 'uppercase',
-                  color: c.amber,
-                  marginBottom: '12px',
-                }}
-              >
-                {band.label}
-              </div>
-              <ul style={{ margin: 0, paddingLeft: 18, fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.75, color: c.body }}>
-                {band.items.map((item) => (
-                  <li key={item} style={{ marginBottom: 4 }}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: cols,
-            gap: phone ? '22px' : '24px',
-            textAlign: 'left',
-          }}
-        >
-          {CAPABILITIES_DETAIL.map((group) => (
+          {CAPABILITIES_GROUPS.map((group) => (
             <div key={group.title}>
               <div
                 style={{
                   fontFamily: "'Syne', sans-serif",
-                  fontSize: '12px',
+                  fontSize: '13px',
                   fontWeight: 700,
-                  letterSpacing: '0.06em',
+                  letterSpacing: '0.04em',
                   color: c.ink,
-                  marginBottom: 6,
+                  marginBottom: 4,
                 }}
               >
                 {group.title}
@@ -915,17 +846,15 @@ function Capabilities({ isLight }) {
                   fontSize: '8px',
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: c.muted,
-                  marginBottom: 10,
+                  color: c.amber,
+                  marginBottom: 8,
                 }}
               >
-                {group.band === 'established' ? 'Established' : group.band === 'evolving' ? 'Evolving' : 'Approach'}
+                {group.label}
               </div>
-              <ul style={{ margin: 0, paddingLeft: 16, fontFamily: "'Lora', serif", fontSize: '13px', lineHeight: 1.7, color: c.body }}>
-                {group.items.map((item) => (
-                  <li key={item} style={{ marginBottom: 3 }}>{item}</li>
-                ))}
-              </ul>
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body, margin: 0 }}>
+                {group.items}
+              </p>
             </div>
           ))}
         </div>
@@ -964,38 +893,21 @@ function Work({ isLight }) {
             marginBottom: '20px',
           }}
         >
-          What I demonstrate — non-commercial prototypes, then quieter archives.
+          Selected work
         </h2>
-        <div
+        <p
           style={{
-            marginBottom: '28px',
-            border: `1px solid ${c.border}`,
-            borderLeft: `3px solid ${c.teal}`,
-            padding: phone ? '14px 14px' : '16px 20px',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '9px',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: c.muted,
+            margin: '0 0 28px',
             textAlign: 'left',
-            display: 'grid',
-            gridTemplateColumns: phone || tablet ? '1fr' : 'minmax(0, 1fr) auto',
-            gap: '12px',
-            alignItems: 'center',
           }}
         >
-          <div style={{ minWidth: 0 }}>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.teal, textTransform: 'uppercase', marginBottom: 6 }}>
-              Trust signal · Monopati
-            </div>
-            <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.65, margin: 0 }}>
-              {MONOPATI_TRUST}
-            </p>
-          </div>
-          <a
-            href="https://monopati.vercel.app/progress"
-            target="_blank"
-            rel="nofollow noreferrer"
-            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.teal, letterSpacing: '0.1em', whiteSpace: 'nowrap' }}
-          >
-            Progress →
-          </a>
-        </div>
+          Independent, non-commercial research &amp; prototypes
+        </p>
       </RevealWrapper>
 
       {/* GRYPS featured */}
@@ -1013,13 +925,17 @@ function Work({ isLight }) {
           }}
         >
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: phone ? '0.16em' : '0.28em', color: c.ice, textTransform: 'uppercase', marginBottom: '12px' }}>
-            01 · Lead hiring proof · Non-commercial · Model v0.4
+            01 · Lead hiring proof · Model v0.4
           </div>
           <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '36px' : 'clamp(34px, 4.5vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: c.ink, letterSpacing: '-0.03em', marginBottom: '10px' }}>
             GRYPS
           </div>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '16px' }}>
-            Connectivity resilience scoring for Nordic and Arctic remote operations — a live research prototype that turns a site profile into a <strong style={{ color: c.ink, fontWeight: 600 }}>Resilience Signature</strong>.
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '10px' }}>
+            {FEATURED_PROJECTS.gryps.blurb}
+          </p>
+          <ThemeLine themes={FEATURED_PROJECTS.gryps.themes} color={c.muted} />
+          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.quiet, letterSpacing: '0.06em', margin: '0 0 16px' }}>
+            {FEATURED_PROJECTS.gryps.status}
           </p>
 
           <div style={{ ...figCap }}>
@@ -1031,38 +947,6 @@ function Work({ isLight }) {
             />
           </div>
 
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
-            <strong style={{ color: c.ink }}>Problem:</strong> remote industrial sites often depend on a single connectivity path. Operators need a fast, auditable resilience read — without a consultancy deck or false precision.
-          </p>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
-            <strong style={{ color: c.ink }}>Built:</strong> assess → score → rank → document, ending in the Signature. Deterministic Model v0.4 owns the number; optional AI prose never changes it.
-          </p>
-          <ContributionBlock contribution={PROJECT_CONTRIBUTIONS.gryps} ink={c.ink} body={c.body} />
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
-            <strong style={{ color: c.ink }}>Key design decision:</strong> I kept the score deterministic and gated email behind the longer report only. Trust over theater — hiring managers skim one object, not a chat transcript.
-          </p>
-          <div style={{ marginBottom: '14px', maxWidth: '640px' }}>
-            <div
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '9px',
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                color: c.ice,
-                marginBottom: '8px',
-              }}
-            >
-              What this demonstrates
-            </div>
-            <ul style={{ margin: 0, paddingLeft: 18, fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body }}>
-              {GRYPS_DEMONSTRATES.map((item) => (
-                <li key={item} style={{ marginBottom: 3 }}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.muted, marginBottom: '18px', letterSpacing: '0.06em' }}>
-            Stack · Next.js · Neon (EU) · MapLibre · optional Mistral · Vercel
-          </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: phone ? 'stretch' : 'center', flexDirection: phone ? 'column' : 'row' }}>
             <CtaPrimary href={GRYPS_ADVISOR} ice block={phone}>
               Verify in a minute →
@@ -1113,8 +997,12 @@ function Work({ isLight }) {
           <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '30px' : '36px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '10px' }}>
             Triangora
           </div>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '16px' }}>
-            {TRIANGORA_BLURB}
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '10px' }}>
+            {FEATURED_PROJECTS.triangora.blurb}
+          </p>
+          <ThemeLine themes={FEATURED_PROJECTS.triangora.themes} color={c.muted} />
+          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.quiet, letterSpacing: '0.06em', margin: '0 0 16px' }}>
+            {FEATURED_PROJECTS.triangora.status}
           </p>
           <div style={{ ...figCap }}>
             <CaseShot
@@ -1124,16 +1012,12 @@ function Work({ isLight }) {
               border={c.border}
             />
           </div>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
-            <strong style={{ color: c.ink }}>Problem:</strong> an informed-looking report can still rest on repetition, omission, or contradiction — URL count is not evidence count.
-          </p>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
-            <strong style={{ color: c.ink }}>Built:</strong> submit existing claims → extract → check source families → adversarial review → verdict or honest abstention.
-          </p>
-          <ContributionBlock contribution={PROJECT_CONTRIBUTIONS.triangora} ink={c.ink} body={c.body} />
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '18px' }}>
-            <strong style={{ color: c.ink }}>Key design decision:</strong> agent agreement is never treated as proof — only independent source families count; abstention is a correct outcome when evidence is thin.
-          </p>
+          <ContributionDetails
+            contribution={PROJECT_CONTRIBUTIONS.triangora}
+            ink={c.ink}
+            body={c.body}
+            quiet={c.quiet}
+          />
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: phone ? 'column' : 'row' }}>
             <CtaGhost href={TRIANGORA_URL} color={c.teal} block={phone}>
               Open prototype ↗
@@ -1162,8 +1046,12 @@ function Work({ isLight }) {
           <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '30px' : '36px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '10px' }}>
             Morea
           </div>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '16px' }}>
-            EU AI Act Article 4 Evidence Pack walkthrough for a small team — literacy you can practice and export, not a compliance service.
+          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '10px' }}>
+            {FEATURED_PROJECTS.morea.blurb}
+          </p>
+          <ThemeLine themes={FEATURED_PROJECTS.morea.themes} color={c.muted} />
+          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.quiet, letterSpacing: '0.06em', margin: '0 0 16px' }}>
+            {FEATURED_PROJECTS.morea.status}
           </p>
           <div style={{ ...figCap }}>
             <CaseShot
@@ -1173,16 +1061,6 @@ function Work({ isLight }) {
               border={c.border}
             />
           </div>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
-            <strong style={{ color: c.ink }}>Problem:</strong> Article 4 literacy is dense. Teams need a calm walkthrough that produces an illustrative pack without pretending to certify.
-          </p>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '12px' }}>
-            <strong style={{ color: c.ink }}>Built:</strong> inventory → exposure → literacy → quiz → optional policy → export &amp; verify locally.
-          </p>
-          <ContributionBlock contribution={PROJECT_CONTRIBUTIONS.morea} ink={c.ink} body={c.body} />
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: c.body, lineHeight: 1.75, maxWidth: '640px', marginBottom: '18px' }}>
-            <strong style={{ color: c.ink }}>Key design decision:</strong> kept everything browser-local until export — privacy by default over accounts and cloud sync.
-          </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: phone ? 'column' : 'row' }}>
             <CtaGhost href={MOREA_URL} color={c.amber} block={phone}>
               Open prototype ↗
@@ -1194,9 +1072,36 @@ function Work({ isLight }) {
         </div>
       </RevealWrapper>
 
+      {/* Ongoing development · Monopati */}
+      <RevealWrapper delay={150}>
+        <div
+          style={{
+            marginTop: '28px',
+            textAlign: 'left',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '12px',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.muted, letterSpacing: '0.08em' }}>
+            {MONOPATI_ONGOING}
+          </span>
+          <a
+            href="https://monopati.vercel.app/progress"
+            target="_blank"
+            rel="nofollow noreferrer"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.teal, letterSpacing: '0.1em', minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
+          >
+            Progress →
+          </a>
+        </div>
+      </RevealWrapper>
+
       {/* Also built */}
       <RevealWrapper delay={160}>
-        <div style={{ marginTop: '48px', textAlign: 'left' }}>
+        <div style={{ marginTop: '40px', textAlign: 'left' }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.28em', color: c.muted, textTransform: 'uppercase', marginBottom: '16px' }}>
             Also built
           </div>
@@ -1328,26 +1233,13 @@ function Contact({ isLight }) {
             color: c.body,
             lineHeight: 1.7,
             maxWidth: '580px',
-            margin: '0 auto 16px',
+            margin: '0 auto 12px',
           }}
         >
           {CONTACT_BODY}
         </p>
-        <p
-          style={{
-            fontFamily: "'Lora', serif",
-            fontSize: phone ? '13px' : '14px',
-            fontStyle: 'italic',
-            color: c.body,
-            lineHeight: 1.65,
-            maxWidth: '560px',
-            margin: '0 auto 12px',
-          }}
-        >
-          {HIRING_ONE_LINER}
-        </p>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.quiet, letterSpacing: '0.08em', marginBottom: '32px' }}>
-          Based in Espoo, Finland · Home → About → Work → explore the GRYPS prototype
+          Espoo, Finland · International perspective
         </div>
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', flexDirection: phone ? 'column' : 'row', alignItems: phone ? 'stretch' : 'center', marginBottom: '16px', maxWidth: phone ? 360 : undefined, marginLeft: 'auto', marginRight: 'auto' }}>
           <a href={CV_PATH} download="Henrique_Moreira_CV.pdf" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>

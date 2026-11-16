@@ -36,12 +36,15 @@ No SaaS, pricing, waitlists, or “production customer” claims. Seed/demo numb
 
 ## Success look
 
-First viewport: **brand monument + B2B identity + punchline + Explore the GRYPS prototype / Get in touch** — quiet non-commercial note. Then About → Capabilities → Work (Monopati trust → GRYPS → Triangora → Morea → also built) → Contact (CV + LinkedIn).
+First viewport: **brand monument + B2B identity + punchline + Explore the GRYPS prototype / Get in touch** — quiet non-commercial note. Then skim About (2 paras) → Capabilities (4 compact groups) → Selected work (GRYPS → Triangora → Morea) → Ongoing Monopati → also built → Contact.
+
+**Content hierarchy (frozen):** identity and 18-year foundation on Hero/About; developing AI on Capabilities; project purpose on homepage; contribution, methodology, trade-offs on case pages (Triangora via collapsed details). Do not grow the homepage with detail that belongs in briefs.
 
 ## Maintain (do not regress)
 
 - **Person-first hero** — `HENRIQUE` / `MOREIRA` monument; amber brand; Lycaon constellation.
-- **Business foundation first** — international industrial B2B experience; AI as evolution, not replacement.
+- **Business foundation first** — international industrial B2B experience; AI as evolution, not replacement. Not an AI portfolio with a B2B footnote.
+- **Skimmable homepage** — ~30–60s understanding; depth on `/work/gryps`, `/work/morea`, Triangora disclosure.
 - **Lead with the system under Work** — GRYPS first with live screenshots; never a stack badge wall on the home hero.
 - **Stack as case evidence** — on `/work/gryps` and featured cards.
 - **Stamps secondary** — SAP / Power BI / CRM / BW stay in About footnote, not the headline.

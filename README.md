@@ -9,9 +9,9 @@ Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed **hirin
 ## What’s on the site
 
 - Person-first hero — international B2B identity + punchline + Explore the GRYPS prototype / Get in touch
-- About — business foundation, methodology, evolution through applied AI
-- Capabilities — established experience vs evolving AI / systems capabilities
-- Work: Monopati trust → GRYPS → Triangora → Morea → also built (archives, FORGE private-only)
+- About — two-paragraph foundation + evolution tag
+- Capabilities — four compact groups (established vs developing labels)
+- Selected work: GRYPS → Triangora → Morea; depth on case pages; Monopati as ongoing link; FORGE private-only
 - Mission briefs: `/work/gryps`, `/work/morea`
 - Contact: Download CV + LinkedIn; email secondary
 - Dark theater + Arctic-day light theme (persisted preference)

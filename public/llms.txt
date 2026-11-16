@@ -13,7 +13,7 @@
 - Secondary: Morea Evidence Pack — https://henriquemoreira.eu/work/morea · https://morea-pack.vercel.app
 - Posture: personal reskilling / hiring conversations — non-commercial
 - One-liner: Built GRYPS: open the Advisor, enter a remote site, get a Resilience Signature — live skill demo for Nordic / Arctic connectivity resilience (non-commercial research prototype).
-- 60s path: Home → About → Capabilities → Work (GRYPS → Triangora → Morea) → Explore the GRYPS prototype
+- 60s path: Home (skim) → About → Capabilities → Selected work (GRYPS → Triangora → Morea) → Explore the GRYPS prototype; contribution detail on case pages
 - CV: https://henriquemoreira.eu/Henrique_Moreira_CV.pdf
 
 ## What this site is
