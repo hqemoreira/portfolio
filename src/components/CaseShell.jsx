@@ -38,7 +38,7 @@ export function CaseShell({ theme = 'dark', children }) {
           </Link>
         </div>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: c.quiet, letterSpacing: '0.12em', lineHeight: 1.7 }}>
-          © {YEAR} Henrique Moreira · Personal reskilling · Non-commercial · No accounts / no billing
+          © {YEAR} Henrique Moreira · Independent portfolio · Non-commercial research and prototypes
         </div>
       </footer>
     </div>

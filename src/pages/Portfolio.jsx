@@ -21,9 +21,10 @@ import {
   HERO_LOCATION,
   HERO_SUBLINE,
   HERO_SUPPORT,
+  HERO_PORTFOLIO_LINE,
+  FOOTER_PORTFOLIO_LINE,
   LINKEDIN_URL,
   MONOPATI_ONGOING,
-  NONCOMMERCIAL_LINE,
   PROJECT_CONTRIBUTIONS,
 } from '../copy'
 import { GRYPS_ADVISOR, GRYPS_METHOD, MOREA_URL, TRIANGORA_URL, t } from '../theme'
@@ -612,7 +613,7 @@ function Hero({ isLight }) {
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.4s both',
           }}
         >
-          {NONCOMMERCIAL_LINE}
+          {HERO_PORTFOLIO_LINE}
         </div>
         <div
           style={{
@@ -673,7 +674,10 @@ function ContributionDetails({ contribution, ink, body, quiet }) {
     ['Implemented', contribution.implemented],
     ['Status', contribution.experimental],
     ['Key design decision', contribution.keyDecision],
-  ]
+  ].filter(([, text]) => Boolean(text))
+
+  if (rows.length === 0) return null
+
   return (
     <details style={{ marginTop: 8, marginBottom: 14, maxWidth: 640 }}>
       <summary
@@ -685,13 +689,24 @@ function ContributionDetails({ contribution, ink, body, quiet }) {
           color: ink,
           cursor: 'pointer',
           padding: '10px 0',
-          listStylePosition: 'outside',
           minHeight: 44,
+          display: 'list-item',
+          listStylePosition: 'inside',
         }}
       >
         My contribution &amp; design decisions
       </summary>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingBottom: 8, borderTop: `1px solid ${quiet}33`, paddingTop: 12 }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '10px',
+          paddingBottom: 12,
+          borderTop: `1px solid ${quiet}44`,
+          paddingTop: 14,
+          marginTop: 4,
+        }}
+      >
         {rows.map(([label, text]) => (
           <p key={label} style={{ fontFamily: "'Lora', serif", fontSize: '14px', color: body, lineHeight: 1.7, margin: 0 }}>
             <strong style={{ color: ink }}>{label}:</strong> {text}
@@ -973,7 +988,7 @@ function Work({ isLight }) {
           <SignatureInstrument variant="full" />
         </Suspense>
         <div style={{ marginTop: '10px', fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.06em', color: c.quiet, textAlign: 'left', lineHeight: 1.6 }}>
-          Illustrative Path A freeze · open the live Advisor for a real Signature
+          Illustrative Signature (demo freeze) · generate a live assessment in the Advisor
         </div>
       </RevealWrapper>
 
@@ -1305,7 +1320,7 @@ function Contact({ isLight }) {
             © {year} Henrique Moreira · All rights reserved
           </div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: c.quiet, opacity: 0.85, letterSpacing: '0.12em' }}>
-            {NONCOMMERCIAL_LINE}
+            {FOOTER_PORTFOLIO_LINE}
           </div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: c.quiet, opacity: 0.65 }}>
             Vite · React · React Router · Vercel

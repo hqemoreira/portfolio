@@ -4,7 +4,7 @@ export const HIRING_ONE_LINER =
   'Built GRYPS: open the Advisor, enter a remote site, get a Resilience Signature — live skill demo for Nordic / Arctic connectivity resilience (non-commercial research prototype).'
 
 export const ROLE_FOCUS =
-  'Open to roles that connect international B2B experience with applied AI, digital transformation, and intelligent systems — Finland and the EU.'
+  'Open to opportunities where international B2B and industrial business experience can shape applied AI, digital transformation and intelligent systems — Finland and the EU.'
 
 export const HERO_IDENTITY_PRIMARY = 'International B2B & Industrial Business Professional'
 
@@ -40,7 +40,7 @@ export const CAPABILITIES_GROUPS = [
   {
     title: 'Business & International Management',
     label: 'Established experience',
-    items: 'Industrial B2B · Commercial operations · International accounts · Sales & bidding · Business development',
+    items: 'Industrial B2B · Commercial operations · International accounts · Sales & bidding · Business development · International stakeholder coordination',
   },
   {
     title: 'Product & Systems Thinking',
@@ -64,7 +64,7 @@ export const FEATURED_PROJECTS = {
   gryps: {
     blurb: 'Remote connectivity resilience intelligence for industrial operations.',
     themes: ['Problem framing', 'Research & data evaluation', 'Decision-support design', 'Prototype development'],
-    status: 'Lead hiring proof · Non-commercial research prototype',
+    status: 'Non-commercial research prototype · Interactive decision-support demonstration',
   },
   triangora: {
     blurb: 'Multi-agent verification of existing claims through independent evidence.',
@@ -117,6 +117,15 @@ export const TRIANGORA_BLURB = FEATURED_PROJECTS.triangora.blurb
 
 export const MONOPATI_ONGOING = 'Ongoing development · Monopati study progress'
 
+/** Hero — short portfolio framing (identity over storefront disclaimers). */
+export const HERO_PORTFOLIO_LINE =
+  'Independent professional portfolio · Non-commercial research and prototypes'
+
+/** Footer — shorter companion line. */
+export const FOOTER_PORTFOLIO_LINE =
+  'Independent portfolio · Non-commercial research and prototypes'
+
+/** Longer honesty line for surfaces that still need explicit reskilling posture. */
 export const NONCOMMERCIAL_LINE =
   'Personal reskilling · Non-commercial · Not a product for sale · No accounts / no billing'
 
