@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Henrique Moreira — LinkedIn banner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,560;1,9..144,620&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; background: #0E0D0B; }
+  .banner {
+    position: relative;
+    width: 1584px;
+    height: 396px;
+    overflow: hidden;
+    background: #0E0D0B;
+    color: #F3EDE4;
+  }
+  .copy {
+    position: absolute;
+    left: 400px;
+    top: 58px;
+    width: 760px;
+    z-index: 2;
+  }
+  .who {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    color: #D6FF3C;
+    margin-bottom: 22px;
+  }
+  .lockup { display: flex; align-items: flex-start; gap: 18px; }
+  .num {
+    font-family: Fraunces, Georgia, serif;
+    font-style: italic;
+    font-weight: 560;
+    font-size: 128px;
+    line-height: 0.78;
+    letter-spacing: -0.045em;
+    color: #F3EDE4;
+  }
+  .words { padding-top: 10px; }
+  .years {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: #F3EDE4;
+  }
+  .biz {
+    margin-top: 6px;
+    font-family: Fraunces, Georgia, serif;
+    font-style: italic;
+    font-weight: 620;
+    font-size: 54px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: #D6FF3C;
+  }
+  .secondary {
+    margin-top: 26px;
+    max-width: 560px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.35;
+    color: #C9C1B4;
+  }
+  .meta {
+    margin-top: 16px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: #7E786F;
+  }
+  .bay { position: absolute; right: 28px; top: 0; width: 460px; height: 396px; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <svg width="1584" height="396" style="position:absolute;inset:0" aria-hidden="true">
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M40 0 H0 V40" fill="none" stroke="#F3EDE4" stroke-width="0.5" opacity="0.055"/>
+      </pattern>
+    </defs>
+    <rect width="1584" height="396" fill="url(#grid)"/>
+    <g stroke="#D6FF3C" stroke-width="1" fill="none">
+      <path d="M1504 36 H1536 M1520 20 V52"/>
+    </g>
+  </svg>
+
+  <svg class="bay" viewBox="0 0 420 396" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="210" cy="368" rx="120" ry="8" fill="#000" opacity="0.4"/>
+    <polygon points="150,230 94.6,262 94.6,87 150,55" fill="#161513"/>
+    <polygon points="150,230 323.2,330 323.2,155 150,55" fill="#2A2724"/>
+    <polygon points="169.1,267 259.1,319 259.1,191 169.1,139" fill="#D6FF3C"/>
+    <polygon points="191.6,254 169.1,267 169.1,139 191.6,126" fill="#0A0908"/>
+    <polygon points="281.6,306 259.1,319 259.1,191 281.6,178" fill="#121110"/>
+    <polygon points="191.6,254 281.6,306 259.1,319 169.1,267" fill="#0A0908"/>
+    <polygon points="191.6,126 281.6,178 259.1,191 169.1,139" fill="#1C1A17"/>
+    <polygon points="150,55 323.2,155 267.8,187 94.6,87" fill="#E7E0D4"/>
+  </svg>
+
+  <div class="copy">
+    <div class="who">HENRIQUE MOREIRA</div>
+    <div class="lockup">
+      <div class="num">18</div>
+      <div class="words">
+        <div class="years">years understanding</div>
+        <div class="biz">business.</div>
+      </div>
+    </div>
+    <p class="secondary">Now applying AI and technology to make businesses work better.</p>
+    <div class="meta">APPLIED AI&nbsp;&nbsp;/&nbsp;&nbsp;BUSINESS TRANSFORMATION&nbsp;&nbsp;/&nbsp;&nbsp;INTERNATIONAL B2B</div>
+  </div>
+</div>
+</body>
+</html>

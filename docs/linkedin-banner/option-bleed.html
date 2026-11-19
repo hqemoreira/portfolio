@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Bleed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,200&family=JetBrains+Mono:wght@400&family=Lora:wght@400&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; background: #17191C; }
+  .banner { position: relative; width: 1584px; height: 396px; overflow: hidden; background: #17191C; color: #F0EDE5; }
+  .lead {
+    position: absolute; left: 460px; top: 28px;
+    font-family: Fraunces, Georgia, serif; font-weight: 300; font-size: 28px;
+    letter-spacing: -0.03em; color: #F0EDE5;
+  }
+  .ghost, .word {
+    position: absolute; top: 52px; white-space: nowrap;
+    font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 200;
+    font-size: 248px; line-height: 0.78; letter-spacing: -0.055em;
+  }
+  .ghost { left: 430px; color: #F0EDE5; }
+  .word { left: 452px; top: 64px; color: #D4891E; }
+  .foot { position: absolute; left: 460px; top: 300px; width: 640px; }
+  .who {
+    font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.26em; color: #777B80;
+    margin-bottom: 8px;
+  }
+  .secondary { font-family: Lora, Georgia, serif; font-size: 16px; color: #B7B5AD; }
+  .meta {
+    margin-top: 8px;
+    font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.16em; color: #777B80;
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="lead">18 years understanding</div>
+  <div class="ghost">business.</div>
+  <div class="word">business.</div>
+  <div class="foot">
+    <div class="who">HENRIQUE MOREIRA</div>
+    <p class="secondary">Now applying AI and technology to make businesses work better.</p>
+    <div class="meta">APPLIED AI&nbsp;&nbsp;/&nbsp;&nbsp;BUSINESS TRANSFORMATION&nbsp;&nbsp;/&nbsp;&nbsp;INTERNATIONAL B2B</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>01 Surreal Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,560&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; background: #E4DDD2; }
+  .banner {
+    position: relative;
+    width: 1584px;
+    height: 396px;
+    background: #E4DDD2;
+    color: #1A1714;
+    overflow: hidden;
+  }
+  .grain {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.18; mix-blend-mode: multiply;
+  }
+  .kicker {
+    position: absolute;
+    left: 420px; top: 36px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: #6A6258;
+  }
+  .num {
+    position: absolute;
+    left: 408px; top: 48px;
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 560;
+    font-style: italic;
+    font-size: 168px;
+    line-height: 0.85;
+    letter-spacing: -0.045em;
+    color: #1A1714;
+  }
+  .statement {
+    position: absolute;
+    left: 628px; top: 118px;
+    width: 460px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+  .secondary {
+    position: absolute;
+    left: 420px; top: 292px;
+    width: 520px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.35;
+    color: #3A342C;
+  }
+  .fig {
+    position: absolute;
+    left: 420px; top: 348px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: #8A8176;
+  }
+  .object { position: absolute; right: 36px; top: 0; width: 560px; height: 396px; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <svg class="grain" xmlns="http://www.w3.org/2000/svg">
+    <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter>
+    <rect width="100%" height="100%" filter="url(#n)"/>
+  </svg>
+
+  <svg class="object" viewBox="0 0 560 396" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="shell" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#F7F3EC"/>
+        <stop offset="38%" stop-color="#8E867C"/>
+        <stop offset="52%" stop-color="#1A1714"/>
+        <stop offset="78%" stop-color="#C9C0B4"/>
+        <stop offset="100%" stop-color="#2C2824"/>
+      </linearGradient>
+      <linearGradient id="inner" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2A2622"/>
+        <stop offset="100%" stop-color="#0E0D0C"/>
+      </linearGradient>
+      <radialGradient id="orb" cx="38%" cy="34%" r="65%">
+        <stop offset="0%" stop-color="#FFD0C2"/>
+        <stop offset="28%" stop-color="#FF4B1F"/>
+        <stop offset="72%" stop-color="#C43212"/>
+        <stop offset="100%" stop-color="#6E1A0C"/>
+      </radialGradient>
+    </defs>
+    <!-- ground shadow -->
+    <ellipse cx="250" cy="332" rx="168" ry="18" fill="#1A1714" opacity="0.12"/>
+    <!-- rear ring, tilted -->
+    <g transform="translate(268 188) rotate(-18)">
+      <ellipse rx="78" ry="156" fill="none" stroke="#1A1714" stroke-width="10" opacity="0.35"/>
+    </g>
+    <!-- standing aperture -->
+    <ellipse cx="236" cy="186" rx="86" ry="158" fill="url(#shell)"/>
+    <ellipse cx="236" cy="186" rx="58" ry="122" fill="url(#inner)"/>
+    <!-- signal held in the opening, slightly off axis -->
+    <circle cx="214" cy="196" r="36" fill="url(#orb)"/>
+    <circle cx="202" cy="182" r="10" fill="#FFF6F2" opacity="0.55"/>
+    <!-- thin measurement arc -->
+    <path d="M390 70 A 150 150 0 0 1 470 250" fill="none" stroke="#1A1714" stroke-width="0.75" opacity="0.45"/>
+    <circle cx="390" cy="70" r="2.2" fill="#FF4B1F"/>
+    <circle cx="470" cy="250" r="2.2" fill="#1A1714"/>
+  </svg>
+
+  <div class="kicker">HENRIQUE MOREIRA</div>
+  <div class="num">18</div>
+  <div class="statement">years understanding business.</div>
+  <div class="secondary">Now applying AI and technology to make businesses work better.</div>
+  <div class="fig">FIG. 01 &nbsp;—&nbsp; APERTURE &nbsp;/&nbsp; APPLIED AI</div>
+</div>
+</body>
+</html>

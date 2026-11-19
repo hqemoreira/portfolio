@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>04 Editorial Anarchy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; background: #F4F0E8; }
+  .banner {
+    position: relative; width: 1584px; height: 396px; overflow: hidden;
+    background: #F4F0E8; color: #111111;
+  }
+  .slab {
+    position: absolute; left: 0; top: 0; width: 280px; height: 396px; background: #FF4B1F;
+  }
+  .vert {
+    position: absolute; left: 36px; top: 36px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; letter-spacing: 0.28em;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    color: #111;
+  }
+  .years {
+    position: absolute; left: 318px; top: 22px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700; font-size: 13px; letter-spacing: 0.18em;
+  }
+  .big {
+    position: absolute; left: 300px; top: -18px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 132px;
+    line-height: 0.82;
+    letter-spacing: -0.055em;
+    color: #111;
+    white-space: nowrap;
+  }
+  .big em {
+    font-family: Fraunces, Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    color: #FF4B1F;
+  }
+  .rule {
+    position: absolute; left: 300px; right: 0; top: 196px; height: 10px; background: #111;
+  }
+  .secondary {
+    position: absolute; left: 318px; bottom: 28px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500; font-size: 18px; letter-spacing: -0.02em;
+    background: #F4F0E8; padding-right: 16px;
+  }
+  .note {
+    position: absolute; right: 36px; top: 28px; width: 210px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; line-height: 1.45; letter-spacing: 0.04em;
+    border-top: 1px solid #111; padding-top: 8px;
+  }
+  .stamp {
+    position: absolute; right: 48px; bottom: 36px;
+    width: 92px; height: 92px; border: 1.5px solid #111; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: 0.08em; transform: rotate(-8deg);
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="slab" aria-hidden="true"></div>
+  <div class="vert">HENRIQUE MOREIRA</div>
+  <div class="years">18 YEARS —</div>
+  <div class="big">under<br>standing <em>business.</em></div>
+  <div class="rule" aria-hidden="true"></div>
+  <div class="secondary">Now applying AI and technology to make businesses work better.</div>
+  <div class="note">APPLIED AI<br>BUSINESS TRANSFORMATION<br>INTERNATIONAL B2B</div>
+  <div class="stamp">HM</div>
+</div>
+</body>
+</html>

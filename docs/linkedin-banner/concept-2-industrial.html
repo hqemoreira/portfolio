@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>02 Industrial Renaissance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; background: #12110F; }
+  .banner {
+    position: relative; width: 1584px; height: 396px; overflow: hidden;
+    background: #12110F; color: #E8E0D4;
+  }
+  .copy { position: absolute; left: 400px; top: 54px; width: 560px; z-index: 2; }
+  .index {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.2em; color: #E2FF3D;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+    font-size: 46px;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+  }
+  h1 em {
+    font-family: Fraunces, Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 50px;
+  }
+  .secondary {
+    margin-top: 18px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.35;
+    color: #B7AFA3;
+    max-width: 420px;
+  }
+  .block {
+    position: absolute; right: 48px; bottom: 28px; z-index: 2;
+    border: 1px solid rgba(232,224,212,0.35);
+    padding: 10px 12px 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    line-height: 1.55;
+    letter-spacing: 0.12em;
+    color: #E8E0D4;
+    background: rgba(18,17,15,0.72);
+  }
+  .block b { color: #E2FF3D; font-weight: 500; }
+  .object { position: absolute; right: 120px; top: 8px; width: 620px; height: 390px; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <svg width="1584" height="396" style="position:absolute;inset:0" aria-hidden="true">
+    <defs>
+      <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+        <path d="M32 0 H0 V32" fill="none" stroke="#E8E0D4" stroke-width="0.5" opacity="0.09"/>
+      </pattern>
+    </defs>
+    <rect width="1584" height="396" fill="url(#grid)"/>
+    <!-- registration marks, kept off the photo corner -->
+    <g stroke="#E2FF3D" stroke-width="1" fill="none">
+      <path d="M1480 28 H1508 M1494 14 V42"/>
+      <path d="M400 28 H428 M414 14 V42"/>
+      <path d="M1480 354 H1508 M1494 340 V368"/>
+    </g>
+    <circle cx="414" cy="28" r="1.4" fill="#E2FF3D"/>
+  </svg>
+
+  <svg class="object" viewBox="0 0 620 390" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- dimension baseline -->
+    <line x1="40" y1="340" x2="520" y2="340" stroke="#E8E0D4" stroke-width="0.6" opacity="0.35"/>
+    <line x1="40" y1="334" x2="40" y2="346" stroke="#E8E0D4" stroke-width="0.6" opacity="0.35"/>
+    <line x1="520" y1="334" x2="520" y2="346" stroke="#E8E0D4" stroke-width="0.6" opacity="0.35"/>
+    <text x="250" y="358" fill="#8C857B" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.5">18 YR SPAN</text>
+
+    <!-- main press body -->
+    <polygon points="210,250 360,325 360,150 210,75" fill="#2A2723"/>
+    <polygon points="210,250 80,185 80,70 210,75" fill="#1A1916"/>
+    <polygon points="210,75 360,150 230,78 80,70" fill="#E8E0D4"/>
+
+    <!-- signal platen -->
+    <polygon points="168,168 250,210 250,132 168,98" fill="#10100E"/>
+    <polygon points="168,168 112,140 112,78 168,98" fill="#0C0C0A"/>
+    <polygon points="168,98 250,132 194,92 112,78" fill="#E2FF3D"/>
+
+    <!-- rear column -->
+    <polygon points="400,230 500,280 500,120 400,70" fill="#3A3631"/>
+    <polygon points="400,230 330,195 330,55 400,70" fill="#23211E"/>
+    <polygon points="400,70 500,120 430,78 330,55" fill="#C9C1B4"/>
+
+    <!-- small upright -->
+    <polygon points="455,150 490,168 490,96 455,80" fill="#E2FF3D"/>
+  </svg>
+
+  <div class="copy">
+    <div class="index">DRG 18 &nbsp;·&nbsp; HENRIQUE MOREIRA</div>
+    <h1>understanding<br><em>business.</em></h1>
+    <p class="secondary">Now applying AI and technology to make businesses work better.</p>
+  </div>
+
+  <div class="block">
+    <b>SHEET 01 / 01</b><br>
+    APPLIED AI<br>
+    BUSINESS TRANSFORMATION<br>
+    INTERNATIONAL B2B
+  </div>
+</div>
+</body>
+</html>

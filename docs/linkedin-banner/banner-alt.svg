@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396" role="img" aria-labelledby="title desc">
+  <title id="title">Henrique Moreira LinkedIn Banner  Understated</title>
+  <desc id="desc">18 years understanding business. Now applying AI and technology to make businesses work better.</desc>
+
+  <defs>
+    <linearGradient id="stageAlt" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#07080D"/>
+      <stop offset="100%" stop-color="#0A0C11"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1584" height="396" fill="url(#stageAlt)"/>
+
+  <!-- Extremely quiet left: one faint vertical rule only (above photo zone) -->
+  <line x1="168" y1="48" x2="168" y2="168" stroke="#F0E8D8" stroke-opacity="0.06" stroke-width="1"/>
+
+  <!-- Copy -->
+  <g font-family="Fraunces, Georgia, serif" fill="#F0E8D8">
+    <text x="700" y="152" font-size="40" font-weight="500" letter-spacing="-0.3">18 years understanding business.</text>
+  </g>
+  <g font-family="Lora, Georgia, serif" fill="#CDC4B4">
+    <text x="700" y="200" font-size="21" font-weight="400">Now applying AI and technology to make businesses work</text>
+    <text x="700" y="228" font-size="21" font-weight="400">better.</text>
+  </g>
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" fill="#9A8A6A">
+    <text x="700" y="276" font-size="10.5" font-weight="400" letter-spacing="3.4">APPLIED AI  ·  BUSINESS TRANSFORMATION  ·  INTERNATIONAL B2B</text>
+  </g>
+</svg>

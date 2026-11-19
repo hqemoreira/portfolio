@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Offprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,200&family=JetBrains+Mono:wght@400&family=Lora:wght@400&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; background: #17191C; }
+  .banner { position: relative; width: 1584px; height: 396px; overflow: hidden; background: #17191C; color: #F0EDE5; }
+  .sheet {
+    position: absolute; width: 780px; height: 620px; background: #F0EDE5;
+    right: -160px; top: -180px; transform: rotate(-16deg);
+  }
+  .cut {
+    position: absolute; width: 36px; height: 640px; background: #17191C;
+    right: 250px; top: -120px; transform: rotate(11deg); z-index: 2;
+  }
+  .tape {
+    position: absolute; width: 46px; height: 250px; background: #D4891E;
+    right: 188px; top: 70px; transform: rotate(28deg); z-index: 3;
+  }
+  .copy { position: absolute; left: 450px; top: 64px; width: 620px; z-index: 4; }
+  .who {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.28em; color: #777B80; margin-bottom: 22px;
+  }
+  .lead {
+    font-family: Fraunces, Georgia, serif; font-weight: 300; font-size: 34px;
+    letter-spacing: -0.03em; line-height: 1.05;
+  }
+  .biz {
+    margin-top: 4px;
+    font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 200;
+    font-size: 68px; line-height: 0.86; letter-spacing: -0.04em; color: #D4891E;
+    transform: rotate(-1.5deg); transform-origin: left center;
+  }
+  .secondary {
+    margin-top: 18px; max-width: 440px;
+    font-family: Lora, Georgia, serif; font-size: 16px; line-height: 1.4; color: #B7B5AD;
+  }
+  .meta {
+    margin-top: 14px;
+    font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.16em; color: #777B80;
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="sheet" aria-hidden="true"></div>
+  <div class="cut" aria-hidden="true"></div>
+  <div class="tape" aria-hidden="true"></div>
+  <div class="copy">
+    <div class="who">HENRIQUE MOREIRA</div>
+    <div class="lead">18 years understanding</div>
+    <div class="biz">business.</div>
+    <p class="secondary">Now applying AI and technology to make businesses work better.</p>
+    <div class="meta">APPLIED AI&nbsp;&nbsp;/&nbsp;&nbsp;BUSINESS TRANSFORMATION&nbsp;&nbsp;/&nbsp;&nbsp;INTERNATIONAL B2B</div>
+  </div>
+</div>
+</body>
+</html>

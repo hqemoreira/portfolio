@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>03 Human / Machine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;1,9..144,560&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; background: #F3EEE6; }
+  .banner { position: relative; width: 1584px; height: 396px; overflow: hidden; background: #F3EEE6; color: #141414; }
+  .name {
+    position: absolute; left: 400px; top: 28px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.22em; color: #2040FF;
+  }
+  .primary {
+    position: absolute; left: 396px; top: 118px; width: 760px; z-index: 2;
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 560; font-style: italic;
+    font-size: 54px; line-height: 0.95; letter-spacing: -0.03em;
+  }
+  .primary span { font-style: normal; font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.03em; display: block; margin-top: 12px; }
+  .secondary {
+    position: absolute; right: 48px; bottom: 32px; width: 340px; text-align: right; z-index: 2;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 15px; line-height: 1.35; color: #141414;
+  }
+  .tick {
+    position: absolute; z-index: 2;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.14em; color: #2040FF;
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  <svg width="1584" height="396" style="position:absolute;inset:0" aria-hidden="true">
+    <!-- machine: strict lattice, right field only -->
+    <g fill="#2040FF">
+      <!-- generated-looking but authored grid -->
+    </g>
+    <g id="dots" fill="#2040FF"></g>
+    <!-- human gesture: one uneven stroke crossing the lattice -->
+    <path d="M430 250
+             C 520 120, 640 310, 790 160
+             C 930 30, 1040 250, 1240 120"
+          fill="none" stroke="#141414" stroke-width="14" stroke-linecap="round" opacity="0.92"/>
+    <path d="M438 258
+             C 528 132, 648 318, 798 168
+             C 936 42, 1044 256, 1232 128"
+          fill="none" stroke="#F3EEE6" stroke-width="1.25" opacity="0.0"/>
+    <!-- machine circle, perfect, arguing with the stroke -->
+    <circle cx="1040" cy="188" r="92" fill="none" stroke="#2040FF" stroke-width="1.25"/>
+    <circle cx="1040" cy="188" r="3" fill="#2040FF"/>
+    <path d="M1040 80 V108 M1040 268 V296 M948 188 H976 M1104 188 H1132" stroke="#2040FF" stroke-width="1"/>
+  </svg>
+  <svg id="lattice" width="1584" height="396" style="position:absolute;inset:0;pointer-events:none" aria-hidden="true"></svg>
+
+  <div class="name">HENRIQUE MOREIRA &nbsp;·&nbsp; HUMAN / SYSTEM</div>
+  <div class="primary">18 years<br>understanding business.</div>
+  <div class="secondary">Now applying AI and technology to make businesses work better.</div>
+  <div class="tick" style="left:1008px;top:64px">θ 18°</div>
+  <div class="tick" style="left:1160px;top:176px">SYS. 01</div>
+</div>
+<script>
+  const svg = document.getElementById('lattice')
+  const ns = 'http://www.w3.org/2000/svg'
+  for (let x = 860; x <= 1540; x += 28) {
+    for (let y = 28; y <= 368; y += 28) {
+      const c = document.createElementNS(ns, 'circle')
+      c.setAttribute('cx', x)
+      c.setAttribute('cy', y)
+      c.setAttribute('r', (x + y) % 56 === 0 ? 2.1 : 1.15)
+      c.setAttribute('fill', '#2040FF')
+      c.setAttribute('opacity', '0.85')
+      svg.appendChild(c)
+    }
+  }
+</script>
+</body>
+</html>

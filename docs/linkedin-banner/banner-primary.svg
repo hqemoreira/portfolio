@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396" role="img" aria-labelledby="title desc">
+  <title id="title">Henrique Moreira LinkedIn Banner</title>
+  <desc id="desc">18 years understanding business. Now applying AI and technology to make businesses work better.</desc>
+
+  <defs>
+    <linearGradient id="stage" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0B10"/>
+      <stop offset="55%" stop-color="#07080D"/>
+      <stop offset="100%" stop-color="#0B0C12"/>
+    </linearGradient>
+    <radialGradient id="warmPocket" cx="72%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#D4891E" stop-opacity="0.10"/>
+      <stop offset="45%" stop-color="#A67C52" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#07080D" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="leftGlow" cx="22%" cy="38%" r="40%">
+      <stop offset="0%" stop-color="#5C3A1E" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#07080D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Stage -->
+  <rect width="1584" height="396" fill="url(#stage)"/>
+  <rect width="1584" height="396" fill="url(#leftGlow)"/>
+  <rect width="1584" height="396" fill="url(#warmPocket)"/>
+
+  <!-- Quiet left architecture: restrained technical grid + nodes (photo-safe bottom-left) -->
+  <g opacity="0.35" stroke="#A67C52" stroke-width="1" fill="none">
+    <!-- vertical guides -->
+    <path d="M120 36 V210" opacity="0.45"/>
+    <path d="M220 28 V175" opacity="0.28"/>
+    <path d="M320 48 V155" opacity="0.2"/>
+    <!-- horizontal guides -->
+    <path d="M72 72 H360" opacity="0.35"/>
+    <path d="M96 128 H300" opacity="0.22"/>
+    <path d="M140 176 H280" opacity="0.16"/>
+  </g>
+  <g fill="#D4891E">
+    <circle cx="120" cy="72" r="2.2" opacity="0.7"/>
+    <circle cx="220" cy="72" r="1.6" opacity="0.45"/>
+    <circle cx="320" cy="128" r="1.8" opacity="0.4"/>
+    <circle cx="220" cy="128" r="1.4" opacity="0.35"/>
+    <circle cx="140" cy="176" r="1.5" opacity="0.3"/>
+  </g>
+  <g stroke="#D4891E" stroke-width="1" fill="none" opacity="0.28">
+    <path d="M120 72 L220 72 L320 128"/>
+    <path d="M220 72 L220 128 L140 176"/>
+  </g>
+
+  <!-- Soft vertical divider suggestion between quiet left and copy -->
+  <line x1="620" y1="70" x2="620" y2="326" stroke="#F0E8D8" stroke-opacity="0.05" stroke-width="1"/>
+
+  <!-- Copy block (~48% from left) -->
+  <g font-family="Fraunces, Georgia, serif" fill="#F0E8D8">
+    <text x="700" y="148" font-size="42" font-weight="600" letter-spacing="-0.4">18 years understanding business.</text>
+  </g>
+  <g font-family="Lora, Georgia, serif" fill="#CDC4B4">
+    <text x="700" y="198" font-size="22" font-weight="400">Now applying AI and technology to make businesses work</text>
+    <text x="700" y="228" font-size="22" font-weight="400">better.</text>
+  </g>
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" fill="#9AABBA">
+    <text x="700" y="278" font-size="11" font-weight="500" letter-spacing="3.2">APPLIED AI  ·  BUSINESS TRANSFORMATION  ·  INTERNATIONAL B2B</text>
+  </g>
+
+  <!-- Tiny amber hairline under primary for hierarchy (site brand cue) -->
+  <rect x="700" y="160" width="56" height="1.5" fill="#D4891E" opacity="0.85"/>
+</svg>

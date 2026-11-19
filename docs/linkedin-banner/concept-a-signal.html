@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>A — The Intelligent Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,560&family=JetBrains+Mono:wght@400;500&family=Syne:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; background: #17191C; }
+  .banner { position: relative; width: 1584px; height: 396px; overflow: hidden; background: #17191C; color: #F0EDE5; }
+  .copy { position: absolute; left: 420px; top: 58px; width: 560px; z-index: 2; }
+  .who {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.26em; color: #B7B5AD; margin-bottom: 28px;
+  }
+  .lead {
+    font-family: Syne, sans-serif; font-weight: 600; font-size: 32px;
+    line-height: 1.02; letter-spacing: -0.035em;
+  }
+  .biz {
+    margin-top: 6px;
+    font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 560;
+    font-size: 62px; line-height: 0.88; letter-spacing: -0.03em; color: #D4891E;
+  }
+  .secondary {
+    margin-top: 22px; max-width: 460px;
+    font-family: Syne, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.4; color: #B7B5AD;
+  }
+  .meta {
+    margin-top: 16px;
+    font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.16em; color: #777B80;
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  <svg width="1584" height="396" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- cropped masses -->
+    <circle cx="1510" cy="-20" r="210" fill="#F0EDE5"/>
+    <circle cx="1335" cy="292" r="118" fill="#2A2D31"/>
+    <circle cx="1168" cy="168" r="72" fill="none" stroke="#777B80" stroke-width="1.5"/>
+    <!-- a broken ring, and the piece that left it -->
+    <circle cx="1288" cy="188" r="104" fill="none" stroke="#B7B5AD" stroke-width="22"
+      stroke-dasharray="540 114" stroke-linecap="butt" transform="rotate(210 1288 188)"/>
+    <circle cx="1288" cy="188" r="104" fill="none" stroke="#D4891E" stroke-width="22"
+      stroke-dasharray="0 540 114 20" stroke-linecap="butt"
+      transform="translate(-168 36) rotate(210 1288 188)"/>
+    <!-- the signal joins the displaced piece back to the system -->
+    <path d="M1148 214 C 1210 250, 1236 210, 1268 196" fill="none" stroke="#D4891E" stroke-width="4" stroke-linecap="square"/>
+    <rect x="1092" y="246" width="26" height="26" fill="#B7B5AD" transform="rotate(18 1105 259)"/>
+  </svg>
+  <div class="copy">
+    <div class="who">HENRIQUE MOREIRA</div>
+    <div class="lead">18 years understanding</div>
+    <div class="biz">business.</div>
+    <p class="secondary">Now applying AI and technology to make businesses work better.</p>
+    <div class="meta">APPLIED AI&nbsp;&nbsp;/&nbsp;&nbsp;BUSINESS TRANSFORMATION&nbsp;&nbsp;/&nbsp;&nbsp;INTERNATIONAL B2B</div>
+  </div>
+</div>
+</body>
+</html>
