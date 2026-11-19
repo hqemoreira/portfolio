@@ -62,7 +62,8 @@ export const CAPABILITIES_GROUPS = [
 /** Featured projects — homepage skim. Depth on case pages / Triangora details. */
 export const FEATURED_PROJECTS = {
   gryps: {
-    blurb: 'Remote connectivity resilience intelligence for industrial operations.',
+    blurb:
+      'Assess → score → rank → document a Resilience Signature for Nordic / Arctic remote connectivity (Model v0.4). Reference scenario: mining 83 · B · OneWeb · 85.',
     themes: ['Problem framing', 'Research & data evaluation', 'Decision-support design', 'Prototype development'],
     status: 'Non-commercial research prototype · Interactive decision-support demonstration',
   },
@@ -204,7 +205,7 @@ export const GRYPS_CASE = {
     label: 'Demonstration and outputs',
     paras: [
       'Open the Advisor, set latitude / longitude and an operational profile (providers, autonomy, criticality), generate a Signature in about a minute — no account or email for the initial result.',
-      'Output: Resilience Signature with score, grade, risks and ranked options. Methodology lives on the project site. The portfolio’s Path A freeze (e.g. Score 47 · Grade D) is an illustrative snapshot; the Advisor produces a live assessment.',
+      'Output: Resilience Signature with score, grade, risks and ranked options (Model v0.4). Reference scenario on this portfolio: remote-operated mining · 83 · B · Rec #1 OneWeb · 85. Status UX uses a compact R&D PROTOTYPE / T&K-PROTOTYYPPI chip — not a commercial banner. The Path A motion panel (Score 47 · Grade D) is a separate illustrative freeze; the Advisor produces a live assessment.',
     ],
   },
   limitations: {

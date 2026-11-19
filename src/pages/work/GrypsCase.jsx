@@ -180,7 +180,7 @@ export default function GrypsCase({ theme = 'dark' }) {
         <figure style={{ margin: '0 0 28px', maxWidth: 900 }}>
           <img
             src="/work/gryps-signature.png"
-            alt="GRYPS Resilience Signature — score 75, grade B for a mining site at 67°N with Starlink and Iridium Certus"
+            alt="GRYPS live hero with R&D PROTOTYPE chip and mining Resilience Signature 83 · B, Rec #1 OneWeb · 85"
             width={1200}
             height={750}
             loading="eager"
@@ -188,7 +188,7 @@ export default function GrypsCase({ theme = 'dark' }) {
             style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${c.iceBorder}`, borderRadius: 2, background: '#0B0F17' }}
           />
           <figcaption style={{ marginTop: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.08em', color: c.quiet, lineHeight: 1.55 }}>
-            Signature artifact · Model v0.4 · open the Advisor to generate a live assessment
+            Live reference · mining 83 · B · OneWeb · 85 · Model v0.4 · R&D PROTOTYPE chip beside wordmark
           </figcaption>
         </figure>
 
@@ -235,8 +235,8 @@ export default function GrypsCase({ theme = 'dark' }) {
               <Paras paras={caseCopy.role.paras} c={c} />
               <figure style={{ margin: '20px 0 0' }}>
                 <img
-                  src="/work/gryps-advisor.png"
-                  alt="GRYPS Resilience Advisor form with mining profile and dual LEO providers selected"
+                  src="/work/gryps-fi-hero.png"
+                  alt="GRYPS Finnish UI with T&K-PROTOTYYPPI chip and mining Signature 83 · B, OneWeb · 85"
                   width={1200}
                   height={750}
                   loading="lazy"
@@ -244,7 +244,7 @@ export default function GrypsCase({ theme = 'dark' }) {
                   style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${c.iceBorder}`, borderRadius: 2 }}
                 />
                 <figcaption style={{ marginTop: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.08em', color: c.quiet }}>
-                  Advisor inputs · Mining · Autonomous · Safety-critical · Starlink + Iridium Certus
+                  FI UI · T&K-PROTOTYYPPI chip · same mining reference 83 · B · OneWeb · 85
                 </figcaption>
               </figure>
             </CaseSection>
@@ -272,6 +272,43 @@ export default function GrypsCase({ theme = 'dark' }) {
 
             <CaseSection id="demonstration" label={caseCopy.demonstration.label} accent={c.amber}>
               <Paras paras={caseCopy.demonstration.paras} c={c} />
+              <div
+                style={{
+                  marginTop: 20,
+                  display: 'grid',
+                  gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
+                  gap: 16,
+                }}
+              >
+                <figure style={{ margin: 0 }}>
+                  <img
+                    src="/work/gryps-mobile-signature.png"
+                    alt="GRYPS mobile Signature card — mining 83 · B with R&D PROTOTYPE chip and OneWeb · 85"
+                    width={750}
+                    height={1334}
+                    loading="lazy"
+                    decoding="async"
+                    style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${c.iceBorder}`, borderRadius: 2, background: '#0B0F17' }}
+                  />
+                  <figcaption style={{ marginTop: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.08em', color: c.quiet }}>
+                    Mobile · Signature 83 · B · OneWeb · 85
+                  </figcaption>
+                </figure>
+                <figure style={{ margin: 0 }}>
+                  <img
+                    src="/work/gryps-footer-disclosure.png"
+                    alt="GRYPS footer disclosure — non-commercial R&D research prototype, Model v0.4, Espoo Finland"
+                    width={1200}
+                    height={750}
+                    loading="lazy"
+                    decoding="async"
+                    style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${c.iceBorder}`, borderRadius: 2, background: '#0B0F17' }}
+                  />
+                  <figcaption style={{ marginTop: 8, fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.08em', color: c.quiet }}>
+                    Footer proof · non-commercial · Model v0.4 · Espoo
+                  </figcaption>
+                </figure>
+              </div>
             </CaseSection>
 
             <CaseSection id="limitations" label={caseCopy.limitations.label} accent={c.amber}>

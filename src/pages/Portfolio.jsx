@@ -990,8 +990,8 @@ function Work({ isLight }) {
           <div style={{ ...figCap }}>
             <CaseShot
               src="/work/gryps-signature.png"
-              alt="GRYPS Resilience Signature — score 75, grade B for a mining site at 67°N"
-              caption="Live Signature artifact · score, grade, risks, ranked option · Model v0.4"
+              alt="GRYPS live hero with R&D PROTOTYPE chip and mining Resilience Signature 83 · B, Rec #1 OneWeb · 85"
+              caption="Live reference · mining 83 · B · OneWeb · 85 · Model v0.4 · R&D PROTOTYPE chip (no amber banner)"
               border={c.iceBorder}
             />
           </div>
