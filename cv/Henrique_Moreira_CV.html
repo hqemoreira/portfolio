@@ -4,75 +4,120 @@
   <meta charset="UTF-8" />
   <title>Henrique Moreira — CV</title>
   <style>
-    @page { size: A4; margin: 9mm 11mm 9mm 11mm; }
+    @page { size: A4; margin: 10mm 12mm; }
     * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: "Segoe UI", Calibri, Arial, sans-serif;
-      font-size: 8.9pt;
-      line-height: 1.22;
+      font-size: 9pt;
+      line-height: 1.28;
       color: #1a1a1a;
-      max-width: 188mm;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
     h1 {
-      margin: 0 0 1px;
-      font-size: 16pt;
+      margin: 0;
+      font-size: 16.5pt;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
+      line-height: 1.15;
     }
     .role {
-      margin: 0 0 3px;
-      font-size: 9.6pt;
+      margin: 3px 0 4px;
+      font-size: 9.5pt;
       font-weight: 600;
       color: #222;
+      line-height: 1.25;
     }
     .contact {
-      margin: 0 0 7px;
-      font-size: 8.4pt;
+      margin: 0 0 8px;
+      font-size: 8.5pt;
       color: #333;
+      line-height: 1.35;
     }
     .contact a { color: #1a1a1a; text-decoration: none; }
+    .sep { color: #666; }
     h2 {
-      margin: 8px 0 3px;
-      padding-bottom: 1px;
+      margin: 9px 0 4px;
+      padding: 0 0 2px;
       border-bottom: 1px solid #222;
       font-size: 9pt;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
+      line-height: 1.2;
     }
     p { margin: 0 0 4px; }
-    ul { margin: 0 0 3px; padding-left: 15px; }
-    li { margin-bottom: 2px; }
-    .job { margin-bottom: 6px; }
+    ul.bullets {
+      margin: 0;
+      padding: 0 0 0 1.1em;
+      list-style-type: disc;
+    }
+    ul.bullets li {
+      margin: 0 0 2.5px;
+      padding: 0;
+      line-height: 1.28;
+    }
+    ul.skills {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    ul.skills li {
+      margin: 0 0 2.5px;
+      padding: 0;
+      line-height: 1.28;
+    }
+    ul.skills li strong { font-weight: 700; }
+    .muted {
+      color: #555;
+      font-size: 8.2pt;
+    }
+    .job {
+      margin: 0 0 7px;
+    }
     .job-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      margin: 0;
+    }
+    .job-title {
+      display: table-cell;
       font-weight: 700;
-      margin-bottom: 0;
-      font-size: 9.4pt;
+      font-size: 9.3pt;
+      line-height: 1.25;
+      vertical-align: baseline;
+      padding-right: 10px;
+    }
+    .job-dates {
+      display: table-cell;
+      width: 30mm;
+      font-weight: 700;
+      font-size: 8.8pt;
+      text-align: right;
+      white-space: nowrap;
+      vertical-align: baseline;
+      padding-left: 8px;
     }
     .job-sub {
+      margin: 1px 0 3px;
       font-style: italic;
+      font-size: 8.5pt;
       color: #333;
-      margin-bottom: 2px;
-      font-size: 8.6pt;
+      line-height: 1.25;
     }
-    .muted { color: #444; font-size: 8.2pt; }
-    .skills-grid { margin: 0; padding: 0; list-style: none; }
-    .skills-grid li { margin-bottom: 2px; }
-    .skills-grid strong { font-weight: 700; }
+    .edu-line, .cert-line {
+      margin: 0 0 2.5px;
+      line-height: 1.28;
+    }
   </style>
 </head>
 <body>
   <h1>HENRIQUE MOREIRA</h1>
   <p class="role">International B2B &amp; Industrial Business Professional | Applied AI · Digital Transformation · Systems Thinking</p>
   <p class="contact">
-    Espoo, Finland · +358 40 143 6351 ·
-    <a href="mailto:hqe.moreira@gmail.com">hqe.moreira@gmail.com</a> ·
-    <a href="https://www.linkedin.com/in/hqemoreira">linkedin.com/in/hqemoreira</a> ·
-    <a href="https://henriquemoreira.eu">henriquemoreira.eu</a>
+    Espoo, Finland <span class="sep">·</span> +358 40 143 6351 <span class="sep">·</span> <a href="mailto:hqe.moreira@gmail.com">hqe.moreira@gmail.com</a> <span class="sep">·</span> <a href="https://www.linkedin.com/in/hqemoreira">linkedin.com/in/hqemoreira</a> <span class="sep">·</span> <a href="https://henriquemoreira.eu">henriquemoreira.eu</a>
   </p>
 
   <h2>Profile</h2>
@@ -86,21 +131,21 @@
   </p>
 
   <h2>Core capabilities</h2>
-  <ul class="skills-grid">
-    <li><strong>Business &amp; international management (established):</strong> industrial B2B, commercial operations, international accounts, sales &amp; bidding, business development, international stakeholder coordination</li>
-    <li><strong>Product &amp; systems thinking (evolving application):</strong> problem discovery, process improvement, business analysis, workflow design, solution design</li>
-    <li><strong>Applied AI &amp; technology (developing through practice):</strong> AI product prototyping, multi-agent workflows, automation, evidence verification, AI quality and evaluation</li>
+  <ul class="skills">
+    <li><strong>Business &amp; international management (established):</strong> industrial B2B · commercial operations · international accounts · sales &amp; bidding · business development · international stakeholder coordination</li>
+    <li><strong>Product &amp; systems thinking (evolving application):</strong> problem discovery · process improvement · business analysis · workflow design · solution design</li>
+    <li><strong>Applied AI &amp; technology (developing through practice):</strong> AI product prototyping · multi-agent workflows · automation · evidence verification · AI quality and evaluation</li>
     <li><strong>Enterprise systems experience:</strong> SAP · Power BI · CRM · BW · Microsoft Power Platform / Power Automate (PL-900 &amp; PL-200 in progress)</li>
     <li><strong>Prototype stack (evidence, not the headline):</strong> Next.js · Neon · MapLibre · Vite · React · Vercel · optional Mistral</li>
   </ul>
 
   <h2>Selected research prototypes</h2>
   <p class="muted">Non-commercial skill demonstrations — not client deployments or products for sale.</p>
-  <ul>
+  <ul class="bullets">
     <li>
       <strong>GRYPS (Model v0.4) — featured case:</strong> decision-support for Nordic / Arctic remote connectivity resilience
       (assess → score → rank → document a Resilience Signature). Proves problem framing, methodology and end-to-end ship.
-      <span class="muted">gryps.vercel.app · /work/gryps</span>
+      <span class="muted">gryps.vercel.app · henriquemoreira.eu/work/gryps</span>
     </li>
     <li>
       <strong>Triangora:</strong> verifies existing claims via independent source families; never generates claims; abstention when evidence is thin.
@@ -108,7 +153,8 @@
     </li>
     <li>
       <strong>Morea:</strong> educational EU AI Act Article 4 Evidence Pack walkthrough (not a compliance service).
-      <span class="muted">morea-pack.vercel.app</span> · Earlier experiments: Grantemia, Velu, Lycaon, DisclAI, Iraun.
+      <span class="muted">morea-pack.vercel.app</span>
+      · Earlier experiments: Grantemia, Velu, Lycaon, DisclAI, Iraun.
     </li>
   </ul>
 
@@ -116,11 +162,11 @@
 
   <div class="job">
     <div class="job-head">
-      <span>Sales Manager – Commercial Excellence &amp; Customer Solutions</span>
-      <span>01/2018 – 05/2026</span>
+      <div class="job-title">Sales Manager – Commercial Excellence &amp; Customer Solutions</div>
+      <div class="job-dates">01/2018 – 05/2026</div>
     </div>
     <div class="job-sub">Metsä Board · Finland · International industrial B2B (paperboard)</div>
-    <ul>
+    <ul class="bullets">
       <li>Grew Portugal sales volume by <strong>+9.84% avg / year</strong>; raised ASPs by <strong>+2.97% / year</strong>; delivered <strong>+4.26% annual price growth</strong> in international agent markets.</li>
       <li>Partnered with enterprise customers on commercial and operational processes; coordinated sales, production, logistics, finance and technical stakeholders.</li>
       <li>Supported CRM adoption and pricing analysis; applied automation / AI-assisted productivity to commercial analysis and reporting where it improved outcomes.</li>
@@ -129,11 +175,11 @@
 
   <div class="job">
     <div class="job-head">
-      <span>Sales Support Manager – Commercial Reporting &amp; Business Insights</span>
-      <span>03/2015 – 12/2017</span>
+      <div class="job-title">Sales Support Manager – Commercial Reporting &amp; Business Insights</div>
+      <div class="job-dates">03/2015 – 12/2017</div>
     </div>
     <div class="job-sub">Metsä Board · Finland</div>
-    <ul>
+    <ul class="bullets">
       <li>Built Power BI reporting for commercial transparency and decisions; supported pricing via SAP and analytics.</li>
       <li>Improved data quality through automation and standardised workflows; partnered with Sales Managers on revenue opportunities.</li>
     </ul>
@@ -141,27 +187,25 @@
 
   <div class="job">
     <div class="job-head">
-      <span>Business Process &amp; Customer Success Coordinator</span>
-      <span>04/2008 – 04/2015</span>
+      <div class="job-title">Business Process &amp; Customer Success Coordinator</div>
+      <div class="job-dates">04/2008 – 04/2015</div>
     </div>
     <div class="job-sub">Metsä Board · Belgium / Finland</div>
-    <ul>
+    <ul class="bullets">
       <li>Managed enterprise customer relationships, cross-functional delivery and complex commercial issue resolution across international environments.</li>
     </ul>
   </div>
 
   <h2>Education</h2>
-  <ul>
-    <li><strong>Executive Education Diploma – Sales &amp; Strategic Commercial Leadership</strong> · Hanken Executive Education, Finland · 2025</li>
-    <li><strong>Bachelor of Social Science (B.Soc.Sc.)</strong> · Faculdade de Letras da Universidade do Porto, Portugal · 2004</li>
-  </ul>
+  <p class="edu-line"><strong>Executive Education Diploma – Sales &amp; Strategic Commercial Leadership</strong> · Hanken Executive Education, Finland · 2025</p>
+  <p class="edu-line"><strong>Bachelor of Social Science (B.Soc.Sc.)</strong> · Faculdade de Letras da Universidade do Porto, Portugal · 2004</p>
 
   <h2>Certifications &amp; development</h2>
-  <ul>
+  <ul class="bullets">
     <li>OpenAI Academy — Scope AI Solutions, AI Foundations, Applied AI Foundations (Nov 2026).</li>
     <li>Microsoft Power Platform PL-900 and PL-200 — in progress (target end of Jan 2027).</li>
     <li>Certified Lean Six Sigma Green Belt | BPM Master Class.</li>
-    <li>Ongoing study path in applied AI, automation, and systems design — monopati.vercel.app/progress.</li>
+    <li>Ongoing study path in applied AI, automation and systems design — monopati.vercel.app/progress.</li>
   </ul>
 
   <h2>Languages</h2>
