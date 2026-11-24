@@ -3,26 +3,28 @@ import { Link } from 'react-router-dom'
 import { useBreakpoint } from '../hooks/useBreakpoint'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import {
-  ABOUT_HEADLINE,
-  ABOUT_PARAS,
-  ABOUT_TAG,
   CAPABILITIES_GROUPS,
   CAPABILITIES_HEADLINE,
   CONTACT_BODY,
   CONTACT_HEADLINE,
   CV_PATH,
   EMAIL,
-  FEATURED_PROJECTS,
+  BID_CASE,
+  PROJECT_BRIEFS,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
   GITHUB_URL,
   GRYPS_PRIMARY_CTA,
-  HERO_ASK,
+  HERO_FOCUS,
   HERO_IDENTITY_PRIMARY,
   HERO_IDENTITY_SECONDARY,
   HERO_LOCATION,
   HERO_SUBLINE,
   HERO_SUPPORT,
-  HERO_PORTFOLIO_LINE,
-  FOOTER_PORTFOLIO_LINE,
+  COMMERCIAL_RESULTS,
+  COMMERCIAL_RESULTS_NOTE,
+  EXPERIENCE_ROLES,
+  NONCOMMERCIAL_LINE,
   LINKEDIN_URL,
   MONOPATI_LINK_LABEL,
   MONOPATI_ONGOING,
@@ -466,7 +468,7 @@ function Hero({ isLight }) {
           style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: phone ? '8px' : '9px',
-            letterSpacing: phone ? '0.12em' : '0.2em',
+            letterSpacing: phone ? '0.08em' : '0.12em',
             textTransform: 'uppercase',
             color: c.amber,
             marginBottom: phone ? '10px' : '14px',
@@ -536,7 +538,7 @@ function Hero({ isLight }) {
             fontStyle: 'italic',
             color: c.body,
             lineHeight: 1.55,
-            maxWidth: '540px',
+            maxWidth: '640px',
             margin: '0 auto 12px',
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.2s both',
           }}
@@ -549,14 +551,28 @@ function Hero({ isLight }) {
             fontSize: phone ? '14px' : '15px',
             color: c.body,
             lineHeight: 1.65,
-            maxWidth: '520px',
-            margin: '0 auto 22px',
+            maxWidth: '640px',
+            margin: '0 auto 16px',
             opacity: 0.92,
             animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.24s both',
           }}
         >
           {HERO_SUPPORT}
         </p>
+        <div
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: phone ? '9px' : '10px',
+            letterSpacing: phone ? '0.08em' : '0.14em',
+            textTransform: 'uppercase',
+            color: c.amber,
+            lineHeight: 1.6,
+            marginBottom: '22px',
+            animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.28s both',
+          }}
+        >
+          {HERO_FOCUS}
+        </div>
         <div
           style={{
             display: 'flex',
@@ -587,35 +603,6 @@ function Hero({ isLight }) {
           }}
         >
           {HERO_LOCATION}
-        </div>
-        <div
-          style={{
-            marginTop: phone ? '12px' : '14px',
-            fontFamily: "'Lora', serif",
-            fontSize: phone ? '13px' : '14px',
-            fontStyle: 'italic',
-            color: c.body,
-            lineHeight: 1.5,
-            maxWidth: '520px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.36s both',
-          }}
-        >
-          {HERO_ASK}
-        </div>
-        <div
-          style={{
-            marginTop: phone ? '16px' : '22px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '8px',
-            letterSpacing: phone ? '0.08em' : '0.14em',
-            color: c.quiet,
-            lineHeight: 1.7,
-            animation: 'hmFadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.4s both',
-          }}
-        >
-          {HERO_PORTFOLIO_LINE}
         </div>
         <div
           style={{
@@ -650,21 +637,15 @@ function Hero({ isLight }) {
   )
 }
 
-function ThemeLine({ themes, color }) {
+function ProjectBrief({ brief, ink, body }) {
   return (
-    <p
-      style={{
-        fontFamily: "'JetBrains Mono', monospace",
-        fontSize: '10px',
-        letterSpacing: '0.04em',
-        color,
-        lineHeight: 1.6,
-        margin: '0 0 10px',
-        maxWidth: '640px',
-      }}
-    >
-      {themes.join(' · ')}
-    </p>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '640px', marginBottom: '16px' }}>
+      {brief.map((row) => (
+        <p key={row.label} style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: body, lineHeight: 1.7, margin: 0 }}>
+          <strong style={{ color: ink }}>{row.label}.</strong> {row.text}
+        </p>
+      ))}
+    </div>
   )
 }
 
@@ -751,14 +732,67 @@ function ContributionDetails({ contribution, ink, body, quiet, accent, panelId }
   )
 }
 
+function CommercialResults({ isLight }) {
+  const { phone } = useBreakpoint()
+  const c = t(isLight)
+
+  return (
+    <Section id="results" isLight={isLight}>
+      <RevealWrapper>
+        <SectionEyebrow color={c.amber}>Results</SectionEyebrow>
+        <h2
+          style={{
+            fontFamily: "'Fraunces', serif",
+            fontSize: phone ? '28px' : 'clamp(30px, 3.8vw, 44px)',
+            fontWeight: 200,
+            fontStyle: 'italic',
+            color: c.ink,
+            lineHeight: 1.12,
+            letterSpacing: '-0.025em',
+            marginBottom: '22px',
+            textAlign: 'left',
+          }}
+        >
+          Commercial results at Metsä Board
+        </h2>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
+            gap: phone ? '16px' : '24px',
+            textAlign: 'left',
+          }}
+        >
+          {COMMERCIAL_RESULTS.map((row) => (
+            <div key={row.figure} style={{ borderTop: `2px solid ${c.amber}`, paddingTop: 14 }}>
+              <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '40px' : '52px', fontWeight: 200, fontStyle: 'italic', color: c.ink, lineHeight: 1 }}>
+                {row.figure}
+              </div>
+              <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '13px', fontWeight: 700, color: c.ink, marginTop: 10 }}>
+                {row.label}
+              </div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase', color: c.amber, marginTop: 6 }}>
+                {row.detail}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body, textAlign: 'left', margin: '18px 0 0', maxWidth: '720px' }}>
+          {COMMERCIAL_RESULTS_NOTE}
+        </p>
+      </RevealWrapper>
+    </Section>
+  )
+}
+
 function AboutSection({ isLight }) {
   const { phone, narrow } = useBreakpoint()
   const c = t(isLight)
 
   return (
-    <Section id="about" isLight={isLight}>
+    <Section id="experience" isLight={isLight}>
       <RevealWrapper>
-        <SectionEyebrow color={c.amber}>About</SectionEyebrow>
+        <SectionEyebrow color={c.amber}>Experience</SectionEyebrow>
         <div
           style={{
             display: 'grid',
@@ -813,29 +847,21 @@ function AboutSection({ isLight }) {
                 marginBottom: '18px',
               }}
             >
-              {ABOUT_HEADLINE}
+              Professional experience
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {ABOUT_PARAS.map((para) => (
-                <p key={para.slice(0, 40)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.8, color: c.body, margin: 0 }}>
-                  {para}
-                </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+              {EXPERIENCE_ROLES.map((role) => (
+                <div key={role.title}>
+                  <div style={{ display: 'flex', flexDirection: phone ? 'column' : 'row', justifyContent: 'space-between', gap: 6 }}>
+                    <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '14px', fontWeight: 700, color: c.ink }}>{role.title}</div>
+                    <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', letterSpacing: '0.06em', color: c.amber, flexShrink: 0 }}>{role.dates}</div>
+                  </div>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.muted, letterSpacing: '0.04em', margin: '6px 0 8px' }}>{role.place}</div>
+                  {role.points.map((point) => (
+                    <p key={point.slice(0, 32)} style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body, margin: '0 0 8px' }}>{point}</p>
+                  ))}
+                </div>
               ))}
-            </div>
-            <p
-              style={{
-                fontFamily: "'Lora', serif",
-                fontSize: '14px',
-                fontStyle: 'italic',
-                lineHeight: 1.7,
-                color: c.ink,
-                margin: '16px 0 0',
-              }}
-            >
-              <strong>{ABOUT_TAG}</strong>
-            </p>
-            <div style={{ marginTop: 18, fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.muted, letterSpacing: '0.06em' }}>
-              Enterprise systems experience · SAP · Power BI · CRM · BW — evidence, not the headline
             </div>
           </div>
         </div>
@@ -920,46 +946,12 @@ const ARCHIVES = [
   { name: 'Iraun', blurb: 'Personal AI ops assistant · exploratory', href: 'https://iraun.vercel.app' },
 ]
 
-function Work({ isLight }) {
+function GrypsCase({ isLight }) {
   const { phone, tablet } = useBreakpoint()
   const c = t(isLight)
-  const [archivesOpen, setArchivesOpen] = useState(false)
   const figCap = { color: c.quiet }
-
   return (
-    <Section id="work" isLight={isLight} style={{ maxWidth: '1040px', width: '100%' }}>
-      <RevealWrapper>
-        <SectionEyebrow color={c.ice}>Work</SectionEyebrow>
-        <h2
-          style={{
-            fontFamily: "'Fraunces', serif",
-            fontSize: 'clamp(28px, 3.8vw, 48px)',
-            fontWeight: 200,
-            fontStyle: 'italic',
-            color: c.ink,
-            lineHeight: 1.15,
-            letterSpacing: '-0.02em',
-            marginBottom: '20px',
-          }}
-        >
-          Selected work
-        </h2>
-        <p
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '9px',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            color: c.muted,
-            margin: '0 0 28px',
-            textAlign: 'left',
-          }}
-        >
-          Independent, non-commercial research &amp; prototypes
-        </p>
-      </RevealWrapper>
-
-      {/* GRYPS featured */}
+    <div id="case" style={{ textAlign: 'left' }}>
       <RevealWrapper delay={80}>
         <div
           style={{
@@ -974,18 +966,12 @@ function Work({ isLight }) {
           }}
         >
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: phone ? '0.16em' : '0.28em', color: c.ice, textTransform: 'uppercase', marginBottom: '12px' }}>
-            01 · Featured case study · Model v0.4
+            01 · Research prototype · Model v0.4
           </div>
           <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '36px' : 'clamp(34px, 4.5vw, 52px)', fontWeight: 200, fontStyle: 'italic', color: c.ink, letterSpacing: '-0.03em', marginBottom: '10px' }}>
             GRYPS
           </div>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '10px' }}>
-            {FEATURED_PROJECTS.gryps.blurb}
-          </p>
-          <ThemeLine themes={FEATURED_PROJECTS.gryps.themes} color={c.muted} />
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.quiet, letterSpacing: '0.06em', margin: '0 0 16px' }}>
-            {FEATURED_PROJECTS.gryps.status}
-          </p>
+          <ProjectBrief brief={PROJECT_BRIEFS.gryps} ink={c.ink} body={c.body} />
 
           <div style={{ ...figCap }}>
             <CaseShot
@@ -1033,6 +1019,51 @@ function Work({ isLight }) {
           Illustrative Signature (demo freeze) · generate a live assessment in the Advisor
         </div>
       </RevealWrapper>
+    </div>
+  )
+}
+
+
+function Work({ isLight }) {
+  const { phone } = useBreakpoint()
+  const c = t(isLight)
+  const [archivesOpen, setArchivesOpen] = useState(false)
+  const figCap = { color: c.quiet }
+
+  return (
+    <Section id="work" isLight={isLight} style={{ maxWidth: '1040px', width: '100%' }}>
+      <RevealWrapper>
+        <SectionEyebrow color={c.ice}>Projects</SectionEyebrow>
+        <h2
+          style={{
+            fontFamily: "'Fraunces', serif",
+            fontSize: 'clamp(28px, 3.8vw, 48px)',
+            fontWeight: 200,
+            fontStyle: 'italic',
+            color: c.ink,
+            lineHeight: 1.15,
+            letterSpacing: '-0.02em',
+            marginBottom: '20px',
+          }}
+        >
+          Selected projects
+        </h2>
+        <p
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '9px',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: c.muted,
+            margin: '0 0 28px',
+            textAlign: 'left',
+          }}
+        >
+          GRYPS leads. Triangora and Morea follow.
+        </p>
+      </RevealWrapper>
+
+      <GrypsCase isLight={isLight} />
 
       {/* Triangora featured */}
       <RevealWrapper delay={120}>
@@ -1049,18 +1080,12 @@ function Work({ isLight }) {
           }}
         >
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.teal, textTransform: 'uppercase', marginBottom: '10px' }}>
-            02 · Non-commercial · Multi-agent verification
+            02 · Multi-agent verification
           </div>
           <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '30px' : '36px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '10px' }}>
             Triangora
           </div>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '10px' }}>
-            {FEATURED_PROJECTS.triangora.blurb}
-          </p>
-          <ThemeLine themes={FEATURED_PROJECTS.triangora.themes} color={c.muted} />
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.quiet, letterSpacing: '0.06em', margin: '0 0 16px' }}>
-            {FEATURED_PROJECTS.triangora.status}
-          </p>
+          <ProjectBrief brief={PROJECT_BRIEFS.triangora} ink={c.ink} body={c.body} />
           <div style={{ ...figCap }}>
             <CaseShot
               src="/work/triangora-verdict.png"
@@ -1100,18 +1125,12 @@ function Work({ isLight }) {
           }}
         >
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', letterSpacing: '0.2em', color: c.amber, textTransform: 'uppercase', marginBottom: '10px' }}>
-            03 · Non-commercial · Educational literacy
+            03 · Educational literacy
           </div>
           <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '30px' : '36px', fontWeight: 200, fontStyle: 'italic', color: c.ink, marginBottom: '10px' }}>
             Morea
           </div>
-          <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.7, maxWidth: '640px', marginBottom: '10px' }}>
-            {FEATURED_PROJECTS.morea.blurb}
-          </p>
-          <ThemeLine themes={FEATURED_PROJECTS.morea.themes} color={c.muted} />
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.quiet, letterSpacing: '0.06em', margin: '0 0 16px' }}>
-            {FEATURED_PROJECTS.morea.status}
-          </p>
+          <ProjectBrief brief={PROJECT_BRIEFS.morea} ink={c.ink} body={c.body} />
           <div style={{ ...figCap }}>
             <CaseShot
               src="/work/morea-dossier.png"
@@ -1214,7 +1233,7 @@ function Work({ isLight }) {
             }}
           >
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.28em', textTransform: 'uppercase' }}>
-              Earlier experiments &amp; prototypes
+              Earlier Experiments &amp; Prototypes
             </span>
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: c.amber }}>{archivesOpen ? '−' : '+'}</span>
           </button>
@@ -1386,7 +1405,7 @@ function Contact({ isLight }) {
             © {year} Henrique Moreira · All rights reserved
           </div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: c.quiet, opacity: 0.85, letterSpacing: '0.12em' }}>
-            {FOOTER_PORTFOLIO_LINE}
+            {NONCOMMERCIAL_LINE}
           </div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7.5px', color: c.quiet, opacity: 0.65 }}>
             Vite · React · React Router · Vercel
@@ -1397,11 +1416,48 @@ function Contact({ isLight }) {
   )
 }
 
+function BidConcept({ isLight }) {
+  const { phone } = useBreakpoint()
+  const c = t(isLight)
+  return (
+    <Section id="bid-case" isLight={isLight} style={{ textAlign: 'left', maxWidth: '1040px', paddingTop: phone ? 40 : 64, paddingBottom: phone ? 40 : 64 }}>
+      <RevealWrapper>
+        <SectionEyebrow color={c.amber}>Applied commercial case</SectionEyebrow>
+        <h2
+          style={{
+            fontFamily: "'Fraunces', serif",
+            fontSize: 'clamp(28px, 3.8vw, 44px)',
+            fontWeight: 200,
+            fontStyle: 'italic',
+            color: c.ink,
+            lineHeight: 1.15,
+            letterSpacing: '-0.02em',
+            margin: '0 0 14px',
+            maxWidth: 720,
+          }}
+        >
+          {BID_CASE.title}
+        </h2>
+        <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.7, color: c.ink, margin: '0 0 10px', maxWidth: 680 }}>
+          {BID_CASE.status}
+        </p>
+        <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.7, color: c.body, margin: '0 0 18px', maxWidth: 680 }}>
+          {BID_CASE.subline}
+        </p>
+        <CtaGhost href="/work/bids" color={c.amber} internal>
+          Read the case
+        </CtaGhost>
+      </RevealWrapper>
+    </Section>
+  )
+}
+
 export default function Portfolio({ theme = 'dark' }) {
   const isLight = theme === 'light'
   const c = t(isLight)
 
   useEffect(() => {
+    document.title = SITE_TITLE
     const style = document.createElement('style')
     style.id = 'portfolio-styles'
     style.textContent = `
@@ -1423,9 +1479,9 @@ export default function Portfolio({ theme = 'dark' }) {
           name: 'Henrique Moreira',
           url: 'https://henriquemoreira.eu',
           email: 'hqe.moreira@gmail.com',
-          jobTitle: 'International B2B & Industrial Business Professional',
+          jobTitle: 'International B2B Sales & Commercial Management',
           description:
-            'Espoo-based international B2B and industrial business professional with 18 years of experience, evolving that expertise through applied AI, digital transformation and systems thinking. Lead non-commercial skill demo: GRYPS Resilience Signature. Secondary: Triangora (fact verification), then Morea (EU AI Act literacy).',
+            SITE_DESCRIPTION + ' Personal reskilling, non-commercial. Lead proof: GRYPS. A separate conceptual case on international bid preparation is not a production deployment.',
           address: { '@type': 'PostalAddress', addressLocality: 'Espoo', addressCountry: 'FI' },
           sameAs: ['https://www.linkedin.com/in/hqemoreira', 'https://github.com/hqemoreira'],
           knowsAbout: ['International B2B', 'Industrial Business', 'Applied AI', 'Digital Transformation', 'Systems Thinking', 'EU AI Act', 'Commercial Operations'],
@@ -1439,7 +1495,7 @@ export default function Portfolio({ theme = 'dark' }) {
               name: 'What is this site?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'A personal hiring portfolio for Henrique Moreira (Espoo, Finland): international industrial B2B experience evolving through applied AI. Lead skill demo is GRYPS; then Triangora and Morea as secondary non-commercial prototypes. Factual posture: https://henriquemoreira.eu/about',
+                text: 'A personal reskilling portfolio for Henrique Moreira (Espoo, Finland). Established evidence is 18 years at Metsä Board. GRYPS, Triangora and Morea are non-commercial prototypes that extend that experience. Monopati is the study path. Factual posture: https://henriquemoreira.eu/about',
               },
             },
             {
@@ -1448,6 +1504,14 @@ export default function Portfolio({ theme = 'dark' }) {
               acceptedAnswer: {
                 '@type': 'Answer',
                 text: 'GRYPS is a non-commercial skill demo: enter a site profile and get a Resilience Signature (score, grade, risks, ranked options) from Model v0.4. Live Advisor: https://gryps.vercel.app/#advisor — case brief: https://henriquemoreira.eu/work/gryps',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'Is the commercial AI case a deployed system?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'No. Applying AI to International B2B Commercial Processes is a conceptual exploration based on professional experience at Metsä Board. The proposed AI applications were not implemented or commissioned by Metsä Board. Not a production deployment. https://henriquemoreira.eu/work/bids',
               },
             },
             {
@@ -1482,9 +1546,11 @@ export default function Portfolio({ theme = 'dark' }) {
     <div style={{ background: c.bg, minHeight: '100vh', overflowX: 'hidden', transition: 'background 0.4s ease' }}>
       <BgLayers isLight={isLight} />
       <Hero isLight={isLight} />
-      <AboutSection isLight={isLight} />
+      <CommercialResults isLight={isLight} />
       <Capabilities isLight={isLight} />
+      <BidConcept isLight={isLight} />
       <Work isLight={isLight} />
+      <AboutSection isLight={isLight} />
       <Contact isLight={isLight} />
     </div>
   )

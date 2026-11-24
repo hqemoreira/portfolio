@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { CaseSection, CaseShell, TelemetryRail } from '../../components/CaseShell'
 import { useBreakpoint } from '../../hooks/useBreakpoint'
-import { GRYPS_CASE } from '../../copy'
+import { GRYPS_CASE, SITE_TITLE } from '../../copy'
 import { GRYPS_ADVISOR, GRYPS_METHOD, TRIANGORA_URL, t } from '../../theme'
 
 function Paras({ paras, c }) {
@@ -36,7 +36,7 @@ export default function GrypsCase({ theme = 'dark' }) {
   useEffect(() => {
     document.title = 'GRYPS — Featured case study · Henrique Moreira'
     return () => {
-      document.title = 'Henrique Moreira — International B2B · Applied AI · Espoo, Finland'
+      document.title = SITE_TITLE
     }
   }, [])
 

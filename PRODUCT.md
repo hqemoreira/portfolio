@@ -14,7 +14,7 @@ Hiring evaluators and peers scanning skill demos (~60s path: Home → About → 
 
 ## Job to be done
 
-Understand Henrique as an international industrial B2B professional evolving through applied AI (not reinventing as an AI engineer); try the GRYPS prototype; skim Triangora / Morea; download CV / LinkedIn; understand non-commercial posture.
+Understand three connected layers: Metsä Board commercial career as established evidence; GRYPS (then Triangora, then Morea) as how that experience is being extended; Monopati as further development. Try the GRYPS prototype; download CV / LinkedIn; understand the non-commercial posture.
 
 ## Surface types
 
@@ -32,18 +32,30 @@ Understand Henrique as an international industrial B2B professional evolving thr
 
 ## Honesty
 
-No SaaS, pricing, waitlists, or “production customer” claims. Seed/demo numbers are illustrative where noted on GRYPS. Do not present evolving AI capabilities as 18 years of AI experience. FORGE stays private-only.
+No SaaS, pricing pages, waitlists, or “production customer” claims. Pricing may appear only as historical Metsä Board commercial capability, never as a service this site offers. Seed/demo numbers are illustrative where noted on GRYPS. Do not present applied AI as 18 years of AI experience, and do not restore an AI-consultant or AI-engineer identity. FORGE stays private-only.
+
+`/work/bids` is an applied commercial case: a conceptual exploration of AI for international B2B commercial processes, grounded in Metsä Board experience. It was not implemented or commissioned by Metsä Board. It is not build proof and not a measured result. GRYPS remains the lead prototype.
+
+## Positioning lock
+
+Keep the layers separate and connected:
+
+1. **Evidence** — International B2B Sales & Commercial Management. 18 years at Metsä Board: customer service (04/2008–03/2015), sales support (04/2015–12/2017), sales management (01/2018–05/2026), including Portugal and 50 international customer accounts across agent markets. CV is the source of truth. Portugal sales volume is +9.84% avg / year.
+2. **Extension** — GRYPS is the lead hiring proof; Triangora and Morea stay secondary. Non-commercial research prototypes.
+3. **Further development** — Monopati. Direction, not build proof.
+
+Do not lead with “AI Solutions Consultant”, “intelligent systems” as a job title, or a second identity that replaces the commercial career.
 
 ## Success look
 
 First viewport: **brand monument + B2B identity + punchline + Explore the GRYPS prototype / Get in touch** — quiet non-commercial note. Then skim About (2 paras) → Capabilities (4 compact groups) → Selected work (GRYPS → Triangora → Morea) → Ongoing Monopati → also built → Contact.
 
-**Content hierarchy (frozen homepage):** identity and 18-year foundation on Hero/About; developing AI on Capabilities; project purpose on homepage. **Do not expand homepage projects or structure.** Depth lives on case studies — priority: GRYPS hiring case → Triangora → Morea.
+**Content hierarchy (frozen homepage):** Metsä Board career on Hero/About; commercial capabilities as established evidence and applied AI as a separate developing group; project purpose on homepage. **Do not expand homepage projects or structure.** Depth lives on case studies — priority: GRYPS hiring case → Triangora → Morea. Do not restore an AI-consultant identity.
 
 ## Maintain (do not regress)
 
 - **Person-first hero** — `HENRIQUE` / `MOREIRA` monument; amber brand; Lycaon constellation.
-- **Business foundation first** — international industrial B2B experience; AI as evolution, not replacement. Not an AI portfolio with a B2B footnote.
+- **Business foundation first** — Metsä Board career as evidence; AI prototypes as the extension; Monopati as further development. Not an AI-consultant portfolio.
 - **Skimmable homepage** — ~30–60s understanding; depth on `/work/gryps`, `/work/morea`, Triangora disclosure.
 - **Lead with the system under Work** — GRYPS first with live screenshots; never a stack badge wall on the home hero.
 - **Stack as case evidence** — on `/work/gryps` and featured cards.

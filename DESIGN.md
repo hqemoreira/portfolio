@@ -34,7 +34,7 @@ spacing:
 
 ## Overview
 
-**Personal portfolio for hiring / reskilling.** Brand name is the hero monument; B2B identity + punchline + dual CTAs; About → Capabilities; then Work with live case screenshots. Dark theater + Arctic-day light.
+**Personal portfolio for hiring / reskilling.** Brand name is the hero monument. Primary identity: “International B2B Sales & Commercial Management”. Supporting line: “Applied AI and digital capabilities for commercial processes and business transformation.” The commercial career is the evidence. The conceptual commercial case translates that experience. GRYPS, then Triangora, then Morea, show the build. Dark theater + Arctic-day light.
 
 Competitor test: *On this page, Henrique Moreira’s portfolio reads as a person first, then tryable skill demos with evidence.*
 

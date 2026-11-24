@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { CaseSection, CaseShell, TelemetryRail } from '../../components/CaseShell'
 import { useBreakpoint } from '../../hooks/useBreakpoint'
-import { PROJECT_CONTRIBUTIONS } from '../../copy'
+import { PROJECT_CONTRIBUTIONS, SITE_TITLE } from '../../copy'
 import { MOREA_URL, t } from '../../theme'
 
 export default function MoreaCase({ theme = 'dark' }) {
@@ -13,7 +13,7 @@ export default function MoreaCase({ theme = 'dark' }) {
   useEffect(() => {
     document.title = 'Morea — Evidence Pack brief · Henrique Moreira'
     return () => {
-      document.title = 'Henrique Moreira — Morea · Espoo, Finland'
+      document.title = SITE_TITLE
     }
   }, [])
 

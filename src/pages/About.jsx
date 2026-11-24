@@ -24,7 +24,7 @@ export default function About({ theme = 'dark' }) {
   const accent = c.amber
 
   return (
-    <LegalShell theme={theme} title="About this site" eyebrow="Posture" lastUpdated="Updated 2026-11-16">
+    <LegalShell theme={theme} title="About this site" eyebrow="Posture" lastUpdated="Updated 2026-11-24">
       <section>
         <LegalH2>Professional identity</LegalH2>
         <LegalP>
@@ -41,7 +41,7 @@ export default function About({ theme = 'dark' }) {
         <LegalP>
           <em>{ABOUT_TAG}</em>{' '}
           Homepage skim:{' '}
-          <Link to="/#about" style={{ color: accent }}>
+          <Link to="/#experience" style={{ color: accent }}>
             About
           </Link>
           {' · '}
@@ -75,7 +75,7 @@ export default function About({ theme = 'dark' }) {
           ))}
         </ol>
         <p style={{ marginTop: 16, fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', lineHeight: 1.7 }}>
-          <Link to="/#about" style={{ color: accent }}>
+          <Link to="/#experience" style={{ color: accent }}>
             About
           </Link>
           {' · '}
@@ -121,8 +121,9 @@ export default function About({ theme = 'dark' }) {
             learning context (noindex on their own hosts), not live commercial services.
           </li>
           <li>
-            <strong>Monopati</strong> — my public study progress for AI Solutions + satellite
-            (direction only; GRYPS is the build proof).
+            <strong>Monopati</strong> — public study progress for further development: applied AI and
+            digital capabilities on a commercial foundation, with satellite literacy supporting GRYPS.
+            Direction only; GRYPS is the build proof.
           </li>
           <li>
             <strong>FORGE</strong> — a private personal ops dashboard. It is not a public product and

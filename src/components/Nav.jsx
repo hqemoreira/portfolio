@@ -97,8 +97,8 @@ export default function Nav({ theme, onToggleTheme }) {
         <NavLink href="/#work" color={c.amber} onClick={scrollHomeSection('work')}>
           Work
         </NavLink>
-        <NavLink href="/#about" color={c.amber} onClick={scrollHomeSection('about')}>
-          About
+        <NavLink href="/#experience" color={c.amber} onClick={scrollHomeSection('experience')}>
+          Experience
         </NavLink>
         <NavLink href="/#contact" color={c.amber} onClick={scrollHomeSection('contact')}>
           Contact

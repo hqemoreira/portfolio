@@ -33,6 +33,9 @@ export function CaseShell({ theme = 'dark', children }) {
           <Link to="/work/morea" style={{ color: c.amber, fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.16em', textDecoration: 'none' }}>
             Morea
           </Link>
+          <Link to="/work/bids" style={{ color: c.amber, fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.16em', textDecoration: 'none' }}>
+            Commercial case
+          </Link>
           <Link to="/about" style={{ color: c.amber, fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.16em', textDecoration: 'none' }}>
             About
           </Link>

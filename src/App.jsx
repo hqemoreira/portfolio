@@ -9,6 +9,7 @@ import About from './pages/About'
 import NotFound from './pages/NotFound'
 import GrypsCase from './pages/work/GrypsCase'
 import MoreaCase from './pages/work/MoreaCase'
+import BidCase from './pages/work/BidCase'
 
 const THEME_KEY = 'hm-theme'
 
@@ -17,7 +18,7 @@ function HashScroll() {
   useEffect(() => {
     if (location.hash) {
       let id = location.hash.slice(1)
-      if (id === 'why-me') id = 'about'
+      if (id === 'why-me' || id === 'about') id = 'experience'
       requestAnimationFrame(() => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
       })
@@ -67,6 +68,7 @@ export default function App() {
         <Route path="/terms" element={<Terms theme={theme} />} />
         <Route path="/work/gryps" element={<GrypsCase theme={theme} />} />
         <Route path="/work/morea" element={<MoreaCase theme={theme} />} />
+        <Route path="/work/bids" element={<BidCase theme={theme} />} />
         <Route path="*" element={<NotFound theme={theme} />} />
       </Routes>
       <Analytics />

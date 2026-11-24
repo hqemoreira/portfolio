@@ -1,25 +1,13 @@
 # LinkedIn alignment — paste-ready
 
-Matches henriquemoreira.eu + CV: **18 years industrial B2B first**; applied AI as evolution; GRYPS as lead proof; non-commercial prototypes only.
+Matches henriquemoreira.eu + CV. Three layers, kept separate and connected: **Metsä Board career as evidence**; GRYPS (then Triangora, then Morea) as the extension; Monopati as further development. Non-commercial prototypes only. Do not restore an AI-consultant headline.
 
 ---
 
 ## Headline (≤220 characters)
 
-**Use this (your structure, without “innovation”):**
-
 ```text
-AI Solutions & Business Transformation | Nordic Commercial Mindset | Turning Business Challenges into Practical AI Solutions
-```
-
-Close alternatives:
-
-```text
-AI Solutions & Digital Transformation | Nordic Commercial Mindset | Turning Business Challenges into Practical AI Solutions
-```
-
-```text
-Applied AI & Business Transformation | Nordic Commercial Mindset | Turning Business Challenges into Practical AI Solutions
+International B2B Sales & Commercial Management | Applied AI and digital capabilities for commercial processes and business transformation
 ```
 
 ---
@@ -27,21 +15,21 @@ Applied AI & Business Transformation | Nordic Commercial Mindset | Turning Busin
 ## About
 
 ```text
-18 years of international industrial B2B experience. Evolving that expertise through applied AI and intelligent systems.
+International B2B Sales & Commercial Management. Applied AI and digital capabilities for commercial processes and business transformation.
 
-I spent my career in commercial operations, sales, bidding, international account management and stakeholder coordination — understanding how industrial businesses sell, deliver and decide.
+For 18 years at Metsä Board I worked in international industrial B2B, from customer service and sales support to sales management. As Sales Manager I held full commercial responsibility for Portugal and 50 international customer accounts across agent markets in Europe and MEA, including pricing, contract negotiations and commercial operations. That career is established professional evidence.
 
-My approach starts with the business problem: people, processes and commercial objectives. I am building on that foundation through applied AI, digital product development and systems thinking — researching challenges, designing decision-support approaches and shipping working prototypes.
+Applied AI extends that experience. It is not a consultancy offer. Lead demonstration — GRYPS: a non-commercial research prototype that turns a remote site profile into a Resilience Signature (assess → score → rank → document). Try it: gryps.vercel.app/#advisor · Case brief: henriquemoreira.eu/work/gryps
 
-Evolution, not reinvention: bringing established business expertise into an increasingly AI-driven world.
+Conceptual exploration, not a deployment: Applying AI to International B2B Commercial Processes. henriquemoreira.eu/work/bids
 
-Lead demonstration — GRYPS: a non-commercial research prototype that turns a remote site profile into a Resilience Signature (assess → score → rank → document). Try it: gryps.vercel.app/#advisor · Case brief: henriquemoreira.eu/work/gryps
+Secondary prototypes: Triangora (independent verification of existing claims — never generates claims) and Morea (educational EU AI Act Article 4 walkthrough — not a compliance service).
 
-Complementary prototypes: Triangora (independent verification of existing claims — never generates claims) and Morea (educational EU AI Act Article 4 walkthrough — not a compliance service).
+Further development is on Monopati: monopati.vercel.app/progress
 
 Portfolio: henriquemoreira.eu
 
-Open to opportunities in Finland and the EU where international B2B and industrial business experience can shape applied AI, digital transformation and intelligent systems.
+Open to roles in Finland and the EU where an established international commercial career is extended with applied AI and digital capabilities.
 ```
 
 ---
@@ -54,7 +42,7 @@ Add as **Featured → + Add a link** (or media). Keep this order.
 
 - **URL:** https://henriquemoreira.eu  
 - **Title:** Henrique Moreira — Portfolio  
-- **Description:** International B2B & industrial business professional. 18 years of experience, evolving through applied AI and systems thinking.
+- **Description:** International B2B Sales & Commercial Management. 18 years at Metsä Board, extended through applied AI for commercial processes. Non-commercial.
 
 ### 2. GRYPS (lead hiring proof)
 
@@ -78,7 +66,7 @@ Add as **Featured → + Add a link** (or media). Keep this order.
 
 - **URL:** https://henriquemoreira.eu/Henrique_Moreira_CV.pdf  
 - **Title:** CV — Henrique Moreira  
-- **Description:** Same positioning as the portfolio: business foundation first, applied AI as evolution.
+- **Description:** Same three layers as the portfolio: Metsä Board career, then prototypes, then Monopati.
 
 ---
 

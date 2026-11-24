@@ -13,4 +13,4 @@ $pdf = (Resolve-Path '.\cv').Path + '\Henrique_Moreira_CV.pdf'
 Copy-Item $pdf .\public\Henrique_Moreira_CV.pdf -Force
 ```
 
-Positioning must match the portfolio: **18 years industrial B2B first**, applied AI as evolution — not an AI-consultant-first CV.
+Positioning must match the portfolio. Primary identity: **International B2B Sales & Commercial Management**. Supporting line: applied AI and digital capabilities for commercial processes and business transformation. Do not restore an AI-consultant CV or imply consultancy services. Selling-price growth of 2.97% in Portugal stays on the CV and off the homepage results cards.
