@@ -10,7 +10,7 @@ Personal hiring / reskilling portfolio; **GRYPS** is the lead skill demo; then *
 
 ## Audience
 
-Hiring evaluators and peers scanning skill demos (~60s path: Home → About → Capabilities → Work → GRYPS Advisor).
+Hiring evaluators and peers scanning skill demos (~60s path: Home → About, a professional introduction → What I bring → Work → GRYPS Advisor).
 
 ## Job to be done
 
@@ -34,7 +34,7 @@ Understand three connected layers: Metsä Board commercial career as established
 
 No SaaS, pricing pages, waitlists, or “production customer” claims. Pricing may appear only as historical Metsä Board commercial capability, never as a service this site offers. Seed/demo numbers are illustrative where noted on GRYPS. Do not present applied AI as 18 years of AI experience, and do not restore an AI-consultant or AI-engineer identity. FORGE stays private-only.
 
-`/work/bids` is an applied commercial case: a conceptual exploration of AI for international B2B commercial processes, grounded in Metsä Board experience. It was not implemented or commissioned by Metsä Board. It is not build proof and not a measured result. GRYPS remains the lead prototype.
+`/work/bids` is the applied commercial case, “Applying AI to International B2B Commercial Processes.” It states the commercial problem once, then the operational friction, six proposed AI applications, and the business value they could support. Pricing approvals, contractual commitments and customer negotiations stay with the people responsible. It is not build proof. GRYPS remains the lead prototype.
 
 ## Positioning lock
 
@@ -48,9 +48,9 @@ Do not lead with “AI Solutions Consultant”, “intelligent systems” as a j
 
 ## Success look
 
-First viewport: **brand monument + B2B identity + punchline + Explore the GRYPS prototype / Get in touch** — quiet non-commercial note. Then skim About (2 paras) → Capabilities (4 compact groups) → Selected work (GRYPS → Triangora → Morea) → Ongoing Monopati → also built → Contact.
+First viewport: **brand monument + B2B identity + punchline + Explore the GRYPS prototype / Get in touch** — quiet non-commercial note. Homepage order after the hero: commercial results → What I bring (five blocks) → applied commercial case → Selected work (GRYPS → Triangora → Morea) → Monopati and collapsed earlier experiments → Experience → Contact. `/about` is a separate four-paragraph professional introduction.
 
-**Content hierarchy (frozen homepage):** Metsä Board career on Hero/About; commercial capabilities as established evidence and applied AI as a separate developing group; project purpose on homepage. **Do not expand homepage projects or structure.** Depth lives on case studies — priority: GRYPS hiring case → Triangora → Morea. Do not restore an AI-consultant identity.
+**Content hierarchy:** Metsä Board career on the hero, results and Experience. What I bring is five transferable blocks: multi-market thinking, end-to-end process thinking, cross-functional alignment, customer and account perspective, and turning complexity into action. **Do not expand homepage projects or structure.** Depth lives on case studies — priority: GRYPS hiring case → Triangora → Morea. Do not restore an AI-consultant identity.
 
 ## Maintain (do not regress)
 
@@ -59,6 +59,6 @@ First viewport: **brand monument + B2B identity + punchline + Explore the GRYPS 
 - **Skimmable homepage** — ~30–60s understanding; depth on `/work/gryps`, `/work/morea`, Triangora disclosure.
 - **Lead with the system under Work** — GRYPS first with live screenshots; never a stack badge wall on the home hero.
 - **Stack as case evidence** — on `/work/gryps` and featured cards.
-- **Stamps secondary** — SAP / Power BI / CRM / BW stay in About footnote, not the headline.
-- **60s path** — Home → About → Capabilities → Work → explore the GRYPS prototype. Shared copy in `src/copy.js`.
+- **Stamps secondary** — SAP / Power BI / CRM / BW stay in the Experience record, not the headline.
+- **60s path** — Home → About (professional introduction) → What I bring → Work → explore the GRYPS prototype.
 - **Hub footer stack** — only technologies this repo uses (Vite · React · Router · Vercel).

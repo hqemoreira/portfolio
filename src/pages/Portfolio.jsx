@@ -896,38 +896,27 @@ function Capabilities({ isLight }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
-            gap: phone ? '22px' : '28px 36px',
+            gridTemplateColumns: phone ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: phone ? '18px' : '22px',
             textAlign: 'left',
           }}
         >
           {CAPABILITIES_GROUPS.map((group) => (
-            <div key={group.title}>
+            <div key={group.title} style={{ borderTop: `2px solid ${c.amber}`, paddingTop: 12 }}>
               <div
                 style={{
                   fontFamily: "'Syne', sans-serif",
-                  fontSize: '13px',
+                  fontSize: '14px',
                   fontWeight: 700,
-                  letterSpacing: '0.04em',
+                  letterSpacing: '0.01em',
                   color: c.ink,
-                  marginBottom: 4,
+                  marginBottom: 6,
+                  lineHeight: 1.3,
                 }}
               >
                 {group.title}
               </div>
-              <div
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '8px',
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: c.amber,
-                  marginBottom: 8,
-                }}
-              >
-                {group.label}
-              </div>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body, margin: 0 }}>
+              <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.55, color: c.body, margin: 0 }}>
                 {group.items}
               </p>
             </div>
@@ -1438,9 +1427,6 @@ function BidConcept({ isLight }) {
         >
           {BID_CASE.title}
         </h2>
-        <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.7, color: c.ink, margin: '0 0 10px', maxWidth: 680 }}>
-          {BID_CASE.status}
-        </p>
         <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.7, color: c.body, margin: '0 0 18px', maxWidth: 680 }}>
           {BID_CASE.subline}
         </p>
@@ -1481,7 +1467,7 @@ export default function Portfolio({ theme = 'dark' }) {
           email: 'hqe.moreira@gmail.com',
           jobTitle: 'International B2B Sales & Commercial Management',
           description:
-            SITE_DESCRIPTION + ' Personal reskilling, non-commercial. Lead proof: GRYPS. A separate conceptual case on international bid preparation is not a production deployment.',
+            SITE_DESCRIPTION + ' Personal reskilling, non-commercial. Lead proof: GRYPS. A separate case shows how applied AI could support international commercial processes.',
           address: { '@type': 'PostalAddress', addressLocality: 'Espoo', addressCountry: 'FI' },
           sameAs: ['https://www.linkedin.com/in/hqemoreira', 'https://github.com/hqemoreira'],
           knowsAbout: ['International B2B', 'Industrial Business', 'Applied AI', 'Digital Transformation', 'Systems Thinking', 'EU AI Act', 'Commercial Operations'],
@@ -1495,7 +1481,7 @@ export default function Portfolio({ theme = 'dark' }) {
               name: 'What is this site?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'A personal reskilling portfolio for Henrique Moreira (Espoo, Finland). Established evidence is 18 years at Metsä Board. GRYPS, Triangora and Morea are non-commercial prototypes that extend that experience. Earlier prototypes are Grantemia, Velu, Lycaon, DisclAI, and Iraun. LitrixEU is not a project on this site. Monopati is the study path. Factual posture: https://henriquemoreira.eu/about',
+                text: 'A personal reskilling portfolio for Henrique Moreira (Espoo, Finland). Established evidence is 18 years at Metsä Board. GRYPS, Triangora and Morea are non-commercial prototypes that extend that experience. Earlier prototypes are Grantemia, Velu, Lycaon, DisclAI, and Iraun. LitrixEU is not a project on this site. Monopati is the study path. Machine-readable guidance: https://henriquemoreira.eu/llms.txt',
               },
             },
             {
@@ -1508,10 +1494,10 @@ export default function Portfolio({ theme = 'dark' }) {
             },
             {
               '@type': 'Question',
-              name: 'Is the commercial AI case a deployed system?',
+              name: 'How does the commercial case use applied AI?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'No. Applying AI to International B2B Commercial Processes is a conceptual exploration based on professional experience at Metsä Board. The proposed AI applications were not implemented or commissioned by Metsä Board. Not a production deployment. https://henriquemoreira.eu/work/bids',
+                text: 'Applying AI to International B2B Commercial Processes describes how applied AI could support international sales, pricing and commercial operations. Pricing approvals and customer commitments stay with the people responsible. https://henriquemoreira.eu/work/bids',
               },
             },
             {

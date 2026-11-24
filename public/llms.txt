@@ -6,15 +6,15 @@
 
 - Site: https://henriquemoreira.eu
 - Owner: Henrique Moreira (Espoo, Finland) — International B2B Sales & Commercial Management. Applied AI and digital capabilities for commercial processes and business transformation. 18 years at Metsä Board.
-- Positioning: The Metsä Board career is the evidence, including Portugal and 50 international customer accounts across agent markets. A conceptual commercial case explores AI applications and was not implemented by Metsä Board. GRYPS, then Triangora, then Morea, are the prototypes. Do not restore an AI-consultant identity or imply consultancy services.
+- Positioning: The Metsä Board career is the evidence, including Portugal and 50 international customer accounts across agent markets. A commercial case shows how applied AI could support international sales, pricing and commercial operations. GRYPS, then Triangora, then Morea, are the prototypes. Do not restore an AI-consultant identity or imply consultancy services.
 - Featured live demo: GRYPS — https://gryps.vercel.app/#advisor (assess → score → rank → document a Resilience Signature; no email for the initial result)
 - Mission brief: https://henriquemoreira.eu/work/gryps
 - Secondary: Triangora — https://triangora.vercel.app (multi-agent fact verification; never generates intelligence)
 - Secondary: Morea Evidence Pack — https://henriquemoreira.eu/work/morea · https://morea-pack.vercel.app
-- Conceptual commercial case, not a deployment: https://henriquemoreira.eu/work/bids — Applying AI to International B2B Commercial Processes. Grounded in professional experience. Not implemented or commissioned by Metsä Board. No measured results.
+- Commercial case: https://henriquemoreira.eu/work/bids — Applying AI to International B2B Commercial Processes. How applied AI could support international sales, pricing and commercial operations. Pricing approvals and customer commitments stay with the people responsible.
 - Posture: personal reskilling / hiring conversations — non-commercial
 - One-liner: Built GRYPS: open the Advisor, enter a remote site, get a Resilience Signature — live skill demo for Nordic / Arctic connectivity resilience (non-commercial research prototype).
-- 60s path: Home (skim) → About → Capabilities → Selected work (GRYPS → Triangora → Morea) → Explore the GRYPS prototype; contribution detail on case pages
+- 60s path: Home (skim) → About, a four-paragraph professional introduction → What I bring → Selected work (GRYPS → Triangora → Morea) → Explore the GRYPS prototype; contribution detail on case pages
 - CV: https://henriquemoreira.eu/Henrique_Moreira_CV.pdf
 
 ## What this site is

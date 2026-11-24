@@ -11,9 +11,10 @@ Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed **hirin
 ## What’s on the site
 
 - Person-first hero — International B2B Sales & Commercial Management, then applied AI for commercial processes and business transformation + Explore the GRYPS prototype / Get in touch
-- About — commercial career as evidence; prototypes as the extension; Monopati as further development
-- Capabilities — commercial experience established at Metsä Board; applied AI marked as developing through practice
-- Applied commercial case: `/work/bids` (conceptual; not a Metsä Board deployment)
+- Homepage after the hero — commercial results, What I bring (five blocks), the applied commercial case, then projects and Experience
+- About (`/about`) — four-paragraph professional introduction
+- What I bring — multi-market thinking, end-to-end process thinking, cross-functional alignment, customer and account perspective, turning complexity into action
+- Applied commercial case: `/work/bids` — how applied AI could support international sales, pricing and commercial operations
 - Selected prototypes, in order: GRYPS → Triangora → Morea; earlier experiments collapsed; Monopati as ongoing link; FORGE private-only
 - Mission briefs: `/work/gryps`, `/work/morea`, `/work/bids`
 - Contact: Download CV + LinkedIn; email secondary

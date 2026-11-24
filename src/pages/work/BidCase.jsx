@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { CaseSection, CaseShell, TelemetryRail } from '../../components/CaseShell'
 import { useBreakpoint } from '../../hooks/useBreakpoint'
-import { BID_CASE, SITE_DESCRIPTION, SITE_TITLE } from '../../copy'
+import { BID_CASE, SITE_TITLE } from '../../copy'
 import { t } from '../../theme'
 
 function Paras({ paras, c }) {
@@ -37,12 +37,12 @@ export default function BidCase({ theme = 'dark' }) {
     document.title = `${study.title} · Henrique Moreira`
     const meta = document.querySelector('meta[name="description"]')
     const previous = meta?.getAttribute('content')
-    if (meta) meta.setAttribute('content', `${study.status} ${SITE_DESCRIPTION}`)
+    if (meta) meta.setAttribute('content', study.subline)
     return () => {
       document.title = SITE_TITLE
       if (meta && previous) meta.setAttribute('content', previous)
     }
-  }, [study.status, study.title])
+  }, [study.subline, study.title])
 
   return (
     <CaseShell theme={theme}>
@@ -76,7 +76,7 @@ export default function BidCase({ theme = 'dark' }) {
         </Link>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: phone ? '0.16em' : '0.32em', color: c.amber, textTransform: 'uppercase', marginBottom: 16 }}>
-          Conceptual exploration
+          Applied commercial case
         </div>
         <h1
           style={{
@@ -106,20 +106,6 @@ export default function BidCase({ theme = 'dark' }) {
         >
           {study.subline}
         </p>
-        <p
-          style={{
-            fontFamily: "'Lora', serif",
-            fontSize: '15px',
-            color: c.ink,
-            maxWidth: '680px',
-            lineHeight: 1.7,
-            marginBottom: phone ? 20 : 28,
-            borderLeft: `3px solid ${c.amber}`,
-            paddingLeft: 14,
-          }}
-        >
-          {study.status}
-        </p>
 
         <div
           style={{
@@ -134,9 +120,6 @@ export default function BidCase({ theme = 'dark' }) {
               <Paras paras={study.context.paras} c={c} />
             </CaseSection>
             <CaseSection id="challenges" label={study.challenges.label} accent={c.amber}>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: '0 0 12px' }}>
-                {study.challenges.note}
-              </p>
               <BulletList items={study.challenges.items} c={c} />
             </CaseSection>
             <CaseSection id="approach" label={study.approach.label} accent={c.amber}>
@@ -145,29 +128,17 @@ export default function BidCase({ theme = 'dark' }) {
                 <BulletList items={study.approach.items} c={c} />
               </div>
             </CaseSection>
-            <CaseSection id="oversight" label={study.oversight.label} accent={c.amber}>
-              <Paras paras={study.oversight.paras} c={c} />
-            </CaseSection>
             <CaseSection id="value" label={study.value.label} accent={c.amber}>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.body, lineHeight: 1.8, margin: '0 0 12px' }}>
-                {study.value.note}
-              </p>
               <BulletList items={study.value.items} c={c} />
-            </CaseSection>
-            <CaseSection id="status" label="Status" accent={c.amber}>
-              <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', color: c.ink, lineHeight: 1.8, margin: 0 }}>
-                {study.status}
-              </p>
             </CaseSection>
           </div>
           <TelemetryRail
             isLight={isLight}
             rows={[
-              { label: 'Kind', value: 'Conceptual exploration' },
-              { label: 'Basis', value: 'Metsä Board commercial experience' },
-              { label: 'Employer system', value: 'Not implemented or commissioned' },
-              { label: 'Measured results', value: 'None claimed' },
-              { label: 'Decisions', value: 'Remain with people' },
+              { label: 'Setting', value: 'Multi-market B2B commercial operations' },
+              { label: 'Focus', value: 'Information, pricing and coordination' },
+              { label: 'Applications', value: 'Support for preparation' },
+              { label: 'Decisions', value: 'Stay with the people responsible' },
             ]}
           />
         </div>

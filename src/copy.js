@@ -31,40 +31,29 @@ export const SITE_DESCRIPTION =
 
 export const GRYPS_PRIMARY_CTA = 'Explore the GRYPS prototype'
 
-/** About — two paragraphs + evolution tag. Homepage skim. */
-export const ABOUT_HEADLINE = 'International B2B sales, extended through applied AI.'
-
-export const ABOUT_PARAS = [
-  '18 years at Metsä Board, from customer service and sales support to sales management across Portugal and 50 international customer accounts in agent markets across Europe and MEA.',
-  'Applied AI and digital capabilities extend that commercial experience into commercial processes and business transformation.',
-]
-
-export const ABOUT_TAG =
-  'Connected layers: the Metsä Board career is the evidence. Applied AI is the extension. Monopati is the further development.'
-
-/** Capabilities — four compact groups. Established vs developing labels. */
+/** Capabilities — five transferable ways of working. */
 export const CAPABILITIES_HEADLINE = 'What I bring'
 
 export const CAPABILITIES_GROUPS = [
   {
-    title: 'International B2B Sales & Market Development',
-    label: 'Sales Manager · 01/2018–05/2026',
-    items: 'Full commercial responsibility for Portugal and 50 international customer accounts across agent markets in Europe and MEA, including pricing, contracts, demand and performance.',
+    title: 'Multi-market thinking',
+    items: 'Connecting markets, customers and competing priorities.',
   },
   {
-    title: 'Commercial Operations & Business Insights',
-    label: 'Sales Support Manager · 04/2015–12/2017',
-    items: 'Commercial operations support, budgeting, forecasting and reporting, including operational support to the Commercial Director.',
+    title: 'End-to-end process thinking',
+    items: 'Understanding how decisions, handovers and dependencies affect the whole journey.',
   },
   {
-    title: 'Customer, Account & Stakeholder Management',
-    label: 'Customer Service Coordinator · 04/2008–03/2015',
-    items: 'International order-to-delivery, export documentation, CRM customer master data, and coordination with Sales, Mill Operations and Credit Management.',
+    title: 'Cross-functional alignment',
+    items: 'Bringing different teams and stakeholders together around shared outcomes.',
   },
   {
-    title: 'AI-enabled Business Processes & Digital Solutions',
-    label: 'Applied to commercial work',
-    items: 'Applied AI and digital capabilities extend the commercial career. The prototypes on this site are that extension. They were not commissioned by Metsä Board.',
+    title: 'Customer and account perspective',
+    items: 'Understanding customer needs, relationships and the commercial context behind decisions.',
+  },
+  {
+    title: 'Turning complexity into action',
+    items: 'Breaking down complicated situations and translating insight into practical improvements.',
   },
 ]
 
@@ -256,13 +245,6 @@ export const PROJECT_BRIEFS = {
 export const TRIANGORA_CAPTION =
   "Doesn't generate claims. Independently verifies existing claims against supporting evidence."
 
-/** 60-second evaluator path */
-export const HIRING_PATH_STEPS = [
-  { n: '1', label: 'Home', detail: 'Brand + Metsä Board career as evidence; prototypes as the extension' },
-  { n: '2', label: 'About & capabilities', detail: 'Established commercial experience, then applied AI as a separate reskilling layer' },
-  { n: '3', label: 'Work → GRYPS', detail: 'Lead prototype: gryps.vercel.app/#advisor — no account for the initial result · brief at /work/gryps' },
-]
-
 export const TRIANGORA_BLURB = FEATURED_PROJECTS.triangora.blurb
 
 export const MONOPATI_ONGOING =
@@ -359,55 +341,44 @@ export const GRYPS_CASE = {
 
 export const BID_CASE = {
   title: 'Applying AI to International B2B Commercial Processes',
-  status:
-    'Conceptual exploration based on professional experience. Proposed application of AI to commercial processes. Not a production deployment.',
   subline:
-    'Developed from practical experience managing international B2B sales, pricing, contract negotiations and commercial operations. The AI applications are a conceptual exploration. They were not implemented or commissioned by Metsä Board.',
+    'How applied AI could support international sales, pricing and commercial operations when many markets and accounts have to move together.',
   context: {
-    label: 'Professional basis',
+    label: 'Commercial context',
     paras: [
-      'Developed from practical experience managing international B2B sales, pricing, contract negotiations and commercial operations across Portugal and 50 international customer accounts across agent markets in Europe and MEA.',
-      'This conceptual case explores how applied AI could support complex commercial workflows, improve information processing and strengthen decision preparation, while keeping commercial judgement and accountability with people.',
-      'The Metsä Board responsibilities are real professional experience. The proposed AI applications are a conceptual exploration based on that experience. They were not implemented or commissioned by Metsä Board, and this case is not a project delivered during that employment. No customer, contract or internal document is described.',
+      'International B2B work across multiple markets and customer accounts depends on keeping customer requirements, commercial terms and internal conditions aligned. Pricing, contracts, demand and delivery pass through sales, planning, supply chain, logistics and customer service before a commitment is made.',
     ],
   },
   challenges: {
-    label: 'Where the work is demanding',
-    note: 'These are general characteristics of commercial work at that scope. They are not measured findings, and they are not drawn from confidential company information.',
+    label: 'Where friction shows up',
     items: [
-      'Commercial documents, customer requirements and internal conditions have to be read together.',
-      'Pricing and contract positions have to stay consistent with what has already been agreed.',
-      'Missing information, inconsistencies and risk are easy to miss when the material is spread across people and files.',
-      'Historical commercial knowledge is useful only when the person preparing a decision can find it.',
+      'Commercial information is spread across documents, inboxes and teams, so the current position is not obvious.',
+      'Customer requirements, commercial terms and internal conditions are compared by hand.',
+      'Missing information and inconsistencies surface late, close to a decision or a customer commitment.',
+      'Useful history — earlier terms, pricing positions and account context — is hard to retrieve when it is needed.',
     ],
   },
   approach: {
-    label: 'Proposed AI applications',
+    label: 'AI applications that could help',
     paras: [
-      'The exploration is how applied AI could support preparation. It is not a system Metsä Board used, and it is not a formal bid-management function.',
+      'The applications below would prepare the work. Pricing approvals, contractual commitments and customer negotiations would stay with the people responsible.',
     ],
     items: [
-      'Extracting and structuring information from commercial documents.',
-      'Comparing customer requirements, commercial terms and internal conditions.',
-      'Supporting pricing and contract review workflows.',
-      'Identifying missing information, inconsistencies and potential risks.',
-      'Improving access to historical commercial information and knowledge.',
-      'Supporting preparation of commercial proposals and decision-making.',
-    ],
-  },
-  oversight: {
-    label: 'Human accountability',
-    paras: [
-      'Pricing approvals, contractual commitments, customer negotiations and final commercial decisions remain with people. A comparison, a gap flag or a draft is an input to that judgement. It is not an approval, a commitment or a decision.',
+      'Extract and structure information from commercial documents.',
+      'Compare customer requirements, commercial terms and internal conditions.',
+      'Support pricing and contract review.',
+      'Flag missing information, inconsistencies and risks before a decision.',
+      'Make historical commercial information easier to find.',
+      'Support preparation of commercial proposals.',
     ],
   },
   value: {
-    label: 'What this demonstrates',
-    note: 'No production deployment, adoption, accuracy, measurable benefit or revenue is claimed.',
+    label: 'Business value this could support',
     items: [
-      'Commercial understanding of international B2B sales, pricing and operations.',
-      'The ability to connect that experience to practical AI applications.',
-      'A clear line between professional experience and a proposal that has not been built for, or by, an employer.',
+      'Clearer visibility of what is known, open or missing across an account.',
+      'Steadier coordination between commercial and operational teams.',
+      'Faster preparation of the material a decision needs.',
+      'Fewer omissions in proposals, pricing reviews and customer commitments.',
     ],
   },
 }
