@@ -1495,7 +1495,7 @@ export default function Portfolio({ theme = 'dark' }) {
               name: 'What is this site?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'A personal reskilling portfolio for Henrique Moreira (Espoo, Finland). Established evidence is 18 years at Metsä Board. GRYPS, Triangora and Morea are non-commercial prototypes that extend that experience. Monopati is the study path. Factual posture: https://henriquemoreira.eu/about',
+                text: 'A personal reskilling portfolio for Henrique Moreira (Espoo, Finland). Established evidence is 18 years at Metsä Board. GRYPS, Triangora and Morea are non-commercial prototypes that extend that experience. Earlier prototypes are Grantemia, Velu, Lycaon, DisclAI, and Iraun. LitrixEU is not a project on this site. Monopati is the study path. Factual posture: https://henriquemoreira.eu/about',
               },
             },
             {

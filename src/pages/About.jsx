@@ -139,6 +139,7 @@ export default function About({ theme = 'dark' }) {
           <li>Not a claim of enterprise customers, awards, or certified coverage.</li>
           <li>Not procurement, legal, or engineering advice.</li>
           <li>Not a stack badge wall — stack appears as evidence on the GRYPS brief after you try the Signature.</li>
+          <li>Not LitrixEU. That name is not a project on this site. The EU AI Act walkthrough is Morea. Earlier prototypes are Grantemia, Velu, Lycaon, DisclAI, and Iraun.</li>
         </LegalUl>
       </section>
 
