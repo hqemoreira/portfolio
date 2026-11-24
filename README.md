@@ -11,7 +11,7 @@ Personal site hub for Henrique Moreira (Espoo, Finland). Public, indexed **hirin
 ## What’s on the site
 
 - Person-first hero — International B2B Sales & Commercial Management, then applied AI for commercial processes and business transformation + Explore the GRYPS prototype / Get in touch
-- Homepage after the hero — commercial results, What I bring (five blocks), the applied commercial case, then projects and Experience
+- Homepage after the hero — What I bring (five blocks), the applied commercial case, then projects and a short Experience note. No employer name and no CV performance figures
 - About (`/about`) — four-paragraph professional introduction
 - What I bring — multi-market thinking, end-to-end process thinking, cross-functional alignment, customer and account perspective, turning complexity into action
 - Applied commercial case: `/work/bids` — how applied AI could support international sales, pricing and commercial operations

@@ -16,5 +16,8 @@ build/
 *.key
 credentials.json
 
-# generated CV PDF (source is cv/*.html; public copy is committed)
+# CV working documents stay on this machine. The public download is public/Henrique_Moreira_CV.pdf.
+cv/Henrique_Moreira_CV.html
 cv/Henrique_Moreira_CV.pdf
+cv/LINKEDIN.md
+cv/README.md

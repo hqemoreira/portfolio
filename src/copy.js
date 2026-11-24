@@ -12,10 +12,10 @@ export const HERO_IDENTITY_SECONDARY =
   'Applied AI and digital capabilities for commercial processes and business transformation.'
 
 export const HERO_SUBLINE =
-  '18 years of international industrial B2B experience at Metsä Board, from customer service and sales support to sales management.'
+  '18 years in international commercial operations, across markets, customers and complex processes.'
 
 export const HERO_SUPPORT =
-  'The Metsä Board career is the professional evidence. Applied AI extends that experience into commercial processes and business transformation.'
+  'That experience is the foundation. Applied AI extends it into clearer processes and practical tools.'
 
 export const HERO_FOCUS = 'International B2B · Commercial Growth · Applied AI'
 
@@ -57,56 +57,10 @@ export const CAPABILITIES_GROUPS = [
   },
 ]
 
-/** Historical Metsä Board result shown on the homepage. Selling-price growth stays on the CV only. */
-export const COMMERCIAL_RESULTS = [
-  {
-    figure: '+9.84%',
-    label: 'Portugal sales volume',
-    detail: 'avg / year',
-  },
-]
-
-export const COMMERCIAL_RESULTS_NOTE =
-  'Historical result from the Sales Manager role at Metsä Board (01/2018–05/2026). The CV records Portugal sales volume as +9.84% avg / year and does not name the years included in the average.'
-
-export const EXPERIENCE_ROLES = [
-  {
-    title: 'Sales Manager – Commercial Excellence & Customer Solutions',
-    dates: '01/2018–05/2026',
-    place: 'Metsä Board · Finland · International industrial B2B (paperboard)',
-    points: [
-      'Full commercial responsibility for Portugal and 50 international customer accounts across agent markets in Europe and MEA.',
-      'Pricing strategy, contract negotiations and multi-year agreements.',
-      'Demand alignment and portfolio performance.',
-      'Commercial forecasting, budgeting and reporting.',
-      'SAP/CRM Advanced Key User responsibilities.',
-      'Improvements to commercial reporting and visibility through SAP, BW, CRM and Power BI.',
-      'Cross-functional collaboration with Supply Chain, Demand Planning, Logistics, Customer Service, Credit Control, Marketing and Sustainability.',
-    ],
-  },
-  {
-    title: 'Sales Support Manager – Commercial Reporting & Business Insights',
-    dates: '04/2015–12/2017',
-    place: 'Metsä Board · Finland',
-    points: [
-      'Commercial operations support, budgeting, forecasting and reporting.',
-      'Global lead follow-up and operational support to the Commercial Director.',
-      'Production alignment, pricing support, contract structuring and portfolio development.',
-      'Market intelligence and business expansion support.',
-    ],
-  },
-  {
-    title: 'Customer Service Coordinator & Business Process',
-    dates: '04/2008–03/2015',
-    place: 'Metsä Board · Belgium / Finland',
-    points: [
-      'International order-to-delivery management.',
-      'Export documentation and compliance.',
-      'CRM customer master data and service agreements.',
-      'Coordination with Sales, Mill Operations and Credit Management.',
-      'Process improvement and service reliability.',
-    ],
-  },
+export const EXPERIENCE_PARAS = [
+  'International commercial work means holding customers, markets and internal teams in the same picture. A commitment holds when pricing, planning, supply and delivery stay aligned.',
+  'I look for the gap: missing information, a handover that arrives late, or a decision being prepared without the history it needs.',
+  'The projects on this site are where that way of working becomes a practical tool, including applied AI.',
 ]
 
 /** Featured projects — homepage skim. Depth on case pages / Triangora details. */
@@ -261,7 +215,7 @@ export const NONCOMMERCIAL_LINE =
 export const CONTACT_HEADLINE = "Let's talk about problems worth solving."
 
 export const CONTACT_BODY =
-  'The Metsä Board career is established evidence. The prototypes show the extension. Monopati shows what I am learning next.'
+  'Commercial experience is the foundation. The prototypes show how I extend it. Monopati shows what I am learning next.'
 
 export const MONOPATI_LINK_LABEL = 'View study progress →'
 

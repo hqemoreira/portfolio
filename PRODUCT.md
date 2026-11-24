@@ -14,7 +14,7 @@ Hiring evaluators and peers scanning skill demos (~60s path: Home → About, a p
 
 ## Job to be done
 
-Understand three connected layers: Metsä Board commercial career as established evidence; GRYPS (then Triangora, then Morea) as how that experience is being extended; Monopati as further development. Try the GRYPS prototype; download CV / LinkedIn; understand the non-commercial posture.
+Understand three connected layers: an international commercial career as the foundation; GRYPS (then Triangora, then Morea) as how that experience is being extended; Monopati as further development. Try the GRYPS prototype; download CV / LinkedIn; understand the non-commercial posture. The public site does not name an employer or repeat CV performance figures.
 
 ## Surface types
 
@@ -32,7 +32,7 @@ Understand three connected layers: Metsä Board commercial career as established
 
 ## Honesty
 
-No SaaS, pricing pages, waitlists, or “production customer” claims. Pricing may appear only as historical Metsä Board commercial capability, never as a service this site offers. Seed/demo numbers are illustrative where noted on GRYPS. Do not present applied AI as 18 years of AI experience, and do not restore an AI-consultant or AI-engineer identity. FORGE stays private-only.
+No SaaS, pricing pages, waitlists, or “production customer” claims. Do not put employer names, employment dates, or CV performance figures on the public site. Seed/demo numbers are illustrative where noted on GRYPS. Do not present applied AI as a replacement for the commercial career, and do not restore an AI-consultant or AI-engineer identity. FORGE stays private-only.
 
 `/work/bids` is the applied commercial case, “Applying AI to International B2B Commercial Processes.” It states the commercial problem once, then the operational friction, six proposed AI applications, and the business value they could support. Pricing approvals, contractual commitments and customer negotiations stay with the people responsible. It is not build proof. GRYPS remains the lead prototype.
 
@@ -40,7 +40,7 @@ No SaaS, pricing pages, waitlists, or “production customer” claims. Pricing 
 
 Keep the layers separate and connected:
 
-1. **Evidence** — International B2B Sales & Commercial Management. 18 years at Metsä Board: customer service (04/2008–03/2015), sales support (04/2015–12/2017), sales management (01/2018–05/2026), including Portugal and 50 international customer accounts across agent markets. CV is the source of truth. Portugal sales volume is +9.84% avg / year.
+1. **Evidence** — International B2B Sales & Commercial Management. The public site describes how that work is done. Employment history and commercial results stay in the downloadable CV only.
 2. **Extension** — GRYPS is the lead hiring proof; Triangora and Morea stay secondary. Non-commercial research prototypes.
 3. **Further development** — Monopati. Direction, not build proof.
 
@@ -48,14 +48,14 @@ Do not lead with “AI Solutions Consultant”, “intelligent systems” as a j
 
 ## Success look
 
-First viewport: **brand monument + B2B identity + punchline + Explore the GRYPS prototype / Get in touch** — quiet non-commercial note. Homepage order after the hero: commercial results → What I bring (five blocks) → applied commercial case → Selected work (GRYPS → Triangora → Morea) → Monopati and collapsed earlier experiments → Experience → Contact. `/about` is a separate four-paragraph professional introduction.
+First viewport: **brand monument + B2B identity + punchline + Explore the GRYPS prototype / Get in touch** — quiet non-commercial note. Homepage order after the hero: What I bring (five blocks) → applied commercial case → Selected work (GRYPS → Triangora → Morea) → Monopati and collapsed earlier experiments → Experience → Contact. `/about` is a separate four-paragraph professional introduction.
 
-**Content hierarchy:** Metsä Board career on the hero, results and Experience. What I bring is five transferable blocks: multi-market thinking, end-to-end process thinking, cross-functional alignment, customer and account perspective, and turning complexity into action. **Do not expand homepage projects or structure.** Depth lives on case studies — priority: GRYPS hiring case → Triangora → Morea. Do not restore an AI-consultant identity.
+**Content hierarchy:** Commercial experience on the hero and a short Experience note. No employer name, no results block, no job chronology. What I bring is five transferable blocks: multi-market thinking, end-to-end process thinking, cross-functional alignment, customer and account perspective, and turning complexity into action. **Do not expand homepage projects or structure.** Depth lives on case studies — priority: GRYPS hiring case → Triangora → Morea. Do not restore an AI-consultant identity.
 
 ## Maintain (do not regress)
 
 - **Person-first hero** — `HENRIQUE` / `MOREIRA` monument; amber brand; Lycaon constellation.
-- **Business foundation first** — Metsä Board career as evidence; AI prototypes as the extension; Monopati as further development. Not an AI-consultant portfolio.
+- **Business foundation first** — commercial experience as the foundation; AI prototypes as the extension; Monopati as further development. Not an AI-consultant portfolio. Do not restore an employer name or CV figures on the public site.
 - **Skimmable homepage** — ~30–60s understanding; depth on `/work/gryps`, `/work/morea`, Triangora disclosure.
 - **Lead with the system under Work** — GRYPS first with live screenshots; never a stack badge wall on the home hero.
 - **Stack as case evidence** — on `/work/gryps` and featured cards.

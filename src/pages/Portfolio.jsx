@@ -21,9 +21,7 @@ import {
   HERO_LOCATION,
   HERO_SUBLINE,
   HERO_SUPPORT,
-  COMMERCIAL_RESULTS,
-  COMMERCIAL_RESULTS_NOTE,
-  EXPERIENCE_ROLES,
+  EXPERIENCE_PARAS,
   NONCOMMERCIAL_LINE,
   LINKEDIN_URL,
   MONOPATI_LINK_LABEL,
@@ -732,59 +730,6 @@ function ContributionDetails({ contribution, ink, body, quiet, accent, panelId }
   )
 }
 
-function CommercialResults({ isLight }) {
-  const { phone } = useBreakpoint()
-  const c = t(isLight)
-
-  return (
-    <Section id="results" isLight={isLight}>
-      <RevealWrapper>
-        <SectionEyebrow color={c.amber}>Results</SectionEyebrow>
-        <h2
-          style={{
-            fontFamily: "'Fraunces', serif",
-            fontSize: phone ? '28px' : 'clamp(30px, 3.8vw, 44px)',
-            fontWeight: 200,
-            fontStyle: 'italic',
-            color: c.ink,
-            lineHeight: 1.12,
-            letterSpacing: '-0.025em',
-            marginBottom: '22px',
-            textAlign: 'left',
-          }}
-        >
-          Commercial results at Metsä Board
-        </h2>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: phone ? '1fr' : '1fr 1fr',
-            gap: phone ? '16px' : '24px',
-            textAlign: 'left',
-          }}
-        >
-          {COMMERCIAL_RESULTS.map((row) => (
-            <div key={row.figure} style={{ borderTop: `2px solid ${c.amber}`, paddingTop: 14 }}>
-              <div style={{ fontFamily: "'Fraunces', serif", fontSize: phone ? '40px' : '52px', fontWeight: 200, fontStyle: 'italic', color: c.ink, lineHeight: 1 }}>
-                {row.figure}
-              </div>
-              <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '13px', fontWeight: 700, color: c.ink, marginTop: 10 }}>
-                {row.label}
-              </div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase', color: c.amber, marginTop: 6 }}>
-                {row.detail}
-              </div>
-            </div>
-          ))}
-        </div>
-        <p style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body, textAlign: 'left', margin: '18px 0 0', maxWidth: '720px' }}>
-          {COMMERCIAL_RESULTS_NOTE}
-        </p>
-      </RevealWrapper>
-    </Section>
-  )
-}
-
 function AboutSection({ isLight }) {
   const { phone, narrow } = useBreakpoint()
   const c = t(isLight)
@@ -849,18 +794,9 @@ function AboutSection({ isLight }) {
             >
               Professional experience
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-              {EXPERIENCE_ROLES.map((role) => (
-                <div key={role.title}>
-                  <div style={{ display: 'flex', flexDirection: phone ? 'column' : 'row', justifyContent: 'space-between', gap: 6 }}>
-                    <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '14px', fontWeight: 700, color: c.ink }}>{role.title}</div>
-                    <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', letterSpacing: '0.06em', color: c.amber, flexShrink: 0 }}>{role.dates}</div>
-                  </div>
-                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: c.muted, letterSpacing: '0.04em', margin: '6px 0 8px' }}>{role.place}</div>
-                  {role.points.map((point) => (
-                    <p key={point.slice(0, 32)} style={{ fontFamily: "'Lora', serif", fontSize: '14px', lineHeight: 1.7, color: c.body, margin: '0 0 8px' }}>{point}</p>
-                  ))}
-                </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {EXPERIENCE_PARAS.map((para) => (
+                <p key={para.slice(0, 32)} style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.7, color: c.body, margin: 0 }}>{para}</p>
               ))}
             </div>
           </div>
@@ -1481,7 +1417,7 @@ export default function Portfolio({ theme = 'dark' }) {
               name: 'What is this site?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'A personal reskilling portfolio for Henrique Moreira (Espoo, Finland). Established evidence is 18 years at Metsä Board. GRYPS, Triangora and Morea are non-commercial prototypes that extend that experience. Earlier prototypes are Grantemia, Velu, Lycaon, DisclAI, and Iraun. LitrixEU is not a project on this site. Monopati is the study path. Machine-readable guidance: https://henriquemoreira.eu/llms.txt',
+                text: 'A personal reskilling portfolio for Henrique Moreira (Espoo, Finland). The foundation is an international commercial career. GRYPS, Triangora and Morea are non-commercial prototypes that extend that experience. Earlier prototypes are Grantemia, Velu, Lycaon, DisclAI, and Iraun. LitrixEU is not a project on this site. Monopati is the study path. Machine-readable guidance: https://henriquemoreira.eu/llms.txt',
               },
             },
             {
@@ -1532,7 +1468,6 @@ export default function Portfolio({ theme = 'dark' }) {
     <div style={{ background: c.bg, minHeight: '100vh', overflowX: 'hidden', transition: 'background 0.4s ease' }}>
       <BgLayers isLight={isLight} />
       <Hero isLight={isLight} />
-      <CommercialResults isLight={isLight} />
       <Capabilities isLight={isLight} />
       <BidConcept isLight={isLight} />
       <Work isLight={isLight} />

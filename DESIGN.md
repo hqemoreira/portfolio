@@ -68,7 +68,7 @@ Hero field = **Lycaon Pictus coat mottling** (`useConstellation`): irregular gol
 
 Hero budget: brand (amber bloom on MOREIRA), B2B identity lines, punchline + one support sentence, Explore the GRYPS prototype + Get in touch, quiet ask + non-commercial small print. No cards, no Signature panel in the first viewport.
 
-Home order: Hero → Commercial results → What I bring (five blocks) → Applied commercial case → Selected work (GRYPS → Triangora → Morea) → Monopati and collapsed earlier experiments → Experience → Contact (Download CV + LinkedIn). `/about` is a separate page. Contribution/methodology depth lives on case pages, not homepage cards.
+Home order: Hero → What I bring (five blocks) → Applied commercial case → Selected work (GRYPS → Triangora → Morea) → Monopati and collapsed earlier experiments → Experience → Contact (Download CV + LinkedIn). No results block and no employer chronology. `/about` is a separate page. Contribution/methodology depth lives on case pages, not homepage cards.
 
 ## Motion
 

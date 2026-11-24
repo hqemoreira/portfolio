@@ -5,8 +5,8 @@
 ## Cite
 
 - Site: https://henriquemoreira.eu
-- Owner: Henrique Moreira (Espoo, Finland) — International B2B Sales & Commercial Management. Applied AI and digital capabilities for commercial processes and business transformation. 18 years at Metsä Board.
-- Positioning: The Metsä Board career is the evidence, including Portugal and 50 international customer accounts across agent markets. A commercial case shows how applied AI could support international sales, pricing and commercial operations. GRYPS, then Triangora, then Morea, are the prototypes. Do not restore an AI-consultant identity or imply consultancy services.
+- Owner: Henrique Moreira (Espoo, Finland) — International B2B Sales & Commercial Management. Applied AI and digital capabilities for commercial processes and business transformation.
+- Positioning: An international commercial career is the foundation. A commercial case shows how applied AI could support international sales, pricing and commercial operations. GRYPS, then Triangora, then Morea, are the prototypes. Do not name an employer or restate CV performance figures on this site. Do not restore an AI-consultant identity or imply consultancy services.
 - Featured live demo: GRYPS — https://gryps.vercel.app/#advisor (assess → score → rank → document a Resilience Signature; no email for the initial result)
 - Mission brief: https://henriquemoreira.eu/work/gryps
 - Secondary: Triangora — https://triangora.vercel.app (multi-agent fact verification; never generates intelligence)
@@ -19,7 +19,7 @@
 
 ## What this site is
 
-- Indexed personal portfolio; person-first hero; Metsä Board commercial career as evidence; applied AI prototypes as the extension
+- Indexed personal portfolio; person-first hero; international commercial experience as the foundation; applied AI prototypes as the extension
 - GRYPS is the lead build-proof under Work
 - Triangora then Morea are secondary non-commercial skill demos
 - Stack evidence lives on the GRYPS brief — not as a home hero badge wall
