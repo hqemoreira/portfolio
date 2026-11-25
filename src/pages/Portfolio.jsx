@@ -9,7 +9,6 @@ import {
   CONTACT_HEADLINE,
   CV_PATH,
   EMAIL,
-  BID_CASE,
   PROJECT_BRIEFS,
   SITE_DESCRIPTION,
   SITE_TITLE,
@@ -1361,13 +1360,13 @@ function BidConcept({ isLight }) {
             maxWidth: 720,
           }}
         >
-          {BID_CASE.title}
+          How I Think About Applying AI to International B2B Commercial Processes
         </h2>
         <p style={{ fontFamily: "'Lora', serif", fontSize: '15px', lineHeight: 1.7, color: c.body, margin: '0 0 18px', maxWidth: 680 }}>
-          {BID_CASE.subline}
+          A showcase of my thinking on how AI can support international sales, pricing and commercial operations. Starting with the business context, I mapped process challenges, identified opportunities and explored how AI could help improve decisions, coordination and execution across markets and accounts.
         </p>
         <CtaGhost href="/work/bids" color={c.amber} internal>
-          Read the case
+          Explore my approach
         </CtaGhost>
       </RevealWrapper>
     </Section>

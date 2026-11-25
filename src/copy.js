@@ -12,7 +12,7 @@ export const HERO_IDENTITY_SECONDARY =
   'Applied AI and digital capabilities for commercial processes and business transformation.'
 
 export const HERO_SUBLINE =
-  '18 years in international commercial operations, across markets, customers and complex processes.'
+  'Two decades in international commercial operations, across markets, customers and complex processes.'
 
 export const HERO_SUPPORT =
   'That experience is the foundation. Applied AI extends it into clearer processes and practical tools.'
@@ -27,11 +27,11 @@ export const SITE_TITLE =
   'Henrique Moreira | International B2B Sales, Commercial Management & Applied AI'
 
 export const SITE_DESCRIPTION =
-  'International B2B Sales & Commercial Management. 18 years of international industrial experience, extended through applied AI and digital capabilities for commercial processes and business transformation.'
+  'International B2B Sales & Commercial Management. Two decades of international B2B commercial experience, extended through applied AI and digital capabilities for commercial processes and business transformation.'
 
 export const GRYPS_PRIMARY_CTA = 'Explore the GRYPS prototype'
 
-/** Capabilities — five transferable ways of working. */
+/** Capabilities — six transferable ways of working. */
 export const CAPABILITIES_HEADLINE = 'What I bring'
 
 export const CAPABILITIES_GROUPS = [
@@ -55,12 +55,16 @@ export const CAPABILITIES_GROUPS = [
     title: 'Turning complexity into action',
     items: 'Breaking down complicated situations and translating insight into practical improvements.',
   },
+  {
+    title: 'Applied AI thinking',
+    items: 'Identifying where AI can improve business processes, support decisions and turn opportunities into practical solutions.',
+  },
 ]
 
 export const EXPERIENCE_PARAS = [
-  'International commercial work means holding customers, markets and internal teams in the same picture. A commitment holds when pricing, planning, supply and delivery stay aligned.',
-  'I look for the gap: missing information, a handover that arrives late, or a decision being prepared without the history it needs.',
-  'The projects on this site are where that way of working becomes a practical tool, including applied AI.',
+  'Nearly two decades in international B2B commercial work have shaped how I understand customers, markets and the operational realities behind commercial decisions. It means seeing the whole picture — from pricing and planning to supply, delivery and customer relationships.',
+  'I look for the gaps: missing information, a handover that arrives late, or a decision being prepared without the context it needs.',
+  'Today, I bring that experience into new challenges, exploring how digital solutions and applied AI can help businesses work better, make informed decisions and turn complexity into practical improvements.',
 ]
 
 /** Featured projects — homepage skim. Depth on case pages / Triangora details. */
