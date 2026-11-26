@@ -100,6 +100,15 @@ export default function Nav({ theme, onToggleTheme }) {
         <NavLink href="/#experience" color={c.amber} onClick={scrollHomeSection('experience')}>
           Experience
         </NavLink>
+        <Link
+          to="/cv"
+          aria-current={location.pathname === '/cv' ? 'page' : undefined}
+          style={{ ...linkBase, color: c.amber }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = 1 }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.8 }}
+        >
+          CV
+        </Link>
         <NavLink href="/#contact" color={c.amber} onClick={scrollHomeSection('contact')}>
           Contact
         </NavLink>

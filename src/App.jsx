@@ -6,6 +6,7 @@ import Portfolio from './pages/Portfolio'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import About from './pages/About'
+import Cv from './pages/Cv'
 import NotFound from './pages/NotFound'
 import GrypsCase from './pages/work/GrypsCase'
 import MoreaCase from './pages/work/MoreaCase'
@@ -64,6 +65,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Portfolio theme={theme} />} />
         <Route path="/about" element={<About theme={theme} />} />
+        <Route path="/cv" element={<Cv theme={theme} />} />
         <Route path="/privacy" element={<Privacy theme={theme} />} />
         <Route path="/terms" element={<Terms theme={theme} />} />
         <Route path="/work/gryps" element={<GrypsCase theme={theme} />} />

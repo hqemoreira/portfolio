@@ -31,6 +31,51 @@ a, button {
   }
 }
 
+@media print {
+  nav,
+  .no-print {
+    display: none !important;
+  }
+  html, body, #root {
+    background: #fff !important;
+    overflow: visible !important;
+    max-width: none !important;
+  }
+  .cv-sheet,
+  .cv-sheet * {
+    background: transparent !important;
+    color: #1a1a1a !important;
+    box-shadow: none !important;
+  }
+  .cv-sheet {
+    background: #fff !important;
+  }
+  .cv-rail {
+    border-left-color: #ccc !important;
+  }
+  .cv-dot {
+    background: #1a1a1a !important;
+  }
+  .cv-sheet h2,
+  .cv-sheet h3,
+  .cv-employer {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  .cv-sheet p,
+  .cv-sheet li {
+    orphans: 3;
+    widows: 3;
+  }
+  .cv-sheet a {
+    text-decoration: none !important;
+  }
+}
+
+@page {
+  margin: 14mm 16mm;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

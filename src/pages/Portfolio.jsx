@@ -7,7 +7,6 @@ import {
   CAPABILITIES_HEADLINE,
   CONTACT_BODY,
   CONTACT_HEADLINE,
-  CV_PATH,
   EMAIL,
   PROJECT_BRIEFS,
   SITE_DESCRIPTION,
@@ -1266,9 +1265,9 @@ function Contact({ isLight }) {
           Espoo, Finland · International perspective
         </div>
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', flexDirection: phone ? 'column' : 'row', alignItems: phone ? 'stretch' : 'center', marginBottom: '16px', maxWidth: phone ? 360 : undefined, marginLeft: 'auto', marginRight: 'auto' }}>
-          <a href={CV_PATH} download="Henrique_Moreira_CV.pdf" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
-            <div style={contactBtn(true)}>Download CV</div>
-          </a>
+          <Link to="/cv" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
+            <div style={contactBtn(true)}>View CV</div>
+          </Link>
           <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', width: phone ? '100%' : undefined }}>
             <div style={contactBtn(false)}>LinkedIn ↗</div>
           </a>
